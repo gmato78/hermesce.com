@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hce — Hermes Comercio Exterior</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0c12;
+    --bg2: #0e1118;
+    --card: #131720;
+    --border: #1e2535;
+    --accent: #3a5bbd;
+    --accent-bright: #4f72e3;
+    --accent-glow: rgba(79,114,227,0.15);
+    --text: #e8eaf0;
+    --text-dim: #7a85a0;
+    --text-faint: #3d4560;
+    --white: #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(10,12,18,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: 0.08em;
+    color: var(--white);
+  }
+  .logo span { color: var(--accent-bright); }
+  nav ul { list-style: none; display: flex; gap: 2.5rem; }
+  nav ul a {
+    text-decoration: none;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  nav ul a:hover { color: var(--text); }
+  .nav-cta {
+    background: var(--accent);
+    color: white !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: 6px;
+    font-weight: 500 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--accent-bright) !important; color: white !important; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 8rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+    width: 900px; height: 900px;
+    background: radial-gradient(ellipse at center, rgba(63,90,180,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 0.4rem 1rem;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-badge span { color: var(--accent-bright); font-weight: 500; }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 1.0;
+    color: var(--white);
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent-bright);
+    display: block;
+  }
+  .hero-sub {
+    margin-top: 1.8rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--text-dim);
+    max-width: 560px;
+    font-weight: 300;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+  .hero-sub strong { color: var(--text); font-weight: 500; }
+  .hero-cta {
+    margin-top: 2.8rem;
+    display: flex; gap: 1rem; justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    padding: 0.9rem 2.2rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: background 0.2s, transform 0.15s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--accent-bright); transform: translateY(-2px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-dim);
+    padding: 0.9rem 2.2rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 400;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    cursor: pointer;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--text); transform: translateY(-2px); }
+
+  /* ─── STATS ─── */
+  .stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 5rem auto 0;
+    max-width: 700px;
+    width: 90%;
+    animation: fadeUp 0.7s 0.4s ease both;
+  }
+  .stat {
+    background: var(--card);
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #3ecf6e;
+    line-height: 1;
+  }
+  .stat-label {
+    margin-top: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── SECTION SHARED ─── */
+  section { padding: 6rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-bright);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .section-desc {
+    color: var(--text-dim);
+    font-size: 1rem;
+    max-width: 520px;
+    line-height: 1.7;
+  }
+
+  /* ─── PROBLEM ─── */
+  .problem-block {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .problem-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: center;
+  }
+  .problem-quote {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+  }
+  .problem-quote em {
+    font-style: normal;
+    color: var(--accent-bright);
+  }
+  .problem-list { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; }
+  .problem-list li {
+    display: flex; gap: 1rem; align-items: flex-start;
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .problem-list li::before {
+    content: '→';
+    color: var(--accent-bright);
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 0.05rem;
+  }
+
+  /* ─── SERVICES ─── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  .service-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2rem;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: default;
+  }
+  .service-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+  .service-icon {
+    width: 44px; height: 44px;
+    background: var(--accent-glow);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.3rem;
+    font-size: 1.2rem;
+  }
+  .service-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.7rem;
+    letter-spacing: 0.02em;
+  }
+  .service-card p {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  /* ─── ECP ─── */
+  .ecp-section { background: var(--bg2); border-top: 1px solid var(--border); }
+  .ecp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 3.5rem;
+  }
+  .ecp-card {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid var(--border);
+    background: var(--card);
+    position: relative;
+    overflow: hidden;
+  }
+  .ecp-card:last-child { border-right: none; }
+  .ecp-letter {
+    font-family: 'Syne', sans-serif;
+    font-size: 5rem;
+    font-weight: 800;
+    color: var(--text-faint);
+    line-height: 1;
+    margin-bottom: 1rem;
+    transition: color 0.3s;
+  }
+  .ecp-card:hover .ecp-letter { color: var(--accent-bright); }
+  .ecp-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.7rem;
+  }
+  .ecp-card p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.65; }
+
+  /* ─── MATIAS ─── */
+  .matias-block {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem;
+    align-items: center;
+  }
+  .matias-left {}
+  .matias-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 0.4rem;
+  }
+  .matias-role {
+    font-size: 0.85rem;
+    color: var(--accent-bright);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 1.8rem;
+  }
+  .matias-bio {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .certs { display: flex; flex-direction: column; gap: 0.6rem; }
+  .cert {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.82rem; color: var(--text-dim);
+  }
+  .cert::before {
+    content: '✓';
+    color: var(--accent-bright);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  .timeline {
+    display: flex; flex-direction: column; gap: 0;
+    position: relative;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .tl-item {
+    padding: 1.4rem 0 1.4rem 2rem;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute; left: -4px; top: 1.9rem;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent-bright);
+  }
+  .tl-item:last-child { border-bottom: none; }
+  .tl-year {
+    font-size: 0.75rem;
+    color: var(--accent-bright);
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+  .tl-role {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.2rem;
+  }
+  .tl-co { font-size: 0.82rem; color: var(--text-dim); }
+
+  /* ─── CODEX CALLOUT ─── */
+  .codex-callout {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+  .codex-phrase {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.35;
+    max-width: 780px;
+    margin: 0 auto 1.5rem;
+  }
+  .codex-phrase em { font-style: normal; color: var(--accent-bright); }
+  .codex-sub {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+  }
+  .codex-tags {
+    display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+  .codex-tag {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.5rem 1.2rem;
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+  .codex-tag.active { border-color: var(--accent); color: var(--accent-bright); }
+
+  /* ─── CONTACT ─── */
+  .contact-section { text-align: center; }
+  .contact-inner {
+    max-width: 580px; margin: 0 auto;
+  }
+  .contact-inner .section-title { margin-bottom: 0.8rem; }
+  .contact-inner .section-desc { margin: 0 auto 2.5rem; text-align: center; }
+  .contact-form {
+    display: flex; flex-direction: column; gap: 1rem;
+    text-align: left;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--accent); }
+  .form-group select option { background: var(--card); }
+  .form-submit {
+    background: var(--accent);
+    color: white;
+    padding: 0.9rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.2s;
+    margin-top: 0.5rem;
+  }
+  .form-submit:hover { background: var(--accent-bright); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--bg);
+  }
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+  }
+  .footer-logo span { color: var(--accent-bright); }
+  .footer-info {
+    font-size: 0.78rem;
+    color: var(--text-faint);
+    text-align: center;
+    line-height: 1.6;
+  }
+  .footer-tagline {
+    font-size: 0.82rem;
+    color: var(--text-faint);
+    font-style: italic;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { display: none; }
+    .problem-inner, .matias-block { grid-template-columns: 1fr; gap: 2.5rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .ecp-grid { grid-template-columns: 1fr; }
+    .ecp-card { border-right: none; border-bottom: 1px solid var(--border); }
+    .ecp-card:last-child { border-bottom: none; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .stats { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">HERMES <span>ce</span></div>
+  <ul>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto" class="nav-cta">Consultá ahora</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge"><span>Hce</span> — Hermes Comercio Exterior · desde 1997</div>
+  <h1>lo complicado.<em>Simple.</em></h1>
+  <p class="hero-sub">
+    Despachante de aduana con 29 años de operaciones reales.<br>
+    Un solo equipo. Todo el proceso. <strong>Customizado para tu operación.</strong>
+  </p>
+  <div class="hero-cta">
+    <a href="#contacto" class="btn-primary">Hablá con nosotros →</a>
+    <a href="#servicios" class="btn-ghost">Ver servicios</a>
+  </div>
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num" data-target="29" data-prefix="+">+29</div>
+      <div class="stat-label">Años en el sector — llegando a 30</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" data-target="1463" data-prefix="+">+1.463</div>
+      <div class="stat-label">Operaciones realizadas con éxito</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" data-target="12800" data-prefix="+">+12.800</div>
+      <div class="stat-label">Posiciones NCM clasificadas</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem-block">
+  <div class="problem-inner container">
+    <div>
+      <p class="section-label">El problema real</p>
+      <h2 class="problem-quote">
+        En aduana <em>no hay margen</em> para el error.
+      </h2>
+    </div>
+    <ul class="problem-list">
+      <li>Una clasificación arancelaria mal hecha cuesta dinero, tiempo y posibles sanciones.</li>
+      <li>Los trámites ante Aduana y Terceros Organismos — ANMAT, SENASA, INAL, Producción — tienen sus tiempos y lógicas. Hay que saber donde, como y cuando moverse.</li>
+      <li>Cada operación es distinta. El proveedor, el producto, el origen, el régimen. Un servicio estándar no alcanza cuando la operación es tuya.</li>
+      <li>La mayoría de los estudios te dan un servicio estándar. Acá el servicio se adapta a tu operación.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="servicios">
+  <div class="container">
+    <p class="section-label reveal">Lo que hacemos</p>
+    <h2 class="section-title reveal">Todos los frentes. Un solo equipo.</h2>
+    <p class="section-desc reveal">No tercerizamos el criterio. Cada operación pasa por el mismo despachante que firma.</p>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">⚓</div>
+        <h3>Despacho de Aduana</h3>
+        <p>Importación y exportación. Clasificación NCM a 13 dígitos. Gestión ante SIM/AFIP. Operaciones marítimas, aéreas y terrestres.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🚢</div>
+        <h3>Coordinación de Carga</h3>
+        <p>Coordinación de cargas internacionales cuando el servicio lo requiere. Marítimo, aéreo y terrestre. Parte del todo — no el centro.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">📦</div>
+        <h3>DDP — Puerta a Puerta</h3>
+        <p>Comprás en el exterior. Nosotros nos encargamos del resto: flete, despacho, tributos, entrega. Vos recibís la mercadería.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🏷️</div>
+        <h3>Clasificación Arancelaria</h3>
+        <p>NCM con criterio, no con software. Revisamos el producto, el uso, el material. La posición correcta desde el primer intento.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">📋</div>
+        <h3>Terceros Organismos</h3>
+        <p>ANMAT, SENASA, INAL, Ministerio de Producción. Cada organismo tiene su lógica y sus tiempos. Sabemos cómo movernos adentro.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🏪</div>
+        <h3>Depósito Fiscal</h3>
+        <p>Almacenaje en zonas primarias aduaneras. Coordinación con depósitos propios y de terceros. Operativo cuando lo necesitás.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ECP -->
+<section class="ecp-section">
+  <div class="container">
+    <p class="section-label reveal">Cómo operamos</p>
+    <h2 class="section-title reveal">E · C · P</h2>
+    <p class="section-desc reveal">No es una promesa. Es la forma en que tomamos cada decisión.</p>
+    <div class="ecp-grid reveal">
+      <div class="ecp-card">
+        <div class="ecp-letter">E</div>
+        <h3>Experiencia</h3>
+        <p>No es antigüedad. Es haber tomado las decisiones difíciles cuando el manual no alcanzaba. Cada situación compleja nos dio criterio para la siguiente.</p>
+      </div>
+      <div class="ecp-card">
+        <div class="ecp-letter">C</div>
+        <h3>Criterio</h3>
+        <p>Saber qué hacer cuando el reglamento no dice qué hacer. Transparencia activa con el cliente. Nada de respuestas genéricas para problemas específicos.</p>
+      </div>
+      <div class="ecp-card">
+        <div class="ecp-letter">P</div>
+        <h3>Precisión</h3>
+        <p>En aduana no hay aproximaciones. Los procesos son auditables, las clasificaciones son verificables. El error se paga caro; nosotros no erramos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MATIAS -->
+<section id="nosotros">
+  <div class="matias-block container">
+    <div class="matias-left reveal">
+      <div class="matias-name">Matías<br>González</div>
+      <div class="matias-role">Fundador — Despachante de Aduana</div>
+      <p class="matias-bio">
+        Lic. en Comercio Internacional — UdeMM. 29 años en el sector, desde operador de SIM hasta gerente de aduana senior en Expeditors Argentina durante 8 años.
+      </p>
+      <p class="matias-bio">
+        Hoy firma cada despacho. El criterio no se delega.
+      </p>
+      <div class="certs">
+        <div class="cert">Despachante matriculado — Socio CDA</div>
+        <div class="cert">Lic. Comercio Internacional — UdeMM</div>
+        <div class="cert">Agente de Transporte Aduanero — ICA</div>
+        <div class="cert">Certificado Facilitador DINICRI — Ministerio del Interior</div>
+      </div>
+    </div>
+    <div class="timeline reveal">
+      <div class="tl-item">
+        <div class="tl-year">2010 — Hoy</div>
+        <div class="tl-role">Fundador / Socio Gerente</div>
+        <div class="tl-co">HCE de Argentina SRL — Despacho · FFW · DDP · Clasificación</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2001 — 2010</div>
+        <div class="tl-role">Gerente de Aduana Sr. / Despachante</div>
+        <div class="tl-co">Expeditors Argentina S.A. — 12 personas a cargo · KPI · Desarrollo de cuentas</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2001 — 2003</div>
+        <div class="tl-role">Supervisor / Auditor In-House</div>
+        <div class="tl-co">Expeditors / Tyco Electronics — Implante en cliente, desarrollo de SOP</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1999 — 2001</div>
+        <div class="tl-role">Coordinador Expo / Impo</div>
+        <div class="tl-co">Argent Transport Brokers S.A. — Clasificación · Coordinación de cargas</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1997 — 1999</div>
+        <div class="tl-role">Asistente de Aduana</div>
+        <div class="tl-co">House to House S.A. — Inicio en operatoria real</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CODEX CALLOUT -->
+<section class="codex-callout">
+  <div class="container">
+    <h2 class="codex-phrase reveal">
+      "Hermes siempre cruzó fronteras.<br>
+      Antes eran aduanas.<br>
+      <em>Ahora también son algoritmos.</em>"
+    </h2>
+    <p class="codex-sub reveal">Human Craft — Hecho por humanos. Potenciado por tecnología propia.</p>
+    <div class="codex-tags reveal">
+      <div class="codex-tag active">Hce</div>
+      <div class="codex-tag">→</div>
+      <div class="codex-tag">Hia</div>
+      <div class="codex-tag">→</div>
+      <div class="codex-tag">FarIAs</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contacto" class="contact-section">
+  <div class="contact-inner">
+    <p class="section-label reveal">Contacto</p>
+    <h2 class="section-title reveal">Hablemos de tu operación.</h2>
+    <p class="section-desc reveal">Sin formularios eternos. Contanos qué necesitás y te respondemos en el día.</p>
+    <div class="contact-form reveal">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" placeholder="Tu nombre">
+        </div>
+        <div class="form-group">
+          <label>Empresa</label>
+          <input type="text" placeholder="Razón social o nombre comercial">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="tu@empresa.com">
+      </div>
+      <div class="form-group">
+        <label>¿Qué necesitás?</label>
+        <select>
+          <option value="">Seleccioná una opción</option>
+          <option>Despacho de aduana</option>
+          <option>Freight Forwarding</option>
+          <option>DDP — Puerta a puerta</option>
+          <option>Clasificación arancelaria</option>
+          <option>Gestión ante organismos</option>
+          <option>Otro / Consulta general</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Mensaje</label>
+        <textarea rows="4" placeholder="Contanos de tu operación: qué importás, de dónde, con qué frecuencia..."></textarea>
+      </div>
+      <button class="form-submit">Enviar consulta →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">HERMES <span>ce</span></div>
+  <div class="footer-info">
+    HCE de Argentina SRL · CUIT 30-71530466-4<br>
+    <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b1d9d2d4f1d9d4c3dcd4c2d2d4c99fd2dedc">[email&#160;protected]</a> · Buenos Aires, Argentina
+  </div>
+  <div class="footer-tagline">lo complicado. Simple.</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Contador animado
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target);
+    const prefix = el.dataset.prefix || '';
+    const duration = 1800;
+    const start = performance.now();
+    const easeOut = t => 1 - Math.pow(1 - t, 3);
+    function update(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const current = Math.floor(easeOut(progress) * target);
+      el.textContent = prefix + current.toLocaleString('es-AR');
+      if (progress < 1) requestAnimationFrame(update);
+      else el.textContent = prefix + target.toLocaleString('es-AR');
+    }
+    requestAnimationFrame(update);
+  }
+  const statObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { animateCounter(e.target); statObs.unobserve(e.target); } });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stat-num[data-target]').forEach(el => statObs.observe(el));
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Fallback: si después de 800ms aún hay reveals sin activar, los activa todos
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.visible)').forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), i * 40);
+    });
+  }, 800);
+
+  // Smooth active nav
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav ul a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s =
