@@ -105,7 +105,7 @@
   .hero h1 {
     font-family: 'Syne', sans-serif;
     font-weight: 800;
-    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-size: clamp(2.5rem, 6vw, 5rem);
     line-height: 1.0;
     color: var(--white);
     animation: fadeUp 0.7s 0.1s ease both;
@@ -202,7 +202,7 @@
   }
   .section-title {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
     font-weight: 700;
     color: var(--white);
     line-height: 1.15;
@@ -314,19 +314,19 @@
   .ecp-card:last-child { border-right: none; }
   .ecp-letter {
     font-family: 'Syne', sans-serif;
-    font-size: 5rem;
+    font-size: 3.5rem;
     font-weight: 800;
     color: var(--text-faint);
     line-height: 1;
     margin-bottom: 1rem;
     transition: color 0.3s;
   }
-  .ecp-card:hover .ecp-letter { color: var(--accent-bright); }
+  .ecp-card:hover .ecp-letter { color: var(--white); }
   .ecp-card h3 {
     font-family: 'Syne', sans-serif;
     font-size: 1.1rem;
     font-weight: 700;
-    color: var(--white);
+    color: var(--accent-bright);
     margin-bottom: 0.7rem;
   }
   .ecp-card p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.65; }
@@ -442,9 +442,8 @@
     line-height: 1.65;
   }
   .matias-mini {
-    margin-top: 4rem;
-    padding-top: 2.5rem;
-    border-top: 1px solid var(--border);
+    margin-top: 0;
+    padding-top: 0;
     display: grid;
     grid-template-columns: 1.2fr 1fr;
     gap: 5rem;
@@ -593,6 +592,18 @@
     font-size: 0.78rem;
     color: var(--text-faint);
     text-align: center;
+  }
+
+  .certs { display: flex; flex-direction: column; gap: 0.6rem; }
+  .cert {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.82rem; color: var(--text);
+  }
+  .cert::before {
+    content: '→';
+    color: var(--accent-bright);
+    font-weight: 600;
+    flex-shrink: 0;
   }
 
   /* ─── IA ─── */
@@ -750,12 +761,12 @@
 <nav>
   <div class="logo">HERMES <span>ce</span></div>
   <ul>
-    <li><a href="#problema">El problema</a></li>
-    <li><a href="#servicios">Qué hacemos</a></li>
-    <li><a href="#como">Cómo lo hacemos</a></li>
-    <li><a href="#valores">Qué nos define</a></li>
-    <li><a href="#nosotros">De nosotros</a></li>
-    <li><a href="#ia">IA</a></li>
+    <li><a href="#problema">el problema</a></li>
+    <li><a href="#servicios">qué hacemos</a></li>
+    <li><a href="#como">cómo lo hacemos</a></li>
+    <li><a href="#valores">qué nos define</a></li>
+    <li><a href="#nosotros">historia</a></li>
+    <li><a href="#ia">far<span style="color:#3ecf6e;">IA</span>s</a></li>
     <li><a href="#contacto" class="nav-cta">Consultá ahora</a></li>
   </ul>
 </nav>
@@ -763,7 +774,7 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-badge"><span>Hce</span> — Hermes Comercio Exterior · desde 1997</div>
-  <h1>lo complicado.<em>Simple.</em></h1>
+  <h1>lo complicado.<em> Simple.</em></h1>
   <p class="hero-sub">
     Despachante de aduana con 29 años de operaciones reales.<br>
     Un solo equipo. Todo el proceso. <strong>Customizado para tu operación.</strong>
@@ -775,15 +786,15 @@
   <div class="stats">
     <div class="stat">
       <div class="stat-num" data-target="29" data-prefix="+">+29</div>
-      <div class="stat-label">Años en el sector — llegando a 30</div>
+      <div class="stat-label">¡Llegando a los 30 años en la industria!</div>
     </div>
     <div class="stat">
       <div class="stat-num" data-target="1463" data-prefix="+">+1.463</div>
-      <div class="stat-label">Operaciones realizadas con éxito</div>
+      <div class="stat-label">Operaciones Exitosas</div>
     </div>
     <div class="stat">
       <div class="stat-num" data-target="12800" data-prefix="+">+12.800</div>
-      <div class="stat-label">Posiciones NCM clasificadas</div>
+      <div class="stat-label">Posiciones Clasificadas</div>
     </div>
   </div>
 </section>
@@ -810,8 +821,8 @@
 <section id="servicios">
   <div class="container">
     <p class="section-label reveal">Lo que hacemos</p>
-    <h2 class="section-title reveal">Todos los frentes. Un solo equipo.</h2>
-    <p class="section-desc reveal">Servicio end-to-end. Una sola gestión, punta a punta. Tu operación de comercio exterior completa — sin fragmentar, sin múltiples interlocutores, sin perder el hilo. Como tener un área de comex propia, sin armarla.</p>
+    <h2 class="section-title reveal">Todos los frentes. <em style="font-style:normal;color:var(--accent-bright);">Un solo equipo.</em></h2>
+    <p class="section-desc reveal"><strong>Servicio end-to-end.</strong> Una sola gestión, punta a punta. Tu operación de comercio exterior completa — sin fragmentar, sin múltiples interlocutores, sin perder el hilo. Como tener un área de comex propia, sin armarla.</p>
     <div class="services-grid">
       <div class="service-card reveal">
         <div class="service-icon">⚓</div>
@@ -878,6 +889,7 @@
   <div class="container">
     <p class="section-label reveal">Lo que nos define</p>
     <h2 class="section-title reveal">7 valores</h2>
+    <p class="section-desc reveal" style="margin-bottom:2.5rem;">Construimos desde la experiencia. Operamos con criterio. Crecemos sin perder precisión.</p>
     <div class="valores-grid reveal">
       <div class="valor-card">
         <div class="valor-num">01</div>
@@ -916,16 +928,6 @@
       </div>
     </div>
 
-    <div class="where-grid reveal">
-      <div class="where-card">
-        <div class="where-label">Dónde estamos</div>
-        <div class="where-text">La empresa que sus clientes nunca quieren cambiar.</div>
-      </div>
-      <div class="where-card">
-        <div class="where-label">A dónde vamos</div>
-        <div class="where-text">El referente técnico y tecnológico de comercio exterior en Argentina.</div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -933,7 +935,7 @@
 <section id="nosotros" style="background:var(--bg2);border-top:1px solid var(--border);">
   <div class="container">
     <p class="section-label reveal">Quiénes somos</p>
-    <h2 class="section-title reveal">La historia de Hce</h2>
+    <h2 class="section-title reveal">La <span style="color:var(--accent-bright);">historia</span> de Hce</h2>
     <div class="historia-grid">
 
       <div class="historia-item reveal">
@@ -1001,32 +1003,43 @@
       </div>
 
     </div>
+  </div>
+</section>
 
+<!-- MATIAS -->
+<section style="background:var(--bg);padding:5rem 2rem;">
+  <div class="container">
     <div class="matias-mini reveal">
       <div class="matias-mini-left">
-        <div class="matias-mini-name">de Matías.</div>
+        <div class="matias-mini-name"><span style="color:var(--accent-bright);">de</span> Matías.</div>
         <div class="matias-mini-role">Fundador — Despachante de Aduana</div>
-        <p class="matias-mini-bio">Con 29 años en el sector — desde operador de SIM hasta gerente de aduana senior en Expeditors Argentina durante 8 años — hoy firma cada despacho y trae ese conocimiento acumulado al servicio de cada cliente.</p>
+        <p class="matias-mini-bio">Con 29 años en el sector — desde operador de SIM hasta gerente de aduana senior durante casi una década en una de las empresas de freight forwarding más importantes del mundo — hoy firma cada despacho y trae ese conocimiento acumulado al servicio de cada cliente.</p>
         <p class="matias-mini-bio">En 2007 desarrolló y dictó el Curso Integral de Comercio Exterior y Aduana para la Dirección Nacional de Inteligencia Criminal del Ministerio del Interior — 42 horas cátedra para la formación de perfiles delictivos en materia aduanera. Certificado firmado por el Ministro del Interior Aníbal Fernández. Registrado como autor del material.</p>
       </div>
       <div class="certs">
-        <div class="cert">Despachante matriculado — Socio CDA</div>
-        <div class="cert">Lic. Comercio Internacional — UdeMM</div>
-        <div class="cert">Agente de Transporte Aduanero — ICA</div>
+        <div class="cert">Despachante de Aduana matriculado — Socio CDA</div>
+        <div class="cert">Lic. en Comercio Internacional — UdeMM</div>
+        <div class="cert">Agente de Transporte Aduanero — AFIP · ICA</div>
+        <div class="cert">Técnico Superior en Comercio Exterior y Aduanas — AFIP-ICA</div>
         <div class="cert">Certificado Facilitador DINICRI — Ministerio del Interior</div>
+        <div class="cert">Dangerous Goods by Ocean — EI Intl. Inc.</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- IA -->
-<section id="ia" style="background:var(--bg);border-top:1px solid var(--border);padding:6rem 2rem;">
+<section id="ia" style="background:var(--bg2);border-top:1px solid var(--border);padding:6rem 2rem;">
   <div class="container">
     <div class="ia-grid">
       <div class="ia-left">
         <p class="section-label">Tecnología propia</p>
-        <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,3.5rem);color:var(--white);line-height:1.05;margin-bottom:1.2rem;word-break:break-word;">Entre aduana<br>y algoritmos.</h2>
-        <p style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:600;color:var(--text-dim);letter-spacing:0.04em;">IAh &nbsp;·&nbsp; Craft <span style="color:#3ecf6e;">IA</span></p>
+        <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,3.5rem);color:var(--white);line-height:1.05;margin-bottom:0.3rem;word-break:break-word;">Entre <span style="color:var(--accent-bright);">aduana y</span></h2>
+        <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,3.5rem);color:var(--white);line-height:1.05;margin-bottom:1.5rem;word-break:break-word;">algoritmos.</h2>
+        <div style="display:flex;align-items:baseline;gap:1rem;flex-wrap:nowrap;margin-top:0.5rem;">
+          <p style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--white);letter-spacing:0.02em;white-space:nowrap;">IA<span style="color:#3ecf6e;">h</span></p>
+          <p style="font-size:0.9rem;color:var(--text-dim);line-height:1.4;">De naturalizar lo artificial a reconocer lo <span style="color:#3ecf6e;font-weight:500;">humano</span>.</p>
+        </div>
       </div>
       <div class="ia-right">
         <div class="ia-card">
@@ -1041,7 +1054,7 @@
 </section>
 
 <!-- CONTACT -->
-<section id="contacto" class="contact-section" style="background:var(--bg2);border-top:1px solid var(--border);">
+<section id="contacto" class="contact-section" style="background:var(--bg);border-top:1px solid var(--border);">
   <div class="contact-inner">
     <p class="section-label reveal">Contacto</p>
     <h2 class="section-title reveal">Hablemos de tu operación.</h2>
@@ -1098,12 +1111,12 @@
   <div class="footer-logo">HERMES <span>ce</span></div>
   <div class="footer-info">
     HCE de Argentina SRL<br>
-    <a href="/cdn-cgi/l/email-protection#583037343918303d2a353d2b3b3d763b3735" style="color:var(--accent-bright);text-decoration:none;"><span class="__cf_email__" data-cfemail="41292e2d20012924332c243222246f222e2c">[email&#160;protected]</span></a> · Buenos Aires, Argentina
+    <a id="footer-email" href="#" style="color:var(--text);text-decoration:none;font-weight:500;border-bottom:1px solid var(--accent-bright);padding-bottom:1px;"></a> · Buenos Aires, Argentina
   </div>
   <div class="footer-tagline">© 2026 Hermes CE · Todos los derechos reservados</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // Formulario AJAX — Zoho Forms
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
@@ -1158,4 +1171,28 @@
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
-      if (entry.isIntersec
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Fallback reveals
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.visible)').forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), i * 40);
+    });
+  }, 800);
+
+  // Email footer — construido en JS para evitar ofuscación
+  const e = document.getElementById('footer-email');
+  if (e) {
+    const u = 'hola', d = 'hermesce.com';
+    e.href = 'mailto:' + u + '@' + d;
+    e.textContent = u + '@' + d;
+  }
+</script>
+</body>
+</html>
