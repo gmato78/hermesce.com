@@ -76,7 +76,7 @@
     .hero-badge span { color: var(--accent-bright); font-weight: 700; }
     .hero h1 {
       font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-size: clamp(2.2rem, 6vw, 5rem);
       line-height: 1.0; color: var(--white);
       animation: fadeUp 0.7s 0.1s ease forwards;
       /* FIX: opacity inicial 0 para que la animación sea visible */
@@ -247,8 +247,8 @@
       nav { padding: 1rem 1.5rem; }
       nav ul { display: none; }
       .hero { padding: 7rem 1.5rem 3rem; }
-      /* FIX: removido white-space: nowrap que rompía el hero en mobile */
-      .hero h1 { font-size: clamp(2rem, 10vw, 3.5rem); word-break: normal; }
+      /* FIX: font-size mobile ajustado para que el headline entre sin desbordar */
+      .hero h1 { font-size: clamp(1.8rem, 8.5vw, 3.2rem); word-break: normal; overflow-wrap: break-word; }
       .stats { grid-template-columns: 1fr; max-width: 100%; }
       .stat-num { font-size: 1.8rem; }
       .problem-inner { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -287,7 +287,7 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-badge">COMERCIO EXTERIOR <span>DESDE 1997</span></div>
-  <h1>lo&nbsp;complicado.<em>Simple.</em></h1>
+  <h1>lo complicado.<em>Simple.</em></h1>
   <p class="hero-sub">
     Despachante de aduana con 29 años de operaciones reales.<br>
     Un solo equipo. Todo el proceso. <strong>Customizado para tu operación.</strong>
