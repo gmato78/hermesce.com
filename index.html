@@ -373,8 +373,8 @@
     .valores-grid { grid-template-columns: repeat(4, 1fr); }
     .valor-card:last-child { grid-column: span 3; }
   }
-  @media (max-width: 768px) {
-    .valores-grid { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 600px) {
+    .valores-grid { grid-template-columns: 1fr; }
     .valor-card:last-child { grid-column: span 1; }
   }
 
@@ -719,16 +719,25 @@
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 768px) {
+    html, body { overflow-x: hidden; }
     nav { padding: 1rem 1.5rem; }
     nav ul { display: none; }
-    .problem-inner, .matias-block { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    .hero h1 { font-size: clamp(2.2rem, 10vw, 4rem); word-break: break-word; }
+    .stats { grid-template-columns: 1fr; max-width: 100%; }
+    .problem-inner { grid-template-columns: 1fr; gap: 2.5rem; }
     .services-grid { grid-template-columns: 1fr; }
     .ecp-grid { grid-template-columns: 1fr; }
     .ecp-card { border-right: none; border-bottom: 1px solid var(--border); }
     .ecp-card:last-child { border-bottom: none; }
+    .valores-grid { grid-template-columns: 1fr; }
+    .valor-card:last-child { grid-column: span 1; }
+    .where-grid { grid-template-columns: 1fr; }
+    .historia-grid { grid-template-columns: 1fr; }
+    .matias-mini { grid-template-columns: 1fr; gap: 2rem; }
+    .ia-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .form-row { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 1rem; text-align: center; }
-    .stats { grid-template-columns: 1fr; }
   }
 </style>
 </head>
