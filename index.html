@@ -331,83 +331,152 @@
   }
   .ecp-card p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.65; }
 
-  /* ─── MATIAS ─── */
-  .matias-block {
-    max-width: 1100px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem;
-    align-items: center;
+  /* ─── VALORES ─── */
+  .valores-section { background: var(--bg); }
+  .valores-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 3.5rem;
   }
-  .matias-left {}
-  .matias-name {
+  .valor-card {
+    background: var(--card);
+    padding: 1.8rem 1.2rem;
+    transition: background 0.2s;
+  }
+  .valor-card:hover { background: #161c2a; }
+  .valor-num {
     font-family: 'Syne', sans-serif;
-    font-size: 2.5rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--accent-bright);
+    letter-spacing: 0.15em;
+    margin-bottom: 0.6rem;
+  }
+  .valor-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  .valor-def {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    line-height: 1.55;
+  }
+  @media (max-width: 1024px) {
+    .valores-grid { grid-template-columns: repeat(4, 1fr); }
+    .valor-card:last-child { grid-column: span 3; }
+  }
+  @media (max-width: 768px) {
+    .valores-grid { grid-template-columns: repeat(2, 1fr); }
+    .valor-card:last-child { grid-column: span 1; }
+  }
+
+  .where-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 1.5rem;
+  }
+  .where-card {
+    background: var(--bg);
+    padding: 2rem 1.8rem;
+  }
+  .where-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-bright);
+    font-weight: 500;
+    margin-bottom: 0.7rem;
+  }
+  .where-text {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.3;
+  }
+  /* ─── HISTORIA HCE ─── */
+  .historia-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 3.5rem;
+  }
+  .historia-item {
+    border-left: 2px solid var(--border);
+    padding-left: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .historia-item:hover { border-color: var(--accent); }
+  .historia-year {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--accent-bright);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  .historia-item h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.6rem;
+  }
+  .historia-item p {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+  .matias-mini {
+    margin-top: 4rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .matias-mini-left {}
+  .matias-mini-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
     font-weight: 800;
     color: var(--white);
-    line-height: 1.1;
-    margin-bottom: 0.4rem;
   }
-  .matias-role {
-    font-size: 0.85rem;
+  .matias-mini-role {
+    font-size: 0.78rem;
     color: var(--accent-bright);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     font-weight: 500;
-    margin-bottom: 1.8rem;
+    margin-top: 0.3rem;
+    margin-bottom: 1rem;
   }
-  .matias-bio {
-    font-size: 0.95rem;
+  .matias-mini-bio {
+    font-size: 0.88rem;
     color: var(--text-dim);
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
+    line-height: 1.65;
+    max-width: 520px;
+    margin-bottom: 0.8rem;
   }
-  .certs { display: flex; flex-direction: column; gap: 0.6rem; }
-  .cert {
-    display: flex; align-items: center; gap: 0.75rem;
-    font-size: 0.82rem; color: var(--text-dim);
+  @media (max-width: 768px) {
+    .historia-grid { grid-template-columns: 1fr; }
+    .matias-mini { flex-direction: column; gap: 1rem; }
   }
-  .cert::before {
-    content: '✓';
-    color: var(--accent-bright);
-    font-weight: 600;
-    font-size: 0.9rem;
-  }
-  .timeline {
-    display: flex; flex-direction: column; gap: 0;
-    position: relative;
-  }
-  .timeline::before {
-    content: '';
-    position: absolute; left: 0; top: 0; bottom: 0;
-    width: 1px; background: var(--border);
-  }
-  .tl-item {
-    padding: 1.4rem 0 1.4rem 2rem;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-  }
-  .tl-item::before {
-    content: '';
-    position: absolute; left: -4px; top: 1.9rem;
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--accent-bright);
-  }
-  .tl-item:last-child { border-bottom: none; }
-  .tl-year {
-    font-size: 0.75rem;
-    color: var(--accent-bright);
-    letter-spacing: 0.08em;
-    font-weight: 500;
-    margin-bottom: 0.25rem;
-  }
-  .tl-role {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.2rem;
-  }
-  .tl-co { font-size: 0.82rem; color: var(--text-dim); }
 
   /* ─── CODEX CALLOUT ─── */
   .codex-callout {
@@ -501,6 +570,111 @@
   }
   .form-submit:hover { background: var(--accent-bright); }
 
+  .contact-alt {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: center;
+  }
+  .contact-alt-qr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .contact-alt-qr img {
+    width: 160px;
+    height: 160px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .contact-alt-qr span {
+    font-size: 0.78rem;
+    color: var(--text-faint);
+    text-align: center;
+  }
+
+  /* ─── IA ─── */
+  .ia-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .ia-sistema {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+  .ia-tag {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .ia-tag.dim { color: var(--text-faint); }
+  .ia-tag.bright { color: var(--accent-bright); }
+  .ia-dot { color: var(--border); font-size: 1rem; }
+  .ia-arrow { color: var(--text-faint); font-size: 0.85rem; }
+  .ia-card {
+    background: var(--card);
+    border: 1px solid var(--accent);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .ia-card::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(79,114,227,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .ia-card-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-bright);
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+  .ia-card-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+  .ia-card-desc {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+    margin-bottom: 2rem;
+  }
+  .ia-card-btn {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    padding: 0.8rem 1.8rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .ia-card-btn:hover { background: var(--accent-bright); transform: translateY(-2px); }
+  @media (max-width: 768px) {
+    .ia-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+
   /* ─── FOOTER ─── */
   footer {
     border-top: 1px solid var(--border);
@@ -564,8 +738,11 @@
 <nav>
   <div class="logo">HERMES <span>ce</span></div>
   <ul>
-    <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#problema">El problema</a></li>
+    <li><a href="#servicios">Lo que hacemos</a></li>
+    <li><a href="#como">Cómo operamos</a></li>
+    <li><a href="#valores">Lo que nos define</a></li>
+    <li><a href="#nosotros">Quiénes somos</a></li>
     <li><a href="#contacto" class="nav-cta">Consultá ahora</a></li>
   </ul>
 </nav>
@@ -599,7 +776,7 @@
 </section>
 
 <!-- PROBLEM -->
-<section class="problem-block">
+<section id="problema" class="problem-block">
   <div class="problem-inner container">
     <div>
       <p class="section-label">El problema real</p>
@@ -658,7 +835,7 @@
 </section>
 
 <!-- ECP -->
-<section class="ecp-section">
+<section id="como" class="ecp-section">
   <div class="container">
     <p class="section-label reveal">Cómo operamos</p>
     <h2 class="section-title reveal">E · C · P</h2>
@@ -683,18 +860,142 @@
   </div>
 </section>
 
-<!-- MATIAS -->
-<section id="nosotros">
-  <div class="matias-block container">
-    <div class="matias-left reveal">
-      <div class="matias-name">de Matías.</div>
-      <div class="matias-role">Fundador — Despachante de Aduana</div>
-      <p class="matias-bio">
-        Lic. en Comercio Internacional — UdeMM. 29 años en el sector, desde operador de SIM hasta gerente de aduana senior en Expeditors Argentina durante 8 años.
-      </p>
-      <p class="matias-bio">
-        Hoy firma cada despacho. El criterio no se delega.
-      </p>
+<!-- VALORES -->
+<section id="valores" class="valores-section">
+  <div class="container">
+    <p class="section-label reveal">Lo que nos define</p>
+    <h2 class="section-title reveal">7 valores</h2>
+    <div class="valores-grid reveal">
+      <div class="valor-card">
+        <div class="valor-num">01</div>
+        <div class="valor-name">Integridad</div>
+        <div class="valor-def">Hacemos lo que decimos. Sin atajos, sin letra chica.</div>
+      </div>
+      <div class="valor-card">
+        <div class="valor-num">02</div>
+        <div class="valor-name">Confidencialidad</div>
+        <div class="valor-def">Lo que sabemos de tu operación no sale de nosotros.</div>
+      </div>
+      <div class="valor-card">
+        <div class="valor-num">03</div>
+        <div class="valor-name">Evolución</div>
+        <div class="valor-def">Incorporamos tecnología y procesos sin perder el criterio operativo.</div>
+      </div>
+      <div class="valor-card">
+        <div class="valor-num">04</div>
+        <div class="valor-name">Integración</div>
+        <div class="valor-def">Trabajamos con los sistemas y procesos integrando al cliente.</div>
+      </div>
+      <div class="valor-card">
+        <div class="valor-num">05</div>
+        <div class="valor-name">Relaciones</div>
+        <div class="valor-def">Construimos vínculos de largo plazo, no transacciones.</div>
+      </div>
+      <div class="valor-card">
+        <div class="valor-num">06</div>
+        <div class="valor-name">Equipo</div>
+        <div class="valor-def">El conocimiento es de todos. El resultado no depende de uno solo.</div>
+      </div>
+      <div class="valor-card">
+        <div class="valor-num">07</div>
+        <div class="valor-name">Compromiso</div>
+        <div class="valor-def">Cada operación recibe la misma atención, sea la primera o la mil.</div>
+      </div>
+    </div>
+
+    <div class="where-grid reveal">
+      <div class="where-card">
+        <div class="where-label">Dónde estamos</div>
+        <div class="where-text">La empresa que sus clientes nunca quieren cambiar.</div>
+      </div>
+      <div class="where-card">
+        <div class="where-label">A dónde vamos</div>
+        <div class="where-text">El referente técnico y tecnológico de comercio exterior en Argentina.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORIA HCE -->
+<section id="nosotros" style="background:var(--bg2);border-top:1px solid var(--border);">
+  <div class="container">
+    <p class="section-label reveal">Quiénes somos</p>
+    <h2 class="section-title reveal">La historia de Hce</h2>
+    <div class="historia-grid">
+
+      <div class="historia-item reveal">
+        <div class="historia-year">2010</div>
+        <div class="historia-content">
+          <h3>Tecnología médica</h3>
+          <p>Tomógrafos, resonadores, ecógrafos, láser médico y ortodoncia 3D. Los primeros clientes siguen siendo clientes.</p>
+        </div>
+      </div>
+
+      <div class="historia-item reveal">
+        <div class="historia-year">2010 — 2020</div>
+        <div class="historia-content">
+          <h3>Crecimiento por referencia</h3>
+          <p>Embarcaciones y artes de pesca, joyería, repuestos para trenes y subtes, insumos para maquinaria agrícola. Cada rubro sumó complejidad.</p>
+        </div>
+      </div>
+
+      <div class="historia-item reveal">
+        <div class="historia-year">2020</div>
+        <div class="historia-content">
+          <h3>Pandemia — importación de emergencia</h3>
+          <p>Importadores directos de productos críticos en el pico de la crisis sanitaria. Gestionamos lo que pocos podían.</p>
+        </div>
+      </div>
+
+      <div class="historia-item reveal">
+        <div class="historia-year">2023</div>
+        <div class="historia-content">
+          <h3>Implantes médicos</h3>
+          <p>Implantes de última generación con habilitaciones ANMAT. Alta complejidad regulatoria desde origen hasta destino.</p>
+        </div>
+      </div>
+
+      <div class="historia-item reveal">
+        <div class="historia-year">2023</div>
+        <div class="historia-content">
+          <h3>Consumo masivo</h3>
+          <p>Retail de productos de consumo — operaciones de volumen, frecuencia alta y logística ajustada.</p>
+        </div>
+      </div>
+
+      <div class="historia-item reveal">
+        <div class="historia-year">2023 — 2024</div>
+        <div class="historia-content">
+          <h3>Manufactura industrial</h3>
+          <p>Inyectora industrial alemana para el sector calzado y el litotriptor de mayor envergadura instalado en Sudamérica. Llave en mano.</p>
+        </div>
+      </div>
+
+      <div class="historia-item reveal">
+        <div class="historia-year">2024 — 2025</div>
+        <div class="historia-content">
+          <h3>Oil & gas</h3>
+          <p>Representación comercial internacional en la industria del oil & gas — extensión local de operaciones de origen global.</p>
+        </div>
+      </div>
+
+      <div class="historia-item reveal">
+        <div class="historia-year">2025</div>
+        <div class="historia-content">
+          <h3>Eventos y entretenimiento</h3>
+          <p>Stage para eventos importado llave en mano. Un rubro inesperado que demuestra cómo el servicio end-to-end se adapta a cualquier industria.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="matias-mini reveal">
+      <div class="matias-mini-left">
+        <div class="matias-mini-name">de Matías.</div>
+        <div class="matias-mini-role">Fundador — Despachante de Aduana</div>
+        <p class="matias-mini-bio">Con 29 años en el sector — desde operador de SIM hasta gerente de aduana senior en Expeditors Argentina durante 8 años — hoy firma cada despacho y trae ese conocimiento acumulado al servicio de cada cliente.</p>
+        <p class="matias-mini-bio">En 2007 desarrolló y dictó el Curso Integral de Comercio Exterior y Aduana para la Dirección Nacional de Inteligencia Criminal del Ministerio del Interior — 42 horas cátedra para la formación de perfiles delictivos en materia aduanera. Certificado firmado por el Ministro del Interior Aníbal Fernández. Registrado como autor del material.</p>
+      </div>
       <div class="certs">
         <div class="cert">Despachante matriculado — Socio CDA</div>
         <div class="cert">Lic. Comercio Internacional — UdeMM</div>
@@ -702,57 +1003,32 @@
         <div class="cert">Certificado Facilitador DINICRI — Ministerio del Interior</div>
       </div>
     </div>
-    <div class="timeline reveal">
-      <div class="tl-item">
-        <div class="tl-year">2010 — Hoy</div>
-        <div class="tl-role">Fundador / Socio Gerente</div>
-        <div class="tl-co">HCE de Argentina SRL — Despacho · FFW · DDP · Clasificación</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-year">2001 — 2010</div>
-        <div class="tl-role">Gerente de Aduana Sr. / Despachante</div>
-        <div class="tl-co">Expeditors Argentina S.A. — 12 personas a cargo · KPI · Desarrollo de cuentas</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-year">2001 — 2003</div>
-        <div class="tl-role">Supervisor / Auditor In-House</div>
-        <div class="tl-co">Expeditors / Tyco Electronics — Implante en cliente, desarrollo de SOP</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-year">1999 — 2001</div>
-        <div class="tl-role">Coordinador Expo / Impo</div>
-        <div class="tl-co">Argent Transport Brokers S.A. — Clasificación · Coordinación de cargas</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-year">1997 — 1999</div>
-        <div class="tl-role">Asistente de Aduana</div>
-        <div class="tl-co">House to House S.A. — Inicio en operatoria real</div>
-      </div>
-    </div>
   </div>
 </section>
 
-<!-- CODEX CALLOUT -->
-<section class="codex-callout">
+<!-- IA -->
+<section id="ia" style="background:var(--bg);border-top:1px solid var(--border);padding:6rem 2rem;">
   <div class="container">
-    <h2 class="codex-phrase reveal">
-      "Hermes siempre cruzó fronteras.<br>
-      Antes eran aduanas.<br>
-      <em>Ahora también son algoritmos.</em>"
-    </h2>
-    <p class="codex-sub reveal">Human Craft — Hecho por humanos. Potenciado por tecnología propia.</p>
-    <div class="codex-tags reveal">
-      <div class="codex-tag active">Hce</div>
-      <div class="codex-tag">→</div>
-      <div class="codex-tag">Hia</div>
-      <div class="codex-tag">→</div>
-      <div class="codex-tag">FarIAs</div>
+    <div class="ia-grid">
+      <div class="ia-left">
+        <p class="section-label">Tecnología propia</p>
+        <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.2rem,4vw,3.5rem);color:var(--white);line-height:1.05;margin-bottom:1.2rem;">Entre aduana<br>y algoritmos.</h2>
+        <p style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:600;color:var(--text-dim);letter-spacing:0.04em;">IAh &nbsp;·&nbsp; Craft <span style="color:#3ecf6e;">IA</span></p>
+      </div>
+      <div class="ia-right">
+        <div class="ia-card">
+          <div class="ia-card-label">Clasificación arancelaria</div>
+          <div class="ia-card-name">far<span style="color:#3ecf6e;">IA</span>s</div>
+          <div class="ia-card-desc">Fotografiá la mercadería o describí el producto. NCM + tributos + costo estimado en segundos.</div>
+          <a href="#contacto" class="ia-card-btn">Quiero acceso →</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contacto" class="contact-section">
+<section id="contacto" class="contact-section" style="background:var(--bg2);border-top:1px solid var(--border);">
   <div class="contact-inner">
     <p class="section-label reveal">Contacto</p>
     <h2 class="section-title reveal">Hablemos de tu operación.</h2>
@@ -795,6 +1071,12 @@
       </div>
       <button type="submit" class="form-submit">Enviar consulta →</button>
     </form>
+    <div class="contact-alt reveal">
+      <div class="contact-alt-qr">
+        <img src="qr_contacto.png" alt="QR formulario de contacto">
+        <span>Escaneá para abrir el formulario</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -803,12 +1085,12 @@
   <div class="footer-logo">HERMES <span>ce</span></div>
   <div class="footer-info">
     HCE de Argentina SRL<br>
-    <a href="mailto:hola@hermesce.com" style="color:var(--accent-bright);text-decoration:none;">hola@hermesce.com</a> · Buenos Aires, Argentina
+    <a href="/cdn-cgi/l/email-protection#583037343918303d2a353d2b3b3d763b3735" style="color:var(--accent-bright);text-decoration:none;"><span class="__cf_email__" data-cfemail="41292e2d20012924332c243222246f222e2c">[email&#160;protected]</span></a> · Buenos Aires, Argentina
   </div>
   <div class="footer-tagline">© 2026 Hermes CE · Todos los derechos reservados</div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Formulario AJAX — Zoho Forms
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
@@ -863,19 +1145,4 @@
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 60);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
-
-  // Fallback: si después de 800ms aún hay reveals sin activar, los activa todos
-  setTimeout(() => {
-    document.querySelectorAll('.reveal:not(.visible)').forEach((el, i) => {
-      setTimeout(() => el.classList.add('visible'), i * 40);
-    });
-  }, 800);
-
-  //
+      if (entry.isIntersec
