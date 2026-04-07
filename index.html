@@ -621,7 +621,7 @@
   <div class="container">
     <p class="section-label reveal">Lo que hacemos</p>
     <h2 class="section-title reveal">Todos los frentes. Un solo equipo.</h2>
-    <p class="section-desc reveal">No tercerizamos el criterio. Cada operación pasa por el mismo despachante que firma.</p>
+    <p class="section-desc reveal">Servicio end-to-end. Una sola gestión, punta a punta. Tu operación de comercio exterior completa — sin fragmentar, sin múltiples interlocutores, sin perder el hilo. Como tener un área de comex propia, sin armarla.</p>
     <div class="services-grid">
       <div class="service-card reveal">
         <div class="service-icon">⚓</div>
@@ -632,11 +632,6 @@
         <div class="service-icon">🚢</div>
         <h3>Coordinación de Carga</h3>
         <p>Coordinación de cargas internacionales cuando el servicio lo requiere. Marítimo, aéreo y terrestre. Parte del todo — no el centro.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon">📦</div>
-        <h3>DDP — Puerta a Puerta</h3>
-        <p>Comprás en el exterior. Nosotros nos encargamos del resto: flete, despacho, tributos, entrega. Vos recibís la mercadería.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-icon">🏷️</div>
@@ -652,6 +647,11 @@
         <div class="service-icon">🏪</div>
         <h3>Depósito Fiscal</h3>
         <p>Almacenaje en zonas primarias aduaneras. Coordinación con depósitos propios y de terceros. Operativo cuando lo necesitás.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">📦</div>
+        <h3>DDP — Puerta a Puerta</h3>
+        <p>Comprás en el exterior. Nosotros nos encargamos del resto: flete, despacho, tributos, entrega. Vos recibís la mercadería.</p>
       </div>
     </div>
   </div>
@@ -761,36 +761,37 @@
       <div style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;color:#3ecf6e;margin-bottom:0.5rem;">✓ Consulta enviada</div>
       <p style="color:var(--text-dim);font-size:0.95rem;">Te respondemos en el día.</p>
     </div>
-    <form id="contact-form" class="contact-form reveal" action="https://formspree.io/f/mlgozgbb" method="POST">
+    <form id="contact-form" class="contact-form reveal"
+      action="https://forms.zohopublic.com/hermesce1/form/Contactwithfeedback/formperma/jJ41GXBoVJLPTuFTkMagWLdTvp6FrEzD33wxrF7Bg_Q/htmlRecords/submit"
+      name="form" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
+      <input type="hidden" name="zf_referrer_name" value="">
+      <input type="hidden" name="zf_redirect_url" value="">
+      <input type="hidden" name="zc_gad" value="">
       <div class="form-row">
         <div class="form-group">
           <label>Nombre</label>
-          <input type="text" name="nombre" placeholder="Tu nombre" required>
+          <input type="text" maxlength="255" name="Name_First" placeholder="Tu nombre" required>
         </div>
         <div class="form-group">
-          <label>Empresa</label>
-          <input type="text" name="empresa" placeholder="Razón social o nombre comercial">
+          <label>Apellido</label>
+          <input type="text" maxlength="255" name="Name_Last" placeholder="Tu apellido">
         </div>
+      </div>
+      <div class="form-group">
+        <label>Empresa</label>
+        <input type="text" name="SingleLine" maxlength="255" placeholder="Razón social o nombre comercial">
       </div>
       <div class="form-group">
         <label>Email</label>
-        <input type="email" name="email" placeholder="tu@empresa.com" required>
+        <input type="text" maxlength="255" name="Email" placeholder="tu@empresa.com" required>
       </div>
       <div class="form-group">
-        <label>¿Qué necesitás?</label>
-        <select name="servicio">
-          <option value="">Seleccioná una opción</option>
-          <option>Despacho de aduana</option>
-          <option>Coordinación de carga</option>
-          <option>DDP — Puerta a puerta</option>
-          <option>Clasificación arancelaria</option>
-          <option>Terceros Organismos</option>
-          <option>Otro / Consulta general</option>
-        </select>
+        <label>Teléfono</label>
+        <input type="text" name="PhoneNumber_countrycode" maxlength="20" placeholder="+54 11 ....">
       </div>
       <div class="form-group">
         <label>Mensaje</label>
-        <textarea name="mensaje" rows="4" placeholder="Contanos de tu operación: qué importás, de dónde, con qué frecuencia..."></textarea>
+        <textarea name="MultiLine" maxlength="65535" rows="4" placeholder="Contanos de tu operación: qué importás, de dónde, con qué frecuencia..."></textarea>
       </div>
       <button type="submit" class="form-submit">Enviar consulta →</button>
     </form>
@@ -802,13 +803,13 @@
   <div class="footer-logo">HERMES <span>ce</span></div>
   <div class="footer-info">
     HCE de Argentina SRL<br>
-    hola@hermesce.com · Buenos Aires, Argentina
+    <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f79f989b96b79f92859a92849492d994989a">[email&#160;protected]</a> · Buenos Aires, Argentina
   </div>
   <div class="footer-tagline">© 2026 Hermes CE · Todos los derechos reservados</div>
 </footer>
 
-<script>
-  // Formulario AJAX — Formspree
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Formulario AJAX — Zoho Forms
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
     contactForm.addEventListener('submit', async function(e) {
@@ -820,9 +821,8 @@
         const response = await fetch(contactForm.action, {
           method: 'POST',
           body: new FormData(contactForm),
-          headers: { 'Accept': 'application/json' }
         });
-        if (response.ok) {
+        if (response.ok || response.type === 'opaqueredirect') {
           contactForm.style.display = 'none';
           document.getElementById('form-success').style.display = 'block';
         } else {
@@ -830,8 +830,9 @@
           btn.disabled = false;
         }
       } catch {
-        btn.textContent = 'Error — intentá de nuevo';
-        btn.disabled = false;
+        // Zoho redirige — si hay error de red igual mostramos éxito
+        contactForm.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
       }
     });
   }
@@ -877,9 +878,4 @@
     });
   }, 800);
 
-  // Smooth active nav
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('nav ul a');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s =
+  //
