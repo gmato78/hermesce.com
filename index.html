@@ -58,7 +58,7 @@
       transition: color 0.2s;
     }
     .nav-ghost a:hover { color: rgba(255,255,255,0.85); }
-    .farias-ia { color: rgba(62,207,110,0.55); }
+    .farias-ia { color: inherit; }
 
     /* Idiomas derecha */
     .nav-langs { display: flex; align-items: center; gap: 0.5rem; }
@@ -77,7 +77,9 @@
     }
     .hero::before {
       content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(10,12,18,0.45) 0%, rgba(10,12,18,0.22) 35%, rgba(10,12,18,0.22) 65%, rgba(10,12,18,0.80) 100%);
+      background:
+        linear-gradient(to right, rgba(10,12,18,0.62) 0%, rgba(10,12,18,0.18) 55%, rgba(10,12,18,0.0) 100%),
+        linear-gradient(to bottom, rgba(10,12,18,0.38) 0%, rgba(10,12,18,0.12) 40%, rgba(10,12,18,0.12) 65%, rgba(10,12,18,0.75) 100%);
       pointer-events: none; z-index: 0;
     }
     .hero-content {
@@ -86,27 +88,43 @@
     }
     .hero-eyebrow {
       font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
-      color: rgba(255,255,255,0.5); margin-bottom: 1.2rem;
+      color: rgba(255,255,255,0.72); margin-bottom: 1.2rem;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.6);
       animation: fadeUp 0.6s ease forwards; opacity: 0;
+    }
+    /* CoDex — acento azul Hermes en el eyebrow */
+    .eyebrow-accent {
+      color: var(--accent-bright);
+      opacity: 1;
+      font-weight: 700;
     }
     .hero-h1 {
       font-family: 'Syne', sans-serif; font-weight: 800;
       font-size: clamp(2.4rem, 5vw, 4.2rem); line-height: 1.08; color: var(--white);
+      text-shadow: 0 2px 16px rgba(0,0,0,0.45);
       margin-bottom: 1.4rem;
       animation: fadeUp 0.7s 0.1s ease forwards; opacity: 0;
     }
+    /* Punto azul en el h1 */
+    .h1-dot { color: var(--accent-bright); }
+
     .hero-sub {
-      font-size: clamp(0.95rem, 1.5vw, 1.1rem); color: rgba(255,255,255,0.62);
-      font-weight: 300; line-height: 1.65; max-width: 520px;
-      margin-bottom: 1rem;
+      font-size: clamp(1rem, 1.6vw, 1.15rem); color: rgba(255,255,255,0.75);
+      font-weight: 400; line-height: 1.5; max-width: 580px;
+      text-shadow: 0 1px 10px rgba(0,0,0,0.75);
+      margin-bottom: 2.2rem;
       animation: fadeUp 0.7s 0.2s ease forwards; opacity: 0;
     }
-    .hero-tagline {
-      font-family: 'Syne', sans-serif; font-size: clamp(0.9rem, 1.5vw, 1.15rem); font-weight: 700;
-      color: rgba(255,255,255,0.28); margin-bottom: 2.2rem; letter-spacing: 0.02em;
-      animation: fadeUp 0.7s 0.25s ease forwards; opacity: 0;
+    /* Tagline inline — separado visualmente pero en la misma línea */
+    .hero-inline-tagline {
+      display: inline;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      color: rgba(255,255,255,0.42);
+      margin-left: 0.6rem;
+      letter-spacing: 0.01em;
     }
-    .hero-tagline em { font-style: normal; color: rgba(79,114,227,0.65); }
+    .hero-inline-tagline em { font-style: normal; color: var(--accent-bright); }
     .hero-btn { animation: fadeUp 0.7s 0.3s ease forwards; opacity: 0; display: inline-block; }
     .btn-primary {
       background: var(--accent); color: white;
@@ -176,34 +194,66 @@
     /* ─── REVEAL — FIX: siempre visible, sin dependencia de JS ─── */
     .reveal { opacity: 1; transform: none; }
 
-    /* ─── PROBLEM ─── */
-    .problem-block { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .problem-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-    .problem-quote { font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; color: var(--white); line-height: 1.2; }
-    .problem-quote em { font-style: normal; color: var(--accent-bright); }
-    .problem-list { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; }
-    .problem-list li { display: flex; gap: 1rem; align-items: flex-start; font-size: 0.95rem; color: var(--text-dim); line-height: 1.5; }
-    .problem-list li::before { content: '→'; color: var(--accent-bright); font-weight: 600; flex-shrink: 0; margin-top: 0.05rem; }
+    /* ════════════════════════════════════════
+       SISTEMA DE SECCIONES — claro / oscuro alternado
+       Gris claro: #f6f7fa  Texto oscuro: #0e1118
+    ════════════════════════════════════════ */
 
-    /* ─── SERVICES ─── */
+    /* Variables para secciones claras */
+    .section-light {
+      --sl-bg: #f6f7fa;
+      --sl-bg2: #eef0f4;
+      --sl-text: #0e1118;
+      --sl-text-dim: #4a5270;
+      --sl-border: #dde0e8;
+      --sl-card: #eceef2;
+      background: var(--sl-bg);
+    }
+    .section-light .section-label { color: var(--accent); }
+    .section-light .section-title { color: var(--sl-text); }
+    .section-light .section-desc { color: var(--sl-text-dim); }
+    .section-light .section-desc strong { color: var(--sl-text); }
+
+    /* ─── PROBLEM — claro ─── */
+    .problem-block {
+      background: #f6f7fa;
+      border-top: none; border-bottom: none;
+    }
+    .problem-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .problem-quote { font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; color: #0e1118; line-height: 1.2; }
+    .problem-quote em { font-style: normal; color: var(--accent); }
+    .problem-block .section-label { color: var(--accent); }
+    .problem-list { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; }
+    .problem-list li { display: flex; gap: 1rem; align-items: flex-start; font-size: 0.95rem; color: #4a5270; line-height: 1.5; }
+    .problem-list li::before { content: '→'; color: var(--accent); font-weight: 600; flex-shrink: 0; margin-top: 0.05rem; }
+
+    /* ─── SERVICES — oscuro ─── */
+    #servicios { background: var(--bg); }
+    #servicios .section-label { color: var(--accent-bright); }
+    #servicios .section-title { color: var(--white); }
+    #servicios .section-desc { color: var(--text-dim); }
+    #servicios .section-desc strong { color: var(--text); }
     .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
-    .service-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 2rem; transition: border-color 0.2s, transform 0.2s; cursor: default; }
-    .service-card:hover { border-color: var(--accent); transform: translateY(-4px); }
-    .service-icon { width: 44px; height: 44px; background: var(--accent-glow); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.3rem; font-size: 1.2rem; }
+    .service-card { background: #131720; border: 1px solid #242d42; border-radius: 14px; padding: 2rem; transition: border-color 0.2s, transform 0.2s; cursor: default; }
+    .service-card:hover { border-color: var(--accent-bright); transform: translateY(-4px); }
+    .service-icon { width: 44px; height: 44px; background: rgba(79,114,227,0.12); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.3rem; font-size: 1.2rem; }
     .service-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.7rem; letter-spacing: 0.02em; }
     .service-card p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.6; }
 
-    /* ─── ECP ─── */
-    .ecp-section { background: var(--bg2); border-top: 1px solid var(--border); }
-    .ecp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-top: 3.5rem; }
-    .ecp-card { padding: 2.5rem 2rem; border-right: 1px solid var(--border); background: var(--card); position: relative; overflow: hidden; }
+    /* ─── ECP — claro ─── */
+    .ecp-section { background: #f6f7fa; border-top: none; }
+    .ecp-section .section-label { color: var(--accent); }
+    .ecp-section .section-title { color: #0e1118; }
+    .ecp-section .section-desc { color: #4a5270; }
+    .ecp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid #dde0e8; border-radius: 16px; overflow: hidden; margin-top: 3.5rem; }
+    .ecp-card { padding: 2.5rem 2rem; border-right: 1px solid #dde0e8; background: #eceef2; position: relative; overflow: hidden; }
     .ecp-card:last-child { border-right: none; }
-    .ecp-letter { font-family: 'Syne', sans-serif; font-size: 3.5rem; font-weight: 800; color: var(--text-faint); line-height: 1; margin-bottom: 1rem; transition: color 0.3s; }
-    .ecp-card:hover .ecp-letter { color: var(--white); }
-    .ecp-card h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--accent-bright); margin-bottom: 0.7rem; }
-    .ecp-card p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.65; }
+    .ecp-letter { font-family: 'Syne', sans-serif; font-size: 3.5rem; font-weight: 800; color: #c8ccd8; line-height: 1; margin-bottom: 1rem; transition: color 0.3s; }
+    .ecp-card:hover .ecp-letter { color: var(--accent); }
+    .ecp-card h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--accent); margin-bottom: 0.7rem; }
+    .ecp-card p { font-size: 0.85rem; color: #4a5270; line-height: 1.65; }
 
-    /* ─── VALORES ─── */
+    /* ─── VALORES — oscuro ─── */
     .valores-section { background: var(--bg); }
     .valores-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-top: 3.5rem; }
     .valor-card { background: var(--card); padding: 1.8rem 1.2rem; transition: background 0.2s; }
@@ -212,31 +262,57 @@
     .valor-name { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
     .valor-def { font-size: 0.78rem; color: var(--text-dim); line-height: 1.55; }
 
-    @media (max-width: 1024px) {
-      .valores-grid { grid-template-columns: repeat(4, 1fr); }
-      .valor-card:last-child { grid-column: span 3; }
+    /* ─── HISTORIA — claro ─── */
+    #nosotros {
+      background: #f6f7fa !important;
+      border-top: none !important;
     }
-    @media (max-width: 600px) {
-      .valores-grid { grid-template-columns: 1fr; }
-      .valor-card:last-child { grid-column: span 1; }
-    }
-
-    /* ─── HISTORIA ─── */
+    #nosotros .section-label { color: var(--accent); }
+    #nosotros .section-title { color: #0e1118; }
     .historia-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 3.5rem; }
-    .historia-item { border-left: 2px solid var(--border); padding-left: 1.5rem; transition: border-color 0.2s; }
+    .historia-item { border-left: 2px solid #dde0e8; padding-left: 1.5rem; transition: border-color 0.2s; }
     .historia-item:hover { border-color: var(--accent); }
-    .historia-year { font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700; color: var(--accent-bright); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.6rem; }
-    .historia-item h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.6rem; }
-    .historia-item p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.65; }
+    .historia-year { font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.6rem; }
+    .historia-item h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: #0e1118; margin-bottom: 0.6rem; }
+    .historia-item p { font-size: 0.85rem; color: #4a5270; line-height: 1.65; }
 
-    /* ─── MATIAS ─── */
-    .matias-mini { display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: start; }
-    .matias-mini-name { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--white); }
-    .matias-mini-role { font-size: 0.78rem; color: var(--accent-bright); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; margin-top: 0.3rem; margin-bottom: 1rem; }
-    .matias-mini-bio { font-size: 0.88rem; color: var(--text-dim); line-height: 1.65; max-width: 520px; margin-bottom: 0.8rem; }
-    .certs { display: flex; flex-direction: column; gap: 0.6rem; }
+    /* mobile ECP border fix */
+
+    /* ─── MATIAS — 50/50 foto a sangre estilo MSL ─── */
+    .matias-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 600px;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+    }
+    .matias-split-text {
+      padding: 5rem 4rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .matias-split-img {
+      overflow: hidden;
+      position: relative;
+    }
+    .matias-split-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+      filter: brightness(0.85);
+    }
+    .matias-mini-name { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--white); margin-bottom: 0.3rem; margin-top: 0.8rem; }
+    .matias-mini-role { font-size: 0.78rem; color: var(--accent-bright); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; margin-bottom: 1.2rem; }
+    .matias-mini-bio { font-size: 0.88rem; color: var(--text-dim); line-height: 1.65; max-width: 480px; margin-bottom: 0.8rem; }
+    .certs { display: flex; flex-direction: column; gap: 0.55rem; margin-top: 1.5rem; }
     .cert { display: flex; align-items: center; gap: 0.75rem; font-size: 0.82rem; color: var(--text); }
     .cert::before { content: '→'; color: var(--accent-bright); font-weight: 600; flex-shrink: 0; }
+
+    @media (max-width: 768px) {
+      .matias-split { grid-template-columns: 1fr; }
+      .matias-split-img { height: 300px; }
+      .matias-split-text { padding: 3rem 1.5rem; }
+    }
 
     /* ─── IA ─── */
     .ia-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
@@ -296,7 +372,7 @@
       .problem-inner { grid-template-columns: 1fr; gap: 2.5rem; }
       .services-grid { grid-template-columns: 1fr; }
       .ecp-grid { grid-template-columns: 1fr; }
-      .ecp-card { border-right: none; border-bottom: 1px solid var(--border); }
+      .ecp-card { border-right: none; border-bottom: 1px solid #dde0e8; }
       .ecp-card:last-child { border-bottom: none; }
       .valores-grid { grid-template-columns: 1fr; }
       .valor-card:last-child { grid-column: span 1; }
@@ -338,13 +414,11 @@
 
   <!-- Contenido central -->
   <div class="hero-content">
-    <div class="hero-eyebrow">Estudio de Comercio Exterior y Aduanas</div>
-    <h1 class="hero-h1">Resolvemos operaciones<br>de Aduana y Comex.</h1>
+    <div class="hero-eyebrow">Comercio Exterior <span class="eyebrow-accent">desde 1997</span></div>
+    <h1 class="hero-h1">Operaciones de Aduana<br>y Comex<span class="h1-dot">.</span></h1>
     <p class="hero-sub">
-      Operamos antes, durante y después del despacho.<br>
-      Lo que otros no cubren, acá empieza.
+      Toda la operación desde un mismo lugar. <span class="hero-inline-tagline">lo complicado. <em>Simple.</em></span>
     </p>
-    <div class="hero-tagline">lo complicado. <em>Simple.</em></div>
     <a href="#contacto" class="btn-primary hero-btn">Hablá con nosotros →</a>
   </div>
 
@@ -545,46 +619,47 @@
   </div>
 </section>
 
-<!-- MATIAS -->
-<section style="background:var(--bg);padding:5rem 2rem;">
-  <div class="container">
-    <div class="matias-mini reveal">
-      <div class="matias-mini-left">
-        <div class="matias-mini-name"><span style="color:var(--accent-bright);">de</span> Matías.</div>
-        <div class="matias-mini-role">Fundador — Despachante de Aduana</div>
-        <p class="matias-mini-bio">Con 29 años en el sector — desde operador de SIM hasta gerente de aduana senior durante casi una década en una de las empresas de freight forwarding más importantes del mundo — hoy firma cada despacho y trae ese conocimiento acumulado al servicio de cada cliente.</p>
-        <p class="matias-mini-bio">En 2007 desarrolló y dictó el Curso Integral de Comercio Exterior y Aduana para la Dirección Nacional de Inteligencia Criminal del Ministerio del Interior — 42 horas cátedra para la formación de perfiles delictivos en materia aduanera. Certificado firmado por el Ministro del Interior Aníbal Fernández. Registrado como autor del material.</p>
-      </div>
-      <div class="certs">
-        <div class="cert">Despachante de Aduana matriculado — Socio CDA</div>
-        <div class="cert">Lic. en Comercio Internacional — UdeMM</div>
-        <div class="cert">Agente de Transporte Aduanero — AFIP · ICA</div>
-        <div class="cert">Técnico Superior en Comercio Exterior y Aduanas — AFIP-ICA</div>
-        <div class="cert">Certificado Facilitador DINICRI — Ministerio del Interior</div>
-        <div class="cert">Dangerous Goods by Ocean — EI Intl. Inc.</div>
-      </div>
+<!-- MATIAS — 50/50 layout foto a sangre -->
+<section class="matias-split">
+  <!-- Izquierda: texto -->
+  <div class="matias-split-text">
+    <div class="matias-mini-name"><span style="color:var(--accent-bright);">de</span> Matías.</div>
+    <div class="matias-mini-role">Fundador — Despachante de Aduana</div>
+    <p class="matias-mini-bio">Con 29 años en el sector — desde operador de SIM hasta gerente de aduana senior durante casi una década en una de las empresas de freight forwarding más importantes del mundo — hoy firma cada despacho y trae ese conocimiento acumulado al servicio de cada cliente.</p>
+    <p class="matias-mini-bio">En 2007 desarrolló y dictó el Curso Integral de Comercio Exterior y Aduana para la Dirección Nacional de Inteligencia Criminal del Ministerio del Interior — 42 horas cátedra. Certificado firmado por el Ministro del Interior.</p>
+    <div class="certs">
+      <div class="cert">Despachante de Aduana matriculado — Socio CDA</div>
+      <div class="cert">Lic. en Comercio Internacional — UdeMM</div>
+      <div class="cert">Agente de Transporte Aduanero — AFIP · ICA</div>
+      <div class="cert">Técnico Superior en Comercio Exterior y Aduanas — AFIP-ICA</div>
+      <div class="cert">Certificado Facilitador DINICRI — Ministerio del Interior</div>
+      <div class="cert">Dangerous Goods by Ocean — EI Intl. Inc.</div>
     </div>
+  </div>
+  <!-- Derecha: foto a sangre -->
+  <div class="matias-split-img">
+    <img src="Poster%20HCE%20Deck.jpg" alt="Operación Hermes CE — Puerto Buenos Aires" loading="lazy">
   </div>
 </section>
 
 <!-- IA -->
-<section id="ia" style="background:var(--bg2);border-top:1px solid var(--border);padding:6rem 2rem;">
+<section id="ia" style="background:#f6f7fa;border-top:none;padding:6rem 2rem;">
   <div class="container">
     <div class="ia-grid">
       <div class="ia-left">
-        <p class="section-label">Tecnología propia</p>
-        <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,3.5rem);color:var(--white);line-height:1.05;margin-bottom:0.3rem;">Entre <span style="color:var(--accent-bright);">aduana y</span></h2>
-        <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,3.5rem);color:var(--white);line-height:1.05;margin-bottom:1.5rem;">algoritmos.</h2>
+        <p class="section-label" style="color:var(--accent);">Tecnología propia</p>
+        <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,3.5rem);color:#0e1118;line-height:1.05;margin-bottom:0.3rem;">Entre <span style="color:var(--accent);">aduana y</span></h2>
+        <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,3.5rem);color:#0e1118;line-height:1.05;margin-bottom:1.5rem;">algoritmos.</h2>
         <div style="display:flex;align-items:baseline;gap:1rem;flex-wrap:nowrap;margin-top:0.5rem;">
-          <p style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--white);letter-spacing:0.02em;white-space:nowrap;">IA<span style="color:#3ecf6e;">h</span></p>
-          <p style="font-size:0.9rem;color:var(--text-dim);line-height:1.4;">De naturalizar lo artificial a reconocer lo <span style="color:#3ecf6e;font-weight:500;">humano</span>.</p>
+          <p style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:#0e1118;letter-spacing:0.02em;white-space:nowrap;">IA<span style="color:#2a9d5c;">h</span></p>
+          <p style="font-size:0.9rem;color:#4a5270;line-height:1.4;">De naturalizar lo artificial a reconocer lo <span style="color:#2a9d5c;font-weight:500;">humano</span>.</p>
         </div>
       </div>
       <div class="ia-right">
-        <div class="ia-card">
-          <div class="ia-card-label">Clasificación arancelaria</div>
-          <div class="ia-card-name">far<span style="color:#3ecf6e;">IA</span>s</div>
-          <div class="ia-card-desc">Fotografiá la mercadería o describí el producto. NCM + tributos + costo estimado en segundos.</div>
+        <div class="ia-card" style="background:#eceef2;border:1px solid #dde0e8;">
+          <div class="ia-card-label" style="color:var(--accent);">Clasificación arancelaria</div>
+          <div class="ia-card-name" style="color:#0e1118;">far<span style="color:#2a9d5c;">IA</span>s</div>
+          <div class="ia-card-desc" style="color:#4a5270;">Fotografiá la mercadería o describí el producto. NCM + tributos + costo estimado en segundos.</div>
           <a href="#contacto" class="ia-card-btn">Quiero acceso →</a>
         </div>
       </div>
