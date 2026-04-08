@@ -55,21 +55,21 @@
       text-align: center;
       padding: 8rem 2rem 4rem;
       position: relative; overflow: hidden;
-      background-image: url('PosterDeck169.JPG');
       background-size: cover;
-      background-position: center 30%;
+      background-position: center 40%;
       background-repeat: no-repeat;
+      /* La imagen se setea por JS al cargar */
     }
-    /* Overlay: oscuro arriba y abajo, más transparente al centro para que se vea la foto */
+    /* Overlay: oscuro arriba y abajo, más transparente al centro */
     .hero::before {
       content: '';
       position: absolute; inset: 0;
       background: linear-gradient(
         to bottom,
         rgba(10,12,18,0.82) 0%,
-        rgba(10,12,18,0.55) 35%,
-        rgba(10,12,18,0.55) 65%,
-        rgba(10,12,18,0.92) 100%
+        rgba(10,12,18,0.50) 35%,
+        rgba(10,12,18,0.50) 65%,
+        rgba(10,12,18,0.95) 100%
       );
       pointer-events: none;
       z-index: 0;
@@ -641,6 +641,11 @@
       }
     });
   }
+
+  // ── Hero — imagen aleatoria ──
+  const heroImages = ['hero-calle.jpg', 'hero-barco.jpg', 'hero-avion.jpg', 'ormuz.jpg'];
+  const heroImg = heroImages[Math.floor(Math.random() * heroImages.length)];
+  document.querySelector('.hero').style.backgroundImage = `url('${heroImg}')`;
 
   // ── Contador animado (stats hero) ──
   function animateCounter(el) {
