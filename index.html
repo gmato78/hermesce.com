@@ -45,15 +45,27 @@
       backdrop-filter: blur(20px);
       border-bottom-color: var(--border);
     }
-    .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.25rem; letter-spacing: 0.08em; color: var(--white); text-decoration: none; }
-    .logo span { color: var(--accent-bright); }
-    .nav-ghost { list-style: none; display: flex; gap: 2.5rem; }
-    .nav-ghost a { text-decoration: none; color: rgba(255,255,255,0.28); font-size: 0.8rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
-    .nav-ghost a:hover { color: rgba(255,255,255,0.75); }
-    .nav-right { display: flex; align-items: center; gap: 1.8rem; }
-    .nav-lang { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; color: rgba(255,255,255,0.55); cursor: default; }
-    .nav-cta { background: var(--accent); color: white; padding: 0.55rem 1.4rem; border-radius: 6px; font-size: 0.82rem; font-weight: 500; text-decoration: none; letter-spacing: 0.02em; transition: background 0.2s; }
-    .nav-cta:hover { background: var(--accent-bright); }
+
+    /* Links izquierda — grandes, bold, semitransparentes */
+    .nav-ghost { list-style: none; display: flex; gap: 2.8rem; align-items: center; }
+    .nav-ghost a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.38);
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-ghost a:hover { color: rgba(255,255,255,0.85); }
+    .farias-ia { color: rgba(62,207,110,0.55); }
+
+    /* Idiomas derecha */
+    .nav-langs { display: flex; align-items: center; gap: 0.5rem; }
+    .lang-active { font-size: 0.8rem; font-weight: 700; color: rgba(255,255,255,0.85); letter-spacing: 0.08em; cursor: default; }
+    .lang-opt { font-size: 0.8rem; font-weight: 400; color: rgba(255,255,255,0.28); letter-spacing: 0.08em; cursor: pointer; transition: color 0.2s; }
+    .lang-opt:hover { color: rgba(255,255,255,0.65); }
+    .lang-sep { font-size: 0.75rem; color: rgba(255,255,255,0.15); }
 
     /* ─── HERO — 100x100 viewport ─── */
     .hero {
@@ -65,7 +77,7 @@
     }
     .hero::before {
       content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(10,12,18,0.52) 0%, rgba(10,12,18,0.30) 30%, rgba(10,12,18,0.42) 65%, rgba(10,12,18,0.94) 100%);
+      background: linear-gradient(to bottom, rgba(10,12,18,0.45) 0%, rgba(10,12,18,0.22) 35%, rgba(10,12,18,0.22) 65%, rgba(10,12,18,0.80) 100%);
       pointer-events: none; z-index: 0;
     }
     .hero-content {
@@ -112,23 +124,34 @@
     }
     .btn-ghost:hover { border-color: var(--accent); color: var(--text); transform: translateY(-2px); }
 
-    /* Accesos inferiores */
-    .hero-anchors {
-      position: absolute; bottom: 0; left: 0; right: 0; z-index: 1;
-      display: grid; grid-template-columns: repeat(3, 1fr);
+    /* Contadores flotantes — burbujas sutiles */
+    .hero-stats {
+      position: absolute; bottom: 3rem; right: 3.5rem;
+      z-index: 1;
+      display: flex; gap: 1.2rem; align-items: flex-end;
     }
-    .hero-anchor {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.4rem 2.2rem;
-      background: rgba(10,12,18,0.62); backdrop-filter: blur(12px);
-      border-top: 1px solid rgba(255,255,255,0.08);
-      border-right: 1px solid rgba(255,255,255,0.06);
-      text-decoration: none; transition: background 0.2s;
+    .hero-stat {
+      background: rgba(10,12,18,0.38);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      padding: 1rem 1.4rem;
+      text-align: center;
+      min-width: 120px;
     }
-    .hero-anchor:last-child { border-right: none; }
-    .hero-anchor:hover { background: rgba(79,114,227,0.22); }
-    .anchor-label { font-family: 'Syne', sans-serif; font-size: 0.88rem; font-weight: 700; color: rgba(255,255,255,0.72); letter-spacing: 0.04em; }
-    .anchor-arrow { color: var(--accent-bright); font-size: 1rem; }
+    .hero-stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem; font-weight: 800;
+      color: rgba(255,255,255,0.88);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      margin-top: 0.35rem;
+      font-size: 0.7rem; font-weight: 400;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.04em;
+      line-height: 1.3;
+    }
 
     /* ─── STATS — sección propia debajo del hero ─── */
     .stats-section { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0; }
@@ -260,11 +283,14 @@
     /* ─── MOBILE ─── */
     @media (max-width: 768px) {
       html, body { overflow-x: hidden; }
-      nav { padding: 1rem 1.5rem; }
-      nav ul { display: none; }
-      .hero { padding: 7rem 1.5rem 3rem; }
-      /* FIX: font-size mobile ajustado para que el headline entre sin desbordar */
-      .hero h1 { font-size: clamp(1.8rem, 8.5vw, 3.2rem); word-break: normal; overflow-wrap: break-word; }
+      .nav-hero { padding: 1.2rem 1.5rem; }
+      .nav-ghost { gap: 1.4rem; }
+      .nav-ghost a { font-size: 0.82rem; }
+      .nav-langs { gap: 0.3rem; }
+      .hero-content { padding: 0 1.5rem; }
+      .hero-stats { right: 1.5rem; bottom: 2rem; gap: 0.7rem; }
+      .hero-stat { min-width: 90px; padding: 0.7rem 1rem; }
+      .hero-stat-num { font-size: 1.4rem; }
       .stats { grid-template-columns: 1fr; max-width: 100%; }
       .stat-num { font-size: 1.8rem; }
       .problem-inner { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -288,20 +314,22 @@
 
 <!-- NAV HERO — transparente, sobre la foto -->
 <nav class="nav-hero">
-  <!-- Izquierda: logo -->
-  <div class="logo">HERMES <span>ce</span></div>
-
-  <!-- Centro: 3 links marca de agua -->
+  <!-- Izquierda: 3 links bold grandes -->
   <ul class="nav-ghost">
     <li><a href="#valores">Valores</a></li>
     <li><a href="#nosotros">Historia</a></li>
-    <li><a href="#ia">far<span style="color:rgba(62,207,110,0.6);">IA</span>s</a></li>
+    <li><a href="#ia">far<span class="farias-ia">IA</span>s</a></li>
   </ul>
 
-  <!-- Derecha: idioma + CTA -->
-  <div class="nav-right">
-    <span class="nav-lang">ES <span style="opacity:0.35;">/ EN</span></span>
-    <a href="#contacto" class="nav-cta">Consultá ahora</a>
+  <!-- Derecha: idiomas -->
+  <div class="nav-langs">
+    <span class="lang-active">ES</span>
+    <span class="lang-sep">/</span>
+    <span class="lang-opt">PT</span>
+    <span class="lang-sep">/</span>
+    <span class="lang-opt">EN</span>
+    <span class="lang-sep">/</span>
+    <span class="lang-opt">CH</span>
   </div>
 </nav>
 
@@ -320,41 +348,23 @@
     <a href="#contacto" class="btn-primary hero-btn">Hablá con nosotros →</a>
   </div>
 
-  <!-- Accesos inferiores — estilo MSL regiones -->
-  <div class="hero-anchors">
-    <a href="#problema" class="hero-anchor">
-      <span class="anchor-label">El problema</span>
-      <span class="anchor-arrow">→</span>
-    </a>
-    <a href="#servicios" class="hero-anchor">
-      <span class="anchor-label">Qué hacemos</span>
-      <span class="anchor-arrow">→</span>
-    </a>
-    <a href="#como" class="hero-anchor">
-      <span class="anchor-label">Cómo lo hacemos</span>
-      <span class="anchor-arrow">→</span>
-    </a>
+  <!-- Contadores flotantes — burbujas sutiles sobre la foto -->
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num" data-target="29" data-prefix="+">+29</div>
+      <div class="hero-stat-label">Años en la industria</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num" data-target="1463" data-prefix="+">+1.463</div>
+      <div class="hero-stat-label">Operaciones completadas</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num" data-target="12800" data-prefix="+">+12.800</div>
+      <div class="hero-stat-label">Posiciones clasificadas</div>
+    </div>
   </div>
 
 </section>
-
-<!-- STATS — datos operativos -->
-<div class="stats-section">
-  <div class="stats">
-    <div class="stat">
-      <div class="stat-num" data-target="29" data-prefix="+">+29</div>
-      <div class="stat-label">Años en la industria</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num" data-target="1463" data-prefix="+">+1.463</div>
-      <div class="stat-label">Operaciones completadas</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num" data-target="12800" data-prefix="+">+12.800</div>
-      <div class="stat-label">Posiciones clasificadas</div>
-    </div>
-  </div>
-</div>
 
 <!-- PROBLEM -->
 <section id="problema" class="problem-block">
@@ -711,7 +721,7 @@
       }
     });
   }, { threshold: 0.5 });
-  document.querySelectorAll('.stat-num[data-target]').forEach(el => statObs.observe(el));
+  document.querySelectorAll('.hero-stat-num[data-target], .stat-num[data-target]').forEach(el => statObs.observe(el));
 
   // ── Email footer (anti-scraping) ──
   const emailEl = document.getElementById('footer-email');
