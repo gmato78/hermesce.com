@@ -621,8 +621,8 @@
       .nav-right > ul { display: none; }
       /* lang-selector oculto en mobile — aparece en el drawer */
       .nav-right .lang-selector { display: none; }
-      .hero { height: 100svh; height: 100vh; }
-      .hero-content { padding: 6rem 1.5rem 0; }
+      .hero { height: 100svh; height: 100vh; display: flex; flex-direction: column; justify-content: space-between; }
+      .hero-content { padding: 5rem 1.5rem 2rem; flex: 1; display: flex; flex-direction: column; justify-content: center; }
       .hero-stats {
         position: static;
         display: grid;
@@ -632,7 +632,8 @@
         width: 100%;
         box-sizing: border-box;
         border-top: 1px solid rgba(255,255,255,0.08);
-        margin-top: 0;
+        animation: fadeUp 0.8s 0.5s ease forwards;
+        opacity: 0;
       }
       .hero-stat {
         min-width: unset;
@@ -648,15 +649,15 @@
       .stats { grid-template-columns: 1fr; max-width: 100%; }
       .stat-num { font-size: 1.8rem; }
       .problem-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      .problem-block { padding: 4rem 1.5rem; }
+      .problem-block { padding: 3rem 1.2rem; }
       .services-grid { grid-template-columns: 1fr; }
       .ecp-grid { grid-template-columns: 1fr; }
       .ecp-card { border-right: none; }
-      .valores-grid { grid-template-columns: repeat(2, 1fr); }
+      .valores-grid { grid-template-columns: 1fr; }
       .historia-grid { grid-template-columns: 1fr; }
       .matias-split { grid-template-columns: 1fr; }
       .matias-split-img { height: 260px; }
-      .matias-split-text { padding: 2.5rem 1.5rem; }
+      .matias-split-text { padding: 1.5rem 1.2rem; }
       .ia-grid { grid-template-columns: 1fr; gap: 2rem; }
       .ia-card-name { font-size: 2rem; }
       .ia-card > div[style*="space-between"],
@@ -668,17 +669,28 @@
       }
       .ia-card > div[style*="space-between"] img,
       .ia-card > div[style*="justify-content"] img {
-        width: 100px !important;
-        height: 100px !important;
+        width: 160px !important;
+        height: 160px !important;
       }
-      .form-row { grid-template-columns: 1fr; }
+      /* Modales — campos en columna */
+      #farias-modal > div,
+      #contacto-modal > div { padding: 2rem 1.2rem; max-height: 95vh; }
+      #farias-modal h3,
+      #contacto-modal h3 { font-size: 1.2rem; }
+      /* Grids de formulario en columna */
+      [style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+      /* Campos 100% ancho */
+      #farias-modal input, #farias-modal select, #farias-modal textarea,
+      #contacto-modal input, #contacto-modal select, #contacto-modal textarea {
+        width: 100% !important; box-sizing: border-box !important;
+      }
       footer { grid-template-columns: 1fr; gap: 1.5rem; text-align: center; padding: 2.5rem 1.5rem; }
       .footer-brand { justify-content: center; }
       .footer-logo-img { height: 100px; }
       .footer-location { align-items: center; }
       .footer-address-small { text-align: center; }
       .footer-map-embed { width: 100%; }
-      section { padding: 4rem 1.5rem; }
+      section { padding: 3rem 1.2rem; }
     }
   </style>
 </head>
@@ -1034,7 +1046,7 @@
   </div>
   <!-- Derecha: foto a sangre -->
   <div class="matias-split-img reveal">
-    <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80" alt="Formación académica — hermesCE" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800&q=85" alt="Formación académica — hermesCE" loading="lazy">
   </div>
 </section>
 
@@ -1458,7 +1470,7 @@
 
           <div>
             <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">Contanos de vos</label>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;">
+<div style="display:grid;grid-template-columns:1fr;gap:0.8rem;">
               <input type="text" name="Name_First" maxlength="255" placeholder="Nombre y apellido" required style="background:#0e1118;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
               <input type="text" name="SingleLine" maxlength="255" placeholder="Empresa (opcional)" style="background:#0e1118;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
             </div>
@@ -1466,7 +1478,7 @@
 
           <div>
             <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">¿Dónde te contactamos?</label>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;">
+<div style="display:grid;grid-template-columns:1fr;gap:0.8rem;">
               <input type="email" name="Email" maxlength="255" placeholder="Mail" required style="background:#0e1118;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
               <input type="text" name="PhoneNumber_countrycode" maxlength="20" placeholder="Celular" style="background:#0e1118;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
             </div>
