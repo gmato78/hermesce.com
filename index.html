@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hce — Hermes Comercio Exterior</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0a0c12;
+      --bg: #0e1118;
       --bg2: #0e1118;
       --card: #131720;
       --border: #1e2535;
@@ -25,7 +26,7 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-weight: 300;
       line-height: 1.6;
       overflow-x: hidden;
@@ -41,31 +42,65 @@
       border-bottom: 1px solid transparent;
     }
     .nav-hero.scrolled {
-      background: rgba(10,12,18,0.92);
+      background: rgba(14,17,24,0.22);
       backdrop-filter: blur(20px);
-      border-bottom-color: var(--border);
+      border-bottom-color: rgba(255,255,255,0.04);
     }
 
-    /* Links izquierda — grandes, bold, semitransparentes */
-    .nav-ghost { list-style: none; display: flex; gap: 2.8rem; align-items: center; }
+    /* Zona izquierda */
+    .nav-left { flex-shrink: 0; }
+
+    /* Zona central — espacio vacío, futuro logo */
+    .nav-center { flex: 1; }
+
+    /* Zona derecha — links + idioma juntos */
+    .nav-right {
+      display: flex; align-items: center; gap: 1.6rem; flex-shrink: 0;
+    }
+
+    /* Links — mismo estilo en ambos lados */
+    .nav-ghost { list-style: none; display: flex; gap: 1.4rem; align-items: center; }
     .nav-ghost a {
       text-decoration: none;
-      color: rgba(255,255,255,0.38);
-      font-family: 'Syne', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.45);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
       transition: color 0.2s;
     }
     .nav-ghost a:hover { color: rgba(255,255,255,0.85); }
     .farias-ia { color: inherit; }
 
-    /* Idiomas derecha */
-    .nav-langs { display: flex; align-items: center; gap: 0.5rem; }
-    .lang-active { font-size: 0.8rem; font-weight: 700; color: rgba(255,255,255,0.85); letter-spacing: 0.08em; cursor: default; }
-    .lang-opt { font-size: 0.8rem; font-weight: 400; color: rgba(255,255,255,0.28); letter-spacing: 0.08em; cursor: pointer; transition: color 0.2s; }
-    .lang-opt:hover { color: rgba(255,255,255,0.65); }
-    .lang-sep { font-size: 0.75rem; color: rgba(255,255,255,0.15); }
+
+    .lang-selector { position: relative; }
+    .lang-btn {
+      background: transparent; border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.85); font-family: 'Inter', sans-serif;
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
+      padding: 0.35rem 0.7rem; border-radius: 4px; cursor: pointer;
+      display: flex; align-items: center; gap: 0.4rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .lang-btn:hover { border-color: rgba(255,255,255,0.45); color: #fff; }
+    .lang-chevron { transition: transform 0.2s; flex-shrink: 0; }
+    .lang-btn[aria-expanded="true"] .lang-chevron { transform: rotate(180deg); }
+    .lang-dropdown {
+      display: none; position: absolute; right: 0; top: calc(100% + 6px);
+      background: rgba(14,17,24,0.97); border: 1px solid var(--border);
+      border-radius: 6px; min-width: 70px; list-style: none;
+      padding: 0.3rem 0; backdrop-filter: blur(20px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+    .lang-dropdown.open { display: block; }
+    .lang-item {
+      padding: 0.45rem 1rem; font-size: 0.78rem; font-weight: 700;
+      font-family: 'Inter', sans-serif; letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.45); cursor: pointer;
+      transition: color 0.15s, background 0.15s;
+    }
+    .lang-item:hover { color: #fff; background: rgba(255,255,255,0.06); }
+    .lang-item-active { color: rgba(255,255,255,0.9); }
 
     /* ─── HERO — 100x100 viewport ─── */
     .hero {
@@ -78,25 +113,30 @@
     .hero::before {
       content: ''; position: absolute; inset: 0;
       background:
-        linear-gradient(to right, rgba(10,12,18,0.62) 0%, rgba(10,12,18,0.18) 55%, rgba(10,12,18,0.0) 100%),
-        linear-gradient(to bottom, rgba(10,12,18,0.38) 0%, rgba(10,12,18,0.12) 40%, rgba(10,12,18,0.12) 65%, rgba(10,12,18,0.75) 100%);
+        linear-gradient(rgba(14,17,24,0.30), rgba(14,17,24,0.30)),
+        linear-gradient(to right, rgba(14,17,24,0.45) 0%, rgba(14,17,24,0.08) 45%, rgba(14,17,24,0.0) 100%),
+        linear-gradient(to bottom, rgba(14,17,24,0.25) 0%, rgba(14,17,24,0.0) 30%, rgba(14,17,24,0.0) 55%, rgba(14,17,24,0.82) 88%, rgba(14,17,24,1.0) 100%);
       pointer-events: none; z-index: 0;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+      height: 140px; z-index: 1;
+      background: linear-gradient(to bottom, transparent 0%, #0e1118 100%);
+      pointer-events: none;
     }
     .hero-content {
       position: relative; z-index: 1;
-      padding: 0 3.5rem; max-width: 820px;
+      padding: 6rem 3.5rem 0; max-width: 820px;
     }
     .hero-eyebrow {
-      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
-      color: rgba(255,255,255,0.72); margin-bottom: 1.2rem;
-      text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+      font-size: 0.85rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      text-shadow: 0 1px 12px rgba(0,0,0,0.9);
       animation: fadeUp 0.6s ease forwards; opacity: 0;
     }
-    /* CoDex — acento azul Hermes en el eyebrow */
-    .eyebrow-accent {
-      color: var(--accent-bright);
-      opacity: 1;
-      font-weight: 700;
+    .eyebrow-year {
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 0.3em;
     }
     .hero-h1 {
       font-family: 'Syne', sans-serif; font-weight: 800;
@@ -105,7 +145,8 @@
       margin-bottom: 1.4rem;
       animation: fadeUp 0.7s 0.1s ease forwards; opacity: 0;
     }
-    /* Punto azul en el h1 */
+    /* "Simple." en azul dentro del h1 */
+    .h1-accent { color: var(--accent-bright); }
     .h1-dot { color: var(--accent-bright); }
 
     .hero-sub {
@@ -115,10 +156,22 @@
       margin-bottom: 2.2rem;
       animation: fadeUp 0.7s 0.2s ease forwards; opacity: 0;
     }
+    /* Subtítulo con más peso — lo que hacemos */
+    .hero-sub-strong {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.15rem, 2vw, 1.55rem);
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.3;
+      letter-spacing: 0.01em;
+      text-shadow: 0 1px 12px rgba(0,0,0,0.8);
+    }
+    /* Acento azul puntual en la bajada */
+    .sub-accent { color: var(--accent-bright); }
     /* Tagline inline — separado visualmente pero en la misma línea */
     .hero-inline-tagline {
       display: inline;
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-weight: 700;
       color: rgba(255,255,255,0.42);
       margin-left: 0.6rem;
@@ -149,7 +202,7 @@
       display: flex; gap: 1.2rem; align-items: flex-end;
     }
     .hero-stat {
-      background: rgba(10,12,18,0.38);
+      background: rgba(14,17,24,0.38);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 14px;
@@ -158,7 +211,7 @@
       min-width: 120px;
     }
     .hero-stat-num {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 1.8rem; font-weight: 800;
       color: rgba(255,255,255,0.88);
       line-height: 1;
@@ -181,18 +234,54 @@
       border: none; border-radius: 0;
     }
     .stat { background: var(--card); padding: 2rem 1.5rem; text-align: center; }
-    .stat-num { font-family: 'Syne', sans-serif; font-size: 2.4rem; font-weight: 800; color: #3ecf6e; line-height: 1; }
+    .stat-num { font-family: 'Inter', sans-serif; font-size: 2.4rem; font-weight: 800; color: #3ecf6e; line-height: 1; }
     .stat-label { margin-top: 0.4rem; font-size: 0.8rem; color: var(--text-dim); letter-spacing: 0.05em; }
 
     /* ─── SECTION SHARED ─── */
-    section { padding: 6rem 2rem; }
+    section { padding: 6rem 2rem; transition: background 1.2s cubic-bezier(0.4,0,0.2,1); position: relative; }
+
+    /* Puente visual entre secciones — gradiente en borde inferior */
+    section::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 30px;
+      pointer-events: none;
+      z-index: 2;
+    }
+    /* Sección oscura (#0e1118) que va hacia gris (#1C2433) */
+    .problem-block::after,
+    .ecp-section::after,
+    #nosotros::after {
+      background: linear-gradient(to bottom, transparent, #1C2433);
+    }
+    /* Sección gris (#1C2433) que va hacia oscura (#0e1118) */
+    #servicios::after,
+    .valores-section::after,
+    .matias-split::after {
+      background: linear-gradient(to bottom, transparent, #0e1118);
+    }
+    /* farIAs (#0e1118) que va hacia el azul del contacto */
+    #ia::after {
+      background: linear-gradient(to bottom, transparent 0%, rgba(58,91,189,0.2) 70%, var(--accent) 100%);
+      height: 60px;
+    }
     .container { max-width: 1100px; margin: 0 auto; }
     .section-label { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-bright); font-weight: 500; margin-bottom: 1rem; }
-    .section-title { font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; color: var(--white); line-height: 1.15; margin-bottom: 1rem; }
+    .section-title { font-family: 'Inter', sans-serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; color: var(--white); line-height: 1.15; margin-bottom: 1rem; }
     .section-desc { color: var(--text-dim); font-size: 1rem; max-width: 520px; line-height: 1.7; }
 
-    /* ─── REVEAL — FIX: siempre visible, sin dependencia de JS ─── */
-    .reveal { opacity: 1; transform: none; }
+    /* ─── FADE-UP — animación de entrada en scroll ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(48px);
+      transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal:nth-child(2) { transition-delay: 0.12s; }
+    .reveal:nth-child(3) { transition-delay: 0.24s; }
+    .reveal:nth-child(4) { transition-delay: 0.36s; }
+    .reveal:nth-child(5) { transition-delay: 0.48s; }
 
     /* ════════════════════════════════════════
        SISTEMA DE SECCIONES — claro / oscuro alternado
@@ -216,65 +305,112 @@
 
     /* ─── PROBLEM — claro ─── */
     .problem-block {
-      background: #f6f7fa;
+      background: #0e1118;
       border-top: none; border-bottom: none;
+      padding: 10rem 2rem;
     }
     .problem-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-    .problem-quote { font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; color: #0e1118; line-height: 1.2; }
-    .problem-quote em { font-style: normal; color: var(--accent); }
-    .problem-block .section-label { color: var(--accent); }
-    .problem-list { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; }
-    .problem-list li { display: flex; gap: 1rem; align-items: flex-start; font-size: 0.95rem; color: #4a5270; line-height: 1.5; }
-    .problem-list li::before { content: '→'; color: var(--accent); font-weight: 600; flex-shrink: 0; margin-top: 0.05rem; }
+    .problem-quote {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      line-height: 1.1;
+    }
+    .problem-quote em { font-style: normal; color: var(--accent-bright); }
+    .problem-block .section-label { color: var(--accent-bright); }
+    .problem-list { list-style: none; display: flex; flex-direction: column; gap: 1.4rem; }
+    .problem-list li { display: flex; gap: 1rem; align-items: flex-start; font-size: 0.95rem; color: var(--text-dim); line-height: 1.6; }
+    .problem-list li::before { content: '→'; color: var(--accent-bright); font-weight: 600; flex-shrink: 0; margin-top: 0.05rem; }
 
-    /* ─── SERVICES — oscuro ─── */
-    #servicios { background: var(--bg); }
+    /* ─── SERVICES — gris oscuro ─── */
+    #servicios {
+      background:
+        linear-gradient(rgba(28,36,51,0.92), rgba(28,36,51,0.92)),
+        url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1800&q=80') center center / cover no-repeat;
+      border-top: none;
+    }
     #servicios .section-label { color: var(--accent-bright); }
-    #servicios .section-title { color: var(--white); }
+    #servicios .section-title {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: var(--white);
+    }
     #servicios .section-desc { color: var(--text-dim); }
     #servicios .section-desc strong { color: var(--text); }
     .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
-    .service-card { background: #131720; border: 1px solid #242d42; border-radius: 14px; padding: 2rem; transition: border-color 0.2s, transform 0.2s; cursor: default; }
-    .service-card:hover { border-color: var(--accent-bright); transform: translateY(-4px); }
-    .service-icon { width: 44px; height: 44px; background: rgba(79,114,227,0.12); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.3rem; font-size: 1.2rem; }
-    .service-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.7rem; letter-spacing: 0.02em; }
-    .service-card p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.6; }
+    .service-card { background: var(--card); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 2rem 1.8rem; transition: border-color 0.2s, transform 0.2s; cursor: default; }
+    .service-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .service-num { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; color: var(--accent-bright); margin-bottom: 1rem; }
+    .service-card h3 { font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 0.6rem; letter-spacing: -0.01em; }
+    .service-card p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.65; opacity: 0.75; }
 
     /* ─── ECP — claro ─── */
-    .ecp-section { background: #f6f7fa; border-top: none; }
-    .ecp-section .section-label { color: var(--accent); }
-    .ecp-section .section-title { color: #0e1118; }
-    .ecp-section .section-desc { color: #4a5270; }
-    .ecp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid #dde0e8; border-radius: 16px; overflow: hidden; margin-top: 3.5rem; }
-    .ecp-card { padding: 2.5rem 2rem; border-right: 1px solid #dde0e8; background: #eceef2; position: relative; overflow: hidden; }
-    .ecp-card:last-child { border-right: none; }
-    .ecp-letter { font-family: 'Syne', sans-serif; font-size: 3.5rem; font-weight: 800; color: #c8ccd8; line-height: 1; margin-bottom: 1rem; transition: color 0.3s; }
-    .ecp-card:hover .ecp-letter { color: var(--accent); }
-    .ecp-card h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--accent); margin-bottom: 0.7rem; }
-    .ecp-card p { font-size: 0.85rem; color: #4a5270; line-height: 1.65; }
+    .ecp-section { background: #0e1118; border-top: none; }
+    .ecp-section .section-label { color: var(--accent-bright); }
+    .ecp-section .section-title { color: var(--white); }
+    .ecp-section .section-desc { color: var(--text-dim); }
+    .ecp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+    .ecp-card {
+      padding: 3rem 2.5rem;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: #1C2433;
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .ecp-card:hover { border-color: var(--accent-bright); transform: translateY(-4px); }
+    .ecp-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--accent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .ecp-card:hover::before { opacity: 1; }
+    .ecp-letter { font-family: 'Inter', sans-serif; font-size: 4rem; font-weight: 800; color: rgba(255,255,255,0.07); line-height: 1; margin-bottom: 1.5rem; transition: color 0.3s; letter-spacing: -0.02em; }
+    .ecp-card:hover .ecp-letter { color: rgba(79,114,227,0.2); }
+    .ecp-card h3 { font-family: 'Inter', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--white); margin-bottom: 0.8rem; }
+    .ecp-card p { font-size: 0.87rem; color: var(--text-dim); line-height: 1.7; }
 
     /* ─── VALORES — oscuro ─── */
-    .valores-section { background: var(--bg); }
-    .valores-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-top: 3.5rem; }
-    .valor-card { background: var(--card); padding: 1.8rem 1.2rem; transition: background 0.2s; }
-    .valor-card:hover { background: #161c2a; }
-    .valor-num { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 700; color: var(--accent-bright); letter-spacing: 0.15em; margin-bottom: 0.6rem; }
-    .valor-name { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
-    .valor-def { font-size: 0.78rem; color: var(--text-dim); line-height: 1.55; }
+    .valores-section {
+      background:
+        linear-gradient(rgba(28,36,51,0.91), rgba(28,36,51,0.91)),
+        url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1800&q=80') center center / cover no-repeat;
+      border-top: none;
+    }
+    .valores-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px; margin-top: 3.5rem;
+    }
+    .valor-card {
+      border-left: 2px solid var(--accent);
+      padding: 1.4rem 1.4rem;
+      transition: border-color 0.2s;
+    }
+    .valor-card:hover { border-color: var(--accent-bright); }
+    .valor-num { font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 700; color: var(--accent-bright); letter-spacing: 0.15em; margin-bottom: 0.6rem; }
+    .valor-name { font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+    .valor-def { font-size: 0.78rem; color: var(--text-dim); opacity: 0.7; line-height: 1.55; }
 
     /* ─── HISTORIA — claro ─── */
-    #nosotros {
-      background: #f6f7fa !important;
-      border-top: none !important;
-    }
-    #nosotros .section-label { color: var(--accent); }
-    #nosotros .section-title { color: #0e1118; }
+    #nosotros { background: #0e1118 !important; border-top: none; }
+    #nosotros .section-label { color: var(--accent-bright); }
+    #nosotros .section-title { color: var(--white); }
     .historia-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 3.5rem; }
-    .historia-item { border-left: 2px solid #dde0e8; padding-left: 1.5rem; transition: border-color 0.2s; }
-    .historia-item:hover { border-color: var(--accent); }
-    .historia-year { font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.6rem; }
-    .historia-item h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: #0e1118; margin-bottom: 0.6rem; }
-    .historia-item p { font-size: 0.85rem; color: #4a5270; line-height: 1.65; }
+    .historia-foto { margin-top: 2.5rem; margin-bottom: 0; overflow: hidden; border-radius: 10px; }
+    .historia-foto img { width: 100%; height: 320px; object-fit: cover; object-position: center 60%; filter: grayscale(20%) brightness(0.85); border-radius: 10px; border: 1px solid rgba(255,255,255,0.06); transition: filter 0.3s; }
+    .historia-foto:hover img { filter: grayscale(0%) brightness(0.9); }
+    .historia-item { border-left: 2px solid var(--border); padding-left: 1.5rem; transition: border-color 0.2s; }
+    .historia-item:hover { border-color: var(--accent-bright); }
+    .historia-year { font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 700; color: var(--accent-bright); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.6rem; }
+    .historia-item h3 { font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.6rem; }
+    .historia-item p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.65; }
 
     /* mobile ECP border fix */
 
@@ -283,25 +419,49 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       min-height: 600px;
-      background: var(--bg2);
-      border-top: 1px solid var(--border);
+      background: #1C2433;
+      border-top: none;
     }
     .matias-split-text {
       padding: 5rem 4rem;
       display: flex; flex-direction: column; justify-content: center;
     }
     .matias-split-img {
-      overflow: hidden;
+      overflow: visible;
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 3rem 3rem 1rem;
+      background: #1C2433;
     }
     .matias-split-img img {
       width: 100%; height: 100%;
+      max-height: 520px;
       object-fit: cover;
       object-position: center 20%;
       display: block;
-      filter: brightness(0.85);
+      filter: grayscale(25%) brightness(0.88);
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: opacity 0.5s ease, border-color 0.3s, filter 0.3s;
     }
-    .matias-mini-name { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--white); margin-bottom: 0.3rem; margin-top: 0.8rem; }
+    .matias-split-img:hover img {
+      border-color: var(--accent);
+      filter: grayscale(0%) brightness(0.92);
+    }
+    /* Dots del carrusel */
+    .carousel-dots {
+      position: absolute; bottom: 1.8rem; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 0.5rem; z-index: 2;
+    }
+    .carousel-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(255,255,255,0.25); cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .carousel-dot.active { background: var(--accent-bright); transform: scale(1.3); }
+    .matias-mini-name { font-family: 'Inter', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--white); margin-bottom: 0.3rem; margin-top: 0.8rem; }
     .matias-mini-role { font-size: 0.78rem; color: var(--accent-bright); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; margin-bottom: 1.2rem; }
     .matias-mini-bio { font-size: 0.88rem; color: var(--text-dim); line-height: 1.65; max-width: 480px; margin-bottom: 0.8rem; }
     .certs { display: flex; flex-direction: column; gap: 0.55rem; margin-top: 1.5rem; }
@@ -316,39 +476,54 @@
 
     /* ─── IA ─── */
     .ia-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-    .ia-card { background: var(--card); border: 1px solid var(--accent); border-radius: 16px; padding: 2.5rem 2rem; position: relative; overflow: hidden; }
+    .ia-card {
+      background:
+        linear-gradient(rgba(19,23,32,0.88), rgba(19,23,32,0.88)),
+        url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80') center center / cover no-repeat;
+      border: 1px solid var(--accent);
+      border-radius: 16px; padding: 2.5rem 2rem;
+      position: relative; overflow: hidden;
+    }
     .ia-card::before { content: ''; position: absolute; top: -60px; right: -60px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(79,114,227,0.12) 0%, transparent 70%); pointer-events: none; }
     .ia-card-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-bright); font-weight: 500; margin-bottom: 0.8rem; }
-    .ia-card-name { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; color: var(--white); line-height: 1; margin-bottom: 1rem; letter-spacing: -0.01em; }
+    .ia-card-name { font-family: 'Inter', sans-serif; font-size: 2.8rem; font-weight: 800; color: var(--white); line-height: 1; margin-bottom: 1rem; letter-spacing: -0.01em; }
     .ia-card-desc { font-size: 0.9rem; color: var(--text-dim); line-height: 1.65; margin-bottom: 2rem; }
-    .ia-card-btn { display: inline-block; background: var(--accent); color: white; padding: 0.8rem 1.8rem; border-radius: 8px; font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: background 0.2s, transform 0.15s; font-family: 'DM Sans', sans-serif; }
+    .ia-card-btn { display: inline-block; background: var(--accent); color: white; padding: 0.8rem 1.8rem; border-radius: 8px; font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: background 0.2s, transform 0.15s; font-family: 'Inter', sans-serif; }
     .ia-card-btn:hover { background: var(--accent-bright); transform: translateY(-2px); }
 
     /* ─── CONTACT ─── */
-    .contact-section { text-align: center; }
+    .contact-section { text-align: center; background: var(--accent); }
     .contact-inner { max-width: 580px; margin: 0 auto; }
-    .contact-inner .section-title { margin-bottom: 0.8rem; }
-    .contact-inner .section-desc { margin: 0 auto 2.5rem; text-align: center; }
+    .contact-inner .section-label { color: rgba(255,255,255,0.65); } .contact-inner .section-title { margin-bottom: 0.8rem; color: #fff; }
+    .contact-inner .section-desc { margin: 0 auto 2.5rem; text-align: center; color: rgba(255,255,255,0.75); }
     .contact-form { display: flex; flex-direction: column; gap: 1rem; text-align: left; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-    .form-group label { font-size: 0.78rem; color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500; }
-    .form-group input, .form-group select, .form-group textarea { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; resize: none; }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); }
-    .form-group select option { background: var(--card); }
-    .form-submit { background: var(--accent); color: white; padding: 0.9rem; border-radius: 8px; font-size: 0.95rem; font-weight: 500; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s; margin-top: 0.5rem; }
-    .form-submit:hover { background: var(--accent-bright); }
-    .contact-alt { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; justify-content: center; }
+    .form-group label { font-size: 0.78rem; color: rgba(255,255,255,0.6); letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500; }
+    .form-group input, .form-group select, .form-group textarea { background: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 0.75rem 1rem; color: #1C2433; font-family: 'Inter', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; resize: none; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: rgba(255,255,255,0.8); }
+    .form-group select option { background: #fff; color: #1C2433; }
+    .form-submit { background: #fff; color: #2A5686; padding: 0.9rem; border-radius: 8px; font-size: 0.95rem; font-weight: 700; border: none; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s; margin-top: 0.5rem; }
+    .form-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+    .contact-alt { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.15); display: flex; justify-content: center; }
     .contact-alt-qr { display: flex; flex-direction: column; align-items: center; gap: 0.8rem; }
-    .contact-alt-qr img { width: 160px; height: 160px; border-radius: 8px; border: 1px solid var(--border); }
-    .contact-alt-qr span { font-size: 0.78rem; color: var(--text-faint); text-align: center; }
+    .contact-alt-qr img { width: 160px; height: 160px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); }
+    .contact-alt-qr span { font-size: 0.78rem; color: rgba(255,255,255,0.55); text-align: center; }
 
     /* ─── FOOTER ─── */
-    footer { border-top: 1px solid var(--border); padding: 2.5rem 4rem; display: flex; align-items: center; justify-content: space-between; background: var(--bg); }
-    .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; color: var(--text-dim); letter-spacing: 0.08em; }
-    .footer-logo span { color: var(--accent-bright); }
-    .footer-info { font-size: 0.78rem; color: var(--text-faint); text-align: center; line-height: 1.6; }
-    .footer-tagline { font-size: 0.82rem; color: var(--text-faint); font-style: italic; }
+    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 3.5rem 4rem; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 3rem; background: #000000; }
+    .footer-brand { display: flex; align-items: center; justify-content: flex-start; }
+    .footer-logo-img { height: 160px; width: auto; mix-blend-mode: lighten; }
+    .footer-center { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; }
+    .footer-tagline { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 2; }
+    .footer-email-link { font-size: 0.9rem; color: #ffffff; text-decoration: underline; text-underline-offset: 4px; }
+    .footer-email-link:hover { opacity: 0.75; }
+    .footer-location { display: flex; flex-direction: column; align-items: flex-end; gap: 0.6rem; }
+    .footer-address-small { font-size: 0.85rem; color: rgba(255,255,255,0.45); text-align: right; line-height: 1.6; }
+    .footer-map-embed { width: 280px; height: 160px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+    .footer-map-embed iframe { width: 100%; height: 100%; border: none; filter: grayscale(40%) invert(85%) hue-rotate(180deg); }
+    .footer-map-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; color: var(--accent-bright); text-decoration: none; transition: opacity 0.2s; }
+    .footer-map-link:hover { opacity: 0.75; }
 
     /* ─── ANIMACIONES ─── */
     @keyframes fadeUp {
@@ -372,10 +547,9 @@
       .problem-inner { grid-template-columns: 1fr; gap: 2.5rem; }
       .services-grid { grid-template-columns: 1fr; }
       .ecp-grid { grid-template-columns: 1fr; }
-      .ecp-card { border-right: none; border-bottom: 1px solid #dde0e8; }
+      .ecp-card { border-right: none; border-bottom: 1px solid var(--border); }
       .ecp-card:last-child { border-bottom: none; }
-      .valores-grid { grid-template-columns: 1fr; }
-      .valor-card:last-child { grid-column: span 1; }
+      .valores-grid { grid-template-columns: repeat(2, 1fr); }
       .historia-grid { grid-template-columns: 1fr; }
       .matias-mini { grid-template-columns: 1fr; gap: 2rem; }
       .ia-grid { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -390,23 +564,40 @@
 
 <!-- NAV HERO — transparente, sobre la foto -->
 <nav class="nav-hero">
-  <!-- Izquierda: 3 links bold grandes -->
-  <ul class="nav-ghost">
+
+  <!-- Izquierda: identidad — Valores, Historia, farIAs -->
+  <ul class="nav-ghost nav-left">
     <li><a href="#valores">Valores</a></li>
     <li><a href="#nosotros">Historia</a></li>
     <li><a href="#ia">far<span class="farias-ia">IA</span>s</a></li>
   </ul>
 
-  <!-- Derecha: idiomas -->
-  <div class="nav-langs">
-    <span class="lang-active">ES</span>
-    <span class="lang-sep">/</span>
-    <span class="lang-opt">PT</span>
-    <span class="lang-sep">/</span>
-    <span class="lang-opt">EN</span>
-    <span class="lang-sep">/</span>
-    <span class="lang-opt">CH</span>
+  <!-- Espacio central (futuro logo) -->
+  <div class="nav-center"></div>
+
+  <!-- Derecha: journey del cliente + idioma -->
+  <div class="nav-right">
+    <ul class="nav-ghost">
+      <li><a href="#problema">El problema</a></li>
+      <li><a href="#servicios">Qué hacemos</a></li>
+      <li><a href="#como">Cómo operamos</a></li>
+    </ul>
+    <div class="lang-selector">
+      <button class="lang-btn" id="langBtn" aria-expanded="false" aria-haspopup="listbox">
+        <span id="langCurrent">ES</span>
+        <svg class="lang-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+          <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <ul class="lang-dropdown" id="langDropdown" role="listbox">
+        <li class="lang-item lang-item-active" data-lang="ES">ES</li>
+        <li class="lang-item" data-lang="PT">PT</li>
+        <li class="lang-item" data-lang="EN">EN</li>
+        <li class="lang-item" data-lang="CH">CH</li>
+      </ul>
+    </div>
   </div>
+
 </nav>
 
 <!-- HERO — foto 100x100 viewport -->
@@ -414,10 +605,10 @@
 
   <!-- Contenido central -->
   <div class="hero-content">
-    <div class="hero-eyebrow">Comercio Exterior <span class="eyebrow-accent">desde 1997</span></div>
-    <h1 class="hero-h1">Operaciones de Aduana<br>y Comex<span class="h1-dot">.</span></h1>
-    <p class="hero-sub">
-      Toda la operación desde un mismo lugar. <span class="hero-inline-tagline">lo complicado. <em>Simple.</em></span>
+    <div class="hero-eyebrow"><span class="eyebrow-year">DESDE 1997</span></div>
+    <h1 class="hero-h1">Comex.<br>Fácil y <span class="h1-accent">Simple<span class="h1-dot">.</span></span></h1>
+    <p class="hero-sub hero-sub-strong">
+      Operaciones de <span class="sub-accent">Aduana</span><br>y Comercio Exterior.
     </p>
     <a href="#contacto" class="btn-primary hero-btn">Hablá con nosotros →</a>
   </div>
@@ -443,11 +634,11 @@
 <!-- PROBLEM -->
 <section id="problema" class="problem-block">
   <div class="problem-inner container">
-    <div>
+    <div class="reveal">
       <p class="section-label">El problema real</p>
       <h2 class="problem-quote">En aduana <em>no hay margen</em> para el error.</h2>
     </div>
-    <ul class="problem-list">
+    <ul class="problem-list reveal">
       <li>Una clasificación arancelaria mal hecha cuesta dinero, tiempo y posibles sanciones.</li>
       <li>Los trámites ante Aduana y Terceros Organismos — ANMAT, SENASA, INAL, Producción — tienen sus tiempos y lógicas. Hay que saber donde, como y cuando moverse.</li>
       <li>Cada operación es distinta. El proveedor, el producto, el origen, el régimen. Un servicio estándar no alcanza cuando la operación es tuya.</li>
@@ -460,36 +651,36 @@
 <section id="servicios">
   <div class="container">
     <p class="section-label reveal">Lo que hacemos</p>
-    <h2 class="section-title reveal">Todos los frentes. <em style="font-style:normal;color:var(--accent-bright);">Un solo equipo.</em></h2>
-    <p class="section-desc reveal"><strong>Servicio end-to-end.</strong> Una sola gestión, punta a punta. Tu operación de comercio exterior completa — sin fragmentar, sin múltiples interlocutores, sin perder el hilo. Como tener un área de comex propia, sin armarla.</p>
+    <h2 class="section-title reveal">El despacho dentro del <span style="color:var(--accent-bright);">forzoso.</span></h2>
+    <p class="section-desc reveal">No somos una plataforma. Somos despachantes de aduana con criterio propio, trayectoria verificable y operación real.</p>
     <div class="services-grid">
       <div class="service-card reveal">
-        <div class="service-icon">⚓</div>
+        <div class="service-num">01</div>
         <h3>Despacho de Aduana</h3>
         <p>Importación y exportación. Clasificación NCM a 13 dígitos. Gestión ante SIM/AFIP. Operaciones marítimas, aéreas y terrestres.</p>
       </div>
       <div class="service-card reveal">
-        <div class="service-icon">🚢</div>
+        <div class="service-num">02</div>
         <h3>Coordinación de Carga</h3>
         <p>Coordinación de cargas internacionales cuando el servicio lo requiere. Marítimo, aéreo y terrestre. Parte del todo — no el centro.</p>
       </div>
       <div class="service-card reveal">
-        <div class="service-icon">🏷️</div>
+        <div class="service-num">03</div>
         <h3>Clasificación Arancelaria</h3>
         <p>NCM con criterio, no con software. Revisamos el producto, el uso, el material. La posición correcta desde el primer intento.</p>
       </div>
       <div class="service-card reveal">
-        <div class="service-icon">📋</div>
+        <div class="service-num">04</div>
         <h3>Terceros Organismos</h3>
         <p>ANMAT, SENASA, INAL, Ministerio de Producción. Cada organismo tiene su lógica y sus tiempos. Sabemos cómo movernos adentro.</p>
       </div>
       <div class="service-card reveal">
-        <div class="service-icon">🏪</div>
+        <div class="service-num">05</div>
         <h3>Depósito Fiscal</h3>
         <p>Almacenaje en zonas primarias aduaneras. Coordinación con depósitos propios y de terceros. Operativo cuando lo necesitás.</p>
       </div>
       <div class="service-card reveal">
-        <div class="service-icon">📦</div>
+        <div class="service-num">06</div>
         <h3>DDP — Puerta a Puerta</h3>
         <p>Comprás en el exterior. Nosotros nos encargamos del resto: flete, despacho, tributos, entrega. Vos recibís la mercadería.</p>
       </div>
@@ -503,18 +694,18 @@
     <p class="section-label reveal">Cómo operamos</p>
     <h2 class="section-title reveal">E · C · P</h2>
     <p class="section-desc reveal">No es una promesa. Es la forma en que tomamos cada decisión.</p>
-    <div class="ecp-grid reveal">
-      <div class="ecp-card">
+    <div class="ecp-grid">
+      <div class="ecp-card reveal">
         <div class="ecp-letter">E</div>
         <h3>Experiencia</h3>
         <p>No es antigüedad. Es haber tomado las decisiones difíciles cuando el manual no alcanzaba. Cada situación compleja nos dio criterio para la siguiente.</p>
       </div>
-      <div class="ecp-card">
+      <div class="ecp-card reveal">
         <div class="ecp-letter">C</div>
         <h3>Criterio</h3>
         <p>Saber qué hacer cuando el reglamento no dice qué hacer. Transparencia activa con el cliente. Nada de respuestas genéricas para problemas específicos.</p>
       </div>
-      <div class="ecp-card">
+      <div class="ecp-card reveal">
         <div class="ecp-letter">P</div>
         <h3>Precisión</h3>
         <p>En aduana no hay aproximaciones. Los procesos son auditables, las clasificaciones son verificables. El error se paga caro; nosotros no erramos.</p>
@@ -570,10 +761,13 @@
 </section>
 
 <!-- HISTORIA HCE -->
-<section id="nosotros" style="background:var(--bg2);border-top:1px solid var(--border);">
+<section id="nosotros" style="background:#0e1118 !important;">
   <div class="container">
     <p class="section-label reveal">Quiénes somos</p>
     <h2 class="section-title reveal">La <span style="color:var(--accent-bright);">historia</span> de Hce</h2>
+    <div class="historia-foto reveal">
+      <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1400&q=80" alt="Puerto de Buenos Aires — hermesCE" loading="lazy">
+    </div>
     <div class="historia-grid">
       <div class="historia-item reveal">
         <div class="historia-year">2010</div>
@@ -622,7 +816,7 @@
 <!-- MATIAS — 50/50 layout foto a sangre -->
 <section class="matias-split">
   <!-- Izquierda: texto -->
-  <div class="matias-split-text">
+  <div class="matias-split-text reveal">
     <div class="matias-mini-name"><span style="color:var(--accent-bright);">de</span> Matías.</div>
     <div class="matias-mini-role">Fundador — Despachante de Aduana</div>
     <p class="matias-mini-bio">Con 29 años en el sector — desde operador de SIM hasta gerente de aduana senior durante casi una década en una de las empresas de freight forwarding más importantes del mundo — hoy firma cada despacho y trae ese conocimiento acumulado al servicio de cada cliente.</p>
@@ -637,29 +831,30 @@
     </div>
   </div>
   <!-- Derecha: foto a sangre -->
-  <div class="matias-split-img">
-    <img src="Poster%20HCE%20Deck.jpg" alt="Operación Hermes CE — Puerto Buenos Aires" loading="lazy">
+  <div class="matias-split-img reveal">
+    <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80" alt="Formación académica — hermesCE" loading="lazy">
   </div>
 </section>
 
 <!-- IA -->
-<section id="ia" style="background:#f6f7fa;border-top:none;padding:6rem 2rem;">
+<section id="ia" style="background:#0e1118;padding:10rem 2rem;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 55% 65% at 85% 50%, rgba(42,86,134,0.14) 0%, transparent 70%);pointer-events:none;"></div>
   <div class="container">
     <div class="ia-grid">
-      <div class="ia-left">
+      <div class="ia-left reveal">
         <p class="section-label" style="color:var(--accent);">Tecnología propia</p>
-        <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,3.5rem);color:#0e1118;line-height:1.05;margin-bottom:0.3rem;">Entre <span style="color:var(--accent);">aduana y</span></h2>
-        <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,3.5rem);color:#0e1118;line-height:1.05;margin-bottom:1.5rem;">algoritmos.</h2>
+        <h2 style="font-family:'Inter',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,3.5rem);color:var(--white);line-height:1.05;margin-bottom:0.3rem;">Entre aduanas y</h2>
+        <h2 style="font-family:'Inter',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,3.5rem);color:var(--white);line-height:1.05;margin-bottom:1.5rem;"><span style="color:var(--accent-bright);">algoritmos.</span></h2>
         <div style="display:flex;align-items:baseline;gap:1rem;flex-wrap:nowrap;margin-top:0.5rem;">
-          <p style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:#0e1118;letter-spacing:0.02em;white-space:nowrap;">IA<span style="color:#2a9d5c;">h</span></p>
-          <p style="font-size:0.9rem;color:#4a5270;line-height:1.4;">De naturalizar lo artificial a reconocer lo <span style="color:#2a9d5c;font-weight:500;">humano</span>.</p>
+          <p style="font-family:'Inter',sans-serif;font-size:1.6rem;font-weight:800;color:var(--white);letter-spacing:0.02em;white-space:nowrap;"><span style="color:#3A8A5A;">h</span>IA</p>
+          <p style="font-size:0.9rem;color:var(--text-dim);line-height:1.4;">De naturalizar lo artificial a reconocer lo <span style="color:#3A8A5A;font-weight:500;">humano</span>.</p>
         </div>
       </div>
-      <div class="ia-right">
-        <div class="ia-card" style="background:#eceef2;border:1px solid #dde0e8;">
+      <div class="ia-right reveal">
+        <div class="ia-card" style="background:var(--card);border:1px solid rgba(42,86,134,0.3);">
           <div class="ia-card-label" style="color:var(--accent);">Clasificación arancelaria</div>
-          <div class="ia-card-name" style="color:#0e1118;">far<span style="color:#2a9d5c;">IA</span>s</div>
-          <div class="ia-card-desc" style="color:#4a5270;">Fotografiá la mercadería o describí el producto. NCM + tributos + costo estimado en segundos.</div>
+          <div class="ia-card-name" style="color:var(--white);">far<span style="color:#3A8A5A;">IA</span>s</div>
+          <div class="ia-card-desc" style="color:var(--text-dim);">Fotografiá la mercadería o describí el producto. NCM + tributos + costo estimado en segundos.</div>
           <a href="#contacto" class="ia-card-btn">Quiero acceso →</a>
         </div>
       </div>
@@ -668,13 +863,13 @@
 </section>
 
 <!-- CONTACT -->
-<section id="contacto" class="contact-section" style="background:var(--bg);border-top:1px solid var(--border);">
+<section id="contacto" class="contact-section">
   <div class="contact-inner">
     <p class="section-label reveal">Contacto</p>
-    <h2 class="section-title reveal">Hablemos de tu operación.</h2>
+    <h2 class="section-title reveal">¿Importás o exportás<br>y necesitás que funcione?</h2>
     <p class="section-desc reveal">Sin formularios eternos. Contanos qué necesitás y te respondemos en el día.</p>
     <div id="form-success" style="display:none;text-align:center;padding:2rem 0;">
-      <div style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;color:#3ecf6e;margin-bottom:0.5rem;">✓ Consulta enviada</div>
+      <div style="font-family:'Inter',sans-serif;font-size:1.3rem;font-weight:700;color:#3ecf6e;margin-bottom:0.5rem;">✓ Consulta enviada</div>
       <p style="color:var(--text-dim);font-size:0.95rem;">Te respondemos en el día.</p>
     </div>
     <form id="contact-form" class="contact-form reveal"
@@ -722,12 +917,34 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">HERMES <span>ce</span></div>
-  <div class="footer-info">
-    HCE de Argentina SRL<br>
-    <a id="footer-email" href="#" style="color:var(--text);text-decoration:none;font-weight:500;border-bottom:1px solid var(--accent-bright);padding-bottom:1px;"></a> · Buenos Aires, Argentina
+  <!-- Izquierda: logo PNG más grande -->
+  <div class="footer-brand">
+    <img src="Logo_minimalista_con_alas_de_Hermes.png" alt="hermesCE" class="footer-logo-img">
   </div>
-  <div class="footer-tagline">© 2026 Hermes CE · Todos los derechos reservados</div>
+
+  <!-- Centro: info + email resaltado abajo -->
+  <div class="footer-center">
+    <div class="footer-tagline">
+      HCE de Argentina SRL<br>
+      © 2026 · Todos los derechos reservados
+    </div>
+    <a href="mailto:hola@hermesce.com" class="footer-email-link">hola@hermesce.com</a>
+  </div>
+
+  <!-- Derecha: dirección + mapa grande + link -->
+  <div class="footer-location">
+    <div class="footer-address-small">Av. Belgrano 624 · Piso 6 Of. 2 · CABA</div>
+    <div class="footer-map-embed">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.0!2d-58.3748!3d-34.6118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccacc28a89f87%3A0x0!2sAv.%20Belgrano%20624%2C%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <a href="https://share.google/y9eGcRorRVG6zXn4P" target="_blank" rel="noopener" class="footer-map-link">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Abrir en Google Maps
+    </a>
+  </div>
 </footer>
 
 <script>
@@ -764,10 +981,37 @@
     navEl.classList.toggle('scrolled', window.scrollY > 60);
   });
 
-  // ── Hero — imagen aleatoria ──
-  const heroImages = ['hero-calle.jpg', 'hero-barco.jpg', 'hero-avion.jpg', 'ormuz.jpg'];
-  const heroImg = heroImages[Math.floor(Math.random() * heroImages.length)];
-  document.querySelector('.hero').style.backgroundImage = `url('${heroImg}')`;
+  // ── Hero carrusel — crossfade limpio sin oscurecer ──
+  // Para agregar/quitar fotos: editá heroImages.
+  const heroImages = [
+    'hero-calle.jpg',
+    'hero-barco.jpg',
+    'hero-avion.jpg',
+    'ormuz.jpg'
+  ];
+
+  const heroEl = document.querySelector('.hero');
+  let heroIndex = 0;
+  const layerStyle = 'position:absolute;inset:0;z-index:0;background-size:cover;background-position:center 40%;background-repeat:no-repeat;pointer-events:none;';
+  const layerA = document.createElement('div');
+  const layerB = document.createElement('div');
+  layerA.style.cssText = layerStyle + 'transition:opacity 2.4s ease;opacity:1;';
+  layerB.style.cssText = layerStyle + 'transition:opacity 2.4s ease;opacity:0;';
+  heroEl.style.backgroundImage = 'none';
+  heroEl.insertBefore(layerB, heroEl.firstChild);
+  heroEl.insertBefore(layerA, heroEl.firstChild);
+  layerA.style.backgroundImage = `url('${heroImages[0]}')`;
+
+  let activeLayer = layerA;
+  let inactiveLayer = layerB;
+
+  setInterval(() => {
+    heroIndex = (heroIndex + 1) % heroImages.length;
+    inactiveLayer.style.backgroundImage = `url('${heroImages[heroIndex]}')`;
+    inactiveLayer.style.opacity = '1';
+    activeLayer.style.opacity = '0';
+    [activeLayer, inactiveLayer] = [inactiveLayer, activeLayer];
+  }, 9000);
 
   // ── Contador animado (stats hero) ──
   function animateCounter(el) {
@@ -787,6 +1031,17 @@
     requestAnimationFrame(update);
   }
 
+  // ── Fade-up on scroll ──
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
   // Activar contador cuando el stat sea visible
   const statObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -797,6 +1052,32 @@
     });
   }, { threshold: 0.5 });
   document.querySelectorAll('.hero-stat-num[data-target], .stat-num[data-target]').forEach(el => statObs.observe(el));
+
+  // ── Selector de idioma ──
+  const langBtn = document.getElementById('langBtn');
+  const langDropdown = document.getElementById('langDropdown');
+  const langCurrent = document.getElementById('langCurrent');
+  if (langBtn && langDropdown) {
+    langBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = langDropdown.classList.toggle('open');
+      langBtn.setAttribute('aria-expanded', isOpen);
+    });
+    document.addEventListener('click', () => {
+      langDropdown.classList.remove('open');
+      langBtn.setAttribute('aria-expanded', 'false');
+    });
+    document.querySelectorAll('.lang-item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        document.querySelectorAll('.lang-item').forEach(i => i.classList.remove('lang-item-active'));
+        item.classList.add('lang-item-active');
+        langCurrent.textContent = item.dataset.lang;
+        langDropdown.classList.remove('open');
+        langBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
 
   // ── Email footer (anti-scraping) ──
   const emailEl = document.getElementById('footer-email');
