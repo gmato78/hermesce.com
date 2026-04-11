@@ -256,9 +256,12 @@
     }
     /* Sección gris (#1C2433) que va hacia oscura (#0e1118) */
     #servicios::after,
-    .valores-section::after,
+    .valores-section::after {
+      background: linear-gradient(to bottom, transparent, #0e1118);
+    }
     .matias-split::after {
       background: linear-gradient(to bottom, transparent, #0e1118);
+      height: 20px;
     }
     /* farIAs (#0e1118) que va hacia el azul del contacto */
     #ia::after {
@@ -477,12 +480,12 @@
     .matias-split {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      min-height: 480px;
+      min-height: 380px;
       background: #1C2433;
       border-top: none;
     }
     .matias-split-text {
-      padding: 5rem 4rem;
+      padding: 3rem 3rem;
       display: flex; flex-direction: column; justify-content: center;
     }
     .matias-split-img {
@@ -622,7 +625,7 @@
       /* lang-selector oculto en mobile — aparece en el drawer */
       .nav-right .lang-selector { display: none; }
       .hero { height: 100svh; height: 100vh; display: flex; flex-direction: column; justify-content: space-between; }
-      .hero-content { padding: 4.5rem 1.5rem 1rem; flex: 1; display: flex; flex-direction: column; justify-content: flex-start; }
+      .hero-content { padding: 5.5rem 1.5rem 1rem; flex: 1; display: flex; flex-direction: column; justify-content: flex-start; }
       .hero-stats {
         position: static;
         display: grid;
@@ -654,7 +657,8 @@
       .valores-grid { grid-template-columns: 1fr; }
       .historia-grid { grid-template-columns: 1fr; }
       .matias-split { grid-template-columns: 1fr; }
-      .matias-split-img { height: 260px; }
+      .matias-split-img { height: 300px; padding: 0; }
+      .matias-split-img img { object-position: center center; border-radius: 0; }
       .matias-split-text { padding: 1.5rem 1.2rem; }
       .ia-grid { grid-template-columns: 1fr; gap: 2rem; }
       .ia-card-name { font-size: 2rem; }
@@ -667,8 +671,8 @@
       }
       .ia-card > div[style*="space-between"] img,
       .ia-card > div[style*="justify-content"] img {
-        width: 160px !important;
-        height: 160px !important;
+        width: 130px !important;
+        height: 130px !important;
       }
       /* Modales — campos en columna */
       #farias-modal > div,
