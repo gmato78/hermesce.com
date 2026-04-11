@@ -621,8 +621,8 @@
       .nav-right > ul { display: none; }
       /* lang-selector oculto en mobile — aparece en el drawer */
       .nav-right .lang-selector { display: none; }
-      .hero { height: auto; min-height: 100svh; justify-content: flex-start; }
-      .hero-content { flex: 1; }
+      .hero { height: 100svh; height: 100vh; }
+      .hero-content { padding: 6rem 1.5rem 0; }
       .hero-stats {
         position: static;
         display: grid;
@@ -1207,8 +1207,7 @@
   const heroImages = [
     'hero-calle.jpg',
     'hero-barco.jpg',
-    'hero-avion.jpg',
-    'ormuz.jpg'
+    'hero-avion.jpg'
   ];
 
   const heroEl = document.querySelector('.hero');
