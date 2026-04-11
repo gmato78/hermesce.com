@@ -36,7 +36,7 @@
     .nav-hero {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.8rem 3.5rem;
+      padding: 1rem 3.5rem;
       background: transparent;
       transition: background 0.4s, border-color 0.4s;
       border-bottom: 1px solid transparent;
@@ -362,7 +362,7 @@
     .problem-slide-img {
       width: 100%; height: 220px;
       background-size: cover; background-position: center;
-      filter: grayscale(20%) brightness(0.9) contrast(1.1) saturate(1.3);
+      filter: grayscale(30%) brightness(0.8) saturate(1.15);
     }
     .problem-slide-content { padding: 2rem; }
     .problem-slide-num { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; color: var(--accent-bright); margin-bottom: 0.6rem; }
@@ -399,7 +399,7 @@
     /* ─── SERVICES — gris oscuro ─── */
     #servicios {
       background:
-        linear-gradient(rgba(10,12,16,0.68), rgba(10,12,16,0.68)),
+        linear-gradient(rgba(10,12,16,0.74), rgba(10,12,16,0.74)),
         url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1800&q=80') center center / cover no-repeat;
       border-top: none;
       padding-top: 9rem;
@@ -484,7 +484,7 @@
     /* ─── VALORES — oscuro ─── */
     .valores-section {
       background:
-        linear-gradient(rgba(10,12,16,0.68), rgba(10,12,16,0.68)),
+        linear-gradient(rgba(10,12,16,0.74), rgba(10,12,16,0.74)),
         url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1800&q=80') center center / cover no-repeat;
       border-top: none;
       padding-top: 9rem;
@@ -510,8 +510,8 @@
     #nosotros .section-title { color: var(--white); }
     .historia-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 3.5rem; }
     .historia-foto { margin-top: 2.5rem; margin-bottom: 0; overflow: hidden; border-radius: 10px; }
-    .historia-foto img { width: 100%; height: 320px; object-fit: cover; object-position: center 60%; filter: grayscale(15%) brightness(0.88) contrast(1.1) saturate(1.2); border-radius: 10px; border: 1px solid rgba(255,255,255,0.06); transition: filter 0.3s; }
-    .historia-foto:hover img { filter: grayscale(0%) brightness(0.95) contrast(1.1) saturate(1.4); }
+    .historia-foto img { width: 100%; height: 320px; object-fit: cover; object-position: center 60%; filter: grayscale(25%) brightness(0.85) saturate(1.15); border-radius: 10px; border: 1px solid rgba(255,255,255,0.06); transition: filter 0.3s; }
+    .historia-foto:hover img { filter: grayscale(10%) brightness(0.9) saturate(1.2); }
     .historia-item { border-left: 2px solid var(--border); padding-left: 1.5rem; transition: border-color 0.2s; }
     .historia-item:hover { border-color: var(--accent-bright); }
     .historia-year { font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 700; color: var(--accent-bright); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.6rem; }
@@ -550,14 +550,14 @@
       object-fit: cover;
       object-position: center 30%;
       display: block;
-      filter: grayscale(15%) brightness(0.82) contrast(1.1) saturate(1.2);
+      filter: grayscale(30%) brightness(0.75) saturate(1.15);
       border-radius: 10px;
       border: 1px solid rgba(255,255,255,0.06);
       transition: opacity 0.5s ease, border-color 0.3s, filter 0.3s;
     }
     .matias-split-img:hover img {
       border-color: var(--accent);
-      filter: grayscale(0%) brightness(0.92) contrast(1.05) saturate(1.3);
+      filter: grayscale(10%) brightness(0.88) saturate(1.2);
     }
     /* Dots del carrusel */
     .carousel-dots {
@@ -625,8 +625,8 @@
     /* ─── FOOTER ─── */
     footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 3.5rem 4rem; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 3rem; background: #000000; justify-items: center; }
     .footer-brand { display: flex; align-items: center; justify-content: center; }
-    .footer-logo-img { height: 200px; width: auto; mix-blend-mode: lighten; }
-    .footer-center { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; }
+    .footer-logo-img { height: 120px; width: auto; mix-blend-mode: lighten; }
+    .footer-center { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; margin-left: -4rem; }
     .footer-tagline { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 2; }
     .footer-email-link { font-size: 0.9rem; color: #ffffff; text-decoration: underline; text-underline-offset: 4px; }
     .footer-email-link:hover { opacity: 0.75; }
@@ -670,7 +670,9 @@
       .nav-left { display: none; }
       .nav-right > ul { display: none; }
       /* lang-selector oculto en mobile — aparece en el drawer */
-      .nav-right .lang-selector { display: none; }
+      .nav-right .lang-selector { display: flex; }
+      .drawer-lang-bar { display: flex; align-items: center; gap: 0.8rem; padding: 0.2rem 0; }
+      .drawer-lang-sep { color: rgba(255,255,255,0.2); font-size: 0.7rem; }
       .hero { height: 100svh; height: 100vh; display: flex; flex-direction: column; justify-content: space-between; }
       .hero-content { padding: 3rem 1.5rem 0; flex: 1; display: flex; flex-direction: column; justify-content: flex-start; }
       .hero-stats {
@@ -807,21 +809,14 @@
 
 <!-- Nav Drawer — mobile -->
 <div class="nav-drawer" id="navDrawer">
-  <a href="#valores" class="drawer-link">Valores</a>
-  <a href="#nosotros" class="drawer-link">Historia</a>
-  <a href="#ia" class="drawer-link">far<span style="color:#3A8A5A;">IA</span>s</a>
-  <div class="drawer-divider"></div>
   <a href="#problema" class="drawer-link">El problema</a>
   <a href="#servicios" class="drawer-link">Qué hacemos</a>
   <a href="#como" class="drawer-link">Cómo operamos</a>
-  <a href="#contacto" class="drawer-link">Contacto</a>
   <div class="drawer-divider"></div>
-  <div style="display:flex;gap:1.2rem;">
-    <span class="drawer-lang" data-lang="ES" style="color:rgba(255,255,255,0.85);font-size:1rem;font-weight:700;cursor:pointer;">ES</span>
-    <span class="drawer-lang" data-lang="EN" style="color:rgba(255,255,255,0.4);font-size:1rem;font-weight:700;cursor:pointer;">EN</span>
-    <span class="drawer-lang" data-lang="PT" style="color:rgba(255,255,255,0.4);font-size:1rem;font-weight:700;cursor:pointer;">PT</span>
-    <span class="drawer-lang" data-lang="CH" style="color:rgba(255,255,255,0.4);font-size:1rem;font-weight:700;cursor:pointer;">CH</span>
-  </div>
+  <a href="#valores" class="drawer-link">Valores</a>
+  <a href="#nosotros" class="drawer-link">Historia</a>
+  <a href="#ia" class="drawer-link">far<span style="color:#3A8A5A;">IA</span>s</a>
+  <a href="#contacto" class="drawer-link">Contacto</a>
 </div>
 
 <!-- HERO — foto 100x100 viewport -->
@@ -1455,7 +1450,61 @@
     emailEl.href = 'mailto:' + u + '@' + d;
     emailEl.textContent = u + '@' + d;
   }
+
+  // ── Botón Top — aparece al salir del hero ──
+  document.addEventListener('DOMContentLoaded', function() {
+    const topBtn = document.getElementById('btn-top');
+    const heroSection = document.querySelector('.hero');
+    if (heroSection && topBtn) {
+      const heroObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          topBtn.classList.toggle('visible', !e.isIntersecting);
+        });
+      }, { threshold: 0 });
+      heroObs.observe(heroSection);
+    }
+    if (topBtn) {
+      topBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  });
+
 </script>
+
+<!-- Botón Top -->
+<button id="btn-top" aria-label="Volver arriba">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<style>
+  #btn-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.3s, transform 0.3s, background 0.2s;
+    pointer-events: none;
+  }
+  #btn-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  #btn-top:hover { background: var(--accent-bright); }
+</style>
     <!-- Modal encuesta farIAs -->
     <div id="farias-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:99999;align-items:center;justify-content:center;padding:2rem;">
       <div style="background:#1C2433;border:1px solid rgba(79,114,227,0.3);border-radius:16px;max-width:560px;width:100%;padding:3rem;position:relative;max-height:90vh;overflow-y:auto;">
