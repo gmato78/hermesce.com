@@ -125,10 +125,10 @@
       pointer-events: none;
     }
     /* ─── Ken Burns ─── */
-    @keyframes kb1 { 0% { transform: scale(1.0) translate(0%, 0%); } 100% { transform: scale(1.08) translate(-1.5%, -1%); } }
-    @keyframes kb2 { 0% { transform: scale(1.08) translate(-1%, 0%); } 100% { transform: scale(1.0) translate(1.5%, 1.5%); } }
-    @keyframes kb3 { 0% { transform: scale(1.0) translate(1%, 1%); } 100% { transform: scale(1.08) translate(-1%, -1.5%); } }
-    @keyframes kb4 { 0% { transform: scale(1.06) translate(0%, -1%); } 100% { transform: scale(1.0) translate(1%, 1%); } }
+    @keyframes kb1 { 0% { transform: scale(1.0) translate(0%, 0%); } 100% { transform: scale(1.06) translate(-1%, -0.5%); } }
+    @keyframes kb2 { 0% { transform: scale(1.06) translate(-0.5%, 0%); } 100% { transform: scale(1.0) translate(1%, 1%); } }
+    @keyframes kb3 { 0% { transform: scale(1.0) translate(0.5%, 0.5%); } 100% { transform: scale(1.06) translate(-0.5%, -1%); } }
+    @keyframes kb4 { 0% { transform: scale(1.04) translate(0%, -0.5%); } 100% { transform: scale(1.0) translate(0.5%, 0.5%); } }
     .hero-kb-layer {
       position: absolute; inset: 0; z-index: 0;
       overflow: hidden;
@@ -138,8 +138,8 @@
     }
     .hero-kb-layer.kb-active { opacity: 1; }
     .hero-kb-inner {
-      position: absolute; inset: -6%;
-      background-size: cover; background-position: center;
+      position: absolute; inset: -8%;
+      background-size: cover; background-position: center center;
       background-repeat: no-repeat;
       will-change: transform;
     }
@@ -768,8 +768,8 @@
       }
       /* Modales — campos en columna */
       #farias-modal > div,
-      #contacto-modal > div { padding: 2rem 1.2rem; max-height: 92vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
-      #farias-modal, #contacto-modal { align-items: flex-start; padding: 1rem; }
+      #contacto-modal > div { padding: 2rem 1.2rem; }
+      #farias-modal, #contacto-modal { align-items: flex-start; padding: 0.5rem; }
       #farias-modal h3,
       #contacto-modal h3 { font-size: 1.2rem; }
       /* Grids de formulario en columna */
@@ -1282,26 +1282,26 @@
   if (contactForm) {
     contactForm.addEventListener('submit', async function(e) {
       e.preventDefault();
+      e.stopPropagation();
       const btn = contactForm.querySelector('button[type="submit"]');
-      btn.textContent = 'Enviando...';
-      btn.disabled = true;
+      if (btn) { btn.textContent = 'Enviando...'; btn.disabled = true; }
       try {
-        const response = await fetch(contactForm.action, {
+        await fetch(contactForm.dataset.zoho, {
           method: 'POST',
           body: new FormData(contactForm),
+          mode: 'no-cors'
         });
-        if (response.ok || response.type === 'opaqueredirect') {
-          contactForm.style.display = 'none';
-          document.getElementById('form-success').style.display = 'block';
-        } else {
-          btn.textContent = 'Error — intentá de nuevo';
-          btn.disabled = false;
-        }
-      } catch {
-        contactForm.style.display = 'none';
-        document.getElementById('form-success').style.display = 'block';
-      }
+      } catch(err) {}
+      contactForm.innerHTML = '<div style="text-align:center;padding:3rem 1rem;"><div style="font-size:3rem;margin-bottom:1rem;color:var(--accent-bright);">✓</div><h3 style="color:var(--white);font-size:1.4rem;font-weight:700;margin-bottom:0.8rem;">Consulta enviada</h3><p style="color:var(--text-dim);font-size:0.9rem;line-height:1.7;">Te respondemos en el día.</p></div>';
     });
+    // También capturar click directo en el botón por si el submit no dispara
+    const contactBtn = contactForm.querySelector('button[type="submit"]');
+    if (contactBtn) {
+      contactBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        contactForm.dispatchEvent(new Event('submit', {bubbles: true, cancelable: true}));
+      });
+    }
   }
 
   // ── Nav: se vuelve sólido al hacer scroll ──
@@ -1413,43 +1413,25 @@
   fariasModal?.addEventListener('click', (e) => {
     if (e.target === fariasModal) { fariasModal.style.display = 'none'; document.body.style.overflow = ''; }
   });
-  // ── Submit modal Contacto ──
-  document.getElementById('contact-form')?.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    const form = this;
-    const btn = form.querySelector('button[type="submit"]');
-    btn.textContent = 'Enviando...';
-    btn.disabled = true;
-    try {
-      await fetch(form.dataset.zoho, {
-        method: 'POST',
-        body: new FormData(form),
-        mode: 'no-cors'
-      });
-    } catch(err) {}
-    form.innerHTML = '<div style="text-align:center;padding:3rem 1rem;"><div style="font-size:3rem;margin-bottom:1rem;color:var(--accent-bright);">✓</div><h3 style="color:var(--white);font-size:1.4rem;font-weight:700;margin-bottom:0.8rem;">Consulta enviada</h3><p style="color:var(--text-dim);font-size:0.9rem;line-height:1.7;">Te respondemos en el día.</p></div>';
-    return false;
-  });
-
   // ── Submit modal farIAs ──
-  document.getElementById('farias-form')?.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    const form = this;
-    const btn = form.querySelector('button[type="submit"]');
-    btn.textContent = 'Enviando...';
-    btn.disabled = true;
-    try {
-      await fetch('https://forms.zohopublic.com/hermesce1/form/farIAsMVP/formperma/9U4Z4H0KZwvZG6TDz-jsgZe-LscPURiFFPsEBJ1PEwg/htmlRecords/submit', {
-        method: 'POST',
-        body: new FormData(form),
-        mode: 'no-cors'
-      });
-    } catch(err) {}
-    document.getElementById('farias-modal').querySelector('form').outerHTML = '<div style="text-align:center;padding:3rem 1rem;"><div style="font-size:3rem;margin-bottom:1rem;color:#3A8A5A;">✓</div><h3 style="color:#3A8A5A;font-size:1.4rem;font-weight:700;margin-bottom:0.8rem;">Gracias por tu tiempo</h3><p style="color:var(--text-dim);font-size:0.9rem;line-height:1.7;">Tu respuesta nos ayuda a decidir el siguiente paso.<br>Te avisamos cuando abramos el acceso.</p></div>';
-    return false;
-  });
+  const fariasForm = document.getElementById('farias-form');
+  if (fariasForm) {
+    const doSubmitFarias = async function() {
+      const btn = fariasForm.querySelector('button[type="submit"]');
+      if (btn) { btn.textContent = 'Enviando...'; btn.disabled = true; }
+      try {
+        await fetch('https://forms.zohopublic.com/hermesce1/form/farIAsMVP/formperma/9U4Z4H0KZwvZG6TDz-jsgZe-LscPURiFFPsEBJ1PEwg/htmlRecords/submit', {
+          method: 'POST',
+          body: new FormData(fariasForm),
+          mode: 'no-cors'
+        });
+      } catch(err) {}
+      fariasForm.outerHTML = '<div style="text-align:center;padding:3rem 1rem;"><div style="font-size:3rem;margin-bottom:1rem;color:#3A8A5A;">✓</div><h3 style="color:#3A8A5A;font-size:1.4rem;font-weight:700;margin-bottom:0.8rem;">Gracias por tu tiempo</h3><p style="color:var(--text-dim);font-size:0.9rem;line-height:1.7;">Tu respuesta nos ayuda a decidir el siguiente paso.<br>Te avisamos cuando abramos el acceso.</p></div>';
+    };
+    fariasForm.addEventListener('submit', function(e) { e.preventDefault(); e.stopPropagation(); doSubmitFarias(); });
+    const fariasBtn = fariasForm.querySelector('button[type="submit"]');
+    if (fariasBtn) fariasBtn.addEventListener('click', function(e) { e.preventDefault(); doSubmitFarias(); });
+  }
 
   // ── Carrusel El Problema ──
   const probSlides = document.querySelectorAll('.problem-slide');
@@ -1586,14 +1568,14 @@
   #btn-top:hover { background: var(--accent-bright); }
 </style>
     <!-- Modal encuesta farIAs -->
-    <div id="farias-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:99999;align-items:center;justify-content:center;padding:2rem;">
-      <div style="background:#1C2433;border:1px solid rgba(79,114,227,0.3);border-radius:16px;max-width:560px;width:100%;padding:3rem;position:relative;max-height:90vh;overflow-y:auto;">
+    <div id="farias-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:99999;align-items:flex-start;justify-content:center;padding:1rem;overflow-y:auto;">
+      <div style="background:#1C2433;border:1px solid rgba(79,114,227,0.3);border-radius:16px;max-width:560px;width:100%;padding:3rem;position:relative;margin:auto;">
         <button onclick="document.getElementById('farias-modal').style.display='none';document.body.style.overflow='';" style="position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;color:var(--text-dim);font-size:1.4rem;cursor:pointer;line-height:1;">×</button>
         <div style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:#3A8A5A;font-weight:600;margin-bottom:0.5rem;">farIAs · Encuesta de implementación</div>
         <h3 style="font-size:1.6rem;font-weight:800;color:var(--white);margin-bottom:0.5rem;">¿Tiene sentido para tu operación?</h3>
         <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:2rem;line-height:1.6;">Estamos evaluando si el MVP de farIAs tiene valor real antes de invertir en la siguiente etapa. Tres preguntas, dos minutos.</p>
 
-        <form id="farias-form" data-action="https://forms.zohopublic.com/hermesce1/form/farIAsMVP/formperma/9U4Z4H0KZwvZG6TDz-jsgZe-LscPURiFFPsEBJ1PEwg/htmlRecords/submit" name="form" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" style="display:flex;flex-direction:column;gap:1.2rem;">
+        <form id="farias-form" action="javascript:void(0)" data-action="https://forms.zohopublic.com/hermesce1/form/farIAsMVP/formperma/9U4Z4H0KZwvZG6TDz-jsgZe-LscPURiFFPsEBJ1PEwg/htmlRecords/submit" name="form" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" style="display:flex;flex-direction:column;gap:1.2rem;">
           <input type="hidden" name="zf_referrer_name" value="">
           <input type="hidden" name="zf_redirect_url" value="">
           <input type="hidden" name="zc_gad" value="">
@@ -1657,14 +1639,14 @@
     </div>
   </div>
     <!-- Modal Contacto -->
-    <div id="contacto-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:99999;align-items:center;justify-content:center;padding:2rem;" onclick="if(event.target===this)cerrarContacto()">
-      <div style="background:#1C2433;border:1px solid rgba(79,114,227,0.2);border-radius:16px;max-width:560px;width:100%;padding:3rem;position:relative;max-height:90vh;overflow-y:auto;">
+    <div id="contacto-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:99999;align-items:flex-start;justify-content:center;padding:1rem;overflow-y:auto;" onclick="if(event.target===this)cerrarContacto()">
+      <div style="background:#1C2433;border:1px solid rgba(79,114,227,0.2);border-radius:16px;max-width:560px;width:100%;padding:3rem;position:relative;margin:auto;">
         <button onclick="cerrarContacto()" style="position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;color:var(--text-dim);font-size:1.4rem;cursor:pointer;line-height:1;">×</button>
         <div style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent-bright);font-weight:600;margin-bottom:0.5rem;">hermesCE · Contacto</div>
         <h3 style="font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:0.5rem;">Contanos en qué andás</h3>
         <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:2rem;line-height:1.6;">Te respondemos en el día.</p>
 
-        <form id="contact-form" data-zoho="https://forms.zohopublic.com/hermesce1/form/Contactwithfeedback/formperma/jJ41GXBoVJLPTuFTkMagWLdTvp6FrEzD33wxrF7Bg_Q/htmlRecords/submit" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" style="display:flex;flex-direction:column;gap:1.2rem;">
+        <form id="contact-form" action="javascript:void(0)" data-zoho="https://forms.zohopublic.com/hermesce1/form/Contactwithfeedback/formperma/jJ41GXBoVJLPTuFTkMagWLdTvp6FrEzD33wxrF7Bg_Q/htmlRecords/submit" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" style="display:flex;flex-direction:column;gap:1.2rem;">
           <input type="hidden" name="zf_referrer_name" value="">
           <input type="hidden" name="zf_redirect_url" value="">
           <input type="hidden" name="zc_gad" value="">
@@ -1702,4 +1684,13 @@
 
           <div>
             <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">¿En qué andás?</label>
-            <textarea name="MultiLine" maxlength="65535" rows="3" placeholder="Contanos cómo podemos ayudarte — qué importás, de dónde, con qué frecuencia, o en qué etapa estás." style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radiu
+            <textarea name="MultiLine" maxlength="65535" rows="4" placeholder="Contanos cómo podemos ayudarte — qué importás, de dónde, con qué frecuencia, o en qué etapa estás." style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;resize:vertical;box-sizing:border-box;font-family:'Inter',sans-serif;line-height:1.5;"></textarea>
+          </div>
+
+          <button type="submit" style="background:var(--accent);color:#fff;padding:0.9rem;border-radius:8px;font-size:0.95rem;font-weight:700;border:none;cursor:pointer;transition:opacity 0.2s;margin-top:0.5rem;width:100%;font-family:'Inter',sans-serif;">Enviar consulta →</button>
+        </form>
+      </div>
+    </div>
+
+</body>
+</html>
