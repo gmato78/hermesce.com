@@ -1280,28 +1280,11 @@
   // ── Formulario AJAX — Zoho Forms ──
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
-    contactForm.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      const btn = contactForm.querySelector('button[type="submit"]');
-      if (btn) { btn.textContent = 'Enviando...'; btn.disabled = true; }
-      try {
-        await fetch(contactForm.dataset.zoho, {
-          method: 'POST',
-          body: new FormData(contactForm),
-          mode: 'no-cors'
-        });
-      } catch(err) {}
-      contactForm.innerHTML = '<div style="text-align:center;padding:3rem 1rem;"><div style="font-size:3rem;margin-bottom:1rem;color:var(--accent-bright);">✓</div><h3 style="color:var(--white);font-size:1.4rem;font-weight:700;margin-bottom:0.8rem;">Consulta enviada</h3><p style="color:var(--text-dim);font-size:0.9rem;line-height:1.7;">Te respondemos en el día.</p></div>';
+    contactForm.addEventListener('submit', function() {
+      setTimeout(() => {
+        contactForm.innerHTML = '<div style="text-align:center;padding:3rem 1rem;"><div style="font-size:3rem;margin-bottom:1rem;color:var(--accent-bright);">✓</div><h3 style="color:var(--white);font-size:1.4rem;font-weight:700;margin-bottom:0.8rem;">Consulta enviada</h3><p style="color:var(--text-dim);font-size:0.9rem;line-height:1.7;">Te respondemos en el día.</p></div>';
+      }, 500);
     });
-    // También capturar click directo en el botón por si el submit no dispara
-    const contactBtn = contactForm.querySelector('button[type="submit"]');
-    if (contactBtn) {
-      contactBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        contactForm.dispatchEvent(new Event('submit', {bubbles: true, cancelable: true}));
-      });
-    }
   }
 
   // ── Nav: se vuelve sólido al hacer scroll ──
@@ -1416,21 +1399,11 @@
   // ── Submit modal farIAs ──
   const fariasForm = document.getElementById('farias-form');
   if (fariasForm) {
-    const doSubmitFarias = async function() {
-      const btn = fariasForm.querySelector('button[type="submit"]');
-      if (btn) { btn.textContent = 'Enviando...'; btn.disabled = true; }
-      try {
-        await fetch('https://forms.zohopublic.com/hermesce1/form/farIAsMVP/formperma/9U4Z4H0KZwvZG6TDz-jsgZe-LscPURiFFPsEBJ1PEwg/htmlRecords/submit', {
-          method: 'POST',
-          body: new FormData(fariasForm),
-          mode: 'no-cors'
-        });
-      } catch(err) {}
-      fariasForm.outerHTML = '<div style="text-align:center;padding:3rem 1rem;"><div style="font-size:3rem;margin-bottom:1rem;color:#3A8A5A;">✓</div><h3 style="color:#3A8A5A;font-size:1.4rem;font-weight:700;margin-bottom:0.8rem;">Gracias por tu tiempo</h3><p style="color:var(--text-dim);font-size:0.9rem;line-height:1.7;">Tu respuesta nos ayuda a decidir el siguiente paso.<br>Te avisamos cuando abramos el acceso.</p></div>';
-    };
-    fariasForm.addEventListener('submit', function(e) { e.preventDefault(); e.stopPropagation(); doSubmitFarias(); });
-    const fariasBtn = fariasForm.querySelector('button[type="submit"]');
-    if (fariasBtn) fariasBtn.addEventListener('click', function(e) { e.preventDefault(); doSubmitFarias(); });
+    fariasForm.addEventListener('submit', function() {
+      setTimeout(() => {
+        fariasForm.innerHTML = '<div style="text-align:center;padding:3rem 1rem;"><div style="font-size:3rem;margin-bottom:1rem;color:#3A8A5A;">✓</div><h3 style="color:#3A8A5A;font-size:1.4rem;font-weight:700;margin-bottom:0.8rem;">Gracias por tu tiempo</h3><p style="color:var(--text-dim);font-size:0.9rem;line-height:1.7;">Tu respuesta nos ayuda a decidir el siguiente paso.<br>Te avisamos cuando abramos el acceso.</p></div>';
+      }, 500);
+    });
   }
 
   // ── Carrusel El Problema ──
@@ -1575,7 +1548,7 @@
         <h3 style="font-size:1.6rem;font-weight:800;color:var(--white);margin-bottom:0.5rem;">¿Tiene sentido para tu operación?</h3>
         <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:2rem;line-height:1.6;">Estamos evaluando si el MVP de farIAs tiene valor real antes de invertir en la siguiente etapa. Tres preguntas, dos minutos.</p>
 
-        <form id="farias-form" action="javascript:void(0)" data-action="https://forms.zohopublic.com/hermesce1/form/farIAsMVP/formperma/9U4Z4H0KZwvZG6TDz-jsgZe-LscPURiFFPsEBJ1PEwg/htmlRecords/submit" name="form" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" style="display:flex;flex-direction:column;gap:1.2rem;">
+        <form id="farias-form" action="https://forms.zohopublic.com/hermesce1/form/farIAsMVP/formperma/9U4Z4H0KZwvZG6TDz-jsgZe-LscPURiFFPsEBJ1PEwg/htmlRecords/submit" name="form" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" target="_blank" style="display:flex;flex-direction:column;gap:1.2rem;">
           <input type="hidden" name="zf_referrer_name" value="">
           <input type="hidden" name="zf_redirect_url" value="">
           <input type="hidden" name="zc_gad" value="">
@@ -1646,7 +1619,7 @@
         <h3 style="font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:0.5rem;">Contanos en qué andás</h3>
         <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:2rem;line-height:1.6;">Te respondemos en el día.</p>
 
-        <form id="contact-form" action="javascript:void(0)" data-zoho="https://forms.zohopublic.com/hermesce1/form/Contactwithfeedback/formperma/jJ41GXBoVJLPTuFTkMagWLdTvp6FrEzD33wxrF7Bg_Q/htmlRecords/submit" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" style="display:flex;flex-direction:column;gap:1.2rem;">
+        <form id="contact-form" action="https://forms.zohopublic.com/hermesce1/form/Contactwithfeedback/formperma/jJ41GXBoVJLPTuFTkMagWLdTvp6FrEzD33wxrF7Bg_Q/htmlRecords/submit" name="form" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" target="_blank" style="display:flex;flex-direction:column;gap:1.2rem;">
           <input type="hidden" name="zf_referrer_name" value="">
           <input type="hidden" name="zf_redirect_url" value="">
           <input type="hidden" name="zc_gad" value="">
