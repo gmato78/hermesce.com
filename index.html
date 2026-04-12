@@ -9,13 +9,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0e1118;
-      --bg2: #0e1118;
-      --card: #131720;
-      --border: #1e2535;
-      --accent: #3a5bbd;
-      --accent-bright: #4f72e3;
-      --accent-glow: rgba(79,114,227,0.15);
+      --bg: #0B0F1A;
+      --bg2: #0e1320;
+      --card: #121828;
+      --border: #1d2640;
+      --accent: #264E90;
+      --accent-bright: #2E5EA8;
+      --accent-glow: rgba(38,78,144,0.18);
       --text: #e8eaf0;
       --text-dim: #9aa3bc;
       --text-faint: #3d4560;
@@ -42,7 +42,7 @@
       border-bottom: 1px solid transparent;
     }
     .nav-hero.scrolled {
-      background: rgba(14,17,24,0.22);
+      background: rgba(11,15,26,0.22);
       backdrop-filter: blur(20px);
       border-bottom-color: rgba(255,255,255,0.04);
     }
@@ -87,7 +87,7 @@
     .lang-btn[aria-expanded="true"] .lang-chevron { transform: rotate(180deg); }
     .lang-dropdown {
       display: none; position: absolute; right: 0; top: calc(100% + 6px);
-      background: rgba(14,17,24,0.97); border: 1px solid var(--border);
+      background: rgba(11,15,26,0.97); border: 1px solid var(--border);
       border-radius: 6px; min-width: 70px; list-style: none;
       padding: 0.3rem 0; backdrop-filter: blur(20px);
       box-shadow: 0 8px 24px rgba(0,0,0,0.5);
@@ -113,15 +113,15 @@
     .hero::before {
       content: ''; position: absolute; inset: 0;
       background:
-        linear-gradient(rgba(14,17,24,0.30), rgba(14,17,24,0.30)),
-        linear-gradient(to right, rgba(14,17,24,0.45) 0%, rgba(14,17,24,0.08) 45%, rgba(14,17,24,0.0) 100%),
-        linear-gradient(to bottom, rgba(14,17,24,0.25) 0%, rgba(14,17,24,0.0) 30%, rgba(14,17,24,0.0) 55%, rgba(14,17,24,0.82) 88%, rgba(14,17,24,1.0) 100%);
+        linear-gradient(rgba(11,15,26,0.30), rgba(11,15,26,0.30)),
+        linear-gradient(to right, rgba(11,15,26,0.45) 0%, rgba(11,15,26,0.08) 45%, rgba(11,15,26,0.0) 100%),
+        linear-gradient(to bottom, rgba(11,15,26,0.25) 0%, rgba(11,15,26,0.0) 30%, rgba(11,15,26,0.0) 55%, rgba(11,15,26,0.82) 88%, rgba(11,15,26,1.0) 100%);
       pointer-events: none; z-index: 0;
     }
     .hero::after {
       content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
       height: 140px; z-index: 1;
-      background: linear-gradient(to bottom, transparent 0%, #0e1118 100%);
+      background: linear-gradient(to bottom, transparent 0%, #0B0F1A 100%);
       pointer-events: none;
     }
     .hero-content {
@@ -201,7 +201,7 @@
       display: flex; gap: 1.2rem; align-items: flex-end;
     }
     .hero-stat {
-      background: rgba(14,17,24,0.22);
+      background: rgba(11,15,26,0.22);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 14px;
@@ -233,7 +233,7 @@
       border: none; border-radius: 0;
     }
     .stat { background: var(--card); padding: 2rem 1.5rem; text-align: center; }
-    .stat-num { font-family: 'Inter', sans-serif; font-size: 2.4rem; font-weight: 800; color: #3ecf6e; line-height: 1; }
+    .stat-num { font-family: 'Inter', sans-serif; font-size: 2.4rem; font-weight: 800; color: #3A8A5A; line-height: 1; }
     .stat-label { margin-top: 0.4rem; font-size: 0.8rem; color: var(--text-dim); letter-spacing: 0.05em; }
 
     /* ─── SECTION SHARED ─── */
@@ -259,17 +259,17 @@
 
     /* servicios → ECP: gris → oscuro */
     #servicios::after {
-      background: linear-gradient(to bottom, rgba(28,36,51,0) 0%, rgba(14,17,24,0.6) 60%, #0e1118 100%);
+      background: linear-gradient(to bottom, rgba(28,36,51,0) 0%, rgba(11,15,26,0.6) 60%, #0B0F1A 100%);
     }
 
     /* valores → nosotros: gris → oscuro */
     .valores-section::after {
-      background: linear-gradient(to bottom, rgba(28,36,51,0) 0%, rgba(14,17,24,0.6) 60%, #0e1118 100%);
+      background: linear-gradient(to bottom, rgba(28,36,51,0) 0%, rgba(11,15,26,0.6) 60%, #0B0F1A 100%);
     }
 
     /* nosotros → matias: oscuro → gris */
     #nosotros::after {
-      background: linear-gradient(to bottom, rgba(14,17,24,0) 0%, rgba(14,17,24,0) 55%, rgba(14,17,24,0.7) 82%, #0e1118 100%);
+      background: linear-gradient(to bottom, rgba(11,15,26,0) 0%, rgba(11,15,26,0) 55%, rgba(11,15,26,0.7) 82%, #0B0F1A 100%);
       height: 120px;
     }
 
@@ -279,19 +279,19 @@
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 100px;
-      background: linear-gradient(to bottom, #0e1118 0%, rgba(14,17,24,0.5) 55%, rgba(14,17,24,0) 100%);
+      background: linear-gradient(to bottom, #0B0F1A 0%, rgba(11,15,26,0.5) 55%, rgba(11,15,26,0) 100%);
       pointer-events: none;
       z-index: 2;
     }
 
     /* matias → ia: gris → oscuro */
     .matias-split::after {
-      background: linear-gradient(to bottom, rgba(28,36,51,0) 0%, rgba(14,17,24,0.6) 60%, #0e1118 100%);
+      background: linear-gradient(to bottom, rgba(28,36,51,0) 0%, rgba(11,15,26,0.6) 60%, #0B0F1A 100%);
     }
 
     /* ia → contacto: oscuro → azul */
     #ia::after {
-      background: linear-gradient(to bottom, rgba(14,17,24,0) 0%, rgba(14,17,24,0) 35%, rgba(40,70,160,0.3) 65%, rgba(58,91,189,0.8) 85%, #3a5bbd 100%);
+      background: linear-gradient(to bottom, rgba(11,15,26,0) 0%, rgba(11,15,26,0) 35%, rgba(38,78,144,0.3) 65%, rgba(46,94,168,0.8) 85%, #264E90 100%);
       height: 120px;
     }
 
@@ -304,7 +304,7 @@
       height: 120px;
       pointer-events: none;
       z-index: 2;
-      background: linear-gradient(to bottom, rgba(14,17,24,1) 0%, rgba(14,17,24,0.6) 50%, rgba(14,17,24,0) 100%);
+      background: linear-gradient(to bottom, rgba(11,15,26,1) 0%, rgba(11,15,26,0.6) 50%, rgba(11,15,26,0) 100%);
     }
 
     .contact-section::before { display: none; }
@@ -329,14 +329,14 @@
 
     /* ════════════════════════════════════════
        SISTEMA DE SECCIONES — claro / oscuro alternado
-       Gris claro: #f6f7fa  Texto oscuro: #0e1118
+       Gris claro: #f6f7fa  Texto oscuro: #0B0F1A
     ════════════════════════════════════════ */
 
     /* Variables para secciones claras */
     .section-light {
       --sl-bg: #f6f7fa;
       --sl-bg2: #eef0f4;
-      --sl-text: #0e1118;
+      --sl-text: #0B0F1A;
       --sl-text-dim: #4a5270;
       --sl-border: #dde0e8;
       --sl-card: #eceef2;
@@ -377,7 +377,7 @@
 
     /* ─── PROBLEM — claro ─── */
     .problem-block {
-      background: #0e1118;
+      background: #0B0F1A;
       border-top: none; border-bottom: none;
       padding: 10rem 2rem;
     }
@@ -423,7 +423,7 @@
     .service-card p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.65; opacity: 0.75; }
 
     /* ─── ECP — claro ─── */
-    .ecp-section { background: #0e1118; border-top: none; }
+    .ecp-section { background: #0B0F1A; border-top: none; }
     .ecp-section .section-label { color: var(--accent-bright); }
     .ecp-section .section-title { color: var(--white); }
     .ecp-section .section-desc { color: var(--text-dim); }
@@ -505,7 +505,7 @@
     .valor-def { font-size: 0.78rem; color: var(--text-dim); opacity: 0.7; line-height: 1.55; }
 
     /* ─── HISTORIA — claro ─── */
-    #nosotros { background: #0e1118 !important; border-top: none; padding-bottom: 11rem; }
+    #nosotros { background: #0B0F1A !important; border-top: none; padding-bottom: 11rem; }
     #nosotros .section-label { color: var(--accent-bright); }
     #nosotros .section-title { color: var(--white); }
     .historia-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 3.5rem; }
@@ -645,7 +645,7 @@
     .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
     .nav-drawer {
       display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(14,17,24,0.97); backdrop-filter: blur(20px);
+      background: rgba(11,15,26,0.97); backdrop-filter: blur(20px);
       z-index: 99; flex-direction: column; align-items: center; justify-content: center;
       gap: 1.4rem;
     }
@@ -1112,7 +1112,7 @@
 </section>
 
 <!-- IA -->
-<section id="ia" style="background:#0e1118;padding:3rem 2rem 6.5rem;position:relative;overflow:hidden;">
+<section id="ia" style="background:#0B0F1A;padding:3rem 2rem 6.5rem;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse 55% 65% at 85% 50%, rgba(42,86,134,0.14) 0%, transparent 70%);pointer-events:none;"></div>
   <div class="container">
     <div class="ia-grid">
@@ -1553,7 +1553,7 @@
 
           <div>
             <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">¿Qué rol tenés en comercio exterior?</label>
-            <select name="Dropdown" style="width:100%;background:#0e1118;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
+            <select name="Dropdown" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
               <option value="-Select-" selected>Seleccioná</option>
               <option value="Importador / Exportador Empresa importadora / Exportadora">Importador / Exportador</option>
               <option value="Despachante de aduana">Despachante de aduana</option>
@@ -1564,7 +1564,7 @@
 
           <div>
             <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">¿Cuántas clasificaciones hacés por mes?</label>
-            <select name="Dropdown1" style="width:100%;background:#0e1118;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
+            <select name="Dropdown1" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
               <option value="-Select-" selected>Seleccioná</option>
               <option value="Menos de 5">Menos de 5</option>
               <option value="Entre 5 y 20">Entre 5 y 20</option>
@@ -1575,7 +1575,7 @@
 
           <div>
             <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">Si farIAs resuelve el 80% de tus clasificaciones, ¿lo usarías?</label>
-            <select name="Dropdown3" style="width:100%;background:#0e1118;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
+            <select name="Dropdown3" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
               <option value="-Select-" selected>Seleccioná</option>
               <option value="Sí, todos los días">Sí, todos los días</option>
               <option value="Sí, como punto de partida">Sí, como punto de partida</option>
@@ -1586,7 +1586,7 @@
 
           <div>
             <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">¿Qué pagarías por acceso mensual?</label>
-            <select name="Dropdown2" style="width:100%;background:#0e1118;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
+            <select name="Dropdown2" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
               <option value="-Select-" selected>Seleccioná</option>
               <option value="Hasta USD 10/mes">Hasta USD 10/mes</option>
               <option value="Hasta USD 30/mes">Hasta USD 30/mes</option>
@@ -1596,12 +1596,12 @@
 
           <div>
             <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">¿Dónde te avisamos cuando abramos el acceso?</label>
-            <input type="text" name="Email" maxlength="255" placeholder="tu@mail.com" style="width:100%;background:#0e1118;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;box-sizing:border-box;">
+            <input type="text" name="Email" maxlength="255" placeholder="tu@mail.com" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;box-sizing:border-box;">
           </div>
 
           <div>
             <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">¿Algo más que quieras contarnos? (opcional)</label>
-            <textarea name="MultiLine" maxlength="65535" rows="3" placeholder="Sugerencias, casos de uso, dudas..." style="width:100%;background:#0e1118;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;resize:none;box-sizing:border-box;"></textarea>
+            <textarea name="MultiLine" maxlength="65535" rows="3" placeholder="Sugerencias, casos de uso, dudas..." style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;resize:none;box-sizing:border-box;"></textarea>
           </div>
 
           <button type="submit" style="background:#3A8A5A;color:#fff;padding:0.9rem;border-radius:8px;font-size:0.95rem;font-weight:700;border:none;cursor:pointer;transition:opacity 0.2s;margin-top:0.5rem;">Enviar respuesta →</button>
@@ -1625,22 +1625,22 @@
           <div>
             <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">Contanos de vos</label>
 <div style="display:grid;grid-template-columns:1fr;gap:0.8rem;">
-              <input type="text" name="Name_First" maxlength="255" placeholder="Nombre y apellido" required style="background:#0e1118;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
-              <input type="text" name="SingleLine" maxlength="255" placeholder="Empresa (opcional)" style="background:#0e1118;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
+              <input type="text" name="Name_First" maxlength="255" placeholder="Nombre y apellido" required style="background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
+              <input type="text" name="SingleLine" maxlength="255" placeholder="Empresa (opcional)" style="background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
             </div>
           </div>
 
           <div>
             <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">¿Dónde te contactamos?</label>
 <div style="display:grid;grid-template-columns:1fr;gap:0.8rem;">
-              <input type="email" name="Email" maxlength="255" placeholder="Mail" required style="background:#0e1118;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
-              <input type="text" name="PhoneNumber_countrycode" maxlength="20" placeholder="Celular" style="background:#0e1118;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
+              <input type="email" name="Email" maxlength="255" placeholder="Mail" required style="background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
+              <input type="text" name="PhoneNumber_countrycode" maxlength="20" placeholder="Celular" style="background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
             </div>
           </div>
 
           <div>
             <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">¿Qué servicio buscás?</label>
-            <select name="Dropdown" style="width:100%;background:#0e1118;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
+            <select name="Dropdown" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
               <option value="" disabled selected>Seleccioná una opción</option>
               <option value="Despacho de Aduana">Despacho de Aduana</option>
               <option value="Clasificación Arancelaria">Clasificación Arancelaria</option>
@@ -1655,4 +1655,4 @@
 
           <div>
             <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">¿En qué andás?</label>
-            <textarea name="MultiLine" maxlength="65535" rows="3" placeholder="Contanos cómo podemos ayudarte — qué importás, de dónde, con qué frecuencia, o en qué etapa estás." style="width:100%;background:#0e1118;border:1px solid var(--border);border-radiu
+            <textarea name="MultiLine" maxlength="65535" rows="3" placeholder="Contanos cómo podemos ayudarte — qué importás, de dónde, con qué frecuencia, o en qué etapa estás." style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radiu
