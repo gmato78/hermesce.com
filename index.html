@@ -62,14 +62,14 @@
     .nav-ghost { list-style: none; display: flex; gap: 1.4rem; align-items: center; }
     .nav-ghost a {
       text-decoration: none;
-      color: rgba(255,255,255,0.45);
+      color: rgba(255,255,255,0.62);
       font-family: 'Inter', sans-serif;
       font-size: 0.78rem;
       font-weight: 400;
       letter-spacing: 0.06em;
       transition: color 0.2s;
     }
-    .nav-ghost a:hover { color: rgba(255,255,255,0.85); }
+    .nav-ghost a:hover { color: rgba(255,255,255,0.95); }
     .farias-ia { color: inherit; }
 
 
@@ -780,7 +780,7 @@
   </ul>
 
   <!-- Espacio central (futuro logo) -->
-  <div class="nav-center"></div>
+  <div class="nav-center" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="cursor:pointer;"></div>
 
   <!-- Derecha: journey del cliente + idioma -->
   <div class="nav-right">
@@ -1303,7 +1303,7 @@
   const heroEl = document.querySelector('.hero');
   let heroIndex = 0;
   const layerBase = 'position:absolute;inset:0;z-index:0;background-size:cover;background-position:center 40%;background-repeat:no-repeat;pointer-events:none;';
-  const logoStyle = 'position:absolute;top:0.5rem;left:50%;transform:translateX(-50%);width:240px;max-width:28vw;mix-blend-mode:screen;opacity:0.9;pointer-events:none;z-index:1;';
+  const logoStyle = 'position:absolute;top:-0.5rem;left:50%;transform:translateX(-50%);width:240px;max-width:28vw;mix-blend-mode:screen;opacity:0.9;pointer-events:none;z-index:1;';
 
   function makeLayer() {
     const div = document.createElement('div');
