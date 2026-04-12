@@ -125,10 +125,10 @@
       pointer-events: none;
     }
     /* ─── Ken Burns ─── */
-    @keyframes kb1 { 0% { transform: scale(1.0) translate(0%, 0%); } 100% { transform: scale(1.06) translate(-1%, -0.5%); } }
-    @keyframes kb2 { 0% { transform: scale(1.06) translate(-0.5%, 0%); } 100% { transform: scale(1.0) translate(1%, 1%); } }
-    @keyframes kb3 { 0% { transform: scale(1.0) translate(0.5%, 0.5%); } 100% { transform: scale(1.06) translate(-0.5%, -1%); } }
-    @keyframes kb4 { 0% { transform: scale(1.04) translate(0%, -0.5%); } 100% { transform: scale(1.0) translate(0.5%, 0.5%); } }
+    @keyframes kb1 { 0% { transform: scale(1.0); } 100% { transform: scale(1.06); } }
+    @keyframes kb2 { 0% { transform: scale(1.06); } 100% { transform: scale(1.0); } }
+    @keyframes kb3 { 0% { transform: scale(1.0); } 100% { transform: scale(1.05); } }
+    @keyframes kb4 { 0% { transform: scale(1.05); } 100% { transform: scale(1.0); } }
     .hero-kb-layer {
       position: absolute; inset: 0; z-index: 0;
       overflow: hidden;
@@ -138,10 +138,11 @@
     }
     .hero-kb-layer.kb-active { opacity: 1; }
     .hero-kb-inner {
-      position: absolute; inset: -8%;
+      position: absolute; inset: 0;
       background-size: cover; background-position: center center;
       background-repeat: no-repeat;
       will-change: transform;
+      transform-origin: center center;
     }
     .hero-kb-logo {
       position: absolute; top: -0.5rem; left: 50%;
@@ -1597,7 +1598,15 @@
           </div>
 
           <div>
-            <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">¿Dónde te avisamos cuando abramos el acceso?</label>
+            <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">¿Cómo te llamás?</label>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;">
+              <input type="text" name="Name1_First" maxlength="255" placeholder="Nombre" required style="background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
+              <input type="text" name="Name1_Last" maxlength="255" placeholder="Apellido" style="background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
+            </div>
+          </div>
+
+          <div>
+            <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">¿Dónde te avisamos?</label>
             <input type="text" name="Email" maxlength="255" placeholder="tu@mail.com" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;box-sizing:border-box;">
           </div>
 
@@ -1628,6 +1637,7 @@
             <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">Contanos de vos</label>
 <div style="display:grid;grid-template-columns:1fr;gap:0.8rem;">
               <input type="text" name="Name_First" maxlength="255" placeholder="Nombre y apellido" required style="background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
+              <input type="hidden" name="Name_Last" value="-">
               <input type="text" name="SingleLine" maxlength="255" placeholder="Empresa (opcional)" style="background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
             </div>
           </div>
