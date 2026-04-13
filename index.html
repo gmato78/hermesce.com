@@ -166,7 +166,7 @@
       transform-origin: center center;
     }
     .hero-kb-logo {
-      position: absolute; top: -0.5rem; left: 50%;
+      position: absolute; top: -1.5rem; left: 50%;
       transform: translateX(-50%);
       width: 240px; max-width: 28vw;
       mix-blend-mode: screen; opacity: 0.9;
@@ -464,6 +464,7 @@
     #servicios .section-desc { color: var(--text-dim); }
     #servicios .section-desc strong { color: var(--text); }
     .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+    .services-grid .service-card:last-child { grid-column: 1 / -1; max-width: calc(33.333% - 0.5rem); }
     .service-card { background: var(--card); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 2rem 1.8rem; transition: border-color 0.2s, transform 0.2s; cursor: default; }
     .service-card:hover { border-color: var(--accent); transform: translateY(-4px); }
     .service-num { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; color: var(--accent-bright); margin-bottom: 1rem; }
@@ -999,32 +1000,37 @@
       <div class="service-card reveal">
         <div class="service-num">01</div>
         <h3>Despacho de Aduana</h3>
-        <p>Importación y exportación. Clasificación NCM a 13 dígitos. Gestión ante SIM/AFIP. Operaciones marítimas, aéreas y terrestres.</p>
+        <p>Es la declaración detallada que realizamos ante Aduana a tu nombre. Entregamos nuestro mayor esfuerzo y con más de 5.000 operaciones concretadas el 99% de eficiencia no nos alcanza — buscamos cero errores y máxima agilidad: exactitud en la declaración y gestión rápida en zona operativa para que tu mercadería quede liberada sin demoras.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-num">02</div>
-        <h3>Coordinación de Carga</h3>
-        <p>Coordinación de cargas internacionales cuando el servicio lo requiere. Marítimo, aéreo y terrestre. Parte del todo — no el centro.</p>
+        <h3>Clasificación Arancelaria</h3>
+        <p>La posición arancelaria de un producto define qué se paga y cómo se trata en aduana — incluyendo prohibiciones e intervenciones. Nos tomamos el tiempo para clasificar correctamente desde el inicio. Más de 50.000 artículos clasificados nos dan el criterio para acompañarte en proyectos nuevos o revisar lo realizado hasta ahora — para que puedas expandirte sin riesgos ni quedar expuesto a posibles infracciones futuras.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-num">03</div>
-        <h3>Clasificación Arancelaria</h3>
-        <p>NCM con criterio, no con software. Revisamos el producto, el uso, el material. La posición correcta desde el primer intento.</p>
+        <h3>Coordinación de Embarques</h3>
+        <p>Nos ocupamos del movimiento de tu carga — Aéreo, Marítimo o Terrestre. Somos un agente logístico neutral, sin ataduras a ninguna red — trabajamos con las mejores opciones disponibles al momento según origen o destino para acercarte las que mejor encajan cuando sucede tu operación.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-num">04</div>
-        <h3>Terceros Organismos</h3>
-        <p>ANMAT, SENASA, INAL, Ministerio de Producción. Cada organismo tiene su lógica y sus tiempos. Sabemos cómo movernos adentro.</p>
+        <h3>Intervención de Organismos</h3>
+        <p>Antes de importar o exportar, algunos productos requieren aprobaciones especiales — ANMAT, Seguridad Eléctrica, Etiquetado y otras restricciones no arancelarias. Gestionamos todas las certificaciones que puedan afectar tu operación, directamente o coordinando con especialistas — con anticipación y sin que nada te quede descubierto.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-num">05</div>
-        <h3>Depósito Fiscal</h3>
-        <p>Almacenaje en zonas primarias aduaneras. Coordinación con depósitos propios y de terceros. Operativo cuando lo necesitás.</p>
+        <h3>Almacenamiento</h3>
+        <p>Almacenes de aliados en puntos estratégicos para tareas especiales de identificación, reenvasado, desconsolidación, almacenaje largo plazo, fraccionamiento y entregas parciales de tu mercadería arribada en contenedores completos o no — adaptado a tu demanda.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-num">06</div>
         <h3>DDP — Puerta a Puerta</h3>
-        <p>Comprás en el exterior. Nosotros nos encargamos del resto: flete, despacho, tributos, entrega. Vos recibís la mercadería.</p>
+        <p>Para envíos pequeños o eventuales. Comprás afuera y nosotros nos encargamos de que llegue a tu puerta con todo resuelto — sin procesos estandarizados, sin límites de precio ni cantidades, con gente que habla tu idioma y entiende tu envío.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">07</div>
+        <h3>Trade — Llave en Mano</h3>
+        <p>Armamos tu proyecto juntos. Buscamos el producto, negociamos, compramos, consolidamos, cargamos, despachamos, gestionamos los pagos y actuamos como importadores o exportadores. Una sola firma y sin riesgos cubre toda tu operación.</p>
       </div>
     </div>
   </div>
@@ -1699,13 +1705,13 @@
             <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">¿Qué servicio buscás?</label>
             <select name="Dropdown" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
               <option value="" disabled selected>Seleccioná una opción</option>
-              <option value="Despacho de Aduana">Despacho de Aduana</option>
-              <option value="Clasificación Arancelaria">Clasificación Arancelaria</option>
-              <option value="Coordinación de Carga">Coordinación de Carga</option>
-              <option value="Terceros Organismos">Gestión ante Terceros Organismos</option>
-              <option value="Depósito Fiscal">Depósito Fiscal</option>
-              <option value="DDP Puerta a Puerta">DDP — Puerta a Puerta</option>
-              <option value="Servicio completo">Servicio completo (todo lo anterior)</option>
+              <option value="Despacho de Aduana">01 · Despacho de Aduana</option>
+              <option value="Clasificación Arancelaria">02 · Clasificación Arancelaria</option>
+              <option value="Coordinación de Embarques">03 · Coordinación de Embarques</option>
+              <option value="Intervención de Organismos">04 · Intervención de Organismos</option>
+              <option value="Almacenamiento">05 · Almacenamiento</option>
+              <option value="DDP Puerta a Puerta">06 · DDP — Puerta a Puerta</option>
+              <option value="Trade Llave en Mano">07 · Trade — Llave en Mano</option>
               <option value="No sé aún">No sé todavía, necesito orientación</option>
             </select>
           </div>
