@@ -878,29 +878,83 @@
   <!-- Contenido central -->
   <div class="hero-content">
     <div class="hero-eyebrow"><span class="eyebrow-year">DESDE 1997</span></div>
-    <h1 class="hero-h1">Comex.<br>Fácil y Simple<span class="h1-dot" style="color:var(--accent-bright);">.</span></h1>
+    <h1 class="hero-h1">Aduana sin sorpresas.<br><span style="color:var(--accent-bright);">Embarques a tiempo.</span></h1>
     <p class="hero-sub hero-sub-strong">
-      Aduana y Coordinación de Embarques <span class="sub-accent">de principio a fin</span> para Empresas y Pymes.
+      Comercio Exterior <span class="sub-accent">Punta a Punta</span> para Empresas y Pymes.
     </p>
-    <a href="#contacto" class="btn-primary hero-btn">Hablá con nosotros →</a>
+    <a href="#contacto" class="btn-primary hero-btn">Consultá tu operación →</a>
   </div>
 
-  <!-- Contadores flotantes — burbujas sutiles sobre la foto -->
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <div class="hero-stat-num" data-target="29" data-prefix="+">+29</div>
-      <div class="hero-stat-label">Años operando</div>
+</section>
+
+<!-- STATS — grid debajo del hero -->
+<style>
+  .stats-v2 {
+    padding: 3.2rem 2rem;
+    background:
+      radial-gradient(ellipse at 50% 50%, rgba(46,94,168,0.08) 0%, transparent 70%),
+      linear-gradient(180deg, #0B0F1A 0%, #121828 45%, #0B0F1A 100%);
+    border-top: none;
+    border-bottom: none;
+  }
+  .stats-v2-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; }
+  .stats-v2-card {
+    position: relative;
+    padding: 1.6rem 1.2rem;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: linear-gradient(145deg, rgba(46,94,168,0.06) 0%, rgba(18,24,40,0.4) 100%);
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .stats-v2-card::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 0%, var(--accent-glow) 0%, transparent 60%);
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  .stats-v2-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-bright);
+    box-shadow: 0 8px 24px rgba(46,94,168,0.18);
+  }
+  .stats-v2-num {
+    position: relative;
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--accent-bright) 0%, #6d9ddb 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+  .stats-v2-label {
+    position: relative;
+    color: var(--text-dim);
+    font-size: 0.88rem;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+  }
+  @media (max-width: 600px) { .stats-v2-num { font-size: 2rem; } }
+</style>
+<section class="stats-v2">
+  <div class="stats-v2-grid">
+    <div class="stats-v2-card reveal">
+      <div class="stats-v2-num"><span class="stat-num" data-target="29" data-prefix="+">+29</span></div>
+      <div class="stats-v2-label">Años operando<br>desde 1997</div>
     </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num" data-target="5200" data-prefix="+">+5.200</div>
-      <div class="hero-stat-label">Despachos liberados</div>
+    <div class="stats-v2-card reveal">
+      <div class="stats-v2-num"><span class="stat-num" data-target="5200" data-prefix="+">+5.200</span></div>
+      <div class="stats-v2-label">Despachos<br>liberados</div>
     </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num" data-target="50000" data-prefix="+">+50.000</div>
-      <div class="hero-stat-label">Artículos clasificados</div>
+    <div class="stats-v2-card reveal">
+      <div class="stats-v2-num"><span class="stat-num" data-target="50000" data-prefix="+">+50.000</span></div>
+      <div class="stats-v2-label">Artículos<br>clasificados</div>
     </div>
   </div>
-
 </section>
 
 <!-- PROBLEM -->
