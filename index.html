@@ -57,11 +57,12 @@
     .nav-hero {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 3.5rem;
+      padding: 1.3rem 3.5rem;
       background: transparent;
-      transition: background 0.4s, border-color 0.4s;
+      transition: background 0.4s, border-color 0.4s, padding 0.3s ease;
       border-bottom: 1px solid transparent;
     }
+    .nav-hero.scrolled { padding: 0.85rem 3.5rem; }
     .nav-hero.scrolled {
       background: rgba(11,15,26,0.22);
       backdrop-filter: blur(20px);
@@ -69,10 +70,32 @@
     }
 
     /* Zona izquierda */
-    .nav-left { flex-shrink: 0; }
+    .nav-left { flex-shrink: 0; margin-right: auto; }
+    .nav-lang-left { margin-right: 1.4rem; flex-shrink: 0; }
+    .nav-lang-left .lang-dropdown { right: auto; left: 0; }
 
-    /* Zona central — espacio vacío, futuro logo */
-    .nav-center { flex: 1; }
+    /* Zona central — logo absoluto, centrado al viewport (no al flex) */
+    .nav-center {
+      position: absolute;
+      left: 50%; top: calc(50% + 7px);
+      transform: translate(-50%, -50%);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      z-index: 1;
+    }
+    .nav-logo {
+      width: 180px;
+      max-width: 24vw;
+      height: auto;
+      opacity: 0.95;
+      mix-blend-mode: screen;
+      transition: width 0.35s ease, opacity 0.35s ease, transform 0.3s ease;
+    }
+    .nav-hero.scrolled .nav-logo {
+      width: 135px;
+      opacity: 1;
+    }
+    .nav-center:hover .nav-logo { transform: scale(1.05); }
 
     /* Zona derecha — links + idioma juntos */
     .nav-right {
@@ -713,9 +736,14 @@
     @media (max-width: 768px) {
       html, body { overflow-x: hidden; }
       * { max-width: 100%; box-sizing: border-box; }
-      .nav-hero { padding: 1rem 1.2rem; }
+      .nav-hero { padding: 0.9rem 1rem; }
+      .nav-hero.scrolled { padding: 0.7rem 1rem; }
+      .nav-logo { width: 120px; max-width: 34vw; }
+      .nav-hero.scrolled .nav-logo { width: 100px; }
       /* Mostrar hamburger, ocultar nav links */
-      .nav-hamburger { display: flex; }
+      .nav-hamburger { display: flex; order: 3; }
+      .nav-right { order: 2; }
+      .nav-lang-left { order: 1; margin-right: 0; }
       .nav-left { display: none; }
       .nav-right > ul { display: none; }
       /* lang-selector oculto en mobile — aparece en el drawer */
@@ -826,36 +854,40 @@
     <span></span><span></span><span></span>
   </button>
 
+  <!-- Idioma: izquierda en desktop y mobile -->
+  <div class="lang-selector nav-lang-left">
+    <button class="lang-btn" id="langBtn" aria-expanded="false" aria-haspopup="listbox">
+      <span id="langCurrent">ES</span>
+      <svg class="lang-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+        <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <ul class="lang-dropdown" id="langDropdown" role="listbox">
+      <li class="lang-item lang-item-active" data-lang="ES">ES</li>
+      <li class="lang-item" data-lang="PT">PT</li>
+      <li class="lang-item" data-lang="EN">EN</li>
+      <li class="lang-item" data-lang="CH">CH</li>
+    </ul>
+  </div>
+
   <ul class="nav-ghost nav-left">
     <li><a href="#valores">Valores</a></li>
     <li><a href="#nosotros">Historia</a></li>
     <li><a href="#ia">far<span class="farias-ia">IA</span>s</a></li>
   </ul>
 
-  <!-- Espacio central (futuro logo) -->
-  <div class="nav-center" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="cursor:pointer;"></div>
+  <!-- Logo central — acompaña scroll -->
+  <div class="nav-center" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">
+    <img src="Logo%20ala%20transparente%20WHITE.png" alt="hermesCE" class="nav-logo">
+  </div>
 
-  <!-- Derecha: journey del cliente + idioma -->
+  <!-- Derecha: journey del cliente -->
   <div class="nav-right">
     <ul class="nav-ghost">
       <li><a href="#problema">El problema</a></li>
       <li><a href="#servicios">Qué hacemos</a></li>
       <li><a href="#como">Cómo operamos</a></li>
     </ul>
-    <div class="lang-selector">
-      <button class="lang-btn" id="langBtn" aria-expanded="false" aria-haspopup="listbox">
-        <span id="langCurrent">ES</span>
-        <svg class="lang-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
-          <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-      <ul class="lang-dropdown" id="langDropdown" role="listbox">
-        <li class="lang-item lang-item-active" data-lang="ES">ES</li>
-        <li class="lang-item" data-lang="PT">PT</li>
-        <li class="lang-item" data-lang="EN">EN</li>
-        <li class="lang-item" data-lang="CH">CH</li>
-      </ul>
-    </div>
   </div>
 
 </nav>
@@ -1441,11 +1473,6 @@
     inner.className = 'hero-kb-inner';
     inner.style.backgroundImage = `url('${src}')`;
     layer.appendChild(inner);
-
-    const logo = document.createElement('img');
-    logo.src = logoSrc;
-    logo.className = 'hero-kb-logo';
-    layer.appendChild(logo);
 
     heroEl.insertBefore(layer, heroEl.firstChild);
     return { layer, inner };
