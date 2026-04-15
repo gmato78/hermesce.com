@@ -427,18 +427,51 @@
       border: 1px solid var(--border);
       border-radius: 16px;
       overflow: hidden;
-      background: #1C2433;
+      background: linear-gradient(180deg, #1C2433 0%, #151C2B 100%);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
     }
-    .problem-slide.active { display: flex; }
+    .problem-slide.active {
+      display: flex;
+      border-color: rgba(46,94,168,0.4);
+      box-shadow: 0 16px 48px rgba(46,94,168,0.18), 0 4px 14px rgba(0,0,0,0.5);
+    }
     .problem-slide-img {
-      width: 100%; height: 220px;
+      width: 100%; height: 280px;
       background-size: cover; background-position: center;
-      filter: grayscale(30%) brightness(0.8) saturate(1.15);
+      filter: grayscale(35%) brightness(0.72) saturate(1.1);
+      position: relative;
     }
-    .problem-slide-content { padding: 2rem; }
-    .problem-slide-num { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; color: var(--accent-bright); margin-bottom: 0.6rem; }
-    .problem-slide-content h3 { font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 0.7rem; }
-    .problem-slide-content p { font-size: 0.87rem; color: var(--text-dim); line-height: 1.7; }
+    .problem-slide-img::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(11,15,26,0) 45%, rgba(11,15,26,0.85) 100%);
+      pointer-events: none;
+    }
+    .problem-slide-content { padding: 2.6rem 2.4rem 2.6rem; position: relative; }
+    .problem-slide-num { display: none; }
+    .problem-slide-content h3 {
+      font-size: clamp(1.8rem, 2.6vw, 2.3rem);
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 1.3rem;
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+    }
+    .problem-slide-content h3::before {
+      content: "";
+      display: block;
+      width: 40px;
+      height: 3px;
+      background: var(--accent-bright);
+      margin-bottom: 1.1rem;
+      border-radius: 2px;
+    }
+    .problem-slide-content p {
+      font-size: 0.98rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+      max-width: 620px;
+    }
     .problem-controls { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.2rem; }
     .prob-btn { background: none; border: 1px solid var(--border); color: var(--text-dim); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, color 0.2s; }
     .prob-btn:hover { border-color: var(--accent-bright); color: var(--accent-bright); }
@@ -462,6 +495,19 @@
       line-height: 1.1;
     }
     .problem-quote em { font-style: normal; color: var(--accent-bright); }
+    .problem-sub {
+      font-size: 1.05rem;
+      color: var(--text-dim);
+      line-height: 1.85;
+      margin-top: 1.5rem;
+      max-width: 560px;
+      font-family: 'Inter', sans-serif;
+    }
+    .problem-sub-line {
+      color: var(--text);
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
     .problem-block .section-label { color: var(--accent-bright); }
     .problem-list { list-style: none; display: flex; flex-direction: column; gap: 1.4rem; }
     .problem-list li { display: flex; gap: 1rem; align-items: flex-start; font-size: 0.95rem; color: var(--text-dim); line-height: 1.6; }
@@ -488,11 +534,56 @@
     #servicios .section-desc strong { color: var(--text); }
     .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
     .services-grid .service-card:last-child { grid-column: 1 / -1; max-width: calc(33.333% - 0.5rem); }
-    .service-card { background: var(--card); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 2rem 1.8rem; transition: border-color 0.2s, transform 0.2s; cursor: default; }
-    .service-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .service-card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 16px;
+      padding: 2.2rem 1.9rem;
+      transition: border-color 0.35s ease;
+      cursor: default;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
+    }
+    .service-card:hover {
+      border-color: var(--accent-bright);
+    }
+    .service-num { display: none; }
     .service-num { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; color: var(--accent-bright); margin-bottom: 1rem; }
-    .service-card h3 { font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 0.6rem; letter-spacing: -0.01em; }
-    .service-card p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.65; opacity: 0.75; }
+    .service-card h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent-bright);
+      margin-bottom: 1rem;
+      min-height: 3.6rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      transition:
+        font-size 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+        color 0.55s ease,
+        margin-bottom 0.55s ease;
+    }
+    .service-card:hover h3 {
+      font-size: 1.15rem;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+    }
+    .service-card p {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+      opacity: 0;
+      transition: opacity 0.65s ease 0.2s, color 0.55s ease;
+    }
+    .service-card:hover p { opacity: 1; }
+    @media (hover: none) {
+      .service-card h3 { font-size: 1.15rem; color: var(--white); }
+      .service-card p { opacity: 1; }
+    }
 
     /* ─── ECP — claro ─── */
     .ecp-section { background: #0B0F1A; border-top: none; }
@@ -996,6 +1087,7 @@
     <div class="reveal">
       <p class="section-label">El problema real</p>
       <h2 class="problem-quote">En aduana <em>no hay margen</em> para el error.</h2>
+      <p class="problem-sub">Lo que no se ve cuesta más que lo que se ve.</p>
     </div>
 
     <!-- Carrusel de problemas -->
@@ -1003,58 +1095,56 @@
       <div class="problem-slides">
 
         <div class="problem-slide active">
-          <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80')"></div>
+          <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1200&q=80')"></div>
           <div class="problem-slide-content">
-            <div class="problem-slide-num">01</div>
-            <p>El certificado de origen salió mal o llegó tarde. La mercadería llegó al destino y el importador no pudo recibirla en tiempo. Los costos se acumularon en destino y la relación con el cliente se dañó — por un papel que no estuvo bien a tiempo.</p>
+            <div class="problem-slide-num">01 · Operativo</div>
+            <h3>Forzoso perdido</h3>
+            <p>La mercadería arribó a tiempo, pero nadie tomó turno en la terminal. El depósito sin fecha, el transporte sin coordinar. Se perdió el forzoso y los contenedores empezaron a acumular almacenaje, día tras día, hasta que el costo terminó multiplicando el presupuesto original.</p>
           </div>
         </div>
 
         <div class="problem-slide">
-          <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80')"></div>
+          <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80')"></div>
           <div class="problem-slide-content">
-            <div class="problem-slide-num">02</div>
-            <p>La posición SIM estaba mal y los tributos mal liquidados. El despacho ya fue presentado ante AFIP. La multa no tiene vuelta atrás — y puede ser hasta cinco veces el valor de la diferencia.</p>
+            <div class="problem-slide-num">02 · Administrativo</div>
+            <h3>Liquidez rota</h3>
+            <p>El presupuesto decía una cosa, el costo real otra. Gastos portuarios no contemplados, tributos calculados por encima. Cuando llegó la cuenta final, la liquidez no alcanzó y hubo que correr al banco para no frenar la operación.</p>
           </div>
         </div>
 
         <div class="problem-slide">
-          <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800&q=80')"></div>
+          <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80')"></div>
           <div class="problem-slide-content">
-            <div class="problem-slide-num">03</div>
-            <p>La normativa cambió. El producto que ingresaba sin problema la semana pasada necesitaba una certificación que nadie tramitó. La mercadería llegó y no pudo liberarse. Sin la certificación, hubo que reembarcar.</p>
+            <div class="problem-slide-num">03 · Clasificación</div>
+            <h3>Multa firme</h3>
+            <p>La posición SIM estaba mal y los tributos quedaron mal liquidados. Cuando se detectó, el despacho ya había sido presentado ante AFIP. La multa no tiene vuelta atrás, y puede llegar a cinco veces el valor de la diferencia.</p>
           </div>
         </div>
 
         <div class="problem-slide">
-          <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=800&q=80')"></div>
+          <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1200&q=80')"></div>
           <div class="problem-slide-content">
-            <div class="problem-slide-num">04</div>
-            <p>La mercadería arribó. Nadie tomó turno en la terminal, el transporte no estaba coordinado y el depósito de destino no tenía fecha. La carga no sabía cuándo salía ni a dónde iba. Se perdió el forzoso y los costos se multiplicaron.</p>
+            <div class="problem-slide-num">04 · Atención al cliente</div>
+            <h3>Trámite, no servicio</h3>
+            <p>Una pregunta simple: ¿en qué está la operación? Del otro lado, una respuesta que no llega, un mail con un tono ajeno. En ese momento lo entendió: era uno más. No tenía un servicio de valor — tenía un trámite.</p>
           </div>
         </div>
 
         <div class="problem-slide">
-          <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80')"></div>
+          <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1500820445460-10cff4030764?w=1200&q=80')"></div>
           <div class="problem-slide-content">
-            <div class="problem-slide-num">05</div>
-            <p>El presupuesto decía una cosa. El costo real decía otra. Los tributos estaban mal calculados, los gastos portuarios no estaban contemplados. No había liquidez — corriendo al banco.</p>
+            <div class="problem-slide-num">05 · Intervenciones</div>
+            <h3>Reembarque</h3>
+            <p>La mercadería arribó, pero faltaba una intervención previa — una certificación, un permiso, una habilitación de organismo que nadie tramitó a tiempo. No hay forma de subsanarlo con la carga ya en destino. La única salida: reembarcar. Duplicás los gastos y no disponés de la mercadería.</p>
           </div>
         </div>
 
         <div class="problem-slide">
-          <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80')"></div>
+          <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1681505531034-8d67054e07f6?w=1200&q=80')"></div>
           <div class="problem-slide-content">
-            <div class="problem-slide-num">06</div>
-            <p>Algo se vio tarde. Para cuando llegó la información, la situación ya no tenía salida. No hubo margen para actuar.</p>
-          </div>
-        </div>
-
-        <div class="problem-slide">
-          <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800&q=80')"></div>
-          <div class="problem-slide-content">
-            <div class="problem-slide-num">07</div>
-            <p>Algo falló. El cliente llamó. Del otro lado había un proceso que derivaba, un mail que decía que estaban viendo, una respuesta que no llegaba. En ese momento descubrió que no tenía un despachante — tenía un trámite.</p>
+            <div class="problem-slide-num">06 · Comercial</div>
+            <h3>Vínculo dañado</h3>
+            <p>Los documentos salieron con errores y llegaron tarde a destino. El importador del otro lado no pudo desaduanar, y cada día de demora allá se convirtió en una llamada acá. Al cabo de unas semanas, el vínculo comercial que había costado años construir quedó dañado por un papel mal emitido.</p>
           </div>
         </div>
 
@@ -1065,7 +1155,6 @@
         <button class="prob-btn prob-prev" aria-label="Anterior">←</button>
         <div class="prob-dots">
           <span class="prob-dot active"></span>
-          <span class="prob-dot"></span>
           <span class="prob-dot"></span>
           <span class="prob-dot"></span>
           <span class="prob-dot"></span>
@@ -1083,43 +1172,43 @@
 <section id="servicios">
   <div class="container">
     <p class="section-label reveal">Lo que hacemos</p>
-    <h2 class="section-title reveal">El despacho dentro del <span style="color:var(--accent-bright);">forzoso.</span><br>Todo el embarque coordinado <span style="color:var(--accent-bright);">a tiempo.</span></h2>
-    <p class="section-desc reveal">Una sola gestión, punta a punta. Sin fragmentar, sin múltiples interlocutores, sin perder el hilo.</p>
+    <h2 class="section-title reveal">Una sola gestión.<br><span style="color:var(--accent-bright);">Sin perder el hilo.</span></h2>
+    <p class="section-desc reveal" style="max-width:780px;">Lo que <span style="color:var(--accent-bright);">se ve</span> evita lo que <span style="color:var(--accent-bright);">no se ve</span>.</p>
     <div class="services-grid">
       <div class="service-card reveal">
         <div class="service-num">01</div>
         <h3>Despacho de Aduana</h3>
-        <p>Es la declaración detallada que realizamos ante Aduana a tu nombre. Entregamos nuestro mayor esfuerzo y con más de 5.000 operaciones concretadas el 99% de eficiencia no nos alcanza — buscamos cero errores y máxima agilidad: exactitud en la declaración y gestión rápida en zona operativa para que tu mercadería quede liberada sin demoras.</p>
+        <p>La declaración detallada ante Aduana, a tu nombre. Exactitud en la declaración, agilidad en zona operativa — mercadería liberada sin demoras. +5.200 operaciones de respaldo.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-num">02</div>
         <h3>Clasificación Arancelaria</h3>
-        <p>La posición arancelaria de un producto define qué se paga y cómo se trata en aduana — incluyendo prohibiciones e intervenciones. Nos tomamos el tiempo para clasificar correctamente desde el inicio. Más de 50.000 artículos clasificados nos dan el criterio para acompañarte en proyectos nuevos o revisar lo realizado hasta ahora — para que puedas expandirte sin riesgos ni quedar expuesto a posibles infracciones futuras.</p>
+        <p>La posición arancelaria define qué se paga y cómo se trata el producto en aduana — incluidas prohibiciones e intervenciones. Clasificación correcta desde el inicio: sin riesgos, sin infracciones posteriores. +50.000 artículos clasificados de respaldo.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-num">03</div>
         <h3>Coordinación de Embarques</h3>
-        <p>Nos ocupamos del movimiento de tu carga — Aéreo, Marítimo o Terrestre. Somos un agente logístico neutral, sin ataduras a ninguna red — trabajamos con las mejores opciones disponibles al momento según origen o destino para acercarte las que mejor encajan cuando sucede tu operación.</p>
+        <p>El movimiento de la carga — aéreo, marítimo o terrestre. Agente logístico neutral, sin ataduras a ninguna red: las mejores opciones disponibles según origen y destino en cada operación.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-num">04</div>
         <h3>Intervención de Organismos</h3>
-        <p>Antes de importar o exportar, algunos productos requieren aprobaciones especiales — ANMAT, Seguridad Eléctrica, Etiquetado y otras restricciones no arancelarias. Gestionamos todas las certificaciones que puedan afectar tu operación, directamente o coordinando con especialistas — con anticipación y sin que nada te quede descubierto.</p>
+        <p>Algunos productos requieren aprobaciones previas — ANMAT, Seguridad Eléctrica, Etiquetado y otras restricciones no arancelarias. Gestión directa o coordinada con especialistas, siempre con anticipación. Nada queda descubierto.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-num">05</div>
         <h3>Almacenamiento</h3>
-        <p>Almacenes de aliados en puntos estratégicos para tareas especiales de identificación, reenvasado, desconsolidación, almacenaje largo plazo, fraccionamiento y entregas parciales de tu mercadería arribada en contenedores completos o no — adaptado a tu demanda.</p>
+        <p>Almacenes aliados en puntos estratégicos para operaciones especiales: identificación, reenvasado, desconsolidación, fraccionamiento, entregas parciales, almacenaje a largo plazo. Adaptado a cada demanda.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-num">06</div>
         <h3>DDP — Puerta a Puerta</h3>
-        <p>Para envíos pequeños o eventuales. Comprás afuera y nosotros nos encargamos de que llegue a tu puerta con todo resuelto — sin procesos estandarizados, sin límites de precio ni cantidades, con gente que habla tu idioma y entiende tu envío.</p>
+        <p>Para envíos pequeños o eventuales. Compra afuera, entrega en puerta. Sin procesos estandarizados, sin límites de precio ni cantidades — cada envío tratado por quien lo entiende.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-num">07</div>
         <h3>Trade — Llave en Mano</h3>
-        <p>Armamos tu proyecto juntos. Buscamos el producto, negociamos, compramos, consolidamos, cargamos, despachamos, gestionamos los pagos y actuamos como importadores o exportadores. Una sola firma y sin riesgos cubre toda tu operación.</p>
+        <p>El proyecto completo, armado en conjunto. Búsqueda, negociación, compra, consolidación, despacho y pagos — bajo figura propia de importador o exportador. Una sola firma cubre toda la operación.</p>
       </div>
     </div>
   </div>
@@ -1130,27 +1219,27 @@
   <div class="container">
     <p class="section-label reveal">Cómo operamos</p>
     <h2 class="section-title reveal">E · C · P</h2>
-    <p class="section-desc reveal">No es una promesa. Es la forma en que tomamos cada decisión.</p>
+    <p class="section-desc reveal">El marco operativo de cada decisión.</p>
     <div class="ecp-grid">
       <div class="ecp-card reveal">
         <div class="ecp-letter">E</div>
         <div class="ecp-card-content">
           <h3>Experiencia</h3>
-          <p>No es antigüedad. Es haber tomado las decisiones difíciles cuando el manual no alcanzaba. Cada situación compleja nos dio criterio para la siguiente.</p>
+          <p>Es haber tomado las decisiones difíciles cuando el manual no alcanzaba. Cada situación compleja dejó una enseñanza para la siguiente.</p>
         </div>
       </div>
       <div class="ecp-card reveal">
         <div class="ecp-letter">C</div>
         <div class="ecp-card-content">
           <h3>Criterio</h3>
-          <p>Saber qué hacer cuando el reglamento no dice qué hacer. Transparencia activa con el cliente. Nada de respuestas genéricas para problemas específicos.</p>
+          <p>Separar lo importante de lo que no, y medir el impacto para actuar con pericia.</p>
         </div>
       </div>
       <div class="ecp-card reveal">
         <div class="ecp-letter">P</div>
         <div class="ecp-card-content">
           <h3>Precisión</h3>
-          <p>En aduana no hay aproximaciones. Los procesos son auditables, las clasificaciones son verificables. El error se paga caro; nosotros no erramos.</p>
+          <p>Proceso acertado y enfocado para optimizar recursos y resultados.</p>
         </div>
       </div>
     </div>
