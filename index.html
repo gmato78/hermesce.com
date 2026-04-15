@@ -563,9 +563,9 @@
       letter-spacing: -0.02em;
       transition: color 0.5s ease;
     }
-    .service-card:hover h3,
-    .service-card.expanded h3 {
-      color: var(--white);
+    .service-card.expanded h3 { color: var(--white); }
+    @media (hover: hover) {
+      .service-card:hover h3 { color: var(--white); }
     }
     .service-card p {
       font-size: 0.88rem;
@@ -585,13 +585,11 @@
       pointer-events: none;
       transition: opacity 0.35s ease 0.1s;
     }
-    .service-card:hover p,
-    .service-card.expanded p {
-      max-height: 500px;
-    }
-    .service-card:hover p::after,
-    .service-card.expanded p::after {
-      opacity: 0;
+    .service-card.expanded p { max-height: 500px; }
+    .service-card.expanded p::after { opacity: 0; }
+    @media (hover: hover) {
+      .service-card:hover p { max-height: 500px; }
+      .service-card:hover p::after { opacity: 0; }
     }
 
     /* ─── ECP — claro ─── */
@@ -658,10 +656,12 @@
       pointer-events: none;
       transition: opacity 0.35s ease 0.1s;
     }
-    .ecp-card:hover p,
     .ecp-card.expanded p { max-height: 500px; }
-    .ecp-card:hover p::after,
     .ecp-card.expanded p::after { opacity: 0; }
+    @media (hover: hover) {
+      .ecp-card:hover p { max-height: 500px; }
+      .ecp-card:hover p::after { opacity: 0; }
+    }
     .ecp-card { cursor: pointer; }
     /* Fotos por card */
     .ecp-card:nth-child(1)::before { background-image: url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=800&q=80'); }
@@ -719,10 +719,12 @@
       pointer-events: none;
       transition: opacity 0.35s ease 0.1s;
     }
-    .historia-item:hover p,
     .historia-item.expanded p { max-height: 600px; }
-    .historia-item:hover p::after,
     .historia-item.expanded p::after { opacity: 0; }
+    @media (hover: hover) {
+      .historia-item:hover p { max-height: 600px; }
+      .historia-item:hover p::after { opacity: 0; }
+    }
 
     /* mobile ECP border fix */
 
@@ -800,13 +802,11 @@
       pointer-events: none;
       transition: opacity 0.35s ease 0.1s;
     }
-    .matias-split-text:hover .matias-bio-wrap,
-    .matias-split-text.expanded .matias-bio-wrap {
-      max-height: 1200px;
-    }
-    .matias-split-text:hover .matias-bio-wrap::after,
-    .matias-split-text.expanded .matias-bio-wrap::after {
-      opacity: 0;
+    .matias-split-text.expanded .matias-bio-wrap { max-height: 1200px; }
+    .matias-split-text.expanded .matias-bio-wrap::after { opacity: 0; }
+    @media (hover: hover) {
+      .matias-split-text:hover .matias-bio-wrap { max-height: 1200px; }
+      .matias-split-text:hover .matias-bio-wrap::after { opacity: 0; }
     }
     .matias-split-text { cursor: pointer; }
     .certs { display: flex; flex-direction: column; gap: 0.55rem; margin-top: 1.5rem; }
@@ -941,7 +941,7 @@
       .stats { grid-template-columns: 1fr; max-width: 100%; }
       .stat-num { font-size: 1.8rem; }
       .problem-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      .problem-block { padding: 3rem 1.2rem; }
+      .problem-block { padding: 2.5rem 1.2rem; }
       .services-grid { grid-template-columns: 1fr; }
       .services-grid .service-card:last-child { grid-column: auto; max-width: 100%; }
       .ecp-grid { grid-template-columns: 1fr; gap: 1rem; width: 100%; overflow: hidden; }
@@ -960,10 +960,10 @@
       .ecp-card::after { display: block; background: linear-gradient(to top, rgba(10,12,16,0.95) 30%, rgba(10,12,16,0.3) 100%) !important; }
       .ecp-letter { position: absolute; font-size: 3.5rem; margin-bottom: 0; top: 1rem; left: 1.5rem; }
       .ecp-card-content { transform: none !important; position: relative; z-index: 1; }
-      .ecp-card p { opacity: 1 !important; transform: none !important; font-size: 0.82rem; }
-      .valores-grid { grid-template-columns: 1fr; }
+      .ecp-card p { font-size: 0.82rem; }
+      .valores-grid { grid-template-columns: repeat(2, 1fr); }
       .historia-grid { grid-template-columns: 1fr; }
-      #nosotros { padding-bottom: 2rem !important; padding-top: 3rem !important; }
+      #nosotros { padding-bottom: 2rem !important; padding-top: 2.2rem !important; }
       .matias-split { grid-template-columns: 1fr; padding: 0 !important; overflow: hidden; }
       .matias-split-text { padding: 2.5rem 1.2rem 2.5rem !important; }
       .matias-split-img { height: 260px; padding: 0; overflow: hidden; }
@@ -1001,7 +1001,7 @@
       .footer-location { align-items: center; }
       .footer-address-small { text-align: center; }
       .footer-map-embed { width: 100%; }
-      section { padding: 3rem 1.2rem; }
+      section { padding: 2.2rem 1.2rem; }
       .hero-kb-logo { width: 160px; max-width: 45vw; top: -1rem; left: 50%; transform: translateX(-50%); }
     }
   </style>
@@ -1424,9 +1424,9 @@
     <div class="matias-mini-name"><span style="color:var(--accent-bright);">de</span> Matías.</div>
     <div class="matias-mini-role">Fundador — Despachante de Aduana</div>
     <div class="matias-bio-wrap">
-      <p class="matias-mini-bio">Casi 30 años en el sector — desde operaciones en zona primaria a operador SIM, de implante (in-house) en cuentas corporativas hasta senior manager de aduana durante casi una década en una de las empresas de freight forwarding más importantes del mundo. Trayectoria que hoy respalda cada operación de HCE.</p>
-      <p class="matias-mini-bio">En 2007 desarrolló y dictó el curso "Gaps del Comercio Exterior" para la Dirección Nacional de Inteligencia Criminal del Ministerio del Interior — orientado a la confección de perfiles delictivos en materia aduanera. Certificado firmado por el Ministro del Interior. Vocación de divulgación que se transmite al equipo y a los clientes.</p>
-      <p class="matias-mini-bio">Navegante y aventurero. Viajes internacionales a vela y muchas horas como capitán. Cuatro años recorriendo América en casa rodante. Reflejan curiosidad, entusiasmo y voluntad de explorar nuevos caminos, alternativas ante la incertidumbre de lo desconocido.</p>
+      <p class="matias-mini-bio">Casi 30 años en el sector — desde tareas en zona primaria a operador SIM, de implante (in-house) en cuentas corporativas hasta manager senior del área de aduana durante casi una década en una de las empresas de freight forwarding más importantes del mundo, trayectoria que hoy respalda cada operación de HCE.</p>
+      <p class="matias-mini-bio">Entre otras capacitaciones, en 2007 desarrolló y dictó el curso "Gaps del Comercio Exterior" para la Dirección Nacional de Inteligencia Criminal del Ministerio del Interior — orientado a identificar perfiles delictivos en materia aduanera. Certificado firmado por el Ministro del Interior. Vocación de docencia y mentoría que transmite al equipo y a los clientes contexto en cada decisión.</p>
+      <p class="matias-mini-bio">Navegante y aventurero. Viajes internacionales a vela con muchas horas como capitán. Cuatro años recorriendo América en una casa rodante. Reflejan su curiosidad, entusiasmo y voluntad de explorar nuevos caminos y alternativas ante la incertidumbre de lo desconocido.</p>
     </div>
     <div class="certs">
       <div class="cert">Despachante de Aduana matriculado — Socio CDA</div>
@@ -1469,7 +1469,7 @@
           Un estudio de comex enfrenta un embarque con 700 artículos nuevos de consumo masivo para clasificar. Lo que antes era un mes, ahora en veinte minutos.
         </p>
         <p style="font-size:0.92rem;color:var(--text-dim);line-height:1.75;">
-          Con una foto, un link o una descripción, far<span style="color:#3A8A5A;font-weight:700;">IA</span>s genera el informe en segundos: posición <strong style="color:var(--white);">NCM</strong><strong style="color:var(--accent-bright);">+SIM</strong>, tributos y restricciones. Panorama completo para decidir en el momento. 24/7 los 365 días, desde el celular o la web.
+          De esta necesidad nació <strong style="color:var(--white);">far<span style="color:#3A8A5A;">IA</span>s</strong>, un agente de clasificación potenciado con IA. Con una foto, un link o una descripción, far<span style="color:#3A8A5A;font-weight:700;">IA</span>s genera el informe en segundos con posición <strong style="color:var(--white);">NCM</strong><strong style="color:#3A8A5A;">+SIM</strong>, tributos y restricciones. Panorama al momento para decidir, semanas de trabajo en minutos. Una herramienta completa y disponible. 24/7 los 365 días, desde el celular o la web.
         </p>
       </div>
 
