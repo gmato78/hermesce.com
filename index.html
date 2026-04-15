@@ -387,16 +387,18 @@
     .section-desc { color: var(--text-dim); font-size: 1rem; max-width: 520px; line-height: 1.7; }
 
     /* ─── FADE-UP — animación de entrada en scroll ─── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(48px);
-      transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    @keyframes revealFadeUp {
+      from { opacity: 0; transform: translateY(48px); }
+      to { opacity: 1; transform: none; }
     }
-    .reveal.visible { opacity: 1; transform: none; }
-    .reveal:nth-child(2) { transition-delay: 0.12s; }
-    .reveal:nth-child(3) { transition-delay: 0.24s; }
-    .reveal:nth-child(4) { transition-delay: 0.36s; }
-    .reveal:nth-child(5) { transition-delay: 0.48s; }
+    .reveal { opacity: 0; transform: translateY(48px); }
+    .reveal.visible {
+      animation: revealFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+    .reveal.visible:nth-child(2) { animation-delay: 0.12s; }
+    .reveal.visible:nth-child(3) { animation-delay: 0.24s; }
+    .reveal.visible:nth-child(4) { animation-delay: 0.36s; }
+    .reveal.visible:nth-child(5) { animation-delay: 0.48s; }
 
     /* ════════════════════════════════════════
        SISTEMA DE SECCIONES — claro / oscuro alternado
@@ -532,19 +534,17 @@
     }
     #servicios .section-desc { color: var(--text-dim); }
     #servicios .section-desc strong { color: var(--text); }
-    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; align-items: start; }
     .services-grid .service-card:last-child { grid-column: 1 / -1; max-width: calc(33.333% - 0.5rem); }
     .service-card {
       background: var(--card);
       border: 1px solid rgba(255,255,255,0.14);
       border-radius: 16px;
-      padding: 2.2rem 1.9rem;
+      padding: 2rem 1.8rem;
       transition: border-color 0.35s ease;
-      cursor: default;
-      min-height: 260px;
+      cursor: pointer;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       overflow: hidden;
       position: relative;
     }
@@ -555,34 +555,43 @@
     .service-num { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; color: var(--accent-bright); margin-bottom: 1rem; }
     .service-card h3 {
       font-family: 'Inter', sans-serif;
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       font-weight: 700;
       color: var(--accent-bright);
       margin-bottom: 1rem;
-      min-height: 3.6rem;
       line-height: 1.2;
       letter-spacing: -0.02em;
-      transition:
-        font-size 0.55s cubic-bezier(0.4, 0, 0.2, 1),
-        color 0.55s ease,
-        margin-bottom 0.55s ease;
+      transition: color 0.5s ease;
     }
-    .service-card:hover h3 {
-      font-size: 1.15rem;
+    .service-card:hover h3,
+    .service-card.expanded h3 {
       color: var(--white);
-      margin-bottom: 0.8rem;
     }
     .service-card p {
       font-size: 0.88rem;
       color: var(--text-dim);
       line-height: 1.7;
-      opacity: 0;
-      transition: opacity 0.65s ease 0.2s, color 0.55s ease;
+      max-height: 3em;
+      overflow: hidden;
+      position: relative;
+      transition: max-height 0.5s ease;
     }
-    .service-card:hover p { opacity: 1; }
-    @media (hover: none) {
-      .service-card h3 { font-size: 1.15rem; color: var(--white); }
-      .service-card p { opacity: 1; }
+    .service-card p::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 1.5em;
+      background: linear-gradient(to bottom, rgba(18,24,40,0) 0%, var(--card) 100%);
+      pointer-events: none;
+      transition: opacity 0.35s ease 0.1s;
+    }
+    .service-card:hover p,
+    .service-card.expanded p {
+      max-height: 500px;
+    }
+    .service-card:hover p::after,
+    .service-card.expanded p::after {
+      opacity: 0;
     }
 
     /* ─── ECP — claro ─── */
@@ -635,10 +644,25 @@
     .ecp-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--white); margin-bottom: 0.8rem; }
     .ecp-card p {
       font-size: 0.87rem; color: var(--text-dim); line-height: 1.7;
-      opacity: 0; transform: translateY(8px);
-      transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
+      max-height: 3em;
+      overflow: hidden;
+      position: relative;
+      transition: max-height 0.5s ease;
     }
-    .ecp-card:hover p { opacity: 1; transform: none; }
+    .ecp-card p::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 1.5em;
+      background: linear-gradient(to bottom, rgba(10,12,16,0) 0%, rgba(10,12,16,0.95) 100%);
+      pointer-events: none;
+      transition: opacity 0.35s ease 0.1s;
+    }
+    .ecp-card:hover p,
+    .ecp-card.expanded p { max-height: 500px; }
+    .ecp-card:hover p::after,
+    .ecp-card.expanded p::after { opacity: 0; }
+    .ecp-card { cursor: pointer; }
     /* Fotos por card */
     .ecp-card:nth-child(1)::before { background-image: url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=800&q=80'); }
     .ecp-card:nth-child(2)::before { background-image: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80'); }
@@ -654,18 +678,18 @@
     }
     .valores-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px; margin-top: 3.5rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px; margin-top: 2rem;
     }
     .valor-card {
       border-left: 2px solid var(--accent);
-      padding: 1.4rem 1.4rem;
+      padding: 0.9rem 1.1rem;
       transition: border-color 0.2s;
     }
     .valor-card:hover { border-color: var(--accent-bright); }
-    .valor-num { font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 700; color: var(--accent-bright); letter-spacing: 0.15em; margin-bottom: 0.6rem; }
-    .valor-name { font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
-    .valor-def { font-size: 0.78rem; color: var(--text-dim); opacity: 0.7; line-height: 1.55; }
+    .valor-num { display: none; }
+    .valor-name { font-family: 'Inter', sans-serif; font-size: 0.88rem; font-weight: 700; color: var(--white); margin-bottom: 0.3rem; }
+    .valor-def { font-size: 0.76rem; color: var(--text-dim); opacity: 0.7; line-height: 1.45; }
 
     /* ─── HISTORIA — claro ─── */
     #nosotros { background: #0B0F1A !important; border-top: none; padding-bottom: 11rem; }
@@ -675,11 +699,30 @@
     .historia-foto { margin-top: 2.5rem; margin-bottom: 0; overflow: hidden; border-radius: 10px; }
     .historia-foto img { width: 100%; height: 320px; object-fit: cover; object-position: center 60%; filter: grayscale(25%) brightness(0.85) saturate(1.15); border-radius: 10px; border: 1px solid rgba(255,255,255,0.06); transition: filter 0.3s; }
     .historia-foto:hover img { filter: grayscale(10%) brightness(0.9) saturate(1.2); }
-    .historia-item { border-left: 2px solid var(--border); padding-left: 1.5rem; transition: border-color 0.2s; }
+    .historia-item { border-left: 2px solid var(--border); padding-left: 1.5rem; transition: border-color 0.3s; cursor: pointer; }
     .historia-item:hover { border-color: var(--accent-bright); }
     .historia-year { font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 700; color: var(--accent-bright); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.6rem; }
     .historia-item h3 { font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.6rem; }
-    .historia-item p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.65; }
+    .historia-item p {
+      font-size: 0.85rem; color: var(--text-dim); line-height: 1.65;
+      max-height: 2.8em;
+      overflow: hidden;
+      position: relative;
+      transition: max-height 0.45s ease;
+    }
+    .historia-item p::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 1.2em;
+      background: linear-gradient(to bottom, rgba(11,15,26,0) 0%, #0B0F1A 100%);
+      pointer-events: none;
+      transition: opacity 0.35s ease 0.1s;
+    }
+    .historia-item:hover p,
+    .historia-item.expanded p { max-height: 600px; }
+    .historia-item:hover p::after,
+    .historia-item.expanded p::after { opacity: 0; }
 
     /* mobile ECP border fix */
 
@@ -735,7 +778,37 @@
     .carousel-dot.active { background: var(--accent-bright); transform: scale(1.3); }
     .matias-mini-name { font-family: 'Inter', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--white); margin-bottom: 0.3rem; margin-top: 0.8rem; }
     .matias-mini-role { font-size: 0.78rem; color: var(--accent-bright); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; margin-bottom: 1.2rem; }
-    .matias-mini-bio { font-size: 0.88rem; color: rgba(232,234,240,0.8); line-height: 1.7; max-width: 480px; margin-bottom: 0.8rem; }
+    .matias-mini-bio {
+      font-size: 0.88rem;
+      color: rgba(232,234,240,0.8);
+      line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 0.8rem;
+    }
+    .matias-bio-wrap {
+      max-height: 5em;
+      overflow: hidden;
+      position: relative;
+      transition: max-height 0.6s ease;
+    }
+    .matias-bio-wrap::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 2em;
+      background: linear-gradient(to bottom, rgba(28,36,51,0) 0%, #1C2433 100%);
+      pointer-events: none;
+      transition: opacity 0.35s ease 0.1s;
+    }
+    .matias-split-text:hover .matias-bio-wrap,
+    .matias-split-text.expanded .matias-bio-wrap {
+      max-height: 1200px;
+    }
+    .matias-split-text:hover .matias-bio-wrap::after,
+    .matias-split-text.expanded .matias-bio-wrap::after {
+      opacity: 0;
+    }
+    .matias-split-text { cursor: pointer; }
     .certs { display: flex; flex-direction: column; gap: 0.55rem; margin-top: 1.5rem; }
     .cert { display: flex; align-items: center; gap: 0.75rem; font-size: 0.82rem; color: rgba(232,234,240,0.75); }
     .certs { display: flex; flex-direction: column; gap: 0.55rem; margin-top: 1.5rem; }
@@ -752,9 +825,7 @@
     /* ─── IA ─── */
     .ia-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
     .ia-card {
-      background:
-        linear-gradient(rgba(19,23,32,0.72), rgba(19,23,32,0.72)),
-        url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80') center center / cover no-repeat;
+      background: linear-gradient(160deg, rgba(28,36,51,0.98) 0%, rgba(11,15,26,0.98) 100%);
       border: 1px solid var(--accent);
       border-radius: 16px; padding: 2.5rem 2rem;
       position: relative; overflow: hidden;
@@ -1173,7 +1244,7 @@
   <div class="container">
     <p class="section-label reveal">Lo que hacemos</p>
     <h2 class="section-title reveal">Una sola gestión.<br><span style="color:var(--accent-bright);">Sin perder el hilo.</span></h2>
-    <p class="section-desc reveal" style="max-width:780px;">Lo que <span style="color:var(--accent-bright);">se ve</span> evita lo que <span style="color:var(--accent-bright);">no se ve</span>.</p>
+    <p class="section-desc reveal" style="max-width:780px;">Lo que se ve evita lo que no se ve.</p>
     <div class="services-grid">
       <div class="service-card reveal">
         <div class="service-num">01</div>
@@ -1251,12 +1322,12 @@
   <div class="container">
     <p class="section-label reveal">Lo que nos define</p>
     <h2 class="section-title reveal">7 valores</h2>
-    <p class="section-desc reveal" style="margin-bottom:2.5rem;">Construimos desde la experiencia. Operamos con criterio. Crecemos sin perder precisión.</p>
+    <p class="section-desc reveal" style="margin-bottom:2rem;max-width:780px;">Construimos desde la experiencia. Operamos con criterio. Crecemos sin perder precisión.</p>
     <div class="valores-grid reveal">
       <div class="valor-card">
         <div class="valor-num">01</div>
         <div class="valor-name">Integridad</div>
-        <div class="valor-def">Hacemos lo que decimos.</div>
+        <div class="valor-def">Cumplimos sin atajos.</div>
       </div>
       <div class="valor-card">
         <div class="valor-num">02</div>
@@ -1276,17 +1347,17 @@
       <div class="valor-card">
         <div class="valor-num">05</div>
         <div class="valor-name">Gente</div>
-        <div class="valor-def">Personas primero.</div>
+        <div class="valor-def">Servicio hecho por personas.</div>
       </div>
       <div class="valor-card">
         <div class="valor-num">06</div>
         <div class="valor-name">Vínculo</div>
-        <div class="valor-def">Red de relaciones sólidas.</div>
+        <div class="valor-def">El hilo invisible detrás de cada operación.</div>
       </div>
       <div class="valor-card">
         <div class="valor-num">07</div>
         <div class="valor-name">Anticipación</div>
-        <div class="valor-def">Pensando, luego actuando.</div>
+        <div class="valor-def">Pensar antes. Después es tarde.</div>
       </div>
     </div>
   </div>
@@ -1296,7 +1367,8 @@
 <section id="nosotros">
   <div class="container">
     <p class="section-label reveal">Quiénes somos</p>
-    <h2 class="section-title reveal">La <span style="color:var(--accent-bright);">historia</span> de Hce</h2>
+    <h2 class="section-title reveal">La <span style="color:var(--accent-bright);">historia</span> de hCE</h2>
+    <p class="section-desc reveal" style="max-width:780px;">Cada rubro sumó complejidad. Cada complejidad, experiencia y criterio.</p>
     <div class="historia-foto reveal">
       <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1400&q=80" alt="Puerto de Buenos Aires — hermesCE" loading="lazy">
     </div>
@@ -1304,42 +1376,42 @@
       <div class="historia-item reveal">
         <div class="historia-year">2010</div>
         <h3>Tecnología médica</h3>
-        <p>Tomógrafos, resonadores, ecógrafos, láser médico y ortodoncia 3D. Los primeros clientes siguen siendo clientes.</p>
+        <p>Aparatología médica de alta complejidad: rayos X, tomógrafos, resonadores, ecógrafos, mamógrafos, litotriptores. Alto desafío logístico por equipos de gran valor y alto riesgo. Los primeros clientes siguen siendo clientes.</p>
       </div>
       <div class="historia-item reveal">
         <div class="historia-year">2010 — 2020</div>
         <h3>Crecimiento por referencia</h3>
-        <p>Embarcaciones y artes de pesca, joyería, repuestos para trenes y subtes, insumos para maquinaria agrícola. Cada rubro sumó complejidad.</p>
+        <p>Diez años de crecimiento orgánico — cada cliente trajo al siguiente. Embarcaciones y artes de pesca, joyería, repuestos ferroviarios para trenes y subtes, insumos para maquinaria agrícola e industrial, componentes eléctricos y automotor, productos de control de acceso, tabacos, indumentaria y accesorios, vehículos eléctricos, maquinaria gráfica, productos químicos y sustancias controladas. Proyectos llave en mano. Una década de diversificación que multiplicó el criterio operativo.</p>
       </div>
       <div class="historia-item reveal">
         <div class="historia-year">2020</div>
         <h3>Pandemia — importación de emergencia</h3>
-        <p>Importadores directos de productos críticos en el pico de la crisis sanitaria. Gestionamos lo que pocos podían.</p>
+        <p>Importadores directos de productos críticos en el pico de la crisis sanitaria. Abastecimiento a clínicas, hospitales y canal minorista. Operaciones que pocos podían tomar.</p>
       </div>
       <div class="historia-item reveal">
         <div class="historia-year">2023</div>
-        <h3>Implantes médicos</h3>
-        <p>Implantes de última generación con habilitaciones ANMAT. Alta complejidad regulatoria desde origen hasta destino.</p>
+        <h3>Salud</h3>
+        <p>Implantes óseos, herramientas para cirugía, láseres quirúrgicos y estéticos, modeladora 3D y aparatos de rayos X para odontología, equipamiento veterinario. Habilitaciones ANMAT y alta complejidad regulatoria desde origen hasta destino.</p>
       </div>
       <div class="historia-item reveal">
         <div class="historia-year">2023</div>
         <h3>Consumo masivo</h3>
-        <p>Retail de productos de consumo — operaciones de volumen, frecuencia alta y logística ajustada.</p>
+        <p>Retail de productos de consumo con alta rotación de stock. Operaciones de volumen y variedad, frecuencia alta, logística ajustada.</p>
       </div>
       <div class="historia-item reveal">
         <div class="historia-year">2023 — 2024</div>
-        <h3>Manufactura industrial</h3>
-        <p>Inyectora industrial alemana para el sector calzado y el litotriptor de mayor envergadura instalado en Sudamérica. Llave en mano.</p>
+        <h3>Maquinaria industrial</h3>
+        <p>Inyectoras industriales para la industria del calzado. Litotriptor de mayor envergadura instalado en Sudamérica. Llave en mano.</p>
       </div>
       <div class="historia-item reveal">
         <div class="historia-year">2024 — 2025</div>
         <h3>Oil & gas</h3>
-        <p>Representación comercial internacional en la industria del oil & gas — extensión local de operaciones de origen global.</p>
+        <p>Equipos de sondeo en campo para tubos de petróleo. Paradas de planta coordinadas, personal extranjero en movimiento, operaciones en zonas y horarios con climas adversos. Seguros, garantías y riesgo operativo alto asumidos. Socio local bajo el modelo Hermes Trade Box — 100% de responsabilidad para empresas extranjeras.</p>
       </div>
       <div class="historia-item reveal">
         <div class="historia-year">2025</div>
         <h3>Eventos y entretenimiento</h3>
-        <p>Stage para eventos importado llave en mano. Un rubro inesperado que demuestra cómo el servicio end-to-end se adapta a cualquier industria.</p>
+        <p>Stages y luminarias para eventos masivos, llave en mano. Módulos LED para montaje de pantallas a medida.</p>
       </div>
     </div>
   </div>
@@ -1351,8 +1423,11 @@
   <div class="matias-split-text reveal">
     <div class="matias-mini-name"><span style="color:var(--accent-bright);">de</span> Matías.</div>
     <div class="matias-mini-role">Fundador — Despachante de Aduana</div>
-    <p class="matias-mini-bio">Con 29 años en el sector — desde operador de SIM hasta gerente de aduana senior durante casi una década en una de las empresas de freight forwarding más importantes del mundo — hoy firma cada despacho y trae ese conocimiento acumulado al servicio de cada cliente.</p>
-    <p class="matias-mini-bio">En 2007 desarrolló y dictó el Curso Integral de Comercio Exterior y Aduana para la Dirección Nacional de Inteligencia Criminal del Ministerio del Interior — 42 horas cátedra. Certificado firmado por el Ministro del Interior.</p>
+    <div class="matias-bio-wrap">
+      <p class="matias-mini-bio">Casi 30 años en el sector — desde operaciones en zona primaria a operador SIM, de implante (in-house) en cuentas corporativas hasta senior manager de aduana durante casi una década en una de las empresas de freight forwarding más importantes del mundo. Trayectoria que hoy respalda cada operación de HCE.</p>
+      <p class="matias-mini-bio">En 2007 desarrolló y dictó el curso "Gaps del Comercio Exterior" para la Dirección Nacional de Inteligencia Criminal del Ministerio del Interior — orientado a la confección de perfiles delictivos en materia aduanera. Certificado firmado por el Ministro del Interior. Vocación de divulgación que se transmite al equipo y a los clientes.</p>
+      <p class="matias-mini-bio">Navegante y aventurero. Viajes internacionales a vela y muchas horas como capitán. Cuatro años recorriendo América en casa rodante. Reflejan curiosidad, entusiasmo y voluntad de explorar nuevos caminos, alternativas ante la incertidumbre de lo desconocido.</p>
+    </div>
     <div class="certs">
       <div class="cert">Despachante de Aduana matriculado — Socio CDA</div>
       <div class="cert">Lic. en Comercio Internacional — UdeMM</div>
@@ -1385,22 +1460,25 @@
         </div>
 
         <p style="font-size:0.92rem;color:var(--text-dim);line-height:1.75;margin-bottom:1.2rem;">
-          En Argentina, clasificar es llegar a la <strong style="color:var(--white);">NCM</strong><strong style="color:var(--accent-bright);">+SIM</strong> — la posición completa que combina el estándar Mercosur con el sistema local. Tributos, restricciones y el <strong style="color:var(--white);">por sí o por no</strong> que define si la operación cierra o no cierra.
+          Un importador con un envío por cerrar y aún espacio disponible. Recibe el catálogo de China a las 11 de la noche: si no decide ahora, mañana pierde la salida del buque.
         </p>
         <p style="font-size:0.92rem;color:var(--text-dim);line-height:1.75;margin-bottom:1.2rem;">
-          Con una foto, un link o una descripción, far<span style="color:#3A8A5A;font-weight:700;">IA</span>s genera el informe completo en segundos — para cerrar un presupuesto en el momento, confirmar viabilidad al instante o cruzarlo con tu equipo y tus proveedores de Comex. 24/7, desde el celular.
+          Un agente se reúne con un potencial cliente listo para cerrar la operación. Pero antes pregunta por costos e implicancias: si no responde en el momento, quizás pierda la oportunidad.
+        </p>
+        <p style="font-size:0.92rem;color:var(--text-dim);line-height:1.75;margin-bottom:1.2rem;">
+          Un estudio de comex enfrenta un embarque con 700 artículos nuevos de consumo masivo para clasificar. Lo que antes era un mes, ahora en veinte minutos.
         </p>
         <p style="font-size:0.92rem;color:var(--text-dim);line-height:1.75;">
-          Estamos en MVP. Si creés que tiene sentido para tu operación, queremos escucharte.
+          Con una foto, un link o una descripción, far<span style="color:#3A8A5A;font-weight:700;">IA</span>s genera el informe en segundos: posición <strong style="color:var(--white);">NCM</strong><strong style="color:var(--accent-bright);">+SIM</strong>, tributos y restricciones. Panorama completo para decidir en el momento. 24/7 los 365 días, desde el celular o la web.
         </p>
       </div>
 
       <div class="ia-right reveal">
         <div class="ia-card" style="border:1px solid rgba(42,86,134,0.3);">
-          <div class="ia-card-label" style="color:var(--accent);">Clasificación arancelaria · MVP</div>
+          <div class="ia-card-label" style="color:var(--accent);">Clasificación arancelaria · Prototipo</div>
           <div class="ia-card-name" style="color:var(--white);">far<span style="color:#3A8A5A;">IA</span>s</div>
-          <div class="ia-card-desc" style="color:var(--text-dim);margin-bottom:0.8rem;">La marcha sistemática del Gran Maestro, operada con IA. Una foto o descripción: posición SIM, tributos y restricciones al instante.</div>
-          <div style="font-size:0.75rem;color:rgba(255,255,255,0.3);margin-bottom:1.8rem;font-style:italic;">Acceso limitado — beta cerrada</div>
+          <div class="ia-card-desc" style="color:var(--text-dim);margin-bottom:1.5rem;">La marcha sistemática del Gran Maestro, operada con IA.</div>
+          <div style="font-size:0.72rem;color:rgba(255,255,255,0.35);margin-bottom:1.8rem;letter-spacing:0.04em;">Un producto de <span style="color:#3A8A5A;">h</span>IA · en fase de prototipo</div>
           <div style="display:flex;flex-direction:column;align-items:center;gap:0.8rem;margin-top:1.8rem;width:100%;">
             <button onclick="abrirFarias()" class="ia-card-btn" style="width:100%;">Quiero acceso →</button>
             <div style="display:flex;align-items:center;gap:0.6rem;width:100%;">
@@ -1423,8 +1501,8 @@
   <div class="contact-inner">
     <p class="section-label reveal">Contacto</p>
     <h2 class="section-title reveal">¿Importás o exportás<br>y necesitás que funcione?</h2>
-    <p class="section-desc reveal">Contanos qué necesitás y nos comunicamos pronto.</p>
-    <button onclick="abrirContacto()" class="form-submit reveal" style="display:inline-block;width:auto;padding:1rem 2.5rem;font-size:1rem;margin-top:0.5rem;">Hablá con nosotros →</button>
+    <p class="section-desc reveal">Contanos tu operación en 5 minutos.</p>
+    <button onclick="abrirContacto()" class="form-submit reveal" style="display:inline-block;width:auto;padding:1rem 2.5rem;font-size:1rem;margin-top:0.5rem;">Consultá tu operación →</button>
     <div class="contact-alt reveal">
       <div class="contact-alt-qr">
         <div style="display:flex;align-items:center;gap:1rem;width:100%;margin-bottom:1rem;">
@@ -1671,6 +1749,13 @@
   }, { threshold: 0.5 });
   document.querySelectorAll('.hero-stat-num[data-target], .stat-num[data-target]').forEach(el => statObs.observe(el));
 
+  // ── Peek & expand: historia, services, matias, ECP ──
+  document.querySelectorAll('.historia-item, .service-card, .matias-split-text, .ecp-card').forEach(item => {
+    item.addEventListener('click', () => {
+      item.classList.toggle('expanded');
+    });
+  });
+
   // ── Selector de idioma ──
   const langBtn = document.getElementById('langBtn');
   const langDropdown = document.getElementById('langDropdown');
@@ -1850,7 +1935,7 @@
         <button onclick="cerrarContacto()" style="position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;color:var(--text-dim);font-size:1.4rem;cursor:pointer;line-height:1;">×</button>
         <div style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent-bright);font-weight:600;margin-bottom:0.5rem;">hermesCE · Contacto</div>
         <h3 style="font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:0.5rem;">Contanos en qué andás</h3>
-        <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:2rem;line-height:1.6;">Contanos qué necesitás y nos comunicamos pronto.</p>
+        <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:2rem;line-height:1.6;">Contanos tu operación en 5 minutos.</p>
 
         <form id="contact-form" action="https://forms.zohopublic.com/hermesce1/form/Contactwithfeedback/formperma/jJ41GXBoVJLPTuFTkMagWLdTvp6FrEzD33wxrF7Bg_Q/htmlRecords/submit" name="form" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" target="_blank" style="display:flex;flex-direction:column;gap:1.2rem;">
           <input type="hidden" name="zf_referrer_name" value="">
