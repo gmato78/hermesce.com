@@ -834,7 +834,7 @@
     .ia-card-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-bright); font-weight: 500; margin-bottom: 0.8rem; }
     .ia-card-name { font-family: 'Inter', sans-serif; font-size: 2.8rem; font-weight: 800; color: var(--white); line-height: 1; margin-bottom: 1rem; letter-spacing: -0.01em; }
     .ia-card-desc { font-size: 0.9rem; color: var(--text-dim); line-height: 1.65; margin-bottom: 2rem; }
-    .ia-card-btn { display: inline-block; background: var(--accent); color: white; padding: 0.8rem 1.8rem; border-radius: 8px; font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: background 0.2s, transform 0.15s; font-family: 'Inter', sans-serif; }
+    .ia-card-btn { display: inline-block; background: var(--accent); color: white; padding: 0.8rem 1.8rem; border-radius: 8px; font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: background 0.2s, transform 0.15s; font-family: 'Inter', sans-serif; border: none; cursor: pointer; }
     .ia-card-btn:hover { background: var(--accent-bright); transform: translateY(-2px); }
 
     /* ─── CONTACT ─── */
@@ -1029,7 +1029,7 @@
   </button>
 
   <!-- Idioma: izquierda en desktop y mobile -->
-  <div class="lang-selector nav-lang-left">
+  <div class="lang-selector nav-lang-left notranslate" translate="no">
     <button class="lang-btn" id="langBtn" aria-expanded="false" aria-haspopup="listbox">
       <span id="langCurrent">ES</span>
       <svg class="lang-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
@@ -1037,16 +1037,18 @@
       </svg>
     </button>
     <ul class="lang-dropdown" id="langDropdown" role="listbox">
-      <li class="lang-item lang-item-active" data-lang="ES">ES</li>
-      <li class="lang-item" data-lang="PT">PT</li>
-      <li class="lang-item" data-lang="EN">EN</li>
-      <li class="lang-item" data-lang="CH">CH</li>
+      <li class="lang-item lang-item-active" data-lang="es">ES</li>
+      <li class="lang-item" data-lang="zh-CN">中文</li>
+      <li class="lang-item" data-lang="en">EN</li>
+      <li class="lang-item" data-lang="pt">PT</li>
+      <li class="lang-item" data-lang="de">DE</li>
+      <li class="lang-item" data-lang="fr">FR</li>
     </ul>
   </div>
 
   <ul class="nav-ghost nav-left">
-    <li><a href="#valores">Valores</a></li>
-    <li><a href="#nosotros">Historia</a></li>
+    <li><a href="#valores" data-i18n="nav_valores">Valores</a></li>
+    <li><a href="#nosotros" data-i18n="nav_historia">Historia</a></li>
     <li><a href="#ia">far<span class="farias-ia">IA</span>s</a></li>
   </ul>
 
@@ -1058,9 +1060,9 @@
   <!-- Derecha: journey del cliente -->
   <div class="nav-right">
     <ul class="nav-ghost">
-      <li><a href="#problema">El problema</a></li>
-      <li><a href="#servicios">Qué hacemos</a></li>
-      <li><a href="#como">Cómo operamos</a></li>
+      <li><a href="#problema" data-i18n="nav_problema">El problema</a></li>
+      <li><a href="#servicios" data-i18n="nav_servicios">Qué hacemos</a></li>
+      <li><a href="#como" data-i18n="nav_como">Cómo operamos</a></li>
     </ul>
   </div>
 
@@ -1068,12 +1070,12 @@
 
 <!-- Nav Drawer — mobile -->
 <div class="nav-drawer" id="navDrawer">
-  <a href="#problema" class="drawer-link">El problema</a>
-  <a href="#servicios" class="drawer-link">Qué hacemos</a>
-  <a href="#como" class="drawer-link">Cómo operamos</a>
+  <a href="#problema" class="drawer-link" data-i18n="nav_problema">El problema</a>
+  <a href="#servicios" class="drawer-link" data-i18n="nav_servicios">Qué hacemos</a>
+  <a href="#como" class="drawer-link" data-i18n="nav_como">Cómo operamos</a>
   <div class="drawer-divider"></div>
-  <a href="#valores" class="drawer-link">Valores</a>
-  <a href="#nosotros" class="drawer-link">Historia</a>
+  <a href="#valores" class="drawer-link" data-i18n="nav_valores">Valores</a>
+  <a href="#nosotros" class="drawer-link" data-i18n="nav_historia">Historia</a>
   <a href="#ia" class="drawer-link">far<span style="color:#3A8A5A;">IA</span>s</a>
   <a href="#contacto" class="drawer-link">Contacto</a>
 </div>
@@ -1083,12 +1085,12 @@
 
   <!-- Contenido central -->
   <div class="hero-content">
-    <div class="hero-eyebrow"><span class="eyebrow-year">DESDE 1997</span></div>
-    <h1 class="hero-h1">Aduana sin sorpresas.<br><span style="color:var(--accent-bright);">Embarques a tiempo.</span></h1>
-    <p class="hero-sub hero-sub-strong">
+    <div class="hero-eyebrow"><span class="eyebrow-year" data-i18n="hero_eyebrow">DESDE 1997</span></div>
+    <h1 class="hero-h1" data-i18n-html="hero_h1">Aduana sin sorpresas.<br><span style="color:var(--accent-bright);">Embarques a tiempo.</span></h1>
+    <p class="hero-sub hero-sub-strong" data-i18n="hero_sub">
       Comercio Exterior <span class="sub-accent">Punta a Punta</span> para Empresas y Pymes.
     </p>
-    <a href="#contacto" class="btn-primary hero-btn">Consultá tu operación →</a>
+    <a href="#contacto" class="btn-primary hero-btn" data-i18n="hero_cta">Consultá tu operación →</a>
   </div>
 
 </section>
@@ -1150,15 +1152,15 @@
   <div class="stats-v2-grid">
     <div class="stats-v2-card reveal">
       <div class="stats-v2-num"><span class="stat-num" data-target="29" data-prefix="+">+29</span></div>
-      <div class="stats-v2-label">Años operando<br>desde 1997</div>
+      <div class="stats-v2-label"><span data-i18n="stats_years_label">Años operando</span><br><span data-i18n="stats_years_sub">desde 1997</span></div>
     </div>
     <div class="stats-v2-card reveal">
       <div class="stats-v2-num"><span class="stat-num" data-target="5200" data-prefix="+">+5.200</span></div>
-      <div class="stats-v2-label">Despachos<br>liberados</div>
+      <div class="stats-v2-label"><span data-i18n="stats_despachos_label">Despachos</span><br><span data-i18n="stats_despachos_sub">liberados</span></div>
     </div>
     <div class="stats-v2-card reveal">
       <div class="stats-v2-num"><span class="stat-num" data-target="50000" data-prefix="+">+50.000</span></div>
-      <div class="stats-v2-label">Artículos<br>clasificados</div>
+      <div class="stats-v2-label"><span data-i18n="stats_items_label">Artículos</span><br><span data-i18n="stats_items_sub">clasificados</span></div>
     </div>
   </div>
 </section>
@@ -1167,9 +1169,9 @@
 <section id="problema" class="problem-block">
   <div class="problem-inner container">
     <div class="reveal">
-      <p class="section-label">El problema real</p>
-      <h2 class="problem-quote">En aduana <em>no hay margen</em> para el error.</h2>
-      <p class="problem-sub">Lo que no se ve cuesta más que lo que se ve.</p>
+      <p class="section-label" data-i18n="problem_label">El problema real</p>
+      <h2 class="problem-quote" data-i18n-html="problem_h2">En aduana <em>no hay margen</em> para el error.</h2>
+      <p class="problem-sub" data-i18n="problem_sub">Lo que no se ve cuesta más que lo que se ve.</p>
     </div>
 
     <!-- Carrusel de problemas -->
@@ -1180,8 +1182,8 @@
           <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1200&q=80')"></div>
           <div class="problem-slide-content">
             <div class="problem-slide-num">01 · Operativo</div>
-            <h3>Forzoso perdido</h3>
-            <p>La mercadería arribó a tiempo, pero nadie tomó turno en la terminal. El depósito sin fecha, el transporte sin coordinar. Se perdió el forzoso y los contenedores empezaron a acumular almacenaje, día tras día, hasta que el costo terminó multiplicando el presupuesto original.</p>
+            <h3 data-i18n="problem_card1_h3">Forzoso perdido</h3>
+            <p data-i18n="problem_card1_p">La mercadería arribó a tiempo, pero nadie tomó turno en la terminal. El depósito sin fecha, el transporte sin coordinar. Se perdió el forzoso y los contenedores empezaron a acumular almacenaje, día tras día, hasta que el costo terminó multiplicando el presupuesto original.</p>
           </div>
         </div>
 
@@ -1189,8 +1191,8 @@
           <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80')"></div>
           <div class="problem-slide-content">
             <div class="problem-slide-num">02 · Administrativo</div>
-            <h3>Liquidez rota</h3>
-            <p>El presupuesto decía una cosa, el costo real otra. Gastos portuarios no contemplados, tributos calculados por encima. Cuando llegó la cuenta final, la liquidez no alcanzó y hubo que correr al banco para no frenar la operación.</p>
+            <h3 data-i18n="problem_card2_h3">Liquidez rota</h3>
+            <p data-i18n="problem_card2_p">El presupuesto decía una cosa, el costo real otra. Gastos portuarios no contemplados, tributos calculados por encima. Cuando llegó la cuenta final, la liquidez no alcanzó y hubo que correr al banco para no frenar la operación.</p>
           </div>
         </div>
 
@@ -1198,8 +1200,8 @@
           <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80')"></div>
           <div class="problem-slide-content">
             <div class="problem-slide-num">03 · Clasificación</div>
-            <h3>Multa firme</h3>
-            <p>La posición SIM estaba mal y los tributos quedaron mal liquidados. Cuando se detectó, el despacho ya había sido presentado ante AFIP. La multa no tiene vuelta atrás, y puede llegar a cinco veces el valor de la diferencia.</p>
+            <h3 data-i18n="problem_card3_h3">Multa firme</h3>
+            <p data-i18n="problem_card3_p">La posición SIM estaba mal y los tributos quedaron mal liquidados. Cuando se detectó, el despacho ya había sido presentado ante AFIP. La multa no tiene vuelta atrás, y puede llegar a cinco veces el valor de la diferencia.</p>
           </div>
         </div>
 
@@ -1207,8 +1209,8 @@
           <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1200&q=80')"></div>
           <div class="problem-slide-content">
             <div class="problem-slide-num">04 · Atención al cliente</div>
-            <h3>Trámite, no servicio</h3>
-            <p>Una pregunta simple: ¿en qué está la operación? Del otro lado, una respuesta que no llega, un mail con un tono ajeno. En ese momento lo entendió: era uno más. No tenía un servicio de valor — tenía un trámite.</p>
+            <h3 data-i18n="problem_card4_h3">Trámite, no servicio</h3>
+            <p data-i18n="problem_card4_p">Una pregunta simple: ¿en qué está la operación? Del otro lado, una respuesta que no llega, un mail con un tono ajeno. En ese momento lo entendió: era uno más. No tenía un servicio de valor — tenía un trámite.</p>
           </div>
         </div>
 
@@ -1216,8 +1218,8 @@
           <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1500820445460-10cff4030764?w=1200&q=80')"></div>
           <div class="problem-slide-content">
             <div class="problem-slide-num">05 · Intervenciones</div>
-            <h3>Reembarque</h3>
-            <p>La mercadería arribó, pero faltaba una intervención previa — una certificación, un permiso, una habilitación de organismo que nadie tramitó a tiempo. No hay forma de subsanarlo con la carga ya en destino. La única salida: reembarcar. Duplicás los gastos y no disponés de la mercadería.</p>
+            <h3 data-i18n="problem_card5_h3">Reembarque</h3>
+            <p data-i18n="problem_card5_p">La mercadería arribó, pero faltaba una intervención previa — una certificación, un permiso, una habilitación de organismo que nadie tramitó a tiempo. No hay forma de subsanarlo con la carga ya en destino. La única salida: reembarcar. Duplicás los gastos y no disponés de la mercadería.</p>
           </div>
         </div>
 
@@ -1225,8 +1227,8 @@
           <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1681505531034-8d67054e07f6?w=1200&q=80')"></div>
           <div class="problem-slide-content">
             <div class="problem-slide-num">06 · Comercial</div>
-            <h3>Vínculo dañado</h3>
-            <p>Los documentos salieron con errores y llegaron tarde a destino. El importador del otro lado no pudo desaduanar, y cada día de demora allá se convirtió en una llamada acá. Al cabo de unas semanas, el vínculo comercial que había costado años construir quedó dañado por un papel mal emitido.</p>
+            <h3 data-i18n="problem_card6_h3">Vínculo dañado</h3>
+            <p data-i18n="problem_card6_p">Los documentos salieron con errores y llegaron tarde a destino. El importador del otro lado no pudo desaduanar, y cada día de demora allá se convirtió en una llamada acá. Al cabo de unas semanas, el vínculo comercial que había costado años construir quedó dañado por un papel mal emitido.</p>
           </div>
         </div>
 
@@ -1253,44 +1255,44 @@
 <!-- SERVICES -->
 <section id="servicios">
   <div class="container">
-    <p class="section-label reveal">Lo que hacemos</p>
-    <h2 class="section-title reveal">Una sola gestión.<br><span style="color:var(--accent-bright);">Sin perder el hilo.</span></h2>
-    <p class="section-desc reveal" style="max-width:780px;">Lo que se ve evita lo que no se ve.</p>
+    <p class="section-label reveal" data-i18n="services_label">Lo que hacemos</p>
+    <h2 class="section-title reveal" data-i18n-html="services_h2">Una sola gestión.<br><span style="color:var(--accent-bright);">Sin perder el hilo.</span></h2>
+    <p class="section-desc reveal" style="max-width:780px;" data-i18n="services_sub">Lo que se ve evita lo que no se ve.</p>
     <div class="services-grid">
       <div class="service-card reveal">
         <div class="service-num">01</div>
-        <h3>Despacho de Aduana</h3>
-        <p>La declaración detallada ante Aduana, a tu nombre. Exactitud en la declaración, agilidad en zona operativa — mercadería liberada sin demoras. +5.200 operaciones de respaldo.</p>
+        <h3 data-i18n="svc1_h3">Despacho de Aduana</h3>
+        <p data-i18n="svc1_p">La declaración detallada ante Aduana, a tu nombre. Exactitud en la declaración, agilidad en zona operativa — mercadería liberada sin demoras. +5.200 operaciones de respaldo.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-num">02</div>
-        <h3>Clasificación Arancelaria</h3>
-        <p>La posición arancelaria define qué se paga y cómo se trata el producto en aduana — incluidas prohibiciones e intervenciones. Clasificación correcta desde el inicio: sin riesgos, sin infracciones posteriores. +50.000 artículos clasificados de respaldo.</p>
+        <h3 data-i18n="svc2_h3">Clasificación Arancelaria</h3>
+        <p data-i18n="svc2_p">La posición arancelaria define qué se paga y cómo se trata el producto en aduana — incluidas prohibiciones e intervenciones. Clasificación correcta desde el inicio: sin riesgos, sin infracciones posteriores. +50.000 artículos clasificados de respaldo.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-num">03</div>
-        <h3>Coordinación de Embarques</h3>
-        <p>El movimiento de la carga — aéreo, marítimo o terrestre. Agente logístico neutral, sin ataduras a ninguna red: las mejores opciones disponibles según origen y destino en cada operación.</p>
+        <h3 data-i18n="svc3_h3">Coordinación de Embarques</h3>
+        <p data-i18n="svc3_p">El movimiento de la carga — aéreo, marítimo o terrestre. Agente logístico neutral, sin ataduras a ninguna red: las mejores opciones disponibles según origen y destino en cada operación.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-num">04</div>
-        <h3>Intervención de Organismos</h3>
-        <p>Algunos productos requieren aprobaciones previas — ANMAT, Seguridad Eléctrica, Etiquetado y otras restricciones no arancelarias. Gestión directa o coordinada con especialistas, siempre con anticipación. Nada queda descubierto.</p>
+        <h3 data-i18n="svc4_h3">Intervención de Organismos</h3>
+        <p data-i18n="svc4_p">Algunos productos requieren aprobaciones previas — ANMAT, Seguridad Eléctrica, Etiquetado y otras restricciones no arancelarias. Gestión directa o coordinada con especialistas, siempre con anticipación. Nada queda descubierto.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-num">05</div>
-        <h3>Almacenamiento</h3>
-        <p>Almacenes aliados en puntos estratégicos para operaciones especiales: identificación, reenvasado, desconsolidación, fraccionamiento, entregas parciales, almacenaje a largo plazo. Adaptado a cada demanda.</p>
+        <h3 data-i18n="svc5_h3">Almacenamiento</h3>
+        <p data-i18n="svc5_p">Almacenes aliados en puntos estratégicos para operaciones especiales: identificación, reenvasado, desconsolidación, fraccionamiento, entregas parciales, almacenaje a largo plazo. Adaptado a cada demanda.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-num">06</div>
-        <h3>DDP — Puerta a Puerta</h3>
-        <p>Para envíos pequeños o eventuales. Compra afuera, entrega en puerta. Sin procesos estandarizados, sin límites de precio ni cantidades — cada envío tratado por quien lo entiende.</p>
+        <h3 data-i18n="svc6_h3">DDP — Puerta a Puerta</h3>
+        <p data-i18n="svc6_p">Para envíos pequeños o eventuales. Compra afuera, entrega en puerta. Sin procesos estandarizados, sin límites de precio ni cantidades — cada envío tratado por quien lo entiende.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-num">07</div>
-        <h3>Trade — Llave en Mano</h3>
-        <p>El proyecto completo, armado en conjunto. Búsqueda, negociación, compra, consolidación, despacho y pagos — bajo figura propia de importador o exportador. Una sola firma cubre toda la operación.</p>
+        <h3 data-i18n="svc7_h3">Trade — Llave en Mano</h3>
+        <p data-i18n="svc7_p">El proyecto completo, armado en conjunto. Búsqueda, negociación, compra, consolidación, despacho y pagos — bajo figura propia de importador o exportador. Una sola firma cubre toda la operación.</p>
       </div>
     </div>
   </div>
@@ -1299,29 +1301,29 @@
 <!-- ECP -->
 <section id="como" class="ecp-section">
   <div class="container">
-    <p class="section-label reveal">Cómo operamos</p>
+    <p class="section-label reveal" data-i18n="ecp_label">Cómo operamos</p>
     <h2 class="section-title reveal">E · C · P</h2>
-    <p class="section-desc reveal">El marco operativo de cada decisión.</p>
+    <p class="section-desc reveal" data-i18n="ecp_sub">El marco operativo de cada decisión.</p>
     <div class="ecp-grid">
       <div class="ecp-card reveal">
         <div class="ecp-letter">E</div>
         <div class="ecp-card-content">
-          <h3>Experiencia</h3>
-          <p>Es haber tomado las decisiones difíciles cuando el manual no alcanzaba. Cada situación compleja dejó una enseñanza para la siguiente.</p>
+          <h3 data-i18n="ecp_e">Experiencia</h3>
+          <p data-i18n="ecp_e_p">Es haber tomado las decisiones difíciles cuando el manual no alcanzaba. Cada situación compleja dejó una enseñanza para la siguiente.</p>
         </div>
       </div>
       <div class="ecp-card reveal">
         <div class="ecp-letter">C</div>
         <div class="ecp-card-content">
-          <h3>Criterio</h3>
-          <p>Separar lo importante de lo que no, y medir el impacto para actuar con pericia.</p>
+          <h3 data-i18n="ecp_c">Criterio</h3>
+          <p data-i18n="ecp_c_p">Separar lo importante de lo que no, y medir el impacto para actuar con pericia.</p>
         </div>
       </div>
       <div class="ecp-card reveal">
         <div class="ecp-letter">P</div>
         <div class="ecp-card-content">
-          <h3>Precisión</h3>
-          <p>Proceso acertado y enfocado para optimizar recursos y resultados.</p>
+          <h3 data-i18n="ecp_p">Precisión</h3>
+          <p data-i18n="ecp_p_p">Proceso acertado y enfocado para optimizar recursos y resultados.</p>
         </div>
       </div>
     </div>
@@ -1331,44 +1333,44 @@
 <!-- VALORES -->
 <section id="valores" class="valores-section">
   <div class="container">
-    <p class="section-label reveal">Lo que nos define</p>
-    <h2 class="section-title reveal">7 valores</h2>
-    <p class="section-desc reveal" style="margin-bottom:2rem;max-width:780px;">Construimos desde la experiencia. Operamos con criterio. Crecemos sin perder precisión.</p>
+    <p class="section-label reveal" data-i18n="valores_label">Lo que nos define</p>
+    <h2 class="section-title reveal" data-i18n="valores_h2">7 valores</h2>
+    <p class="section-desc reveal" style="margin-bottom:2rem;max-width:780px;" data-i18n="valores_sub">Construimos desde la experiencia. Operamos con criterio. Crecemos sin perder precisión.</p>
     <div class="valores-grid reveal">
       <div class="valor-card">
         <div class="valor-num">01</div>
-        <div class="valor-name">Integridad</div>
-        <div class="valor-def">Cumplimos sin atajos.</div>
+        <div class="valor-name" data-i18n="val1_name">Integridad</div>
+        <div class="valor-def" data-i18n="val1_tag">Cumplimos sin atajos.</div>
       </div>
       <div class="valor-card">
         <div class="valor-num">02</div>
-        <div class="valor-name">Confidencialidad</div>
-        <div class="valor-def">Tu operación, tu información.</div>
+        <div class="valor-name" data-i18n="val2_name">Confidencialidad</div>
+        <div class="valor-def" data-i18n="val2_tag">Tu operación, tu información.</div>
       </div>
       <div class="valor-card">
         <div class="valor-num">03</div>
-        <div class="valor-name">Evolución</div>
-        <div class="valor-def">Adaptación sin pausa.</div>
+        <div class="valor-name" data-i18n="val3_name">Evolución</div>
+        <div class="valor-def" data-i18n="val3_tag">Adaptación sin pausa.</div>
       </div>
       <div class="valor-card">
         <div class="valor-num">04</div>
-        <div class="valor-name">Compromiso</div>
-        <div class="valor-def">En el mismo barco.</div>
+        <div class="valor-name" data-i18n="val4_name">Compromiso</div>
+        <div class="valor-def" data-i18n="val4_tag">En el mismo barco.</div>
       </div>
       <div class="valor-card">
         <div class="valor-num">05</div>
-        <div class="valor-name">Gente</div>
-        <div class="valor-def">Servicio hecho por personas.</div>
+        <div class="valor-name" data-i18n="val5_name">Gente</div>
+        <div class="valor-def" data-i18n="val5_tag">Servicio hecho por personas.</div>
       </div>
       <div class="valor-card">
         <div class="valor-num">06</div>
-        <div class="valor-name">Vínculo</div>
-        <div class="valor-def">El hilo invisible detrás de cada operación.</div>
+        <div class="valor-name" data-i18n="val6_name">Vínculo</div>
+        <div class="valor-def" data-i18n="val6_tag">El hilo invisible detrás de cada operación.</div>
       </div>
       <div class="valor-card">
         <div class="valor-num">07</div>
-        <div class="valor-name">Anticipación</div>
-        <div class="valor-def">Pensar antes. Después es tarde.</div>
+        <div class="valor-name" data-i18n="val7_name">Anticipación</div>
+        <div class="valor-def" data-i18n="val7_tag">Pensar antes. Después es tarde.</div>
       </div>
     </div>
   </div>
@@ -1377,52 +1379,52 @@
 <!-- HISTORIA HCE -->
 <section id="nosotros">
   <div class="container">
-    <p class="section-label reveal">Quiénes somos</p>
-    <h2 class="section-title reveal">La <span style="color:var(--accent-bright);">historia</span> de hCE</h2>
-    <p class="section-desc reveal" style="max-width:780px;">Cada rubro sumó complejidad. Cada complejidad, experiencia y criterio.</p>
+    <p class="section-label reveal" data-i18n="historia_label">Quiénes somos</p>
+    <h2 class="section-title reveal" data-i18n-html="historia_h2">La <span style="color:var(--accent-bright);">historia</span> de hCE</h2>
+    <p class="section-desc reveal" style="max-width:780px;" data-i18n="historia_sub">Cada rubro sumó complejidad. Cada complejidad, experiencia y criterio.</p>
     <div class="historia-foto reveal">
       <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1400&q=80" alt="Puerto de Buenos Aires — hermesCE" loading="lazy">
     </div>
     <div class="historia-grid">
       <div class="historia-item reveal">
-        <div class="historia-year">2010</div>
-        <h3>Tecnología médica</h3>
-        <p>Aparatología médica de alta complejidad: rayos X, tomógrafos, resonadores, ecógrafos, mamógrafos, litotriptores. Alto desafío logístico por equipos de gran valor y alto riesgo. Los primeros clientes siguen siendo clientes.</p>
+        <div class="historia-year" data-i18n="hist1_year">2010</div>
+        <h3 data-i18n="hist1_h3">Tecnología médica</h3>
+        <p data-i18n="hist1_p">Aparatología médica de alta complejidad: rayos X, tomógrafos, resonadores, ecógrafos, mamógrafos, litotriptores. Alto desafío logístico por equipos de gran valor y alto riesgo. Los primeros clientes siguen siendo clientes.</p>
       </div>
       <div class="historia-item reveal">
-        <div class="historia-year">2010 — 2020</div>
-        <h3>Crecimiento por referencia</h3>
-        <p>Diez años de crecimiento orgánico — cada cliente trajo al siguiente. Embarcaciones y artes de pesca, joyería, repuestos ferroviarios para trenes y subtes, insumos para maquinaria agrícola e industrial, componentes eléctricos y automotor, productos de control de acceso, tabacos, indumentaria y accesorios, vehículos eléctricos, maquinaria gráfica, productos químicos y sustancias controladas. Proyectos llave en mano. Una década de diversificación que multiplicó el criterio operativo.</p>
+        <div class="historia-year" data-i18n="hist2_year">2010 — 2020</div>
+        <h3 data-i18n="hist2_h3">Crecimiento por referencia</h3>
+        <p data-i18n="hist2_p">Diez años de crecimiento orgánico — cada cliente trajo al siguiente. Embarcaciones y artes de pesca, joyería, repuestos ferroviarios para trenes y subtes, insumos para maquinaria agrícola e industrial, componentes eléctricos y automotor, productos de control de acceso, tabacos, indumentaria y accesorios, vehículos eléctricos, maquinaria gráfica, productos químicos y sustancias controladas. Proyectos llave en mano. Una década de diversificación que multiplicó el criterio operativo.</p>
       </div>
       <div class="historia-item reveal">
-        <div class="historia-year">2020</div>
-        <h3>Pandemia — importación de emergencia</h3>
-        <p>Importadores directos de productos críticos en el pico de la crisis sanitaria. Abastecimiento a clínicas, hospitales y canal minorista. Operaciones que pocos podían tomar.</p>
+        <div class="historia-year" data-i18n="hist3_year">2020</div>
+        <h3 data-i18n="hist3_h3">Pandemia — importación de emergencia</h3>
+        <p data-i18n="hist3_p">Importadores directos de productos críticos en el pico de la crisis sanitaria. Abastecimiento a clínicas, hospitales y canal minorista. Operaciones que pocos podían tomar.</p>
       </div>
       <div class="historia-item reveal">
-        <div class="historia-year">2023</div>
-        <h3>Salud</h3>
-        <p>Implantes óseos, herramientas para cirugía, láseres quirúrgicos y estéticos, modeladora 3D y aparatos de rayos X para odontología, equipamiento veterinario. Habilitaciones ANMAT y alta complejidad regulatoria desde origen hasta destino.</p>
+        <div class="historia-year" data-i18n="hist4_year">2023</div>
+        <h3 data-i18n="hist4_h3">Salud</h3>
+        <p data-i18n="hist4_p">Implantes óseos, herramientas para cirugía, láseres quirúrgicos y estéticos, modeladora 3D y aparatos de rayos X para odontología, equipamiento veterinario. Habilitaciones ANMAT y alta complejidad regulatoria desde origen hasta destino.</p>
       </div>
       <div class="historia-item reveal">
-        <div class="historia-year">2023</div>
-        <h3>Consumo masivo</h3>
-        <p>Retail de productos de consumo con alta rotación de stock. Operaciones de volumen y variedad, frecuencia alta, logística ajustada.</p>
+        <div class="historia-year" data-i18n="hist5_year">2023</div>
+        <h3 data-i18n="hist5_h3">Consumo masivo</h3>
+        <p data-i18n="hist5_p">Retail de productos de consumo con alta rotación de stock. Operaciones de volumen y variedad, frecuencia alta, logística ajustada.</p>
       </div>
       <div class="historia-item reveal">
-        <div class="historia-year">2023 — 2024</div>
-        <h3>Maquinaria industrial</h3>
-        <p>Inyectoras industriales para la industria del calzado. Litotriptor de mayor envergadura instalado en Sudamérica. Llave en mano.</p>
+        <div class="historia-year" data-i18n="hist6_year">2023 — 2024</div>
+        <h3 data-i18n="hist6_h3">Maquinaria industrial</h3>
+        <p data-i18n="hist6_p">Inyectoras industriales para la industria del calzado. Litotriptor de mayor envergadura instalado en Sudamérica. Llave en mano.</p>
       </div>
       <div class="historia-item reveal">
-        <div class="historia-year">2024 — 2025</div>
-        <h3>Oil & gas</h3>
-        <p>Equipos de sondeo en campo para tubos de petróleo. Paradas de planta coordinadas, personal extranjero en movimiento, operaciones en zonas y horarios con climas adversos. Seguros, garantías y riesgo operativo alto asumidos. Socio local bajo el modelo Hermes Trade Box — 100% de responsabilidad para empresas extranjeras.</p>
+        <div class="historia-year" data-i18n="hist7_year">2024 — 2025</div>
+        <h3 data-i18n="hist7_h3">Oil & gas</h3>
+        <p data-i18n="hist7_p">Equipos de sondeo en campo para tubos de petróleo. Paradas de planta coordinadas, personal extranjero en movimiento, operaciones en zonas y horarios con climas adversos. Seguros, garantías y riesgo operativo alto asumidos. Socio local bajo el modelo Hermes Trade Box — 100% de responsabilidad para empresas extranjeras.</p>
       </div>
       <div class="historia-item reveal">
-        <div class="historia-year">2025</div>
-        <h3>Eventos y entretenimiento</h3>
-        <p>Stages y luminarias para eventos masivos, llave en mano. Módulos LED para montaje de pantallas a medida.</p>
+        <div class="historia-year" data-i18n="hist8_year">2025</div>
+        <h3 data-i18n="hist8_h3">Eventos y entretenimiento</h3>
+        <p data-i18n="hist8_p">Stages y luminarias para eventos masivos, llave en mano. Módulos LED para montaje de pantallas a medida.</p>
       </div>
     </div>
   </div>
@@ -1432,21 +1434,21 @@
 <section class="matias-split">
   <!-- Izquierda: texto -->
   <div class="matias-split-text reveal">
-    <div class="matias-mini-name"><span style="color:var(--accent-bright);">de</span> Matías.</div>
-    <div class="matias-mini-role">Fundador — Despachante de Aduana</div>
+    <div class="matias-mini-name" data-i18n-html="matias_de"><span style="color:var(--accent-bright);">de</span> Matías.</div>
+    <div class="matias-mini-role" data-i18n="matias_role">Fundador — Despachante de Aduana</div>
     <div class="matias-bio-wrap">
-      <p class="matias-mini-bio">Casi 30 años en el sector — desde tareas en zona primaria a operador SIM, de implante (in-house) en cuentas corporativas hasta manager senior del área de aduana durante casi una década en una de las empresas de freight forwarding más importantes del mundo, trayectoria que hoy respalda cada operación de hCE.</p>
-      <p class="matias-mini-bio">Entre otras capacitaciones, en 2007 desarrolló y dictó el curso "Gaps del Comercio Exterior" para la Dirección Nacional de Inteligencia Criminal del Ministerio del Interior — orientado a identificar perfiles delictivos en materia aduanera. Certificado firmado por el Ministro del Interior. Vocación de docencia y mentoría que transmite al equipo y a los clientes contexto en cada decisión.</p>
-      <p class="matias-mini-bio">Navegante y aventurero. Viajes internacionales a vela con muchas horas como capitán. Cuatro años recorriendo América en una casa rodante. Reflejan su curiosidad, entusiasmo y voluntad de explorar nuevos caminos y alternativas ante la incertidumbre de lo desconocido.</p>
+      <p class="matias-mini-bio" data-i18n="matias_bio1">Casi 30 años en el sector — desde tareas en zona primaria a operador SIM, de implante (in-house) en cuentas corporativas hasta manager senior del área de aduana durante casi una década en una de las empresas de freight forwarding más importantes del mundo, trayectoria que hoy respalda cada operación de hCE.</p>
+      <p class="matias-mini-bio" data-i18n="matias_bio2">Entre otras capacitaciones, en 2007 desarrolló y dictó el curso "Gaps del Comercio Exterior" para la Dirección Nacional de Inteligencia Criminal del Ministerio del Interior — orientado a identificar perfiles delictivos en materia aduanera. Certificado firmado por el Ministro del Interior. Vocación de docencia y mentoría que transmite al equipo y a los clientes contexto en cada decisión.</p>
+      <p class="matias-mini-bio" data-i18n="matias_bio3">Navegante y aventurero. Viajes internacionales a vela con muchas horas como capitán. Cuatro años recorriendo América en una casa rodante. Reflejan su curiosidad, entusiasmo y voluntad de explorar nuevos caminos y alternativas ante la incertidumbre de lo desconocido.</p>
     </div>
     <div class="certs">
-      <div class="cert">Despachante de Aduana matriculado — Socio CDA</div>
-      <div class="cert">Lic. en Comercio Internacional — UdeMM</div>
-      <div class="cert">Agente de Transporte Aduanero — ICA · ARCA</div>
-      <div class="cert">Técnico Superior en Comercio Exterior y Aduanas — ICA · ARCA</div>
-      <div class="cert">Certificado Facilitador DINICRI — Ministerio del Interior</div>
-      <div class="cert">Dangerous Goods by Ocean — EI Intl. Inc.</div>
-      <div class="cert">Miembro de System Dynamics Society</div>
+      <div class="cert" data-i18n="cert1">Despachante de Aduana matriculado — Socio CDA</div>
+      <div class="cert" data-i18n="cert2">Lic. en Comercio Internacional — UdeMM</div>
+      <div class="cert" data-i18n="cert3">Agente de Transporte Aduanero — ICA · ARCA</div>
+      <div class="cert" data-i18n="cert4">Técnico Superior en Comercio Exterior y Aduanas — ICA · ARCA</div>
+      <div class="cert" data-i18n="cert5">Certificado Facilitador DINICRI — Ministerio del Interior</div>
+      <div class="cert" data-i18n="cert6">Dangerous Goods by Ocean — EI Intl. Inc.</div>
+      <div class="cert" data-i18n="cert7">Miembro de System Dynamics Society</div>
     </div>
     <div class="cert-logos reveal" style="display:flex;align-items:center;justify-content:center;gap:2.2rem;margin-top:2rem;flex-wrap:wrap;max-width:420px;margin-left:0.9rem;">
       <img src="logos/logo%20CDA.png" alt="Socio CDA" loading="lazy" style="height:58px;width:auto;object-fit:contain;opacity:0.9;">
@@ -1466,25 +1468,25 @@
   <div class="container">
     <div class="ia-grid">
       <div class="ia-left reveal">
-        <p class="section-label" style="color:var(--accent);">Tecnología propia</p>
-        <h2 style="font-weight:800;font-size:clamp(1.8rem,4vw,3.5rem);color:var(--white);line-height:1.05;margin-bottom:0.3rem;">Entre aduanas y</h2>
-        <h2 style="font-weight:800;font-size:clamp(1.8rem,4vw,3.5rem);color:var(--white);line-height:1.05;margin-bottom:1rem;"><span style="color:var(--accent-bright);">algoritmos.</span></h2>
+        <p class="section-label" style="color:var(--accent);" data-i18n="ia_label">Tecnología propia</p>
+        <h2 style="font-weight:800;font-size:clamp(1.8rem,4vw,3.5rem);color:var(--white);line-height:1.05;margin-bottom:0.3rem;" data-i18n="ia_h2_1">Entre aduanas y</h2>
+        <h2 style="font-weight:800;font-size:clamp(1.8rem,4vw,3.5rem);color:var(--white);line-height:1.05;margin-bottom:1rem;" data-i18n-html="ia_h2_html"><span style="color:var(--accent-bright);">algoritmos.</span></h2>
 
-        <p class="section-desc reveal" style="margin-bottom:2rem;max-width:780px;">Pioneros en la integración de IA en Comercio Exterior. Esto recién comienza.</p>
+        <p class="section-desc reveal" style="margin-bottom:2rem;max-width:780px;" data-i18n="ia_sub">Pioneros en la integración de IA en Comercio Exterior. Esto recién comienza.</p>
 
         <p style="font-size:0.92rem;color:var(--text-dim);line-height:1.75;margin-bottom:1.2rem;">
-          Hola, soy <strong style="color:var(--white);">far<span style="color:#3A8A5A;">IA</span>s</strong>, un agente de clasificación arancelaria potenciado por IA. Con una foto, un link o una descripción devuelvo un informe en segundos con posición <strong style="color:var(--white);">NCM</strong><strong style="color:#3A8A5A;">+SIM</strong>, tributos, restricciones y más. Para tomar decisiones en tiempo-real y transformar semanas de trabajo en minutos.
+          <span data-i18n-html="ia_intro">Hola, soy <strong style="color:var(--white);">far<span style="color:#3A8A5A;">IA</span>s</strong>, un agente de clasificación arancelaria potenciado por IA. Con una foto, un link o una descripción devuelvo un informe en segundos con posición <strong style="color:var(--white);">NCM</strong><strong style="color:#3A8A5A;">+SIM</strong>, tributos, restricciones y más. Para tomar decisiones en tiempo-real y transformar semanas de trabajo en minutos.</span>
         </p>
-        <p style="font-size:0.92rem;color:var(--text-dim);line-height:1.75;margin-bottom:1.2rem;">
+        <p style="font-size:0.92rem;color:var(--text-dim);line-height:1.75;margin-bottom:1.2rem;" data-i18n="ia_scene1">
           Un importador con un envío por cerrar y aún espacio disponible. Recibe el catálogo de China a las 11 de la noche: si no decide ahora, mañana pierde la salida del buque.
         </p>
-        <p style="font-size:0.92rem;color:var(--text-dim);line-height:1.75;margin-bottom:1.2rem;">
+        <p style="font-size:0.92rem;color:var(--text-dim);line-height:1.75;margin-bottom:1.2rem;" data-i18n="ia_scene2">
           Un agente se reúne con un potencial cliente listo para cerrar la operación. Pero antes pregunta por costos e implicancias: si no responde en el momento, quizás pierda la oportunidad.
         </p>
-        <p style="font-size:0.92rem;color:var(--text-dim);line-height:1.75;margin-bottom:1.2rem;">
+        <p style="font-size:0.92rem;color:var(--text-dim);line-height:1.75;margin-bottom:1.2rem;" data-i18n="ia_scene3">
           Un estudio de comex enfrenta un embarque con 700 artículos nuevos de consumo masivo para clasificar. Lo que antes era un mes, ahora en veinte minutos.
         </p>
-        <p style="font-size:0.92rem;color:var(--text-dim);line-height:1.75;">
+        <p style="font-size:0.92rem;color:var(--text-dim);line-height:1.75;" data-i18n="ia_closing">
           Una herramienta innovadora, potente y única en el mercado, disponible las 24 horas los 365 días, desde el celular o la web.
         </p>
       </div>
@@ -1494,23 +1496,23 @@
           <div style="display:flex;align-items:center;gap:0.8rem;margin:0 auto 1.4rem;padding:0.5rem 0.9rem;border-left:2px solid #3A8A5A;background:rgba(58,138,90,0.05);border-radius:4px;width:fit-content;">
             <span style="font-size:1rem;font-weight:800;color:var(--white);letter-spacing:0.01em;">hermes<span style="color:#3A8A5A;">IA</span></span>
             <span style="width:1px;height:1.1rem;background:rgba(255,255,255,0.15);"></span>
-            <span style="font-size:0.72rem;color:var(--text-dim);letter-spacing:0.01em;line-height:1.3;">Naturalizar lo artificial para encontrar lo <span style="color:#3A8A5A;">humano</span>.</span>
+            <span style="font-size:0.72rem;color:var(--text-dim);letter-spacing:0.01em;line-height:1.3;" data-i18n-html="ia_chip_tag">Naturalizar lo artificial para encontrar lo <span style="color:#3A8A5A;">humano</span>.</span>
           </div>
-          <div class="ia-card-label" style="color:var(--accent);text-align:center;">Clasificador Arancelario IA</div>
+          <div class="ia-card-label" style="color:var(--accent);text-align:center;" data-i18n="ia_card_label">Clasificador Arancelario IA</div>
           <div class="ia-card-name" style="color:var(--white);text-align:center;">far<span style="color:#3A8A5A;">IA</span>s</div>
-          <div class="ia-card-desc" style="color:var(--text-dim);margin-bottom:1rem;text-align:center;">Clasifica como un merciólogo profesional<br>con la marcha sistemática del Gran Maestro potenciada con IA.</div>
-          <div style="font-size:0.95rem;color:var(--white);text-align:center;font-weight:500;margin-bottom:1.5rem;letter-spacing:0.01em;">¿Qué clasificamos hoy? <span style="color:#3A8A5A;">;)</span></div>
+          <div class="ia-card-desc" style="color:var(--text-dim);margin-bottom:1rem;text-align:center;" data-i18n-html="ia_card_desc">Clasifica como un merciólogo profesional<br>con la marcha sistemática del Gran Maestro potenciada con IA.</div>
+          <div style="font-size:0.95rem;color:var(--white);text-align:center;font-weight:500;margin-bottom:1.5rem;letter-spacing:0.01em;" data-i18n-html="ia_card_cta">¿Qué clasificamos hoy? <span style="color:#3A8A5A;">;)</span></div>
           <div style="display:flex;flex-direction:column;align-items:center;gap:0.8rem;margin-top:1.8rem;width:100%;">
-            <button onclick="abrirFarias()" class="ia-card-btn" style="width:100%;">Quiero acceso →</button>
+            <button onclick="abrirFarias()" class="ia-card-btn" style="width:100%;" data-i18n="ia_btn">Quiero acceso →</button>
             <div style="display:flex;align-items:center;gap:0.6rem;width:100%;">
               <div style="flex:1;height:1px;background:rgba(255,255,255,0.15);"></div>
-              <span style="font-size:0.7rem;font-weight:600;color:rgba(255,255,255,0.35);letter-spacing:0.08em;">o</span>
+              <span style="font-size:0.7rem;font-weight:600;color:rgba(255,255,255,0.35);letter-spacing:0.08em;" data-i18n="form_or">o</span>
               <div style="flex:1;height:1px;background:rgba(255,255,255,0.15);"></div>
             </div>
             <img src="data:image/png;base64,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" alt="QR farIAs MVP" style="width:110px;height:110px;border-radius:6px;border:1px solid rgba(255,255,255,0.12);opacity:0.9;">
-              <span style="font-size:0.6rem;color:rgba(255,255,255,0.35);letter-spacing:0.06em;">Escaneá para anotarte</span>
+              <span style="font-size:0.6rem;color:rgba(255,255,255,0.35);letter-spacing:0.06em;" data-i18n="ia_qr">Escaneá para anotarte</span>
           </div>
-          <div style="font-size:0.68rem;color:rgba(255,255,255,0.3);margin-top:1.5rem;letter-spacing:0.04em;font-style:italic;">* desarrollo en fase Prototipo</div>
+          <div style="font-size:0.68rem;color:rgba(255,255,255,0.3);margin-top:1.5rem;letter-spacing:0.04em;font-style:italic;" data-i18n="ia_proto">* desarrollo en fase Prototipo</div>
         </div>
       </div>
     </div>
@@ -1521,19 +1523,19 @@
 <!-- CONTACT -->
 <section id="contacto" class="contact-section">
   <div class="contact-inner">
-    <p class="section-label reveal">Contacto</p>
-    <h2 class="section-title reveal">¿Importás o exportás<br>y necesitás que funcione?</h2>
-    <p class="section-desc reveal">Contanos tu operación en 2 minutos y nos contactamos a la brevedad.</p>
-    <button onclick="abrirContacto()" class="form-submit reveal" style="display:inline-block;width:auto;padding:1rem 2.5rem;font-size:1rem;margin-top:0.5rem;">Consultá tu operación →</button>
+    <p class="section-label reveal" data-i18n="contact_label">Contacto</p>
+    <h2 class="section-title reveal" data-i18n-html="contact_h2">¿Importás o exportás<br>y necesitás que funcione?</h2>
+    <p class="section-desc reveal" data-i18n="contact_sub">Contanos tu operación en 2 minutos y nos contactamos a la brevedad.</p>
+    <button onclick="abrirContacto()" class="form-submit reveal" style="display:inline-block;width:auto;padding:1rem 2.5rem;font-size:1rem;margin-top:0.5rem;" data-i18n="contact_cta">Consultá tu operación →</button>
     <div class="contact-alt reveal">
       <div class="contact-alt-qr">
         <div style="display:flex;align-items:center;gap:1rem;width:100%;margin-bottom:1rem;">
           <div style="flex:1;height:1px;background:rgba(255,255,255,0.2);"></div>
-          <span style="font-size:0.8rem;font-weight:600;color:rgba(255,255,255,0.5);letter-spacing:0.08em;">o</span>
+          <span style="font-size:0.8rem;font-weight:600;color:rgba(255,255,255,0.5);letter-spacing:0.08em;" data-i18n="form_or">o</span>
           <div style="flex:1;height:1px;background:rgba(255,255,255,0.2);"></div>
         </div>
         <img src="qr_contacto.png" alt="QR formulario de contacto">
-        <span>Escaneá para contactarnos</span>
+        <span data-i18n="contact_qr">Escaneá para contactarnos</span>
       </div>
     </div>
   </div>
@@ -1549,8 +1551,8 @@
   <!-- Centro: info + email resaltado abajo -->
   <div class="footer-center">
     <div class="footer-tagline">
-      HCE de Argentina SRL<br>
-      © 2026 · Todos los derechos reservados
+      <span data-i18n="footer_legal">HCE de Argentina SRL</span><br>
+      <span data-i18n="footer_copy">© 2026 · Todos los derechos reservados</span>
     </div>
     <a id="footer-email" href="#" class="footer-email-link"><span class="__cf_email__" data-cfemail="432b2c2f22032b26312e263020266d202c2e">[email&#160;protected]</span></a>
   </div>
@@ -1566,7 +1568,7 @@
     </div>
     <a href="https://share.google/y9eGcRorRVG6zXn4P" target="_blank" rel="noopener" class="footer-map-link">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      Abrir en Google Maps
+      <span data-i18n="footer_maps">Abrir en Google Maps</span>
     </a>
   </div>
 </footer>
@@ -1792,14 +1794,40 @@
       langDropdown.classList.remove('open');
       langBtn.setAttribute('aria-expanded', 'false');
     });
+    var i18nData = null;
+    var i18nOriginals = {};
+    fetch('translations.json?v=' + Date.now(), {cache: 'no-store'}).then(r => r.json()).then(d => { i18nData = d; }).catch(() => {});
+    function applyLang(lang) {
+      if (!i18nData) return;
+      var t = i18nData[lang];
+      if (!t) return;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        var key = el.dataset.i18n;
+        if (t[key] !== undefined) {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = t[key];
+          } else {
+            el.textContent = t[key];
+          }
+        }
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        var key = el.dataset.i18nHtml;
+        if (t[key] !== undefined) el.innerHTML = t[key];
+      });
+      document.documentElement.lang = lang === 'zh-CN' ? 'zh' : lang;
+    }
     document.querySelectorAll('.lang-item').forEach(item => {
       item.addEventListener('click', (e) => {
         e.stopPropagation();
         document.querySelectorAll('.lang-item').forEach(i => i.classList.remove('lang-item-active'));
         item.classList.add('lang-item-active');
-        langCurrent.textContent = item.dataset.lang;
+        var lang = item.dataset.lang;
+        var labels = {'es':'ES','en':'EN','pt':'PT','zh-CN':'中文','de':'DE','fr':'FR'};
+        langCurrent.textContent = labels[lang] || lang.toUpperCase();
         langDropdown.classList.remove('open');
         langBtn.setAttribute('aria-expanded', 'false');
+        applyLang(lang);
       });
     });
   }
@@ -1876,9 +1904,9 @@
     <div id="farias-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:99999;align-items:flex-start;justify-content:center;padding:1rem;overflow-y:auto;">
       <div style="background:#1C2433;border:1px solid rgba(79,114,227,0.3);border-radius:16px;max-width:560px;width:100%;padding:3rem;position:relative;margin:auto;">
         <button onclick="document.getElementById('farias-modal').style.display='none';document.body.style.overflow='';" style="position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;color:var(--text-dim);font-size:1.4rem;cursor:pointer;line-height:1;">×</button>
-        <div style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:#3A8A5A;font-weight:600;margin-bottom:0.5rem;">farIAs · Encuesta de implementación</div>
-        <h3 style="font-size:1.6rem;font-weight:800;color:var(--white);margin-bottom:0.5rem;">¿Tiene sentido para tu operación?</h3>
-        <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:2rem;line-height:1.6;">Estamos evaluando si el MVP de farIAs tiene valor real antes de invertir en la siguiente etapa. Tres preguntas, dos minutos.</p>
+        <div style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:#3A8A5A;font-weight:600;margin-bottom:0.5rem;" data-i18n="farias_label">farIAs · Encuesta de implementación</div>
+        <h3 style="font-size:1.6rem;font-weight:800;color:var(--white);margin-bottom:0.5rem;" data-i18n="farias_h3">¿Tiene sentido para tu operación?</h3>
+        <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:2rem;line-height:1.6;" data-i18n="farias_sub">Estamos evaluando si el MVP de farIAs tiene valor real antes de invertir en la siguiente etapa. Tres preguntas, dos minutos.</p>
 
         <form id="farias-form" action="https://forms.zohopublic.com/hermesce1/form/farIAsMVP/formperma/9U4Z4H0KZwvZG6TDz-jsgZe-LscPURiFFPsEBJ1PEwg/htmlRecords/submit" name="form" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" target="_blank" style="display:flex;flex-direction:column;gap:1.2rem;">
           <input type="hidden" name="zf_referrer_name" value="">
@@ -1886,67 +1914,67 @@
           <input type="hidden" name="zc_gad" value="">
 
           <div>
-            <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">¿Qué rol tenés en comercio exterior?</label>
+            <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;" data-i18n="farias_q1_label">¿Qué rol tenés en comercio exterior?</label>
             <select name="Dropdown" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
-              <option value="-Select-" selected>Seleccioná</option>
-              <option value="Importador / Exportador Empresa importadora / Exportadora">Importador / Exportador</option>
-              <option value="Despachante de aduana">Despachante de aduana</option>
-              <option value="Freight forwarder">Freight forwarder / agente de cargas</option>
-              <option value="Others">Otro</option>
+              <option value="-Select-" selected data-i18n="farias_select_default">Seleccioná</option>
+              <option value="Importador / Exportador Empresa importadora / Exportadora" data-i18n="farias_q1_opt1">Importador / Exportador</option>
+              <option value="Despachante de aduana" data-i18n="farias_q1_opt2">Despachante de aduana</option>
+              <option value="Freight forwarder" data-i18n="farias_q1_opt3">Freight forwarder / agente de cargas</option>
+              <option value="Others" data-i18n="farias_q1_opt4">Otro</option>
             </select>
           </div>
 
           <div>
-            <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">¿Cuántas clasificaciones hacés por mes?</label>
+            <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;" data-i18n="farias_q2_label">¿Cuántas clasificaciones hacés por mes?</label>
             <select name="Dropdown1" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
-              <option value="-Select-" selected>Seleccioná</option>
-              <option value="Menos de 5">Menos de 5</option>
-              <option value="Entre 5 y 20">Entre 5 y 20</option>
-              <option value="Entre 20 y 50">Entre 20 y 50</option>
-              <option value="Más de 50">Más de 50</option>
+              <option value="-Select-" selected data-i18n="farias_select_default">Seleccioná</option>
+              <option value="Menos de 5" data-i18n="farias_q2_opt1">Menos de 5</option>
+              <option value="Entre 5 y 20" data-i18n="farias_q2_opt2">Entre 5 y 20</option>
+              <option value="Entre 20 y 50" data-i18n="farias_q2_opt3">Entre 20 y 50</option>
+              <option value="Más de 50" data-i18n="farias_q2_opt4">Más de 50</option>
             </select>
           </div>
 
           <div>
-            <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">Si farIAs resuelve el 80% de tus clasificaciones, ¿lo usarías?</label>
+            <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;" data-i18n="farias_q3_label">Si farIAs resuelve el 80% de tus clasificaciones, ¿lo usarías?</label>
             <select name="Dropdown3" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
-              <option value="-Select-" selected>Seleccioná</option>
-              <option value="Sí, todos los días">Sí, todos los días</option>
-              <option value="Sí, como punto de partida">Sí, como punto de partida</option>
-              <option value="Depende del precio">Depende del precio</option>
-              <option value="No lo usaría">No lo usaría</option>
+              <option value="-Select-" selected data-i18n="farias_select_default">Seleccioná</option>
+              <option value="Sí, todos los días" data-i18n="farias_q3_opt1">Sí, todos los días</option>
+              <option value="Sí, como punto de partida" data-i18n="farias_q3_opt2">Sí, como punto de partida</option>
+              <option value="Depende del precio" data-i18n="farias_q3_opt3">Depende del precio</option>
+              <option value="No lo usaría" data-i18n="farias_q3_opt4">No lo usaría</option>
             </select>
           </div>
 
           <div>
-            <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">¿Qué pagarías por acceso mensual?</label>
+            <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;" data-i18n="farias_q4_label">¿Qué pagarías por acceso mensual?</label>
             <select name="Dropdown2" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
-              <option value="-Select-" selected>Seleccioná</option>
-              <option value="Hasta USD 10/mes">Hasta USD 10/mes</option>
-              <option value="Hasta USD 30/mes">Hasta USD 30/mes</option>
-              <option value="Hasta USD 50/mes si funciona muy bien">Hasta USD 50/mes si funciona muy bien</option>
+              <option value="-Select-" selected data-i18n="farias_select_default">Seleccioná</option>
+              <option value="Hasta USD 10/mes" data-i18n="farias_q4_opt1">Hasta USD 10/mes</option>
+              <option value="Hasta USD 30/mes" data-i18n="farias_q4_opt2">Hasta USD 30/mes</option>
+              <option value="Hasta USD 50/mes si funciona muy bien" data-i18n="farias_q4_opt3">Hasta USD 50/mes si funciona muy bien</option>
             </select>
           </div>
 
           <div>
-            <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">¿Cómo te llamás?</label>
+            <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;" data-i18n="farias_name_label">¿Cómo te llamás?</label>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;">
-              <input type="text" name="Name1_First" maxlength="255" placeholder="Nombre" required style="background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
-              <input type="text" name="Name1_Last" maxlength="255" placeholder="Apellido" style="background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
+              <input type="text" name="Name1_First" maxlength="255" placeholder="Nombre" data-i18n="farias_fname_ph" required style="background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
+              <input type="text" name="Name1_Last" maxlength="255" placeholder="Apellido" data-i18n="farias_lname_ph" style="background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
             </div>
           </div>
 
           <div>
-            <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">¿Dónde te avisamos?</label>
-            <input type="text" name="Email" maxlength="255" placeholder="tu@mail.com" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;box-sizing:border-box;">
+            <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;" data-i18n="farias_email_label">¿Dónde te avisamos?</label>
+            <input type="text" name="Email" maxlength="255" placeholder="tu@mail.com" data-i18n="farias_email_ph" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;box-sizing:border-box;">
           </div>
 
           <div>
-            <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">¿Algo más que quieras contarnos? (opcional)</label>
-            <textarea name="MultiLine" maxlength="65535" rows="3" placeholder="Sugerencias, casos de uso, dudas..." style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;resize:none;box-sizing:border-box;"></textarea>
+            <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;" data-i18n="farias_extra_label">¿Algo más que quieras contarnos? (opcional)</label>
+            <textarea name="MultiLine" maxlength="65535" rows="3" placeholder="Sugerencias, casos de uso, dudas..." data-i18n="farias_extra_ph" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;resize:none;box-sizing:border-box;"></textarea>
           </div>
 
-          <button type="submit" style="background:#3A8A5A;color:#fff;padding:0.9rem;border-radius:8px;font-size:0.95rem;font-weight:700;border:none;cursor:pointer;transition:opacity 0.2s;margin-top:0.5rem;">Enviar respuesta →</button>
+          <button type="submit" style="background:#3A8A5A;color:#fff;padding:0.9rem;border-radius:8px;font-size:0.95rem;font-weight:700;border:none;cursor:pointer;transition:opacity 0.2s;margin-top:0.5rem;" data-i18n="farias_submit">Enviar respuesta →</button>
         </form>
       </div>
     </div>
@@ -1955,9 +1983,9 @@
     <div id="contacto-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:99999;align-items:flex-start;justify-content:center;padding:1rem;overflow-y:auto;" onclick="if(event.target===this)cerrarContacto()">
       <div style="background:#1C2433;border:1px solid rgba(79,114,227,0.2);border-radius:16px;max-width:560px;width:100%;padding:3rem;position:relative;margin:auto;">
         <button onclick="cerrarContacto()" style="position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;color:var(--text-dim);font-size:1.4rem;cursor:pointer;line-height:1;">×</button>
-        <div style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent-bright);font-weight:600;margin-bottom:0.5rem;">hermesCE · Contacto</div>
-        <h3 style="font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:0.5rem;">Contanos en qué andás</h3>
-        <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:2rem;line-height:1.6;">Contanos tu operación en 2 minutos y nos contactamos a la brevedad.</p>
+        <div style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent-bright);font-weight:600;margin-bottom:0.5rem;" data-i18n="form_title">hermesCE · Contacto</div>
+        <h3 style="font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:0.5rem;" data-i18n="contact_form_h3">Contanos en qué andás</h3>
+        <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:2rem;line-height:1.6;" data-i18n="contact_form_sub">Contanos tu operación en 2 minutos y nos contactamos a la brevedad.</p>
 
         <form id="contact-form" action="https://forms.zohopublic.com/hermesce1/form/Contactwithfeedback/formperma/jJ41GXBoVJLPTuFTkMagWLdTvp6FrEzD33wxrF7Bg_Q/htmlRecords/submit" name="form" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" target="_blank" style="display:flex;flex-direction:column;gap:1.2rem;">
           <input type="hidden" name="zf_referrer_name" value="">
@@ -1965,43 +1993,43 @@
           <input type="hidden" name="zc_gad" value="">
 
           <div>
-            <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">Contanos de vos</label>
+            <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;" data-i18n="contact_form_about_label">Contanos de vos</label>
 <div style="display:grid;grid-template-columns:1fr;gap:0.8rem;">
-              <input type="text" name="Name_First" maxlength="255" placeholder="Nombre y apellido" required style="background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
+              <input type="text" name="Name_First" maxlength="255" placeholder="Nombre y apellido" data-i18n="form_name" required style="background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
               <input type="hidden" name="Name_Last" value="-">
-              <input type="text" name="SingleLine" maxlength="255" placeholder="Empresa (opcional)" style="background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
+              <input type="text" name="SingleLine" maxlength="255" placeholder="Empresa (opcional)" data-i18n="form_company" style="background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
             </div>
           </div>
 
           <div>
-            <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">¿Dónde te contactamos?</label>
+            <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;" data-i18n="form_contact_label">¿Dónde te contactamos?</label>
 <div style="display:grid;grid-template-columns:1fr;gap:0.8rem;">
-              <input type="email" name="Email" maxlength="255" placeholder="Mail" required style="background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
-              <input type="text" name="PhoneNumber_countrycode" maxlength="20" placeholder="Celular" style="background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
+              <input type="email" name="Email" maxlength="255" placeholder="Mail" data-i18n="form_email" required style="background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
+              <input type="text" name="PhoneNumber_countrycode" maxlength="20" placeholder="Celular" data-i18n="form_phone" style="background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;width:100%;box-sizing:border-box;">
             </div>
           </div>
 
           <div>
-            <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">¿Qué servicio buscás?</label>
+            <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;" data-i18n="form_service_label">¿Qué servicio buscás?</label>
             <select name="Dropdown" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
-              <option value="" disabled selected>Seleccioná una opción</option>
-              <option value="Despacho de Aduana">01 · Despacho de Aduana</option>
-              <option value="Clasificación Arancelaria">02 · Clasificación Arancelaria</option>
-              <option value="Coordinación de Embarques">03 · Coordinación de Embarques</option>
-              <option value="Intervención de Organismos">04 · Intervención de Organismos</option>
-              <option value="Almacenamiento">05 · Almacenamiento</option>
-              <option value="DDP Puerta a Puerta">06 · DDP — Puerta a Puerta</option>
-              <option value="Trade Llave en Mano">07 · Trade — Llave en Mano</option>
-              <option value="No sé aún">No sé todavía, necesito orientación</option>
+              <option value="" disabled selected data-i18n="form_service_default">Seleccioná una opción</option>
+              <option value="Despacho de Aduana" data-i18n="form_svc1">01 · Despacho de Aduana</option>
+              <option value="Clasificación Arancelaria" data-i18n="form_svc2">02 · Clasificación Arancelaria</option>
+              <option value="Coordinación de Embarques" data-i18n="form_svc3">03 · Coordinación de Embarques</option>
+              <option value="Intervención de Organismos" data-i18n="form_svc4">04 · Intervención de Organismos</option>
+              <option value="Almacenamiento" data-i18n="form_svc5">05 · Almacenamiento</option>
+              <option value="DDP Puerta a Puerta" data-i18n="form_svc6">06 · DDP — Puerta a Puerta</option>
+              <option value="Trade Llave en Mano" data-i18n="form_svc7">07 · Trade — Llave en Mano</option>
+              <option value="No sé aún" data-i18n="form_svc8">No sé todavía, necesito orientación</option>
             </select>
           </div>
 
           <div>
-            <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;">¿En qué andás?</label>
-            <textarea name="MultiLine" maxlength="65535" rows="4" placeholder="Contanos cómo podemos ayudarte — qué importás, de dónde, con qué frecuencia, o en qué etapa estás." style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;resize:vertical;box-sizing:border-box;font-family:'Inter',sans-serif;line-height:1.5;"></textarea>
+            <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;" data-i18n="form_detail_label">¿En qué andás?</label>
+            <textarea name="MultiLine" maxlength="65535" rows="4" placeholder="Contanos cómo podemos ayudarte — qué importás, de dónde, con qué frecuencia, o en qué etapa estás." data-i18n="form_detail_placeholder" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;resize:vertical;box-sizing:border-box;font-family:'Inter',sans-serif;line-height:1.5;"></textarea>
           </div>
 
-          <button type="submit" style="background:var(--accent);color:#fff;padding:0.9rem;border-radius:8px;font-size:0.95rem;font-weight:700;border:none;cursor:pointer;transition:opacity 0.2s;margin-top:0.5rem;width:100%;font-family:'Inter',sans-serif;">Enviar consulta →</button>
+          <button type="submit" style="background:var(--accent);color:#fff;padding:0.9rem;border-radius:8px;font-size:0.95rem;font-weight:700;border:none;cursor:pointer;transition:opacity 0.2s;margin-top:0.5rem;width:100%;font-family:'Inter',sans-serif;" data-i18n="contact_form_submit">Enviar consulta →</button>
         </form>
       </div>
     </div>
