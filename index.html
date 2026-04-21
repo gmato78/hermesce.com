@@ -1796,7 +1796,12 @@
     });
     var i18nData = null;
     var i18nOriginals = {};
-    fetch('translations.json?v=' + Date.now(), {cache: 'no-store'}).then(r => r.json()).then(d => { i18nData = d; }).catch(() => {});
+    fetch('translations.json?v=' + Date.now(), {cache: 'no-store'}).then(r => r.json()).then(d => {
+      i18nData = d;
+      var htmlLang = document.documentElement.lang;
+      var defaultLang = htmlLang === 'zh' ? 'zh-CN' : (htmlLang || 'es');
+      applyLang(defaultLang);
+    }).catch(() => {});
     function applyLang(lang) {
       if (!i18nData) return;
       var t = i18nData[lang];
