@@ -1016,6 +1016,7 @@
       .hero-kb-logo { width: 160px; max-width: 45vw; top: -1rem; left: 50%; transform: translateX(-50%); }
     }
   </style>
+<script defer data-domain="hermesce.com" src="https://plausible.io/js/script.tagged-events.outbound-links.js"></script>
 </head>
 <body>
 
@@ -1917,6 +1918,10 @@
           <input type="hidden" name="zf_referrer_name" value="">
           <input type="hidden" name="zf_redirect_url" value="">
           <input type="hidden" name="zc_gad" value="">
+          <input type="hidden" name="utm_source" id="utm_source_farias" value="">
+          <input type="hidden" name="utm_medium" id="utm_medium_farias" value="">
+          <input type="hidden" name="utm_campaign" id="utm_campaign_farias" value="">
+          <input type="hidden" name="utm_content" id="utm_content_farias" value="">
 
           <div>
             <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;" data-i18n="farias_q1_label">¿Qué rol tenés en comercio exterior?</label>
@@ -1996,6 +2001,10 @@
           <input type="hidden" name="zf_referrer_name" value="">
           <input type="hidden" name="zf_redirect_url" value="">
           <input type="hidden" name="zc_gad" value="">
+          <input type="hidden" name="utm_source" id="utm_source_contact" value="">
+          <input type="hidden" name="utm_medium" id="utm_medium_contact" value="">
+          <input type="hidden" name="utm_campaign" id="utm_campaign_contact" value="">
+          <input type="hidden" name="utm_content" id="utm_content_contact" value="">
 
           <div>
             <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;" data-i18n="contact_form_about_label">Contanos de vos</label>
@@ -2039,5 +2048,23 @@
       </div>
     </div>
 
+<script>
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var keys = ['utm_source','utm_medium','utm_campaign','utm_content'];
+    keys.forEach(function(k){
+      var v = params.get(k);
+      if (!v) return;
+      sessionStorage.setItem(k, v);
+    });
+    keys.forEach(function(k){
+      var v = sessionStorage.getItem(k) || '';
+      var farias = document.getElementById(k + '_farias');
+      var contact = document.getElementById(k + '_contact');
+      if (farias) farias.value = v;
+      if (contact) contact.value = v;
+    });
+  })();
+</script>
 </body>
 </html>
