@@ -1108,7 +1108,7 @@
 
     /* Servicios claro */
     #servicios .section-title { color: #0f2544; }
-    #servicios .section-title span { color: #2E5EA8; }
+    #servicios .section-title span { color: #2E5EA8 !important; }
     #servicios .section-desc { color: rgba(15,37,68,.74); }
     #servicios .section-desc strong { color: #0f2544; }
     #servicios .section-label { color: #2A5686 !important; }
@@ -1124,7 +1124,9 @@
     #servicios .service-card p::after {
       background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #ffffff 100%);
     }
-    #servicios .service-card:hover h3 { color: #0f2544; }
+    @media (hover: hover) {
+      #servicios .service-card:hover h3 { color: #0f2544; }
+    }
 
     /* Valores — fluye sobre el lienzo */
     .valores-section.on-canvas { background: transparent; padding: 1.4rem 2rem; }
