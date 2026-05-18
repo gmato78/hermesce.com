@@ -1098,6 +1098,30 @@
     }
     .ia-body-last { margin-bottom: 0; }
     .ia-body strong[style*="--white"] { color: #0f2544 !important; }
+
+    /* ═══ DEPTH · secciones sobre el lienzo ═══ */
+    .on-canvas { overflow: visible; }
+    .on-canvas > .container { max-width: 100%; margin: 0; }
+
+    /* Servicios — fluye sobre el lienzo */
+    #servicios.on-canvas { background: transparent; padding: 1.4rem 2rem; }
+    #servicios .service-card {
+      background: rgba(255,255,255,.05);
+      border-color: rgba(255,255,255,.10);
+    }
+    #servicios .service-card p::after {
+      background: linear-gradient(to bottom, rgba(16,40,69,0) 0%, #1b3350 100%);
+    }
+
+    /* Valores — fluye sobre el lienzo */
+    .valores-section.on-canvas { background: transparent; padding: 1.4rem 2rem; }
+
+    /* Matías — fluye sobre el lienzo */
+    .matias-split.on-canvas { background: transparent; }
+    .on-canvas .matias-split-img { background: transparent; }
+    .matias-bio-wrap::after {
+      background: linear-gradient(to bottom, rgba(16,40,69,0) 0%, #102845 100%);
+    }
   </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y7QH1K6Y3F"></script>
@@ -1365,7 +1389,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 </section>
 
 <!-- SERVICES -->
-<section id="servicios">
+<section id="servicios" class="on-canvas">
   <div class="container">
     <p class="section-label reveal" data-i18n="services_label">Lo que hacemos</p>
     <h2 class="section-title reveal" data-i18n-html="services_h2">Una sola gestión.<br><span style="color:var(--accent-bright);">Sin perder el hilo.</span></h2>
@@ -1443,7 +1467,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 </section>
 
 <!-- VALORES -->
-<section id="valores" class="valores-section">
+<section id="valores" class="valores-section on-canvas">
   <div class="container">
     <p class="section-label reveal" data-i18n="valores_label">Lo que nos define</p>
     <h2 class="section-title reveal" data-i18n="valores_h2">7 valores</h2>
@@ -1543,7 +1567,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 </section>
 
 <!-- MATIAS — 50/50 layout foto a sangre -->
-<section class="matias-split">
+<section class="matias-split on-canvas">
   <!-- Izquierda: texto -->
   <div class="matias-split-text reveal">
     <div class="matias-mini-name" data-i18n-html="matias_de"><span style="color:var(--accent-bright);">de</span> Matías.</div>
