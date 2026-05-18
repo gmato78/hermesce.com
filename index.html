@@ -1114,18 +1114,18 @@
     #servicios .section-label { color: #2A5686 !important; }
 
     #servicios .service-card {
-      background: #ffffff;
-      border-color: rgba(15,37,68,.10);
-      box-shadow: 0 18px 34px -22px rgba(20,40,70,.4);
+      background: #102845;
+      border-color: rgba(255,255,255,.10);
+      box-shadow: 0 22px 40px -22px rgba(20,40,70,.55);
     }
-    #servicios .service-card p { color: rgba(15,37,68,.7); }
-    #servicios .service-card h3 { color: #2A5686; }
-    #servicios .service-card.expanded h3 { color: #0f2544; }
+    #servicios .service-card p { color: rgba(255,255,255,.72); }
+    #servicios .service-card h3 { color: #ffffff; }
+    #servicios .service-card.expanded h3 { color: #ffffff; }
     #servicios .service-card p::after {
-      background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #ffffff 100%);
+      background: linear-gradient(to bottom, rgba(16,40,69,0) 0%, #102845 100%);
     }
     @media (hover: hover) {
-      #servicios .service-card:hover h3 { color: #0f2544; }
+      #servicios .service-card:hover h3 { color: #ffffff; }
     }
 
     /* Valores — fluye sobre el lienzo */
@@ -1136,9 +1136,15 @@
     .valores-section .section-label { color: #2A5686 !important; }
     .valores-section .section-desc { color: rgba(15,37,68,.74); }
     .valores-section .section-desc strong { color: #0f2544; }
-    .valores-section .valor-card { border-left-color: #2A5686; }
-    .valores-section .valor-name { color: #0f2544; }
-    .valores-section .valor-def { color: rgba(15,37,68,.62); opacity: 1; }
+    .valores-section .valor-card {
+      background: #102845;
+      border-left: none;
+      border-radius: 12px;
+      padding: 1.2rem 1.3rem;
+      box-shadow: 0 18px 34px -22px rgba(20,40,70,.5);
+    }
+    .valores-section .valor-name { color: #ffffff; }
+    .valores-section .valor-def { color: rgba(255,255,255,.6); opacity: 1; }
 
     /* Matías — fluye sobre el lienzo */
     .matias-split.on-canvas { background: transparent; }
