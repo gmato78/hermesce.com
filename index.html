@@ -1048,6 +1048,56 @@
       .panel, .panel-cta { border-radius: 18px; margin: 2.4rem 0.7rem 0; }
       .on-canvas { margin: 2.8rem 0 0; }
     }
+
+    /* ═══ DEPTH · neutralizar transiciones de sección ═══ */
+    #servicios::before, #servicios::after,
+    .valores-section::before, .valores-section::after,
+    #nosotros::after, .matias-split::before, .matias-split::after,
+    #ia::after { display: none !important; }
+
+    /* ═══ DEPTH · contenido de panel claro ═══ */
+    .panel { padding: 3.6rem 3.2rem; overflow: visible; }
+    .panel > .container { max-width: 100%; margin: 0; }
+    .panel .section-label { color: #2A5686 !important; }
+    .panel .section-title { color: #0f2544; }
+    .panel .section-desc { color: rgba(15,37,68,.74); }
+    .panel .section-desc strong { color: #0f2544; }
+
+    /* Problema — panel claro */
+    #problema.panel { background: #ffffff; }
+    .problem-block .problem-quote { color: #0f2544; }
+    .problem-block .problem-sub { color: rgba(15,37,68,.66); }
+    .problem-block .problem-sub-line { color: #0f2544; }
+    .prob-btn { border-color: rgba(15,37,68,.22); color: rgba(15,37,68,.55); }
+    .prob-btn:hover { border-color: #2A5686; color: #2A5686; }
+    .prob-dot { background: rgba(15,37,68,.2); }
+
+    /* ECP — panel claro */
+    #como.panel { background: #ffffff; }
+
+    /* Historia — panel claro */
+    #nosotros.panel { background: #ffffff !important; padding-bottom: 3.6rem; }
+    #nosotros .historia-item { border-left-color: rgba(15,37,68,.16); }
+    #nosotros .historia-item h3 { color: #0f2544; }
+    #nosotros .historia-item p { color: rgba(15,37,68,.7); }
+    #nosotros .historia-item p::after {
+      background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #ffffff 100%);
+    }
+
+    /* IA — panel claro */
+    #ia.panel { background: #ffffff; }
+    .ia-label { color: #2A5686 !important; }
+    .ia-h2 {
+      font-weight: 800; font-size: clamp(1.8rem,4vw,3.2rem);
+      color: #0f2544; line-height: 1.05; margin-bottom: 0.3rem;
+    }
+    .ia-h2-last { margin-bottom: 1rem; }
+    .ia-body {
+      font-size: 0.92rem; color: rgba(15,37,68,.72);
+      line-height: 1.75; margin-bottom: 1.2rem;
+    }
+    .ia-body-last { margin-bottom: 0; }
+    .ia-body strong[style*="--white"] { color: #0f2544 !important; }
   </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y7QH1K6Y3F"></script>
@@ -1228,7 +1278,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 </section>
 
 <!-- PROBLEM -->
-<section id="problema" class="problem-block">
+<section id="problema" class="problem-block panel">
   <div class="problem-inner container">
     <div class="reveal">
       <p class="section-label" data-i18n="problem_label">El problema real</p>
@@ -1361,7 +1411,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 </section>
 
 <!-- ECP -->
-<section id="como" class="ecp-section">
+<section id="como" class="ecp-section panel">
   <div class="container">
     <p class="section-label reveal" data-i18n="ecp_label">Cómo operamos</p>
     <h2 class="section-title reveal">E · C · P</h2>
@@ -1439,7 +1489,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 </section>
 
 <!-- HISTORIA HCE -->
-<section id="nosotros">
+<section id="nosotros" class="panel">
   <div class="container">
     <p class="section-label reveal" data-i18n="historia_label">Quiénes somos</p>
     <h2 class="section-title reveal" data-i18n-html="historia_h2">La <span style="color:var(--accent-bright);">historia</span> de hCE</h2>
@@ -1525,30 +1575,29 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 </section>
 
 <!-- IA -->
-<section id="ia" style="background:#0B0F1A;padding:3rem 2rem 6.5rem;position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 55% 65% at 85% 50%, rgba(42,86,134,0.14) 0%, transparent 70%);pointer-events:none;"></div>
+<section id="ia" class="panel">
   <div class="container">
     <div class="ia-grid">
       <div class="ia-left reveal">
-        <p class="section-label" style="color:var(--accent);" data-i18n="ia_label">Tecnología propia</p>
-        <h2 style="font-weight:800;font-size:clamp(1.8rem,4vw,3.5rem);color:var(--white);line-height:1.05;margin-bottom:0.3rem;" data-i18n="ia_h2_1">Entre aduanas y</h2>
-        <h2 style="font-weight:800;font-size:clamp(1.8rem,4vw,3.5rem);color:var(--white);line-height:1.05;margin-bottom:1rem;" data-i18n-html="ia_h2_html"><span style="color:var(--accent-bright);">algoritmos.</span></h2>
+        <p class="section-label ia-label" data-i18n="ia_label">Tecnología propia</p>
+        <h2 class="ia-h2" data-i18n="ia_h2_1">Entre aduanas y</h2>
+        <h2 class="ia-h2 ia-h2-last" data-i18n-html="ia_h2_html"><span style="color:var(--accent-bright);">algoritmos.</span></h2>
 
-        <p class="section-desc reveal" style="margin-bottom:2rem;max-width:780px;" data-i18n="ia_sub">Pioneros en la integración de IA en Comercio Exterior. Esto recién comienza.</p>
+        <p class="section-desc reveal ia-sub" data-i18n="ia_sub">Pioneros en la integración de IA en Comercio Exterior. Esto recién comienza.</p>
 
-        <p style="font-size:0.92rem;color:var(--text-dim);line-height:1.75;margin-bottom:1.2rem;">
+        <p class="ia-body">
           <span data-i18n-html="ia_intro">Hola, soy <strong style="color:var(--white);">far<span style="color:#3A8A5A;">IA</span>s</strong>, un agente de clasificación arancelaria potenciado por IA. Con una foto, un link o una descripción devuelvo un informe en segundos con posición <strong style="color:var(--white);">NCM</strong><strong style="color:#3A8A5A;">+SIM</strong>, tributos, restricciones y más. Para tomar decisiones en tiempo-real y transformar semanas de trabajo en minutos.</span>
         </p>
-        <p style="font-size:0.92rem;color:var(--text-dim);line-height:1.75;margin-bottom:1.2rem;" data-i18n="ia_scene1">
+        <p class="ia-body" data-i18n="ia_scene1">
           Un importador con un envío por cerrar y aún espacio disponible. Recibe el catálogo de China a las 11 de la noche: si no decide ahora, mañana pierde la salida del buque.
         </p>
-        <p style="font-size:0.92rem;color:var(--text-dim);line-height:1.75;margin-bottom:1.2rem;" data-i18n="ia_scene2">
+        <p class="ia-body" data-i18n="ia_scene2">
           Un agente se reúne con un potencial cliente listo para cerrar la operación. Pero antes pregunta por costos e implicancias: si no responde en el momento, quizás pierda la oportunidad.
         </p>
-        <p style="font-size:0.92rem;color:var(--text-dim);line-height:1.75;margin-bottom:1.2rem;" data-i18n="ia_scene3">
+        <p class="ia-body" data-i18n="ia_scene3">
           Un estudio de comex enfrenta un embarque con 700 artículos nuevos de consumo masivo para clasificar. Lo que antes era un mes, ahora en veinte minutos.
         </p>
-        <p style="font-size:0.92rem;color:var(--text-dim);line-height:1.75;" data-i18n="ia_closing">
+        <p class="ia-body ia-body-last" data-i18n="ia_closing">
           Una herramienta innovadora, potente y única en el mercado, disponible las 24 horas los 365 días, desde el celular o la web.
         </p>
       </div>
