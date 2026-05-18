@@ -1130,15 +1130,21 @@
     .svc-card p { font-size: .9rem; line-height: 1.65; color: rgba(255,255,255,.78); }
     @media (max-width: 768px) { .svc-grid { grid-template-columns: 1fr; } }
 
-    /* Valores — fluye sobre el lienzo */
-    .valores-section.on-canvas { background: transparent; padding: 1.4rem 2rem; }
+    /* Valores — panel blanco */
+    #valores.panel { background: #ffffff; }
 
     /* Valores claro */
     .valores-section .section-title { color: #0f2544; }
     .valores-section .section-label { color: #2A5686 !important; }
     .valores-section .section-desc { color: rgba(15,37,68,.74); }
     .valores-section .section-desc strong { color: #0f2544; }
-    .valores-section .valor-card { border-left-color: #2A5686; }
+    .valores-section .valores-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .valores-section .valor-card {
+      background: #ffffff; border: 1px solid rgba(42,86,134,.20);
+      border-left: 3px solid #2A5686; border-radius: 12px; padding: 1.1rem 1.2rem;
+      box-shadow: 0 14px 28px -22px rgba(20,40,70,.4);
+    }
+    .valores-section .valor-num { display: block; font-size: .7rem; font-weight: 700; color: #2A5686; letter-spacing: .1em; margin-bottom: .4rem; }
     .valores-section .valor-name { color: #0f2544; }
     .valores-section .valor-def { color: rgba(15,37,68,.62); opacity: 1; }
 
@@ -1563,7 +1569,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 </section>
 
 <!-- VALORES -->
-<section id="valores" class="valores-section on-canvas">
+<section id="valores" class="valores-section panel">
   <div class="container">
     <p class="section-label reveal" data-i18n="valores_label">Lo que nos define</p>
     <h2 class="section-title reveal" data-i18n="valores_h2">7 valores</h2>
