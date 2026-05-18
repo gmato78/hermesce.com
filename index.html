@@ -1178,9 +1178,11 @@
       border-radius: inherit;
       background: #9db2d2;
       transform: translate(12px, 12px);
+      pointer-events: none;
     }
     /* ia-card tiene overflow:hidden — liberarlo para que la capa sea visible */
     .ia-card.has-layer { overflow: visible; }
+    .ia-card.has-layer::before { display: none; }
 
     /* ═══ DEPTH · overlap card↔panel + responsive ═══ */
     /* La card del carrusel del Problema cruza el borde del panel hacia el lienzo */
