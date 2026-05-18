@@ -1217,6 +1217,7 @@
     .ecp-card { background: #102845 !important; position: relative; z-index: 0; overflow: visible; }
     .ecp-card::before { display: none !important; }
     .ecp-card .ecp-letter { color: rgba(255,255,255,.16); }
+    .ecp-card:hover .ecp-letter { color: rgba(255,255,255,.22); }
     .ecp-card h3 { color: #ffffff; }
     .ecp-card p { color: rgba(255,255,255,.7); }
     .ecp-card p::after {
@@ -1230,6 +1231,7 @@
       z-index: -1;
       border-radius: inherit;
       transform: translate(12px, 12px);
+      pointer-events: none;
     }
     .ecp-card:hover::after { background: #9db2d2 !important; }
 
