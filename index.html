@@ -1116,11 +1116,11 @@
     .svc-carousel { position: relative; margin-top: 2.4rem; }
     .svc-slides { position: relative; border-radius: 16px; overflow: visible; }
     .svc-slide { display: none; }
-    .svc-slide.active { display: block; background: #102845; border-radius: 16px; border-top: 1px solid rgba(255,255,255,.10); }
+    .svc-slide.active { display: block; background: #ffffff; border-radius: 16px; border: 1px solid rgba(42,86,134,.22); }
     .svc-slide-content { padding: 3.2rem 3rem 3rem; }
-    .svc-num { font-size: .72rem; font-weight: 700; letter-spacing: .15em; color: #5f86bf; margin-bottom: 1rem; }
-    .svc-slide-content h3 { font-family: 'Inter', sans-serif; font-size: clamp(1.7rem, 2.4vw, 2.1rem); font-weight: 800; color: #ffffff; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1.1rem; }
-    .svc-slide-content p { font-size: 1.06rem; line-height: 1.95; color: rgba(255,255,255,.82); max-width: 560px; }
+    .svc-num { font-size: .72rem; font-weight: 700; letter-spacing: .15em; color: #2A5686; margin-bottom: 1rem; }
+    .svc-slide-content h3 { font-family: 'Inter', sans-serif; font-size: clamp(1.7rem, 2.4vw, 2.1rem); font-weight: 800; color: #0f2544; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1.1rem; }
+    .svc-slide-content p { font-size: 1.06rem; line-height: 1.95; color: rgba(15,37,68,.74); max-width: 560px; }
     .svc-controls { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.2rem; }
     .svc-btn { background: none; border: 1px solid rgba(15,37,68,.22); color: rgba(15,37,68,.55); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: border-color .2s, color .2s; }
     .svc-btn:hover { border-color: #2A5686; color: #2A5686; }
@@ -1178,18 +1178,10 @@
     /* ═══ DEPTH · Carrusel Problema — sin foto, editorial, capa ═══ */
     .problem-slide-img { display: none; }
     .problem-slides { overflow: visible; }
-    .problem-slide.active {
-      background: #102845;
-      border-color: rgba(255,255,255,.10);
-    }
+    .problem-slide.active { background: #ffffff; border: 1px solid rgba(42,86,134,.22); }
     .problem-slide-content { padding: 3.2rem 3rem 3rem; }
-    .problem-slide-content h3 { font-size: clamp(1.7rem, 2.4vw, 2.1rem); }
-    .problem-slide-content p {
-      font-size: 1.06rem;
-      line-height: 1.95;
-      color: rgba(255,255,255,.82);
-      max-width: 560px;
-    }
+    .problem-slide-content h3 { font-size: clamp(1.7rem, 2.4vw, 2.1rem); color: #0f2544; }
+    .problem-slide-content p { font-size: 1.06rem; line-height: 1.95; color: rgba(15,37,68,.74); max-width: 560px; }
 
     /* ═══ DEPTH · overlap card↔panel + responsive ═══ */
     /* La card del carrusel del Problema cruza el borde del panel hacia el lienzo */
@@ -1203,16 +1195,15 @@
       #problema .problem-carousel { margin-right: 0; }
     }
 
-    /* ═══ DEPTH · ECP — azul oscuro sin foto, con capa ═══ */
-    /* ECP — cajas azul oscuro sin foto */
-    .ecp-card { background: #102845 !important; position: relative; z-index: 0; overflow: visible; }
+    /* ═══ DEPTH · ECP — blanco con hairline Zafiro ═══ */
+    .ecp-card { background: #ffffff !important; position: relative; z-index: 0; overflow: visible; border: 1px solid rgba(42,86,134,.22); }
     .ecp-card::before { display: none !important; }
-    .ecp-card .ecp-letter { color: rgba(255,255,255,.16); }
-    .ecp-card:hover .ecp-letter { color: rgba(255,255,255,.22); }
-    .ecp-card h3 { color: #ffffff; }
-    .ecp-card p { color: rgba(255,255,255,.7); }
+    .ecp-card .ecp-letter { color: rgba(42,86,134,.18); }
+    .ecp-card:hover .ecp-letter { color: rgba(42,86,134,.30); }
+    .ecp-card h3 { color: #0f2544; }
+    .ecp-card p { color: rgba(15,37,68,.7); }
     .ecp-card p::after {
-      background: linear-gradient(to bottom, rgba(16,40,69,0) 0%, #102845 100%);
+      background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #ffffff 100%);
     }
 
     .ecp-card::after { display: none; }
