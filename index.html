@@ -1156,12 +1156,20 @@
     /* ═══ DEPTH · CTA Zafiro + footer sobre el lienzo ═══ */
     #contacto.panel-cta { padding: 3.6rem 2rem; }
     footer {
-      background: #102845;
+      background: transparent;
       max-width: var(--shell);
-      margin: 4rem auto 0;
-      border-radius: 30px 30px 0 0;
-      border-top-color: rgba(255,255,255,.08);
+      margin: 2rem auto 0;
+      border-top: 1px solid rgba(15,37,68,.12);
     }
+    footer .footer-tagline { color: rgba(15,37,68,.6); }
+    footer .footer-address-small { color: rgba(15,37,68,.6); }
+    footer .footer-email-link { color: #0f2544; }
+    footer .footer-map-link { color: #2A5686; }
+    /* El logo del pie es PNG blanco — se oscurece para el lienzo claro */
+    footer .footer-logo-img { filter: brightness(0); }
+    /* El mapa tenia filtro del tema oscuro — se neutraliza */
+    footer .footer-map-embed iframe { filter: none; }
+    footer .footer-map-embed { border-color: rgba(15,37,68,.15); }
 
     /* ═══ DEPTH · sombra-capa desplazada en cajas de ejemplo ═══ */
     .has-layer { box-shadow: 20px 24px 44px -16px rgba(16,40,69,.5); }
