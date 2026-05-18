@@ -1104,6 +1104,7 @@
     .on-canvas > .container { max-width: 100%; margin: 0; }
 
     /* Servicios claro */
+    #servicios.panel { background: #ffffff; }
     #servicios .section-title { color: #0f2544; }
     #servicios .section-title span { color: #2A5686 !important; }
     #servicios .section-desc { color: rgba(15,37,68,.74); }
@@ -1112,7 +1113,7 @@
 
     /* ═══ DEPTH · Servicios — carrusel ═══ */
     .svc-carousel { position: relative; margin-top: 2.4rem; }
-    .svc-slides { position: relative; border-radius: 16px; }
+    .svc-slides { position: relative; border-radius: 16px; overflow: visible; }
     .svc-slide { display: none; }
     .svc-slide.active { display: block; background: #102845; border-radius: 16px; border-top: 1px solid rgba(255,255,255,.10); }
     .svc-slide-content { padding: 3.2rem 3rem 3rem; }
@@ -2054,7 +2055,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   document.querySelectorAll('.hero-stat-num[data-target], .stat-num[data-target]').forEach(el => statObs.observe(el));
 
   // ── Peek & expand: historia, services, matias, ECP ──
-  document.querySelectorAll('.historia-item, .service-card, .matias-split-text, .ecp-card').forEach(item => {
+  document.querySelectorAll('.historia-item, .matias-split-text, .ecp-card').forEach(item => {
     item.addEventListener('click', () => {
       item.classList.toggle('expanded');
     });
