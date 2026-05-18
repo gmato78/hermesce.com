@@ -1211,6 +1211,39 @@
       /* Sin overlaps en mobile — apilado normal */
       #problema .problem-carousel { margin-right: 0; }
     }
+
+    /* ═══ DEPTH · ECP — azul oscuro sin foto, con capa ═══ */
+    /* ECP — cajas azul oscuro sin foto */
+    .ecp-card { background: #102845 !important; position: relative; z-index: 0; overflow: visible; }
+    .ecp-card::before { display: none !important; }
+    .ecp-card .ecp-letter { color: rgba(255,255,255,.16); }
+    .ecp-card h3 { color: #ffffff; }
+    .ecp-card p { color: rgba(255,255,255,.7); }
+    .ecp-card p::after {
+      background: linear-gradient(to bottom, rgba(16,40,69,0) 0%, #102845 100%);
+    }
+
+    /* Reusar ::after como capa de profundidad */
+    .ecp-card::after {
+      background: #9db2d2 !important;
+      inset: 0 !important;
+      z-index: -1;
+      border-radius: inherit;
+      transform: translate(12px, 12px);
+    }
+    .ecp-card:hover::after { background: #9db2d2 !important; }
+
+    /* Override mobile media-query rules that conflict */
+    @media (max-width: 768px) {
+      .ecp-card { overflow: visible !important; }
+      .ecp-card::before { display: none !important; }
+      .ecp-card::after {
+        background: #9db2d2 !important;
+        transform: translate(12px, 12px) !important;
+        z-index: -1 !important;
+      }
+      .ecp-grid { overflow: visible !important; }
+    }
   </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y7QH1K6Y3F"></script>
