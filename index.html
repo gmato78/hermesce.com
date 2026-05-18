@@ -153,20 +153,20 @@
       display: flex; flex-direction: column; justify-content: center;
       overflow: hidden;
       background-size: cover; background-position: center 40%; background-repeat: no-repeat;
-      background-color: var(--bg);
+      background-color: #102845;
     }
     .hero::before {
       content: ''; position: absolute; inset: 0;
       background:
-        linear-gradient(rgba(11,15,26,0.30), rgba(11,15,26,0.30)),
-        linear-gradient(to right, rgba(11,15,26,0.45) 0%, rgba(11,15,26,0.08) 45%, rgba(11,15,26,0.0) 100%),
-        linear-gradient(to bottom, rgba(11,15,26,0.25) 0%, rgba(11,15,26,0.0) 30%, rgba(11,15,26,0.0) 55%, rgba(11,15,26,0.82) 88%, rgba(11,15,26,1.0) 100%);
+        linear-gradient(rgba(11,15,26,0.32), rgba(11,15,26,0.32)),
+        linear-gradient(to right, rgba(11,15,26,0.58) 0%, rgba(11,15,26,0.12) 48%, rgba(11,15,26,0.0) 100%),
+        linear-gradient(to bottom, rgba(16,40,69,0.25) 0%, rgba(16,40,69,0.0) 30%, rgba(16,40,69,0.0) 55%, rgba(16,40,69,0.82) 88%, #102845 100%);
       pointer-events: none; z-index: 0;
     }
     .hero::after {
       content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
       height: 140px; z-index: 1;
-      background: linear-gradient(to bottom, transparent 0%, #0B0F1A 100%);
+      background: linear-gradient(to bottom, transparent 0%, #102845 100%);
       pointer-events: none;
     }
     /* ─── Ken Burns ─── */
@@ -1157,55 +1157,58 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 <!-- STATS — grid debajo del hero -->
 <style>
   .stats-v2 {
-    padding: 3.2rem 2rem;
-    background:
-      radial-gradient(ellipse at 50% 50%, rgba(46,94,168,0.08) 0%, transparent 70%),
-      linear-gradient(180deg, #0B0F1A 0%, #121828 45%, #0B0F1A 100%);
-    border-top: none;
-    border-bottom: none;
+    padding: 0 2rem;
+    background: transparent;
+    position: relative;
+    z-index: 5;
+    overflow: visible;
   }
-  .stats-v2-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; }
+  .stats-v2-grid {
+    max-width: var(--shell);
+    margin: -92px auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
   .stats-v2-card {
     position: relative;
-    padding: 1.6rem 1.2rem;
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    background: linear-gradient(145deg, rgba(46,94,168,0.06) 0%, rgba(18,24,40,0.4) 100%);
+    padding: 1.9rem 1.6rem;
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.9);
+    border-radius: 20px;
+    background: #ffffff;
     text-align: center;
-    overflow: hidden;
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  .stats-v2-card::before {
-    content: "";
-    position: absolute; inset: 0;
-    background: radial-gradient(circle at 50% 0%, var(--accent-glow) 0%, transparent 60%);
-    opacity: 0.7;
-    pointer-events: none;
+    box-shadow: 0 34px 60px -22px rgba(0,0,0,0.75);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   .stats-v2-card:hover {
     transform: translateY(-4px);
-    border-color: var(--accent-bright);
-    box-shadow: 0 8px 24px rgba(46,94,168,0.18);
+    box-shadow: 0 40px 70px -22px rgba(0,0,0,0.8);
   }
   .stats-v2-num {
     position: relative;
-    font-size: 2.4rem;
+    font-size: 2.6rem;
     font-weight: 800;
     line-height: 1;
-    background: linear-gradient(135deg, var(--accent-bright) 0%, #6d9ddb 100%);
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #2A5686;
     margin-bottom: 0.5rem;
     letter-spacing: -0.02em;
   }
+  .stats-v2-num .stat-num { color: inherit; font-size: inherit; }
   .stats-v2-label {
     position: relative;
-    color: var(--text-dim);
-    font-size: 0.88rem;
+    color: rgba(15,37,68,0.74);
+    font-size: 0.82rem;
+    font-weight: 500;
     line-height: 1.4;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
-  @media (max-width: 600px) { .stats-v2-num { font-size: 2rem; } }
+  @media (max-width: 768px) {
+    .stats-v2 { padding: 0 0.9rem; }
+    .stats-v2-grid { grid-template-columns: 1fr; margin: -64px auto 0; gap: 14px; }
+    .stats-v2-num { font-size: 2rem; }
+  }
 </style>
 <section class="stats-v2">
   <div class="stats-v2-grid">
