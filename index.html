@@ -1118,17 +1118,23 @@
     #servicios .section-desc strong { color: #0f2544; }
     #servicios .section-label { color: #2A5686 !important; }
 
-    /* ═══ DEPTH · Servicios — grilla cards Zafiro ═══ */
-    .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 2.4rem; }
-    .svc-card {
-      background: #2A5686; border-radius: 16px; padding: 2rem 1.7rem;
-      box-shadow: 0 20px 38px -22px rgba(20,40,70,.5);
-      display: flex; flex-direction: column;
-    }
-    .svc-card-num { font-size: .72rem; font-weight: 700; letter-spacing: .15em; color: rgba(255,255,255,.55); margin-bottom: .9rem; }
-    .svc-card h3 { font-family: 'Inter', sans-serif; font-size: 1.15rem; font-weight: 700; color: #ffffff; line-height: 1.25; letter-spacing: -0.01em; margin-bottom: .7rem; }
-    .svc-card p { font-size: .9rem; line-height: 1.65; color: rgba(255,255,255,.78); }
-    @media (max-width: 768px) { .svc-grid { grid-template-columns: 1fr; } }
+    /* ═══ DEPTH · Servicios — carrusel de costado Zafiro ═══ */
+    .svc-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .svc-carousel { position: relative; }
+    .svc-slides { position: relative; border-radius: 16px; overflow: visible; }
+    .svc-slide { display: none; }
+    .svc-slide.active { display: block; background: #2A5686; border-radius: 16px; border: none; }
+    .svc-slide-content { padding: 3.2rem 3rem 3rem; }
+    .svc-num { font-size: .72rem; font-weight: 700; letter-spacing: .15em; color: rgba(255,255,255,.6); margin-bottom: 1rem; }
+    .svc-slide-content h3 { font-family: 'Inter', sans-serif; font-size: clamp(1.7rem, 2.4vw, 2.1rem); font-weight: 800; color: #ffffff; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1.1rem; }
+    .svc-slide-content p { font-size: 1.06rem; line-height: 1.95; color: rgba(255,255,255,.82); max-width: 560px; }
+    .svc-controls { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.2rem; }
+    .svc-btn { background: none; border: 1px solid rgba(15,37,68,.22); color: rgba(15,37,68,.55); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: border-color .2s, color .2s; }
+    .svc-btn:hover { border-color: #2A5686; color: #2A5686; }
+    .svc-dots { display: flex; gap: .5rem; align-items: center; }
+    .svc-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(15,37,68,.2); cursor: pointer; transition: background .2s, transform .2s; }
+    .svc-dot.active { background: #2A5686; transform: scale(1.4); }
+    @media (max-width: 768px) { .svc-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
 
     /* Valores — panel blanco */
     #valores.panel { background: #ffffff; }
@@ -1493,45 +1499,76 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 
 <!-- SERVICES -->
 <section id="servicios" class="panel">
-  <div class="container">
-    <p class="section-label reveal" data-i18n="services_label">Lo que hacemos</p>
-    <h2 class="section-title reveal" data-i18n-html="services_h2">Una sola gestión.<br><span style="color:var(--accent-bright);">Sin perder el hilo.</span></h2>
-    <p class="section-desc reveal" style="max-width:780px;" data-i18n="services_sub">Lo que se ve evita lo que no se ve.</p>
-    <div class="svc-grid reveal">
-      <div class="svc-card">
-        <div class="svc-card-num">01</div>
-        <h3 data-i18n="svc1_h3">Despacho de Aduana</h3>
-        <p data-i18n="svc1_p">La declaración detallada ante Aduana, a tu nombre. Exactitud en la declaración, agilidad en zona operativa — mercadería liberada sin demoras. +5.200 operaciones de respaldo.</p>
+  <div class="svc-inner container">
+    <div class="svc-heading reveal">
+      <p class="section-label" data-i18n="services_label">Lo que hacemos</p>
+      <h2 class="section-title" data-i18n-html="services_h2">Una sola gestión.<br><span style="color:var(--accent-bright);">Sin perder el hilo.</span></h2>
+      <p class="section-desc" style="max-width:420px;" data-i18n="services_sub">Lo que se ve evita lo que no se ve.</p>
+    </div>
+    <div class="svc-carousel reveal">
+      <div class="svc-slides has-layer">
+        <div class="svc-slide active">
+          <div class="svc-slide-content">
+            <div class="svc-num">01</div>
+            <h3 data-i18n="svc1_h3">Despacho de Aduana</h3>
+            <p data-i18n="svc1_p">La declaración detallada ante Aduana, a tu nombre. Exactitud en la declaración, agilidad en zona operativa — mercadería liberada sin demoras. +5.200 operaciones de respaldo.</p>
+          </div>
+        </div>
+        <div class="svc-slide">
+          <div class="svc-slide-content">
+            <div class="svc-num">02</div>
+            <h3 data-i18n="svc2_h3">Clasificación Arancelaria</h3>
+            <p data-i18n="svc2_p">La posición arancelaria define qué se paga y cómo se trata el producto en aduana — incluidas prohibiciones e intervenciones. Clasificación correcta desde el inicio: sin riesgos, sin infracciones posteriores. +50.000 artículos clasificados de respaldo.</p>
+          </div>
+        </div>
+        <div class="svc-slide">
+          <div class="svc-slide-content">
+            <div class="svc-num">03</div>
+            <h3 data-i18n="svc3_h3">Coordinación de Embarques</h3>
+            <p data-i18n="svc3_p">El movimiento de la carga — aéreo, marítimo o terrestre. Agente logístico neutral, sin ataduras a ninguna red: las mejores opciones disponibles según origen y destino en cada operación.</p>
+          </div>
+        </div>
+        <div class="svc-slide">
+          <div class="svc-slide-content">
+            <div class="svc-num">04</div>
+            <h3 data-i18n="svc4_h3">Intervención de Organismos</h3>
+            <p data-i18n="svc4_p">Algunos productos requieren aprobaciones previas — ANMAT, Seguridad Eléctrica, Etiquetado y otras restricciones no arancelarias. Gestión directa o coordinada con especialistas, siempre con anticipación. Nada queda descubierto.</p>
+          </div>
+        </div>
+        <div class="svc-slide">
+          <div class="svc-slide-content">
+            <div class="svc-num">05</div>
+            <h3 data-i18n="svc5_h3">Almacenamiento</h3>
+            <p data-i18n="svc5_p">Almacenes aliados en puntos estratégicos para operaciones especiales: identificación, reenvasado, desconsolidación, fraccionamiento, entregas parciales, almacenaje a largo plazo. Adaptado a cada demanda.</p>
+          </div>
+        </div>
+        <div class="svc-slide">
+          <div class="svc-slide-content">
+            <div class="svc-num">06</div>
+            <h3 data-i18n="svc6_h3">DDP — Puerta a Puerta</h3>
+            <p data-i18n="svc6_p">Para envíos pequeños o eventuales. Compra afuera, entrega en puerta. Sin procesos estandarizados, sin límites de precio ni cantidades — cada envío tratado por quien lo entiende.</p>
+          </div>
+        </div>
+        <div class="svc-slide">
+          <div class="svc-slide-content">
+            <div class="svc-num">07</div>
+            <h3 data-i18n="svc7_h3">Trade — Llave en Mano</h3>
+            <p data-i18n="svc7_p">El proyecto completo, armado en conjunto. Búsqueda, negociación, compra, consolidación, despacho y pagos — bajo figura propia de importador o exportador. Una sola firma cubre toda la operación.</p>
+          </div>
+        </div>
       </div>
-      <div class="svc-card">
-        <div class="svc-card-num">02</div>
-        <h3 data-i18n="svc2_h3">Clasificación Arancelaria</h3>
-        <p data-i18n="svc2_p">La posición arancelaria define qué se paga y cómo se trata el producto en aduana — incluidas prohibiciones e intervenciones. Clasificación correcta desde el inicio: sin riesgos, sin infracciones posteriores. +50.000 artículos clasificados de respaldo.</p>
-      </div>
-      <div class="svc-card">
-        <div class="svc-card-num">03</div>
-        <h3 data-i18n="svc3_h3">Coordinación de Embarques</h3>
-        <p data-i18n="svc3_p">El movimiento de la carga — aéreo, marítimo o terrestre. Agente logístico neutral, sin ataduras a ninguna red: las mejores opciones disponibles según origen y destino en cada operación.</p>
-      </div>
-      <div class="svc-card">
-        <div class="svc-card-num">04</div>
-        <h3 data-i18n="svc4_h3">Intervención de Organismos</h3>
-        <p data-i18n="svc4_p">Algunos productos requieren aprobaciones previas — ANMAT, Seguridad Eléctrica, Etiquetado y otras restricciones no arancelarias. Gestión directa o coordinada con especialistas, siempre con anticipación. Nada queda descubierto.</p>
-      </div>
-      <div class="svc-card">
-        <div class="svc-card-num">05</div>
-        <h3 data-i18n="svc5_h3">Almacenamiento</h3>
-        <p data-i18n="svc5_p">Almacenes aliados en puntos estratégicos para operaciones especiales: identificación, reenvasado, desconsolidación, fraccionamiento, entregas parciales, almacenaje a largo plazo. Adaptado a cada demanda.</p>
-      </div>
-      <div class="svc-card">
-        <div class="svc-card-num">06</div>
-        <h3 data-i18n="svc6_h3">DDP — Puerta a Puerta</h3>
-        <p data-i18n="svc6_p">Para envíos pequeños o eventuales. Compra afuera, entrega en puerta. Sin procesos estandarizados, sin límites de precio ni cantidades — cada envío tratado por quien lo entiende.</p>
-      </div>
-      <div class="svc-card">
-        <div class="svc-card-num">07</div>
-        <h3 data-i18n="svc7_h3">Trade — Llave en Mano</h3>
-        <p data-i18n="svc7_p">El proyecto completo, armado en conjunto. Búsqueda, negociación, compra, consolidación, despacho y pagos — bajo figura propia de importador o exportador. Una sola firma cubre toda la operación.</p>
+      <div class="svc-controls">
+        <button class="svc-btn svc-prev" aria-label="Anterior">&larr;</button>
+        <div class="svc-dots">
+          <span class="svc-dot active"></span>
+          <span class="svc-dot"></span>
+          <span class="svc-dot"></span>
+          <span class="svc-dot"></span>
+          <span class="svc-dot"></span>
+          <span class="svc-dot"></span>
+          <span class="svc-dot"></span>
+        </div>
+        <button class="svc-btn svc-next" aria-label="Siguiente">&rarr;</button>
       </div>
     </div>
   </div>
@@ -1988,6 +2025,23 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   document.querySelector('.prob-prev')?.addEventListener('click', () => goToProb(probIdx - 1));
   probDots.forEach((dot, i) => dot.addEventListener('click', () => goToProb(i)));
   setInterval(() => goToProb(probIdx + 1), 5000);
+
+  // ── Carrusel Servicios ──
+  const svcSlides = document.querySelectorAll('.svc-slide');
+  const svcDots = document.querySelectorAll('.svc-dot');
+  let svcIdx = 0;
+  function goToSvc(n) {
+    if (!svcSlides.length) return;
+    svcSlides[svcIdx].classList.remove('active');
+    svcDots[svcIdx].classList.remove('active');
+    svcIdx = (n + svcSlides.length) % svcSlides.length;
+    svcSlides[svcIdx].classList.add('active');
+    svcDots[svcIdx].classList.add('active');
+  }
+  document.querySelector('.svc-next')?.addEventListener('click', () => goToSvc(svcIdx + 1));
+  document.querySelector('.svc-prev')?.addEventListener('click', () => goToSvc(svcIdx - 1));
+  svcDots.forEach((dot, i) => dot.addEventListener('click', () => goToSvc(i)));
+  if (svcSlides.length) setInterval(() => goToSvc(svcIdx + 1), 5000);
 
   // ── Fade-up on scroll ──
   const revealObs = new IntersectionObserver((entries) => {
