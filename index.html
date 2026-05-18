@@ -1016,6 +1016,38 @@
       section { padding: 2.2rem 1.2rem; }
       .hero-kb-logo { width: 160px; max-width: 45vw; top: -1rem; left: 50%; transform: translateX(-50%); }
     }
+
+    /* ═══ SISTEMA DE PROFUNDIDAD ═══ */
+    :root { --shell: 1180px; }
+    /* Panel claro flotante */
+    .panel {
+      max-width: var(--shell);
+      margin: 4rem auto 0;
+      background: #ffffff;
+      border-radius: 30px;
+      box-shadow: 0 40px 80px -32px rgba(0,0,0,.8);
+      border-top: 1px solid rgba(255,255,255,.85);
+      position: relative;
+    }
+    /* Panel CTA Zafiro */
+    .panel-cta {
+      max-width: var(--shell);
+      margin: 4rem auto 0;
+      background: linear-gradient(150deg,#2f5fa0,#22456f);
+      border-radius: 30px;
+      box-shadow: 0 40px 80px -30px rgba(0,0,0,.8);
+      border-top: 1px solid rgba(255,255,255,.14);
+    }
+    /* Sección oscura — fluye sobre el lienzo, sin panel */
+    .on-canvas {
+      max-width: var(--shell);
+      margin: 4.6rem auto 0;
+      background: transparent;
+    }
+    @media (max-width: 768px) {
+      .panel, .panel-cta { border-radius: 18px; margin: 2.4rem 0.7rem 0; }
+      .on-canvas { margin: 2.8rem 0 0; }
+    }
   </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y7QH1K6Y3F"></script>
