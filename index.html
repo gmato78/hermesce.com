@@ -1184,6 +1184,22 @@
     .ia-card.has-layer { overflow: visible; }
     .ia-card.has-layer::before { display: none; }
 
+    /* ═══ DEPTH · Carrusel Problema — sin foto, editorial, capa ═══ */
+    .problem-slide-img { display: none; }
+    .problem-slides { overflow: visible; }
+    .problem-slide.active {
+      background: #102845;
+      border-color: rgba(255,255,255,.10);
+    }
+    .problem-slide-content { padding: 3.2rem 3rem 3rem; }
+    .problem-slide-content h3 { font-size: clamp(1.7rem, 2.4vw, 2.1rem); }
+    .problem-slide-content p {
+      font-size: 1.06rem;
+      line-height: 1.95;
+      color: rgba(255,255,255,.82);
+      max-width: 560px;
+    }
+
     /* ═══ DEPTH · overlap card↔panel + responsive ═══ */
     /* La card del carrusel del Problema cruza el borde del panel hacia el lienzo */
     @media (min-width: 1281px) {
@@ -1385,7 +1401,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 
     <!-- Carrusel de problemas -->
     <div class="problem-carousel reveal">
-      <div class="problem-slides">
+      <div class="problem-slides has-layer">
 
         <div class="problem-slide active">
           <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1200&q=80')"></div>
