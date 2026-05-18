@@ -1169,20 +1169,8 @@
       border-top-color: rgba(255,255,255,.08);
     }
 
-    /* ═══ DEPTH · capa detras de cajas de ejemplo ═══ */
-    /* z-index:0 crea contexto de apilado para que ::after (-1) quede
-       detras de la card pero por encima del panel/lienzo. */
-    .has-layer { position: relative; z-index: 0; }
-    .has-layer::after {
-      content: '';
-      position: absolute; inset: 0; z-index: -1;
-      border-radius: inherit;
-      background: #9db2d2;
-      transform: translate(12px, 12px);
-      pointer-events: none;
-    }
-    /* ia-card tiene overflow:hidden — liberarlo para que la capa sea visible */
-    .ia-card.has-layer { overflow: visible; }
+    /* ═══ DEPTH · sombra-capa desplazada en cajas de ejemplo ═══ */
+    .has-layer { box-shadow: 20px 24px 44px -16px rgba(16,40,69,.5); }
     .ia-card.has-layer::before { display: none; }
 
     /* ═══ DEPTH · Carrusel Problema — sin foto, editorial, capa ═══ */
@@ -1225,26 +1213,12 @@
       background: linear-gradient(to bottom, rgba(16,40,69,0) 0%, #102845 100%);
     }
 
-    /* Reusar ::after como capa de profundidad */
-    .ecp-card::after {
-      background: #9db2d2 !important;
-      inset: 0 !important;
-      z-index: -1;
-      border-radius: inherit;
-      transform: translate(12px, 12px);
-      pointer-events: none;
-    }
-    .ecp-card:hover::after { background: #9db2d2 !important; }
+    .ecp-card::after { display: none; }
 
     /* Override mobile media-query rules that conflict */
     @media (max-width: 768px) {
       .ecp-card { overflow: visible !important; }
       .ecp-card::before { display: none !important; }
-      .ecp-card::after {
-        background: #9db2d2 !important;
-        transform: translate(12px, 12px) !important;
-        z-index: -1 !important;
-      }
       .ecp-grid { overflow: visible !important; }
     }
   </style>
@@ -1566,21 +1540,21 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     <h2 class="section-title reveal">E · C · P</h2>
     <p class="section-desc reveal" data-i18n="ecp_sub">El marco operativo de cada decisión.</p>
     <div class="ecp-grid">
-      <div class="ecp-card reveal">
+      <div class="ecp-card reveal has-layer">
         <div class="ecp-letter">E</div>
         <div class="ecp-card-content">
           <h3 data-i18n="ecp_e">Experiencia</h3>
           <p data-i18n="ecp_e_p">Es haber tomado las decisiones difíciles cuando el manual no alcanzaba. Cada situación compleja dejó una enseñanza para la siguiente.</p>
         </div>
       </div>
-      <div class="ecp-card reveal">
+      <div class="ecp-card reveal has-layer">
         <div class="ecp-letter">C</div>
         <div class="ecp-card-content">
           <h3 data-i18n="ecp_c">Criterio</h3>
           <p data-i18n="ecp_c_p">Separar lo importante de lo que no, y medir el impacto para actuar con pericia.</p>
         </div>
       </div>
-      <div class="ecp-card reveal">
+      <div class="ecp-card reveal has-layer">
         <div class="ecp-letter">P</div>
         <div class="ecp-card-content">
           <h3 data-i18n="ecp_p">Precisión</h3>
