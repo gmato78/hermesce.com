@@ -1240,6 +1240,16 @@
       .ecp-card::before { display: none !important; }
       .ecp-grid { overflow: visible !important; }
     }
+
+    /* ═══ DEPTH · R6c · Altura constante en carruseles (sin salto) ═══ */
+    /* Desktop: max medido 376px (Problema) y 354px (Servicios) + 25px headroom */
+    .problem-slides { min-height: 401px; }
+    .svc-slides     { min-height: 379px; }
+    /* Mobile ≤768px: texto wrappea más — max medido 469px y 476px + 25px headroom */
+    @media (max-width: 768px) {
+      .problem-slides { min-height: 494px; }
+      .svc-slides     { min-height: 501px; }
+    }
   </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y7QH1K6Y3F"></script>
