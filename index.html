@@ -151,7 +151,7 @@
     .hero {
       position: relative; width: 100%; height: 100vh;
       display: flex; flex-direction: column; justify-content: center;
-      overflow: hidden;
+      overflow: visible;
       background-size: cover; background-position: center 40%; background-repeat: no-repeat;
       background-color: #CDDCEC;
     }
@@ -160,13 +160,21 @@
       background:
         linear-gradient(rgba(11,15,26,0.40), rgba(11,15,26,0.40)),
         linear-gradient(to right, rgba(11,15,26,0.74) 0%, rgba(11,15,26,0.20) 52%, rgba(11,15,26,0.0) 100%),
-        linear-gradient(to bottom, rgba(16,40,69,0.25) 0%, rgba(16,40,69,0.0) 30%, rgba(16,40,69,0.0) 55%, rgba(205,220,236,0.85) 88%, #CDDCEC 100%);
+        linear-gradient(to bottom, rgba(16,40,69,0.25) 0%, rgba(16,40,69,0.0) 30%, rgba(16,40,69,0.0) 48%, rgba(205,220,236,0.5) 74%, rgba(205,220,236,0.9) 90%, #CDDCEC 100%);
       pointer-events: none; z-index: 0;
     }
     .hero::after {
       content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
-      height: 140px; z-index: 1;
+      height: 220px; z-index: 1;
       background: linear-gradient(to bottom, transparent 0%, #CDDCEC 100%);
+      pointer-events: none;
+    }
+    /* Bridge fade: extra canvas-color strip that starts below the hero,
+       covers the gap between hero bottom and stats, and eliminates any seam. */
+    .hero-fade-bridge {
+      height: 30px;
+      background: #CDDCEC;
+      margin-top: 0;
       pointer-events: none;
     }
     /* ─── Ken Burns ─── */
@@ -1343,6 +1351,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   </div>
 
 </section>
+<div class="hero-fade-bridge" aria-hidden="true"></div>
 
 <!-- STATS — grid debajo del hero -->
 <style>
