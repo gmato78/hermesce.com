@@ -151,7 +151,7 @@
     .hero {
       position: relative; width: 100%; height: 100vh;
       display: flex; flex-direction: column; justify-content: center;
-      overflow: visible;
+      overflow: visible; /* el ::after del fundido no debe recortarse contra el lienzo */
       background-size: cover; background-position: center 40%; background-repeat: no-repeat;
       background-color: #CDDCEC;
     }
@@ -167,14 +167,6 @@
       content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
       height: 220px; z-index: 1;
       background: linear-gradient(to bottom, transparent 0%, #CDDCEC 100%);
-      pointer-events: none;
-    }
-    /* Bridge fade: extra canvas-color strip that starts below the hero,
-       covers the gap between hero bottom and stats, and eliminates any seam. */
-    .hero-fade-bridge {
-      height: 30px;
-      background: #CDDCEC;
-      margin-top: 0;
       pointer-events: none;
     }
     /* ─── Ken Burns ─── */
@@ -1351,7 +1343,6 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   </div>
 
 </section>
-<div class="hero-fade-bridge" aria-hidden="true"></div>
 
 <!-- STATS — grid debajo del hero -->
 <style>
