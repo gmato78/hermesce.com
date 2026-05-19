@@ -1049,28 +1049,11 @@
     #nosotros::after, .matias-split::before, .matias-split::after,
     #ia::after { display: none !important; }
 
-    /* ═══ DEPTH · borde superior suave en paneles blancos ═══ */
-    .panel::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 46px;
-      background: linear-gradient(to bottom, #CDDCEC 0%, rgba(205,220,236,0) 100%);
-      border-radius: 30px 30px 0 0;
-      pointer-events: none;
-      z-index: 2;
-    }
-    /* Override para #servicios::before — neutralizado arriba pero necesario para el borde suave */
-    #servicios::before {
-      display: block !important;
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 46px;
-      background: linear-gradient(to bottom, #CDDCEC 0%, rgba(205,220,236,0) 100%);
-      border-radius: 30px 30px 0 0;
-      pointer-events: none;
-      z-index: 2;
+    /* ═══ DEPTH · hero → lienzo: dissolve inferior del hero en el lienzo ═══ */
+    .hero {
+      box-shadow: 0 28px 80px 18px rgba(11,15,26,0.62);
+      -webkit-mask-image: linear-gradient(to bottom, black 0%, black 90%, rgba(0,0,0,0.3) 97%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 0%, black 90%, rgba(0,0,0,0.3) 97%, transparent 100%);
     }
 
     /* ═══ DEPTH · contenido de panel claro ═══ */
@@ -1414,18 +1397,19 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     padding: 0 2rem;
     background: transparent;
     position: relative;
-    z-index: 5;
     overflow: visible;
   }
+  /* ::before removed — hero box-shadow handles the hero→canvas transition */
   .stats-v2-grid {
     max-width: var(--shell);
-    margin: 3rem auto 0;
+    margin: 9rem auto 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 22px;
   }
   .stats-v2-card {
     position: relative;
+    z-index: 1;
     padding: 1.9rem 1.6rem;
     border: none;
     border-top: 1px solid rgba(255,255,255,0.9);
@@ -1460,7 +1444,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   }
   @media (max-width: 768px) {
     .stats-v2 { padding: 0 0.9rem; }
-    .stats-v2-grid { grid-template-columns: 1fr; margin: 1.6rem auto 0; gap: 14px; }
+    .stats-v2-grid { grid-template-columns: 1fr; margin: 6rem auto 0; gap: 14px; }
     .stats-v2-num { font-size: 2rem; }
   }
 </style>
