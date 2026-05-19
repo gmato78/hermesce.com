@@ -1085,26 +1085,33 @@
       background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #ffffff 100%);
     }
 
-    /* IA — banda Zafiro */
-    #ia.panel { background: #2A5686; }
-    #ia .section-label, #ia .ia-label { color: rgba(255,255,255,.7) !important; }
-    #ia .ia-h2 { color: #ffffff; }
-    #ia .ia-h2 .ia-accent, #ia .ia-h2 span { color: #cfe0d6 !important; }
-    #ia .ia-body { color: rgba(255,255,255,.82); }
-    #ia .ia-body strong[style*="--white"] { color: #ffffff !important; }
-    #ia .section-desc { color: rgba(255,255,255,.8); }
-    .ia-label { color: rgba(255,255,255,.7) !important; }
+    /* IA — panel blanco */
+    #ia.panel { background: #ffffff; }
+    #ia .section-label, #ia .ia-label { color: #2A5686 !important; }
+    #ia .ia-h2 { color: #0f2544; }
+    #ia .ia-h2 .ia-accent, #ia .ia-h2 span { color: #2A5686; }
+    #ia .ia-body { color: rgba(15,37,68,.72); }
+    #ia .ia-body strong[style*="--white"] { color: #0f2544 !important; }
+    #ia .section-desc { color: rgba(15,37,68,.74); }
+    .ia-label { color: #2A5686 !important; }
     .ia-h2 {
       font-weight: 800; font-size: clamp(1.8rem,4vw,3.2rem);
-      color: #ffffff; line-height: 1.05; margin-bottom: 0.3rem;
+      color: #0f2544; line-height: 1.05; margin-bottom: 0.3rem;
     }
     .ia-h2-last { margin-bottom: 1rem; }
     .ia-body {
-      font-size: 0.92rem; color: rgba(255,255,255,.82);
+      font-size: 0.92rem; color: rgba(15,37,68,.72);
       line-height: 1.75; margin-bottom: 1.2rem;
     }
     .ia-body-last { margin-bottom: 0; }
-    .ia-body strong[style*="--white"] { color: #ffffff !important; }
+    .ia-body strong[style*="--white"] { color: #0f2544 !important; }
+    /* farIAs card — Zafiro */
+    .ia-card { background: #2A5686 !important; background-image: none !important; border-color: rgba(255,255,255,.18) !important; }
+    /* Card content legibility on Zafiro */
+    .ia-card .ia-card-label { color: rgba(255,255,255,.7) !important; }
+    .ia-card .ia-card-desc { color: rgba(255,255,255,.82) !important; }
+    .ia-card .ia-card-btn { background: rgba(255,255,255,.18) !important; color: #ffffff !important; border: 1px solid rgba(255,255,255,.35) !important; }
+    .ia-card .ia-card-btn:hover { background: rgba(255,255,255,.28) !important; }
 
     /* ═══ DEPTH · secciones sobre el lienzo ═══ */
     .on-canvas { overflow: visible; }
