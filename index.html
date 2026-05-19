@@ -1126,7 +1126,7 @@
     #servicios .section-label { color: #2A5686 !important; }
 
     /* ═══ DEPTH · Servicios — carrusel de costado Zafiro ═══ */
-    .svc-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .svc-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
     .svc-carousel { position: relative; }
     .svc-slides { position: relative; border-radius: 16px; overflow: visible; }
     .svc-slide { display: none; }
@@ -1211,12 +1211,14 @@
     /* La card del carrusel del Problema cruza el borde del panel hacia el lienzo */
     @media (min-width: 1281px) {
       #problema .problem-carousel { position: relative; z-index: 4; margin-right: -5.4rem; }
+      #servicios .svc-carousel { position: relative; z-index: 4; margin-right: -5.4rem; }
     }
     @media (max-width: 768px) {
       .panel { padding: 2.4rem 1.3rem; }
       #contacto.panel-cta { padding: 2.6rem 1.3rem; }
       /* Sin overlaps en mobile — apilado normal */
       #problema .problem-carousel { margin-right: 0; }
+      #servicios .svc-carousel { margin-right: 0; }
     }
 
     /* ═══ DEPTH · ECP — blanco con hairline Zafiro ═══ */
