@@ -159,16 +159,10 @@
       content: ''; position: absolute; inset: 0;
       background:
         linear-gradient(rgba(11,15,26,0.40), rgba(11,15,26,0.40)),
-        linear-gradient(to right, rgba(11,15,26,0.74) 0%, rgba(11,15,26,0.20) 52%, rgba(11,15,26,0.0) 100%),
-        linear-gradient(to bottom, rgba(16,40,69,0.25) 0%, rgba(16,40,69,0.0) 32%, rgba(16,40,69,0.0) 56%, rgba(205,220,236,0.0) 70%, rgba(205,220,236,0.6) 88%, #CDDCEC 100%);
+        linear-gradient(to right, rgba(11,15,26,0.74) 0%, rgba(11,15,26,0.20) 52%, rgba(11,15,26,0.0) 100%);
       pointer-events: none; z-index: 0;
     }
-    .hero::after {
-      content: ''; position: absolute; bottom: -130px; left: 0; right: 0;
-      height: 320px; z-index: 1;
-      background: linear-gradient(to bottom, transparent 0%, #CDDCEC 100%);
-      pointer-events: none;
-    }
+    .hero::after { display: none; }
     /* ─── Ken Burns ─── */
     @keyframes kb1 { 0% { transform: scale(1.0); } 100% { transform: scale(1.06); } }
     @keyframes kb2 { 0% { transform: scale(1.06); } 100% { transform: scale(1.0); } }
@@ -1054,6 +1048,30 @@
     .valores-section::before, .valores-section::after,
     #nosotros::after, .matias-split::before, .matias-split::after,
     #ia::after { display: none !important; }
+
+    /* ═══ DEPTH · borde superior suave en paneles blancos ═══ */
+    .panel::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 46px;
+      background: linear-gradient(to bottom, #CDDCEC 0%, rgba(205,220,236,0) 100%);
+      border-radius: 30px 30px 0 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+    /* Override para #servicios::before — neutralizado arriba pero necesario para el borde suave */
+    #servicios::before {
+      display: block !important;
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 46px;
+      background: linear-gradient(to bottom, #CDDCEC 0%, rgba(205,220,236,0) 100%);
+      border-radius: 30px 30px 0 0;
+      pointer-events: none;
+      z-index: 2;
+    }
 
     /* ═══ DEPTH · contenido de panel claro ═══ */
     .panel { padding: 3.6rem 3.2rem; overflow: visible; }
