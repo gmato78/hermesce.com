@@ -1242,13 +1242,14 @@
     }
 
     /* ═══ DEPTH · R6c · Altura constante en carruseles (sin salto) ═══ */
+    /* R7a: min-height movido al slide activo (Zafiro), no al contenedor — sin hueco blanco */
     /* Desktop: max medido 376px (Problema) y 354px (Servicios) + 25px headroom */
-    .problem-slides { min-height: 401px; }
-    .svc-slides     { min-height: 379px; }
+    .problem-slide.active { min-height: 401px; }
+    .svc-slide.active     { min-height: 379px; }
     /* Mobile ≤768px: texto wrappea más — max medido 469px y 476px + 25px headroom */
     @media (max-width: 768px) {
-      .problem-slides { min-height: 494px; }
-      .svc-slides     { min-height: 501px; }
+      .problem-slide.active { min-height: 494px; }
+      .svc-slide.active     { min-height: 501px; }
     }
   </style>
 <!-- Google tag (gtag.js) -->
