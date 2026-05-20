@@ -30,24 +30,54 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
   <style>
     :root {
+      /* ─── Tokens canónicos · sincronizados con brand/identidad/design-tokens.css ─── */
+      /* Núcleo de marca · idéntico al taller (intranet) */
+      --brand-zafiro:         #2A5686;      /* marca primaria */
+      --brand-zafiro-dark:    #102845;      /* oscuro de marca · ÚNICO */
+      --brand-zafiro-light:   #4C7AB0;
+      --brand-hia:            #3A8A5A;      /* acento verde · Hia */
+      --brand-hia-dark:       #2D6E47;
+      --brand-htb:            #C94040;      /* acento rojo · Htb */
+      --brand-text:           #0f2544;
+      --brand-text-soft:      #4B5563;
+      --brand-text-mute:      #6B7280;
+      --brand-white:          #ffffff;
+      /* Lienzo del showroom · landing */
+      --canvas-showroom:      #CDDCEC;      /* celeste lavado · aspiracional */
+      /* Tipografía */
+      --font-family:          'Inter', system-ui, -apple-system, sans-serif;
+      --font-weight-light:    300;          /* base showroom (editorial) */
+      --font-weight-regular:  400;
+      --font-weight-medium:   500;
+      --font-weight-bold:     700;
+      --font-weight-display:  800;
+      /* Radio · escala compartida */
+      --radius-xs:            6px;
+      --radius-sm:            10px;
+      --radius-md:            16px;
+      --radius-lg:            30px;          /* paneles del showroom */
+      /* Sombra de card · showroom */
+      --shadow-card-showroom: 0 20px 50px -16px rgba(20, 40, 70, 0.40);
+
+      /* ─── Aliases legacy del landing (no romper estilos existentes) ─── */
       --bg: #0B0F1A;
       --bg2: #0e1320;
       --card: #121828;
       --border: #1d2640;
-      --accent: #2A5686;
-      --accent-bright: #2A5686;
-      --accent-glow: rgba(38,78,144,0.18);
+      --accent:               var(--brand-zafiro);
+      --accent-bright:        var(--brand-zafiro);
+      --accent-glow:          rgba(38,78,144,0.18);
       --text: #e8eaf0;
       --text-dim: #9aa3bc;
       --text-faint: #3d4560;
-      --white: #ffffff;
+      --white:                var(--brand-white);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      background: #CDDCEC;
+      background: var(--canvas-showroom);
       background-image: radial-gradient(ellipse 70% 48% at 50% 0%, rgba(255,255,255,.55) 0%, transparent 70%);
-      color: #0f2544;
+      color: var(--brand-text);
       font-family: 'Inter', sans-serif;
       font-weight: 300;
       line-height: 1.6;
@@ -153,7 +183,7 @@
       display: flex; flex-direction: column; justify-content: center;
       overflow: visible; /* el ::after del fundido no debe recortarse contra el lienzo */
       background-size: cover; background-position: center 40%; background-repeat: no-repeat;
-      background-color: #CDDCEC;
+      background-color: var(--canvas-showroom);
     }
     .hero::before {
       content: ''; position: absolute; inset: 0;
@@ -299,7 +329,7 @@
       border: none; border-radius: 0;
     }
     .stat { background: var(--card); padding: 2rem 1.5rem; text-align: center; }
-    .stat-num { font-family: 'Inter', sans-serif; font-size: 2.4rem; font-weight: 800; color: #3A8A5A; line-height: 1; }
+    .stat-num { font-family: 'Inter', sans-serif; font-size: 2.4rem; font-weight: 800; color: var(--brand-hia); line-height: 1; }
     .stat-label { margin-top: 0.4rem; font-size: 0.8rem; color: var(--text-dim); letter-spacing: 0.05em; }
 
     /* ─── SECTION SHARED ─── */
@@ -843,7 +873,7 @@
     .form-group input, .form-group select, .form-group textarea { background: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 0.75rem 1rem; color: #1C2433; font-family: 'Inter', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; resize: none; }
     .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: rgba(255,255,255,0.8); }
     .form-group select option { background: #fff; color: #1C2433; }
-    .form-submit { background: #fff; color: #2A5686; padding: 0.9rem; border-radius: 8px; font-size: 0.95rem; font-weight: 700; border: none; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s; margin-top: 0.5rem; }
+    .form-submit { background: #fff; color: var(--brand-zafiro); padding: 0.9rem; border-radius: 8px; font-size: 0.95rem; font-weight: 700; border: none; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s; margin-top: 0.5rem; }
     .form-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
     .contact-alt { margin-top: 2rem; padding-top: 0; display: flex; justify-content: center; }
     .contact-alt-qr { display: flex; flex-direction: column; align-items: center; gap: 0.8rem; }
@@ -969,7 +999,7 @@
         align-items: center !important;
         gap: 0.3rem !important;
         border-left: none !important;
-        border-top: 2px solid #3A8A5A !important;
+        border-top: 2px solid var(--brand-hia) !important;
         text-align: center !important;
       }
       .ia-card > div[style*="border-left"] > span[style*="width:1px"] {
@@ -1058,18 +1088,18 @@
     /* ═══ DEPTH · contenido de panel claro ═══ */
     .panel { padding: 3.6rem 3.2rem; overflow: visible; }
     .panel > .container { max-width: 100%; margin: 0; }
-    .panel .section-label { color: #2A5686 !important; }
-    .panel .section-title { color: #0f2544; }
+    .panel .section-label { color: var(--brand-zafiro) !important; }
+    .panel .section-title { color: var(--brand-text); }
     .panel .section-desc { color: rgba(15,37,68,.74); }
-    .panel .section-desc strong { color: #0f2544; }
+    .panel .section-desc strong { color: var(--brand-text); }
 
     /* Problema — panel claro */
     #problema.panel { background: #ffffff; }
-    .problem-block .problem-quote { color: #0f2544; }
+    .problem-block .problem-quote { color: var(--brand-text); }
     .problem-block .problem-sub { color: rgba(15,37,68,.66); }
-    .problem-block .problem-sub-line { color: #0f2544; }
+    .problem-block .problem-sub-line { color: var(--brand-text); }
     .prob-btn { border-color: rgba(15,37,68,.22); color: rgba(15,37,68,.55); }
-    .prob-btn:hover { border-color: #2A5686; color: #2A5686; }
+    .prob-btn:hover { border-color: var(--brand-zafiro); color: var(--brand-zafiro); }
     .prob-dot { background: rgba(15,37,68,.2); }
 
     /* ECP — panel claro */
@@ -1077,9 +1107,9 @@
 
     /* Historia — panel claro */
     #nosotros.panel { background: #ffffff !important; padding-bottom: 3.6rem; }
-    #nosotros .section-title { color: #0f2544; }
+    #nosotros .section-title { color: var(--brand-text); }
     #nosotros .historia-item { border-left-color: rgba(15,37,68,.16); }
-    #nosotros .historia-item h3 { color: #0f2544; }
+    #nosotros .historia-item h3 { color: var(--brand-text); }
     #nosotros .historia-item p { color: rgba(15,37,68,.7); }
     #nosotros .historia-item p::after {
       background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #ffffff 100%);
@@ -1087,16 +1117,16 @@
 
     /* IA — panel blanco */
     #ia.panel { background: #ffffff; }
-    #ia .section-label, #ia .ia-label { color: #2A5686 !important; }
-    #ia .ia-h2 { color: #0f2544; }
-    #ia .ia-h2 .ia-accent, #ia .ia-h2 span { color: #2A5686; }
+    #ia .section-label, #ia .ia-label { color: var(--brand-zafiro) !important; }
+    #ia .ia-h2 { color: var(--brand-text); }
+    #ia .ia-h2 .ia-accent, #ia .ia-h2 span { color: var(--brand-zafiro); }
     #ia .ia-body { color: rgba(15,37,68,.72); }
-    #ia .ia-body strong[style*="--white"] { color: #0f2544 !important; }
+    #ia .ia-body strong[style*="--white"] { color: var(--brand-text) !important; }
     #ia .section-desc { color: rgba(15,37,68,.74); }
-    .ia-label { color: #2A5686 !important; }
+    .ia-label { color: var(--brand-zafiro) !important; }
     .ia-h2 {
       font-weight: 800; font-size: clamp(1.8rem,4vw,3.2rem);
-      color: #0f2544; line-height: 1.05; margin-bottom: 0.3rem;
+      color: var(--brand-text); line-height: 1.05; margin-bottom: 0.3rem;
     }
     .ia-h2-last { margin-bottom: 1rem; }
     .ia-body {
@@ -1104,9 +1134,9 @@
       line-height: 1.75; margin-bottom: 1.2rem;
     }
     .ia-body-last { margin-bottom: 0; }
-    .ia-body strong[style*="--white"] { color: #0f2544 !important; }
+    .ia-body strong[style*="--white"] { color: var(--brand-text) !important; }
     /* farIAs card — Zafiro */
-    .ia-card { background: #2A5686 !important; background-image: none !important; border-color: rgba(255,255,255,.18) !important; }
+    .ia-card { background: var(--brand-zafiro) !important; background-image: none !important; border-color: rgba(255,255,255,.18) !important; }
     /* Card content legibility on Zafiro */
     .ia-card .ia-card-label { color: rgba(255,255,255,.7) !important; }
     .ia-card .ia-card-desc { color: rgba(255,255,255,.82) !important; }
@@ -1119,46 +1149,46 @@
 
     /* Servicios claro */
     #servicios.panel { background: #ffffff; }
-    #servicios .section-title { color: #0f2544; }
-    #servicios .section-title span { color: #2A5686 !important; }
+    #servicios .section-title { color: var(--brand-text); }
+    #servicios .section-title span { color: var(--brand-zafiro) !important; }
     #servicios .section-desc { color: rgba(15,37,68,.74); }
-    #servicios .section-desc strong { color: #0f2544; }
-    #servicios .section-label { color: #2A5686 !important; }
+    #servicios .section-desc strong { color: var(--brand-text); }
+    #servicios .section-label { color: var(--brand-zafiro) !important; }
 
     /* ═══ DEPTH · Servicios — carrusel de costado Zafiro ═══ */
     .svc-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
     .svc-carousel { position: relative; }
     .svc-slides { position: relative; border-radius: 16px; overflow: visible; }
     .svc-slide { display: none; }
-    .svc-slide.active { display: block; background: #2A5686; border-radius: 16px; border: none; }
+    .svc-slide.active { display: block; background: var(--brand-zafiro); border-radius: 16px; border: none; }
     .svc-slide-content { padding: 3.2rem 3rem 3rem; }
     .svc-num { font-size: .72rem; font-weight: 700; letter-spacing: .15em; color: rgba(255,255,255,.6); margin-bottom: 1rem; }
     .svc-slide-content h3 { font-family: 'Inter', sans-serif; font-size: clamp(1.7rem, 2.4vw, 2.1rem); font-weight: 800; color: #ffffff; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1.1rem; }
     .svc-slide-content p { font-size: 1.06rem; line-height: 1.95; color: rgba(255,255,255,.82); max-width: 560px; }
     .svc-controls { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.2rem; }
     .svc-btn { background: none; border: 1px solid rgba(15,37,68,.22); color: rgba(15,37,68,.55); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: border-color .2s, color .2s; }
-    .svc-btn:hover { border-color: #2A5686; color: #2A5686; }
+    .svc-btn:hover { border-color: var(--brand-zafiro); color: var(--brand-zafiro); }
     .svc-dots { display: flex; gap: .5rem; align-items: center; }
     .svc-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(15,37,68,.2); cursor: pointer; transition: background .2s, transform .2s; }
-    .svc-dot.active { background: #2A5686; transform: scale(1.4); }
+    .svc-dot.active { background: var(--brand-zafiro); transform: scale(1.4); }
     @media (max-width: 768px) { .svc-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
 
     /* Valores — panel blanco */
     #valores.panel { background: #ffffff; }
 
     /* Valores claro */
-    .valores-section .section-title { color: #0f2544; }
-    .valores-section .section-label { color: #2A5686 !important; }
+    .valores-section .section-title { color: var(--brand-text); }
+    .valores-section .section-label { color: var(--brand-zafiro) !important; }
     .valores-section .section-desc { color: rgba(15,37,68,.74); }
-    .valores-section .section-desc strong { color: #0f2544; }
+    .valores-section .section-desc strong { color: var(--brand-text); }
     .valores-section .valores-grid { gap: 14px; }
     .valores-section .valor-card {
       background: #ffffff; border: 1px solid rgba(42,86,134,.20);
-      border-left: 3px solid #2A5686; border-radius: 12px; padding: 1.1rem 1.2rem;
+      border-left: 3px solid var(--brand-zafiro); border-radius: 12px; padding: 1.1rem 1.2rem;
       box-shadow: 0 14px 28px -22px rgba(20,40,70,.4);
     }
-    .valores-section .valor-num { display: block; font-size: .7rem; font-weight: 700; color: #2A5686; letter-spacing: .1em; margin-bottom: .4rem; }
-    .valores-section .valor-name { color: #0f2544; }
+    .valores-section .valor-num { display: block; font-size: .7rem; font-weight: 700; color: var(--brand-zafiro); letter-spacing: .1em; margin-bottom: .4rem; }
+    .valores-section .valor-name { color: var(--brand-text); }
     .valores-section .valor-def { color: rgba(15,37,68,.62); opacity: 1; }
 
     /* Matías — panel blanco como Historia */
@@ -1169,12 +1199,12 @@
     }
 
     /* Matias blanco */
-    .matias-split .matias-mini-name { color: #0f2544; }
-    .matias-split .matias-mini-name span { color: #2A5686 !important; }
-    .matias-split .matias-mini-role { color: #2A5686; }
+    .matias-split .matias-mini-name { color: var(--brand-text); }
+    .matias-split .matias-mini-name span { color: var(--brand-zafiro) !important; }
+    .matias-split .matias-mini-role { color: var(--brand-zafiro); }
     .matias-split .matias-mini-bio { color: rgba(15,37,68,.74); }
     .matias-split .cert { color: rgba(15,37,68,.78); }
-    .matias-split .cert::before { color: #2A5686; }
+    .matias-split .cert::before { color: var(--brand-zafiro); }
 
     /* ═══ DEPTH · CTA Zafiro + footer sobre el lienzo ═══ */
     #contacto.panel-cta { padding: 3.6rem 2rem; }
@@ -1186,8 +1216,8 @@
     }
     footer .footer-tagline { color: rgba(15,37,68,.6); }
     footer .footer-address-small { color: rgba(15,37,68,.6); }
-    footer .footer-email-link { color: #0f2544; }
-    footer .footer-map-link { color: #2A5686; }
+    footer .footer-email-link { color: var(--brand-text); }
+    footer .footer-map-link { color: var(--brand-zafiro); }
     /* El logo del pie es PNG blanco — se oscurece para el lienzo claro */
     footer .footer-logo-img { filter: brightness(0); }
     /* El mapa tenia filtro del tema oscuro — se neutraliza */
@@ -1201,7 +1231,7 @@
     /* ═══ DEPTH · Carrusel Problema — sin foto, editorial, capa ═══ */
     .problem-slide-img { display: none; }
     .problem-slides { overflow: visible; }
-    .problem-slide.active { background: #2A5686; border: none; box-shadow: none; }
+    .problem-slide.active { background: var(--brand-zafiro); border: none; box-shadow: none; }
     .problem-slide-content { padding: 3.2rem 3rem 3rem; }
     .problem-slide-content h3 { font-size: clamp(1.7rem, 2.4vw, 2.1rem); color: #ffffff; }
     .problem-slide-content h3::before { background: #ffffff; }
@@ -1228,7 +1258,7 @@
     .ecp-card::before { display: none !important; }
     .ecp-card .ecp-letter { color: rgba(42,86,134,.18); }
     .ecp-card:hover .ecp-letter { color: rgba(42,86,134,.30); }
-    .ecp-card h3 { color: #0f2544; }
+    .ecp-card h3 { color: var(--brand-text); }
     .ecp-card p { color: rgba(15,37,68,.7); }
     .ecp-card p::after {
       background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #ffffff 100%);
@@ -1267,7 +1297,7 @@
       align-items: center;
       gap: 0.55rem;
       margin-top: 0.85rem;
-      color: #2A5686;
+      color: var(--brand-zafiro);
       text-decoration: none;
       font-size: 0.95rem;
       font-weight: 500;
@@ -1280,7 +1310,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      color: #2A5686;
+      color: var(--brand-zafiro);
       text-decoration: none;
       transition: opacity 0.2s;
       margin-top: 0.1rem;
@@ -1373,7 +1403,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   <div class="drawer-divider"></div>
   <a href="#valores" class="drawer-link" data-i18n="nav_valores">Valores</a>
   <a href="#nosotros" class="drawer-link" data-i18n="nav_historia">Historia</a>
-  <a href="#ia" class="drawer-link">far<span style="color:#3A8A5A;">IA</span>s</a>
+  <a href="#ia" class="drawer-link">far<span style="color:var(--brand-hia);">IA</span>s</a>
   <a href="#contacto" class="drawer-link" data-i18n="contact_label">Contacto</a>
 </div>
 
@@ -1429,7 +1459,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     font-size: 2.6rem;
     font-weight: 800;
     line-height: 1;
-    color: #2A5686;
+    color: var(--brand-zafiro);
     margin-bottom: 0.5rem;
     letter-spacing: -0.02em;
   }
@@ -1810,7 +1840,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
         <p class="section-desc reveal ia-sub" data-i18n="ia_sub">Pioneros en la integración de IA en Comercio Exterior. Esto recién comienza.</p>
 
         <p class="ia-body">
-          <span data-i18n-html="ia_intro">Hola, soy <strong style="color:var(--white);">far<span style="color:#3A8A5A;">IA</span>s</strong>, un agente de clasificación arancelaria potenciado por IA. Con una foto, un link o una descripción devuelvo un informe en segundos con posición <strong style="color:var(--white);">NCM</strong><strong style="color:#3A8A5A;">+SIM</strong>, tributos, restricciones y más. Para tomar decisiones en tiempo-real y transformar semanas de trabajo en minutos.</span>
+          <span data-i18n-html="ia_intro">Hola, soy <strong style="color:var(--white);">far<span style="color:var(--brand-hia);">IA</span>s</strong>, un agente de clasificación arancelaria potenciado por IA. Con una foto, un link o una descripción devuelvo un informe en segundos con posición <strong style="color:var(--white);">NCM</strong><strong style="color:var(--brand-hia);">+SIM</strong>, tributos, restricciones y más. Para tomar decisiones en tiempo-real y transformar semanas de trabajo en minutos.</span>
         </p>
         <p class="ia-body" data-i18n="ia_scene1">
           Un importador con un envío por cerrar y aún espacio disponible. Recibe el catálogo de China a las 11 de la noche: si no decide ahora, mañana pierde la salida del buque.
@@ -1828,15 +1858,15 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 
       <div class="ia-right reveal">
         <div class="ia-card has-layer" style="border:1px solid rgba(42,86,134,0.3);">
-          <div style="display:flex;align-items:center;gap:0.8rem;margin:0 auto 1.4rem;padding:0.5rem 0.9rem;border-left:2px solid #3A8A5A;background:rgba(58,138,90,0.05);border-radius:4px;width:fit-content;">
-            <span style="font-size:1rem;font-weight:800;color:var(--white);letter-spacing:0.01em;">hermes<span style="color:#3A8A5A;">IA</span></span>
+          <div style="display:flex;align-items:center;gap:0.8rem;margin:0 auto 1.4rem;padding:0.5rem 0.9rem;border-left:2px solid var(--brand-hia);background:rgba(58,138,90,0.05);border-radius:4px;width:fit-content;">
+            <span style="font-size:1rem;font-weight:800;color:var(--white);letter-spacing:0.01em;">hermes<span style="color:var(--brand-hia);">IA</span></span>
             <span style="width:1px;height:1.1rem;background:rgba(255,255,255,0.15);"></span>
-            <span style="font-size:0.72rem;color:var(--text-dim);letter-spacing:0.01em;line-height:1.3;" data-i18n-html="ia_chip_tag">Integrar lo artificial para reconocer lo <span style="color:#3A8A5A;">humano</span>.</span>
+            <span style="font-size:0.72rem;color:var(--text-dim);letter-spacing:0.01em;line-height:1.3;" data-i18n-html="ia_chip_tag">Integrar lo artificial para reconocer lo <span style="color:var(--brand-hia);">humano</span>.</span>
           </div>
           <div class="ia-card-label" style="color:var(--accent);text-align:center;" data-i18n="ia_card_label">Clasificador Arancelario IA</div>
-          <div class="ia-card-name" style="color:var(--white);text-align:center;">far<span style="color:#3A8A5A;">IA</span>s</div>
+          <div class="ia-card-name" style="color:var(--white);text-align:center;">far<span style="color:var(--brand-hia);">IA</span>s</div>
           <div class="ia-card-desc" style="color:var(--text-dim);margin-bottom:1rem;text-align:center;" data-i18n-html="ia_card_desc">Clasifica como un merciólogo profesional<br>con la marcha sistemática del Gran Maestro potenciada con IA.</div>
-          <div style="font-size:0.95rem;color:var(--white);text-align:center;font-weight:500;margin-bottom:1.5rem;letter-spacing:0.01em;" data-i18n-html="ia_card_cta">¿Qué clasificamos hoy? <span style="color:#3A8A5A;">;)</span></div>
+          <div style="font-size:0.95rem;color:var(--white);text-align:center;font-weight:500;margin-bottom:1.5rem;letter-spacing:0.01em;" data-i18n-html="ia_card_cta">¿Qué clasificamos hoy? <span style="color:var(--brand-hia);">;)</span></div>
           <div style="display:flex;flex-direction:column;align-items:center;gap:0.8rem;margin-top:1.8rem;width:100%;">
             <button onclick="abrirFarias()" class="ia-card-btn" style="width:100%;" data-i18n="ia_btn">Quiero acceso →</button>
             <div style="display:flex;align-items:center;gap:0.6rem;width:100%;">
@@ -2066,7 +2096,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   if (fariasForm) {
     fariasForm.addEventListener('submit', function() {
       setTimeout(() => {
-        fariasForm.innerHTML = '<div style="text-align:center;padding:3rem 1rem;"><div style="font-size:3rem;margin-bottom:1rem;color:#3A8A5A;">✓</div><h3 style="color:#3A8A5A;font-size:1.4rem;font-weight:700;margin-bottom:0.8rem;">Gracias por tu tiempo</h3><p style="color:var(--text-dim);font-size:0.9rem;line-height:1.7;">Tu respuesta nos ayuda a decidir el siguiente paso.<br>Te avisamos cuando abramos el acceso.</p></div>';
+        fariasForm.innerHTML = '<div style="text-align:center;padding:3rem 1rem;"><div style="font-size:3rem;margin-bottom:1rem;color:var(--brand-hia);">✓</div><h3 style="color:var(--brand-hia);font-size:1.4rem;font-weight:700;margin-bottom:0.8rem;">Gracias por tu tiempo</h3><p style="color:var(--text-dim);font-size:0.9rem;line-height:1.7;">Tu respuesta nos ayuda a decidir el siguiente paso.<br>Te avisamos cuando abramos el acceso.</p></div>';
       }, 500);
     });
   }
@@ -2264,7 +2294,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     <div id="farias-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:99999;align-items:flex-start;justify-content:center;padding:1rem;overflow-y:auto;">
       <div style="background:#1C2433;border:1px solid rgba(79,114,227,0.3);border-radius:16px;max-width:560px;width:100%;padding:3rem;position:relative;margin:auto;">
         <button onclick="document.getElementById('farias-modal').style.display='none';document.body.style.overflow='';" style="position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;color:var(--text-dim);font-size:1.4rem;cursor:pointer;line-height:1;">×</button>
-        <div style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:#3A8A5A;font-weight:600;margin-bottom:0.5rem;" data-i18n="farias_label">farIAs · Encuesta de implementación</div>
+        <div style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--brand-hia);font-weight:600;margin-bottom:0.5rem;" data-i18n="farias_label">farIAs · Encuesta de implementación</div>
         <h3 style="font-size:1.6rem;font-weight:800;color:var(--white);margin-bottom:0.5rem;" data-i18n="farias_h3">¿Tiene sentido para tu operación?</h3>
         <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:2rem;line-height:1.6;" data-i18n="farias_sub">Estamos evaluando si el MVP de farIAs tiene valor real antes de invertir en la siguiente etapa. Tres preguntas, dos minutos.</p>
 
@@ -2338,7 +2368,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
             <textarea name="MultiLine" maxlength="65535" rows="3" placeholder="Sugerencias, casos de uso, dudas..." data-i18n="farias_extra_ph" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;resize:none;box-sizing:border-box;"></textarea>
           </div>
 
-          <button type="submit" style="background:#3A8A5A;color:#fff;padding:0.9rem;border-radius:8px;font-size:0.95rem;font-weight:700;border:none;cursor:pointer;transition:opacity 0.2s;margin-top:0.5rem;" data-i18n="farias_submit">Enviar respuesta →</button>
+          <button type="submit" style="background:var(--brand-hia);color:#fff;padding:0.9rem;border-radius:8px;font-size:0.95rem;font-weight:700;border:none;cursor:pointer;transition:opacity 0.2s;margin-top:0.5rem;" data-i18n="farias_submit">Enviar respuesta →</button>
         </form>
       </div>
     </div>
