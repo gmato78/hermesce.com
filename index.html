@@ -1078,11 +1078,11 @@
     #nosotros::after, .matias-split::before, .matias-split::after,
     #ia::after { display: none !important; }
 
-    /* ═══ DEPTH · hero → lienzo: dissolve inferior del hero en el lienzo ═══ */
+    /* ═══ DEPTH · hero → lienzo: corte duro (sin fundido) ═══ */
     .hero {
-      box-shadow: 0 28px 80px 18px rgba(11,15,26,0.62);
-      -webkit-mask-image: linear-gradient(to bottom, black 0%, black 90%, rgba(0,0,0,0.3) 97%, transparent 100%);
-      mask-image: linear-gradient(to bottom, black 0%, black 90%, rgba(0,0,0,0.3) 97%, transparent 100%);
+      box-shadow: none;
+      -webkit-mask-image: none;
+      mask-image: none;
     }
 
     /* ═══ DEPTH · contenido de panel claro ═══ */
