@@ -278,9 +278,9 @@
     "iapage_wl_placeholder": "tu@email.com",
     "iapage_wl_cta": "Anotarme →",
     "iapage_footer_back": "← volver a hermesce.com",
-    "define_eyebrow": "Lo humano",
+    "define_eyebrow": "La historia",
     "define_title": "+29 años resolviendo lo que no se ve",
-    "define_teaser": "Quiénes somos, los valores y la historia."
+    "define_teaser": "Los valores, quiénes somos, <a class=\"define-founder\" href=\"https://www.linkedin.com/in/matias-gonzalez-hce\" target=\"_blank\" rel=\"noopener\" onclick=\"event.stopPropagation()\">el fundador</a>."
   },
   "en": {
     "nav_valores": "Values",
@@ -561,9 +561,9 @@
     "iapage_wl_placeholder": "you@email.com",
     "iapage_wl_cta": "Join →",
     "iapage_footer_back": "← back to hermesce.com",
-    "define_eyebrow": "The human side",
+    "define_eyebrow": "The story",
     "define_title": "+29 years solving what you don't see",
-    "define_teaser": "Who we are, the values, and the story."
+    "define_teaser": "The values, who we are, <a class=\"define-founder\" href=\"https://www.linkedin.com/in/matias-gonzalez-hce\" target=\"_blank\" rel=\"noopener\" onclick=\"event.stopPropagation()\">the founder</a>."
   },
   "zh-CN": {
     "nav_valores": "价值观",
@@ -844,9 +844,9 @@
     "iapage_wl_placeholder": "you@email.com",
     "iapage_wl_cta": "加入 →",
     "iapage_footer_back": "← 返回 hermesce.com",
-    "define_eyebrow": "人的一面",
+    "define_eyebrow": "历程",
     "define_title": "29+ 年，解决看不见的问题",
-    "define_teaser": "我们是谁、价值观与历程。"
+    "define_teaser": "价值观、我们是谁、<a class=\"define-founder\" href=\"https://www.linkedin.com/in/matias-gonzalez-hce\" target=\"_blank\" rel=\"noopener\" onclick=\"event.stopPropagation()\">创始人</a>。"
   },
   "de": {
     "nav_valores": "Werte",
@@ -1127,9 +1127,9 @@
     "iapage_wl_placeholder": "du@email.com",
     "iapage_wl_cta": "Eintragen →",
     "iapage_footer_back": "← zurück zu hermesce.com",
-    "define_eyebrow": "Das Menschliche",
+    "define_eyebrow": "Die Geschichte",
     "define_title": "+29 Jahre, die das Unsichtbare lösen",
-    "define_teaser": "Wer wir sind, die Werte und die Geschichte."
+    "define_teaser": "Die Werte, wer wir sind, <a class=\"define-founder\" href=\"https://www.linkedin.com/in/matias-gonzalez-hce\" target=\"_blank\" rel=\"noopener\" onclick=\"event.stopPropagation()\">der Gründer</a>."
   },
   "fr": {
     "nav_valores": "Valeurs",
@@ -1410,9 +1410,9 @@
     "iapage_wl_placeholder": "vous@email.com",
     "iapage_wl_cta": "Je m'inscris →",
     "iapage_footer_back": "← retour à hermesce.com",
-    "define_eyebrow": "Le côté humain",
+    "define_eyebrow": "L'histoire",
     "define_title": "+29 ans à résoudre l'invisible",
-    "define_teaser": "Qui nous sommes, les valeurs et l'histoire."
+    "define_teaser": "Les valeurs, qui nous sommes, <a class=\"define-founder\" href=\"https://www.linkedin.com/in/matias-gonzalez-hce\" target=\"_blank\" rel=\"noopener\" onclick=\"event.stopPropagation()\">le fondateur</a>."
   },
   "pt": {
     "nav_valores": "Valores",
@@ -1693,8 +1693,8 @@
     "iapage_wl_placeholder": "voce@email.com",
     "iapage_wl_cta": "Quero entrar →",
     "iapage_footer_back": "← voltar para hermesce.com",
-    "define_eyebrow": "O lado humano",
+    "define_eyebrow": "A história",
     "define_title": "+29 anos resolvendo o que não se vê",
-    "define_teaser": "Quem somos, os valores e a história."
+    "define_teaser": "Os valores, quem somos, <a class=\"define-founder\" href=\"https://www.linkedin.com/in/matias-gonzalez-hce\" target=\"_blank\" rel=\"noopener\" onclick=\"event.stopPropagation()\">o fundador</a>."
   }
 }

@@ -855,6 +855,8 @@
     .define-banner-eyebrow { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--brand-hia); font-weight: 700; }
     .define-banner-title { font-family: 'Inter', sans-serif; font-size: clamp(1.4rem, 2.6vw, 2rem); font-weight: 800; color: var(--brand-text); line-height: 1.12; letter-spacing: -0.015em; }
     .define-banner-teaser { font-size: 0.92rem; color: rgba(15,37,68,0.6); }
+    .define-banner-teaser a.define-founder { color: var(--brand-zafiro); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+    .define-banner-teaser a.define-founder:hover { color: var(--brand-hia); }
     .define-banner-arrow { flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%; background: var(--brand-hia); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; transition: transform 0.3s ease, background 0.2s ease; box-shadow: 0 12px 26px -12px rgba(58,138,90,0.55); }
     .define-banner:hover .define-banner-arrow { background: var(--brand-hia-dark); }
     .define-banner[aria-expanded="true"] .define-banner-arrow { transform: rotate(180deg); }
@@ -2317,9 +2319,9 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 <div class="define-entry">
   <button type="button" class="define-banner" id="defineBanner" aria-expanded="false" aria-controls="define-zone">
     <span class="define-banner-text">
-      <span class="define-banner-eyebrow" data-i18n="define_eyebrow">Lo humano</span>
+      <span class="define-banner-eyebrow" data-i18n="define_eyebrow">La historia</span>
       <span class="define-banner-title" data-i18n="define_title">+29 años resolviendo lo que no se ve</span>
-      <span class="define-banner-teaser" data-i18n="define_teaser">Quiénes somos, los valores y la historia.</span>
+      <span class="define-banner-teaser" data-i18n-html="define_teaser">Los valores, quiénes somos, <a class="define-founder" href="https://www.linkedin.com/in/matias-gonzalez-hce" target="_blank" rel="noopener" onclick="event.stopPropagation()">el fundador</a>.</span>
     </span>
     <span class="define-banner-arrow" aria-hidden="true">↓</span>
   </button>
