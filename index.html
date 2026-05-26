@@ -894,8 +894,9 @@
     .ia-card-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-bright); font-weight: 500; margin-bottom: 0.8rem; }
     .ia-card-name { font-family: 'Inter', sans-serif; font-size: 2.8rem; font-weight: 800; color: var(--white); line-height: 1; margin-bottom: 1rem; letter-spacing: -0.01em; }
     .ia-card-desc { font-size: 0.9rem; color: var(--text-dim); line-height: 1.65; margin-bottom: 2rem; }
-    .ia-card-btn { display: inline-block; background: var(--accent); color: white; padding: 0.8rem 1.8rem; border-radius: 8px; font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: background 0.2s, transform 0.15s; font-family: 'Inter', sans-serif; border: none; cursor: pointer; }
+    .ia-card-btn { display: inline-block; position: relative; background: var(--accent); color: white; padding: 0.8rem 1.8rem; border-radius: 8px; font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: background 0.2s, transform 0.15s; font-family: 'Inter', sans-serif; border: none; cursor: pointer; }
     .ia-card-btn:hover { background: var(--accent-bright); transform: translateY(-2px); }
+    .ia-card-btn::before { content: ""; position: absolute; inset: -1px; border-radius: 9px; background: linear-gradient(90deg, var(--brand-hia), #6da0d6, #4f86c6, #6da0d6, var(--brand-hia)); background-size: 200% 100%; z-index: -1; animation: flowBorder 5s linear infinite; }
 
     /* ─── CONTACT ─── */
     .contact-inner { max-width: 580px; margin: 0 auto; }
@@ -1229,8 +1230,8 @@
     /* Card content legibility on Zafiro */
     .ia-card .ia-card-label { color: rgba(255,255,255,.7) !important; }
     .ia-card .ia-card-desc { color: rgba(255,255,255,.82) !important; }
-    .ia-card .ia-card-btn { background: rgba(255,255,255,.18) !important; color: #ffffff !important; border: 1px solid rgba(255,255,255,.35) !important; }
-    .ia-card .ia-card-btn:hover { background: rgba(255,255,255,.28) !important; }
+    .ia-card .ia-card-btn { background: rgba(16,40,69,.55) !important; color: #ffffff !important; border: 1px solid transparent !important; }
+    .ia-card .ia-card-btn:hover { background: rgba(16,40,69,.4) !important; }
     /* Chip blanco sobre "IA" en farIAs — sutil, proporcional al resto del texto */
     .ia-card .ia-card-name > span {
       background: #ffffff;
