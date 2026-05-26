@@ -258,7 +258,7 @@
     .h1-accent { color: var(--accent-bright); font-weight: 800; }
     .h1-dot { color: var(--accent-bright); }
     /* Acento del hero: azul más claro + micro borde blanco para legibilidad sobre la foto */
-    .hero-h1 span { color: var(--brand-zafiro-light) !important; -webkit-text-stroke: 0.7px rgba(255,255,255,0.92); paint-order: stroke fill; text-shadow: 0 2px 14px rgba(0,0,0,0.55); }
+    .hero-h1 span { background: linear-gradient(180deg, #eaf3fc 0%, #9cc4ea 50%, #5f93cf 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; filter: drop-shadow(0 2px 9px rgba(0,0,0,0.6)); }
 
     .hero-sub {
       font-size: clamp(1rem, 1.6vw, 1.15rem); color: rgba(255,255,255,0.75);
