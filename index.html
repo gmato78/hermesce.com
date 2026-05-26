@@ -1854,19 +1854,20 @@
       display: block;
       text-decoration: none;
       padding: 0.85rem 1rem;
-      background: linear-gradient(rgba(58,138,90,0.10), rgba(58,138,90,0.10)) padding-box, linear-gradient(120deg, #3A8A5A 0%, #6da0d6 55%, #4f86c6 100%) border-box;
-      border: 1.5px solid transparent;
-      border-radius: 9px;
-      box-shadow: 0 0 20px -6px rgba(58,138,90,0.45);
+      background: rgba(58, 138, 90, 0.08);
+      border: 1px solid rgba(58, 138, 90, 0.28);
+      border-left: 2px solid var(--brand-hia);
+      border-radius: 6px;
       margin: 1.6rem auto 0;
       width: fit-content;
       max-width: 100%;
       transition: background 0.22s ease, transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
     }
     .ia-hia-access:hover {
-      background: linear-gradient(rgba(58,138,90,0.18), rgba(58,138,90,0.18)) padding-box, linear-gradient(120deg, #4aa56c 0%, #7fb4e0 55%, #5e93cf 100%) border-box;
+      background: rgba(58, 138, 90, 0.14);
       transform: translateY(-1px);
-      box-shadow: 0 0 30px -4px rgba(58,138,90,0.6);
+      border-color: rgba(58, 138, 90, 0.5);
+      box-shadow: 0 10px 22px -14px rgba(58,138,90,0.5);
     }
     .ia-hia-access-row {
       display: flex;
@@ -1905,12 +1906,27 @@
       flex: 1;
     }
     .ia-hia-access-arrow {
-      font-size: 0.95rem;
-      color: var(--brand-hia);
-      font-weight: 700;
-      transition: transform 0.22s ease;
+      position: relative;
+      flex-shrink: 0;
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: var(--brand-zafiro-dark);
+      color: #ffffff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; font-weight: 700; line-height: 1;
+      z-index: 0;
     }
-    .ia-hia-access:hover .ia-hia-access-arrow { transform: translateX(3px); }
+    .ia-hia-access-arrow::before {
+      content: "";
+      position: absolute; inset: -2px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, transparent 0deg, var(--brand-hia) 80deg, #6da0d6 160deg, var(--brand-hia) 250deg, transparent 360deg);
+      z-index: -1;
+      animation: iaArrowSpin 2.8s linear infinite;
+      filter: drop-shadow(0 0 5px rgba(58,138,90,0.65));
+    }
+    @keyframes iaArrowSpin { to { transform: rotate(360deg); } }
+    .ia-hia-access:hover .ia-hia-access-arrow::before { animation-duration: 1.3s; }
     .ia-hia-access-soon {
       display: block;
       margin-top: 0.45rem;
