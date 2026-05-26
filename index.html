@@ -417,7 +417,7 @@
     }
 
     .contact-section::before { display: none; }
-    .contact-section { text-align: center; background: var(--accent); padding-top: 4rem; position: relative; overflow: hidden; }
+    .contact-section { text-align: center; background: linear-gradient(180deg, var(--brand-zafiro) 0%, var(--brand-zafiro-dark) 100%); padding-top: 4rem; position: relative; overflow: hidden; }
 
     .container { max-width: 1100px; margin: 0 auto; }
     .section-label { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-bright); font-weight: 500; margin-bottom: 1rem; }
@@ -845,18 +845,18 @@
     .matias-split-text { cursor: pointer; }
 
     /* ─── Lo que nos define — acordeón colapsable ─── */
-    .define-entry { background: linear-gradient(180deg, var(--brand-zafiro) 0%, var(--brand-zafiro-dark) 100%); margin: 0; padding: 2.6rem 1.5rem; }
-    .define-banner { width: 100%; max-width: 940px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1.6rem; text-align: left; background: transparent; border: none; padding: 0.3rem 0; cursor: pointer; font-family: inherit; transition: opacity 0.2s ease; }
-    .define-banner:hover { opacity: 0.9; }
+    .define-entry { background: transparent; max-width: 960px; margin: 2.8rem auto; padding: 0 1.5rem; }
+    .define-banner { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1.6rem; text-align: left; background: transparent; border: none; padding: 0; cursor: pointer; font-family: inherit; transition: opacity 0.2s ease; }
+    .define-banner:hover { opacity: 0.82; }
     .define-banner-text { display: flex; flex-direction: column; gap: 0.35rem; }
-    .define-banner-eyebrow { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: #7fb89a; font-weight: 700; }
-    .define-banner-title { font-family: 'Inter', sans-serif; font-size: clamp(1.4rem, 2.6vw, 2rem); font-weight: 800; color: #ffffff; line-height: 1.12; letter-spacing: -0.015em; }
-    .define-banner-teaser { font-size: 0.92rem; color: rgba(255,255,255,0.72); }
-    .define-banner-arrow { flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.32); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; transition: transform 0.3s ease, background 0.2s ease; }
-    .define-banner:hover .define-banner-arrow { background: rgba(255,255,255,0.22); }
+    .define-banner-eyebrow { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--brand-hia); font-weight: 700; }
+    .define-banner-title { font-family: 'Inter', sans-serif; font-size: clamp(1.4rem, 2.6vw, 2rem); font-weight: 800; color: var(--brand-text); line-height: 1.12; letter-spacing: -0.015em; }
+    .define-banner-teaser { font-size: 0.92rem; color: rgba(15,37,68,0.6); }
+    .define-banner-arrow { flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%; background: var(--brand-zafiro); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; transition: transform 0.3s ease, background 0.2s ease; box-shadow: 0 12px 26px -12px rgba(42,86,134,0.55); }
+    .define-banner:hover .define-banner-arrow { background: var(--brand-zafiro-dark); }
     .define-banner[aria-expanded="true"] .define-banner-arrow { transform: rotate(180deg); }
     .define-zone { display: none; }
-    .define-zone.open { display: block; background: var(--brand-zafiro-dark); animation: defineFade 0.45s ease; }
+    .define-zone.open { display: block; background: linear-gradient(180deg, var(--brand-zafiro) 0%, var(--brand-zafiro-dark) 100%); animation: defineFade 0.45s ease; }
     @keyframes defineFade { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
     .certs { display: flex; flex-direction: column; gap: 0.55rem; margin-top: 1.5rem; }
     .cert { display: flex; align-items: center; gap: 0.75rem; font-size: 0.82rem; color: rgba(232,234,240,0.75); }
@@ -1214,7 +1214,7 @@
     .ia-body-last { margin-bottom: 0; }
     .ia-body strong[style*="--white"] { color: var(--brand-text) !important; }
     /* farIAs card — Zafiro */
-    .ia-card { background: var(--brand-zafiro) !important; background-image: none !important; border-color: rgba(255,255,255,.18) !important; }
+    .ia-card { background: linear-gradient(180deg, var(--brand-zafiro) 0%, var(--brand-zafiro-dark) 100%) !important; border-color: rgba(255,255,255,.18) !important; }
     /* Card content legibility on Zafiro */
     .ia-card .ia-card-label { color: rgba(255,255,255,.7) !important; }
     .ia-card .ia-card-desc { color: rgba(255,255,255,.82) !important; }
@@ -1379,7 +1379,7 @@
     .svc-carousel { position: relative; }
     .svc-slides { position: relative; border-radius: 16px; overflow: visible; }
     .svc-slide { display: none; }
-    .svc-slide.active { display: block; background: var(--brand-zafiro); border-radius: 16px; border: none; }
+    .svc-slide.active { display: block; background: linear-gradient(180deg, var(--brand-zafiro) 0%, var(--brand-zafiro-dark) 100%); border-radius: 16px; border: none; }
     .svc-slide-content { padding: 3.2rem 3rem 3rem; }
     .svc-num { font-size: .72rem; font-weight: 700; letter-spacing: .15em; color: rgba(255,255,255,.6); margin-bottom: 1rem; }
     .svc-slide-content h3 { font-family: 'Inter', sans-serif; font-size: clamp(1.7rem, 2.4vw, 2.1rem); font-weight: 800; color: #ffffff; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1.1rem; }
