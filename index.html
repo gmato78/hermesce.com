@@ -864,8 +864,8 @@
       .define-banner-text { align-items: center; text-align: center; }
     }
     .define-collapse-entry { display: flex; justify-content: center; padding: 2.6rem 1.5rem 0.5rem; }
-    .define-collapse { width: 48px; height: 48px; border-radius: 50%; background: var(--brand-hia); color: #fff; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; box-shadow: 0 12px 26px -12px rgba(58,138,90,0.55); transition: background 0.2s ease, transform 0.2s ease; }
-    .define-collapse:hover { background: var(--brand-hia-dark); transform: translateY(-2px); }
+    .define-collapse { width: 48px; height: 48px; border-radius: 50%; background: var(--brand-hia); color: #fff; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; font-family: inherit; line-height: 1; box-shadow: 0 12px 26px -12px rgba(58,138,90,0.55); transition: background 0.2s ease, transform 0.3s ease; }
+    .define-collapse:hover { background: var(--brand-hia-dark); }
     .certs { display: flex; flex-direction: column; gap: 0.55rem; margin-top: 1.5rem; }
     .cert { display: flex; align-items: center; gap: 0.75rem; font-size: 0.82rem; color: rgba(232,234,240,0.75); }
     .certs { display: flex; flex-direction: column; gap: 0.55rem; margin-top: 1.5rem; }
@@ -1854,20 +1854,19 @@
       display: block;
       text-decoration: none;
       padding: 0.85rem 1rem;
-      background: rgba(58, 138, 90, 0.08);
-      border: 1px solid rgba(58, 138, 90, 0.28);
-      border-left: 2px solid var(--brand-hia);
-      border-radius: 6px;
+      background: linear-gradient(rgba(58,138,90,0.10), rgba(58,138,90,0.10)) padding-box, linear-gradient(120deg, #3A8A5A 0%, #6da0d6 55%, #4f86c6 100%) border-box;
+      border: 1.5px solid transparent;
+      border-radius: 9px;
+      box-shadow: 0 0 20px -6px rgba(58,138,90,0.45);
       margin: 1.6rem auto 0;
       width: fit-content;
       max-width: 100%;
       transition: background 0.22s ease, transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
     }
     .ia-hia-access:hover {
-      background: rgba(58, 138, 90, 0.14);
+      background: linear-gradient(rgba(58,138,90,0.18), rgba(58,138,90,0.18)) padding-box, linear-gradient(120deg, #4aa56c 0%, #7fb4e0 55%, #5e93cf 100%) border-box;
       transform: translateY(-1px);
-      border-color: rgba(58, 138, 90, 0.5);
-      box-shadow: 0 10px 22px -14px rgba(58,138,90,0.5);
+      box-shadow: 0 0 30px -4px rgba(58,138,90,0.6);
     }
     .ia-hia-access-row {
       display: flex;
