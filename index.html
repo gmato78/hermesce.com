@@ -1765,7 +1765,7 @@
       .hero-farias-pill .farias-pill-eyebrow { display: none; }
       .hero-farias-pill .farias-pill-label { font-size: 0.78rem; }
       .back-to-top { width: 42px; height: 42px; bottom: 1.2rem; right: 1.2rem; }
-      .footer-sitemap { gap: 0.4rem; align-items: center; text-align: center; }
+      .footer-sitemap { gap: 0.4rem; align-items: center; text-align: center; padding-left: 0; }
       .footer-sitemap-title { text-align: center; }
     }
 
@@ -1835,7 +1835,7 @@
       border: 1px solid rgba(58, 138, 90, 0.28);
       border-left: 2px solid var(--brand-hia);
       border-radius: 6px;
-      margin: 0 auto 1.4rem;
+      margin: 1.6rem auto 0;
       width: fit-content;
       max-width: 100%;
       transition: background 0.22s ease, transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
@@ -2448,18 +2448,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
       </div>
 
       <div class="ia-right reveal">
-        <div class="ia-card has-layer" style="border:1px solid rgba(42,86,134,0.3);">
-          <!-- Acceso a la subpágina de hermes IA · los otros 3 agentes -->
-          <a href="/ia" class="ia-hia-access" aria-label="Conocé hermes IA · 3 agentes más">
-            <div class="ia-hia-access-row">
-              <span class="ia-hia-access-mark">hermes<span class="ia-hia-mark-letters">IA</span></span>
-              <span class="ia-hia-access-divider"></span>
-              <span class="ia-hia-access-label" data-i18n="ia_hia_access_label">Conocé la capa · 3 agentes más</span>
-              <span class="ia-hia-access-arrow" aria-hidden="true">→</span>
-            </div>
-            <span class="ia-hia-access-soon" data-i18n="ia_hia_access_soon">Próximamente · web hermes IA</span>
-          </a>
-
+        <div class="ia-card has-layer ia-card-reivindicado" style="border:1px solid rgba(58,138,90,0.35);box-shadow:0 0 40px -12px rgba(58,138,90,0.30);">
           <div class="ia-card-label" style="color:var(--accent);text-align:center;" data-i18n="ia_card_label">Clasificador Arancelario IA</div>
           <div class="ia-card-name" style="color:var(--white);text-align:center;">far<span style="color:var(--brand-hia);">IA</span>s</div>
           <div class="ia-card-desc" style="color:var(--text-dim);margin-bottom:1rem;text-align:center;" data-i18n-html="ia_card_desc">Clasifica como un merciólogo profesional<br>con la marcha sistemática del Gran Maestro potenciada con IA.</div>
@@ -2475,6 +2464,17 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
             <img src="qr_contacto.png" alt="QR farIAs MVP" style="width:110px;height:110px;border-radius:6px;border:1px solid rgba(255,255,255,0.12);opacity:0.9;">
           </div>
           <div style="font-size:0.68rem;color:rgba(255,255,255,0.3);margin-top:1.5rem;letter-spacing:0.04em;font-style:italic;" data-i18n="ia_proto">* desarrollo en fase Prototipo</div>
+
+          <!-- Acceso a la iniciativa hermes IA (subpágina /ia) -->
+          <a href="/ia" class="ia-hia-access" aria-label="Conocé toda la iniciativa hermes IA">
+            <div class="ia-hia-access-row">
+              <span class="ia-hia-access-mark">hermes<span class="ia-hia-mark-letters">IA</span></span>
+              <span class="ia-hia-access-divider"></span>
+              <span class="ia-hia-access-label" data-i18n="ia_hia_access_label">Conocé toda la iniciativa</span>
+              <span class="ia-hia-access-arrow" aria-hidden="true">→</span>
+            </div>
+            <span class="ia-hia-access-soon" data-i18n="ia_hia_access_soon">Agentes de comex + infraestructura</span>
+          </a>
         </div>
       </div>
     </div>
