@@ -73,6 +73,17 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     .ia-masthead { font-size: 16px; font-weight: 600; text-transform: none; }
     .ia-cta { background: var(--brand-hia); color: #06140d; font-weight: 700; font-size: 11px; padding: 9px 18px; border-radius: 20px; transition: background .2s, transform .2s; }
     .ia-cta:hover { background: var(--brand-hia-dark); transform: translateY(-1px); }
+    .ia-nav-right { display: flex; align-items: center; gap: 14px; }
+    .lang-selector { position: relative; }
+    .lang-btn { background: transparent; border: 1px solid rgba(255,255,255,.2); color: rgba(255,255,255,.85); font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: .1em; padding: 6px 10px; border-radius: 4px; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: border-color .2s, color .2s; }
+    .lang-btn:hover { border-color: rgba(255,255,255,.45); color: #fff; }
+    .lang-chevron { transition: transform .2s; flex-shrink: 0; }
+    .lang-btn[aria-expanded="true"] .lang-chevron { transform: rotate(180deg); }
+    .lang-dropdown { display: none; position: absolute; right: 0; top: calc(100% + 6px); background: rgba(11,15,26,.97); border: 1px solid rgba(255,255,255,.12); border-radius: 6px; min-width: 72px; list-style: none; padding: 4px 0; box-shadow: 0 8px 24px rgba(0,0,0,.5); z-index: 20; }
+    .lang-dropdown.open { display: block; }
+    .lang-item { padding: 7px 16px; font-size: 11px; font-weight: 700; letter-spacing: .1em; color: rgba(255,255,255,.45); cursor: pointer; transition: color .15s, background .15s; }
+    .lang-item:hover { color: #fff; background: rgba(255,255,255,.06); }
+    .lang-item-active { color: var(--brand-hia); }
 
     /* HERO */
     .ia-hero { position: relative; overflow: hidden; padding: 56px 28px 44px; background: radial-gradient(130% 110% at 72% 30%, var(--ia-bg2) 0%, var(--ia-bg) 60%); }
@@ -153,7 +164,23 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
         <a href="/" class="ia-back" id="ia-back" aria-label="Volver a hermesce.com">←</a>
         <span class="ia-masthead">hermes <span class="ia-g">IA</span></span>
       </div>
-      <a href="#waitlist" class="ia-cta" data-i18n="iapage_nav_cta">Anotarme</a>
+      <div class="ia-nav-right">
+        <div class="lang-selector" translate="no">
+          <button type="button" class="lang-btn" id="langBtn" aria-label="Idioma" aria-expanded="false" aria-haspopup="listbox">
+            <span id="langCurrent">ES</span>
+            <svg class="lang-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <ul class="lang-dropdown" id="langDropdown" role="listbox">
+            <li class="lang-item lang-item-active" data-lang="es">ES</li>
+            <li class="lang-item" data-lang="zh-CN">中文</li>
+            <li class="lang-item" data-lang="en">EN</li>
+            <li class="lang-item" data-lang="pt">PT</li>
+            <li class="lang-item" data-lang="de">DE</li>
+            <li class="lang-item" data-lang="fr">FR</li>
+          </ul>
+        </div>
+        <a href="#waitlist" class="ia-cta" data-i18n="iapage_nav_cta">Anotarme</a>
+      </div>
     </nav>
 
     <!-- HERO -->
@@ -276,14 +303,6 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     <!-- FOOTER -->
     <footer class="ia-footer">
       <a href="/" data-i18n="iapage_footer_back">← volver a hermesce.com</a>
-      <div class="ia-lang" id="ia-lang">
-        <button data-lang="es" class="active">ES</button>
-        <button data-lang="en">EN</button>
-        <button data-lang="pt">PT</button>
-        <button data-lang="zh-CN">中文</button>
-        <button data-lang="de">DE</button>
-        <button data-lang="fr">FR</button>
-      </div>
     </footer>
 
   </div>
@@ -312,15 +331,36 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
         if (t[key] !== undefined) el.innerHTML = t[key];
       });
       document.documentElement.lang = lang === 'zh-CN' ? 'zh' : lang;
-      document.querySelectorAll('#ia-lang button').forEach(function(b) {
-        b.classList.toggle('active', b.dataset.lang === lang);
+      var labels = { 'es':'ES','en':'EN','pt':'PT','zh-CN':'中文','de':'DE','fr':'FR' };
+      var cur = document.getElementById('langCurrent');
+      if (cur) cur.textContent = labels[lang] || lang.toUpperCase();
+      document.querySelectorAll('.lang-item').forEach(function(it) {
+        it.classList.toggle('lang-item-active', it.dataset.lang === lang);
       });
       localStorage.setItem('hermes_lang', lang);
     }
 
-    document.querySelectorAll('#ia-lang button').forEach(function(b) {
-      b.addEventListener('click', function() { applyLang(b.dataset.lang); });
-    });
+    var langBtn = document.getElementById('langBtn');
+    var langDropdown = document.getElementById('langDropdown');
+    if (langBtn && langDropdown) {
+      langBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var open = langDropdown.classList.toggle('open');
+        langBtn.setAttribute('aria-expanded', open);
+      });
+      document.addEventListener('click', function() {
+        langDropdown.classList.remove('open');
+        langBtn.setAttribute('aria-expanded', 'false');
+      });
+      document.querySelectorAll('.lang-item').forEach(function(it) {
+        it.addEventListener('click', function(e) {
+          e.stopPropagation();
+          applyLang(it.dataset.lang);
+          langDropdown.classList.remove('open');
+          langBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
 
     // ── Eventos GA ──
     var wlForm = document.getElementById('waitlist-form');
