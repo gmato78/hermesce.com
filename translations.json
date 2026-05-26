@@ -277,7 +277,10 @@
     "iapage_wl_sub": "Aviso a medida que cada pieza pasa a prototipo hacia afuera.",
     "iapage_wl_placeholder": "tu@email.com",
     "iapage_wl_cta": "Anotarme →",
-    "iapage_footer_back": "← volver a hermesce.com"
+    "iapage_footer_back": "← volver a hermesce.com",
+    "define_eyebrow": "Lo humano",
+    "define_title": "Lo que nos define",
+    "define_teaser": "Valores, trayectoria y la persona detrás."
   },
   "en": {
     "nav_valores": "Values",
@@ -557,7 +560,10 @@
     "iapage_wl_sub": "Updates as each piece moves into open prototype.",
     "iapage_wl_placeholder": "you@email.com",
     "iapage_wl_cta": "Join →",
-    "iapage_footer_back": "← back to hermesce.com"
+    "iapage_footer_back": "← back to hermesce.com",
+    "define_eyebrow": "The human side",
+    "define_title": "What defines us",
+    "define_teaser": "Values, track record, and the person behind it."
   },
   "zh-CN": {
     "nav_valores": "价值观",
@@ -837,7 +843,10 @@
     "iapage_wl_sub": "每一部分进入开放原型时即时通知。",
     "iapage_wl_placeholder": "you@email.com",
     "iapage_wl_cta": "加入 →",
-    "iapage_footer_back": "← 返回 hermesce.com"
+    "iapage_footer_back": "← 返回 hermesce.com",
+    "define_eyebrow": "人的一面",
+    "define_title": "我们的根本",
+    "define_teaser": "价值观、经历，以及背后的人。"
   },
   "de": {
     "nav_valores": "Werte",
@@ -1117,7 +1126,10 @@
     "iapage_wl_sub": "Updates, sobald jeder Baustein in den offenen Prototyp geht.",
     "iapage_wl_placeholder": "du@email.com",
     "iapage_wl_cta": "Eintragen →",
-    "iapage_footer_back": "← zurück zu hermesce.com"
+    "iapage_footer_back": "← zurück zu hermesce.com",
+    "define_eyebrow": "Das Menschliche",
+    "define_title": "Was uns ausmacht",
+    "define_teaser": "Werte, Werdegang und der Mensch dahinter."
   },
   "fr": {
     "nav_valores": "Valeurs",
@@ -1397,7 +1409,10 @@
     "iapage_wl_sub": "Des nouvelles dès que chaque pièce passe en prototype ouvert.",
     "iapage_wl_placeholder": "vous@email.com",
     "iapage_wl_cta": "Je m'inscris →",
-    "iapage_footer_back": "← retour à hermesce.com"
+    "iapage_footer_back": "← retour à hermesce.com",
+    "define_eyebrow": "Le côté humain",
+    "define_title": "Ce qui nous définit",
+    "define_teaser": "Valeurs, parcours et la personne derrière."
   },
   "pt": {
     "nav_valores": "Valores",
@@ -1677,6 +1692,9 @@
     "iapage_wl_sub": "Avisos à medida que cada peça entra em protótipo aberto.",
     "iapage_wl_placeholder": "voce@email.com",
     "iapage_wl_cta": "Quero entrar →",
-    "iapage_footer_back": "← voltar para hermesce.com"
+    "iapage_footer_back": "← voltar para hermesce.com",
+    "define_eyebrow": "O lado humano",
+    "define_title": "O que nos define",
+    "define_teaser": "Valores, trajetória e a pessoa por trás."
   }
 }
