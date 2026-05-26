@@ -1006,8 +1006,8 @@
       .nav-right .lang-selector { display: flex; }
       .drawer-lang-bar { display: flex; align-items: center; gap: 0.8rem; padding: 0.2rem 0; }
       .drawer-lang-sep { color: rgba(255,255,255,0.2); font-size: 0.7rem; }
-      .hero { height: 100svh; height: 100vh; display: flex; flex-direction: column; justify-content: space-between; }
-      .hero-content { padding: 3rem 1.5rem 0; flex: 1; display: flex; flex-direction: column; justify-content: flex-start; }
+      .hero { height: 100svh; height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+      .hero-content { padding: 3rem 1.5rem 0; flex: 0 1 auto; display: flex; flex-direction: column; justify-content: flex-start; }
       .hero-stats {
         position: static;
         display: grid;
@@ -1798,8 +1798,9 @@
 
     @media (max-width: 768px) {
       .hero-farias-pill {
-        bottom: 1.4rem;
-        right: 1rem;
+        position: static;
+        align-self: flex-start;
+        margin: 1rem 1.5rem 0;
         padding: 0.5rem 0.85rem;
         gap: 0.45rem;
         border-radius: 9px;
