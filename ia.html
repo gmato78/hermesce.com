@@ -78,7 +78,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     .ia-hero { position: relative; overflow: hidden; padding: 56px 28px 44px; background: radial-gradient(130% 110% at 72% 30%, var(--ia-bg2) 0%, var(--ia-bg) 60%); }
     .ia-hero-svg { position: absolute; right: -30px; top: 8px; height: 340px; opacity: .9; pointer-events: none; }
     .ia-hero-inner { position: relative; max-width: 56%; }
-    .ia-eyebrow { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; font-weight: 600; color: var(--ia-green-soft); }
+    .ia-eyebrow { font-size: 11px; letter-spacing: .12em; text-transform: none; font-weight: 600; color: var(--ia-green-soft); }
     .ia-h1 { font-size: clamp(26px, 4.5vw, 34px); font-weight: 300; line-height: 1.1; margin: 14px 0 14px; }
     .ia-h1 b { font-weight: 600; }
     .ia-hero-sub { font-size: 13px; color: rgba(255,255,255,.6); max-width: 42ch; line-height: 1.6; }
@@ -150,7 +150,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     <!-- NAV -->
     <nav class="ia-nav">
       <div class="ia-nav-left">
-        <a href="/" class="ia-back" aria-label="Volver a hermesce.com">←</a>
+        <a href="/" class="ia-back" id="ia-back" aria-label="Volver a hermesce.com">←</a>
         <span class="ia-masthead">hermes <span class="ia-g">IA</span></span>
       </div>
       <a href="#waitlist" class="ia-cta" data-i18n="iapage_nav_cta">Anotarme</a>
@@ -327,6 +327,8 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     if (wlForm) wlForm.addEventListener('submit', function() { gtag('event', 'waitlist_submit', { page: 'ia' }); });
     var tryLink = document.getElementById('farias-try');
     if (tryLink) tryLink.addEventListener('click', function() { gtag('event', 'farias_try_click', { page: 'ia' }); });
+    var backLink = document.getElementById('ia-back');
+    if (backLink) backLink.addEventListener('click', function() { gtag('event', 'ia_back_home', { page: 'ia' }); });
   </script>
 </body>
 </html>
