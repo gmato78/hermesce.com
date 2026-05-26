@@ -108,7 +108,15 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 
     /* AGENTS */
     .ia-agents { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-    .ia-card { background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.15); border-radius: 13px; padding: 20px; }
+    /* cards vivas: nodo del micelio (aura que late + forma que muta sutil) */
+    @keyframes ia-morph { 0%,100% { border-radius: 22px 27px 21px 26px / 26px 21px 27px 22px; } 50% { border-radius: 27px 21px 26px 22px / 21px 27px 22px 26px; } }
+    @keyframes ia-aura { 0%,100% { box-shadow: 0 14px 40px -20px rgba(79,134,198,.42); } 50% { box-shadow: 0 14px 40px -18px rgba(79,134,198,.58), 0 0 26px -6px rgba(79,134,198,.28); } }
+    .ia-card { position: relative; background: radial-gradient(150% 120% at 50% -15%, rgba(79,134,198,.14), rgba(255,255,255,.04) 58%); border: 1px solid rgba(122,170,220,.22); border-radius: 22px 27px 21px 26px / 26px 21px 27px 22px; padding: 22px; animation: ia-morph 17s ease-in-out infinite, ia-aura 5.5s ease-in-out infinite; will-change: border-radius, box-shadow; }
+    .ia-card:nth-child(2) { animation-delay: -3s, -1.4s; }
+    .ia-card:nth-child(3) { animation-delay: -7s, -2.8s; }
+    .ia-card:nth-child(4) { animation-delay: -11s, -4.1s; }
+    .ia-card::after { content: ""; position: absolute; bottom: 14px; right: 16px; width: 7px; height: 7px; border-radius: 50%; background: var(--ia-node); box-shadow: 0 0 9px 2px rgba(109,160,214,.7); }
+    @media (prefers-reduced-motion: reduce) { .ia-card, .ia-infra-card { animation: none !important; } }
     .ia-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
     .ia-card-name { font-size: 20px; font-weight: 700; }
     .ia-card-area { font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.5); margin: 5px 0 10px; }
@@ -125,8 +133,12 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     /* INFRA */
     .ia-infra-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
     .ia-infra-grid { display: flex; gap: 12px; flex-wrap: wrap; }
-    .ia-infra-card { flex: 1; min-width: 150px; background: rgba(42,86,134,.12); border: 1px solid rgba(42,86,134,.34); border-radius: 11px; padding: 16px; }
-    .ia-infra-card.mon { background: rgba(58,138,90,.08); border-color: rgba(58,138,90,.3); }
+    .ia-infra-card { position: relative; flex: 1; min-width: 150px; background: radial-gradient(150% 130% at 50% -15%, rgba(79,134,198,.13), rgba(42,86,134,.10) 60%); border: 1px solid rgba(122,170,220,.26); border-radius: 20px 24px 19px 23px / 23px 19px 24px 20px; padding: 18px; animation: ia-morph 18s ease-in-out infinite, ia-aura 6s ease-in-out infinite; will-change: border-radius, box-shadow; }
+    .ia-infra-card:nth-child(2) { animation-delay: -5s, -2s; }
+    .ia-infra-card:nth-child(3) { animation-delay: -9s, -3.5s; }
+    .ia-infra-card::after { content: ""; position: absolute; top: 14px; right: 14px; width: 6px; height: 6px; border-radius: 50%; background: var(--ia-node); box-shadow: 0 0 8px 2px rgba(109,160,214,.65); }
+    .ia-infra-card.mon { background: radial-gradient(150% 130% at 50% -15%, rgba(58,138,90,.16), rgba(58,138,90,.06) 60%); border-color: rgba(58,138,90,.34); }
+    .ia-infra-card.mon::after { background: var(--brand-hia); box-shadow: 0 0 9px 2px rgba(58,138,90,.7); }
     .ia-infra-title { font-size: 13px; font-weight: 600; color: #cfe0f0; }
     .ia-infra-desc { font-size: 10px; color: rgba(255,255,255,.55); margin-top: 5px; line-height: 1.5; }
     .ia-infra-ico { margin-bottom: 8px; display: block; }
