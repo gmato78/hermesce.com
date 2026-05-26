@@ -244,11 +244,7 @@
       animation: fadeUp 0.6s ease forwards; opacity: 0;
     }
     .eyebrow-year {
-      background: linear-gradient(180deg, var(--brand-zafiro-light) 0%, var(--brand-zafiro) 100%);
-      -webkit-background-clip: text; background-clip: text;
-      -webkit-text-fill-color: transparent; color: transparent;
-      -webkit-text-stroke: 0.5px rgba(255,255,255,0.9); paint-order: stroke fill;
-      filter: drop-shadow(0 1px 5px rgba(0,0,0,0.75));
+      color: #ffffff;
     }
     .hero-h1 {
       font-family: 'Inter', sans-serif; font-weight: 800;
@@ -1676,7 +1672,7 @@
       color: #ffffff;
       padding: 0.55rem 0.95rem;
       border-radius: 10px;
-      border: 1.5px solid transparent;
+      border: 1px solid transparent;
       text-decoration: none;
       font-family: 'Inter', sans-serif;
       font-weight: 600;
@@ -1689,12 +1685,12 @@
     .hero-farias-pill::before {
       content: "";
       position: absolute;
-      inset: -2px;
-      border-radius: 12px;
-      background: conic-gradient(from 0deg, transparent 0deg, var(--brand-hia) 65deg, #6da0d6 140deg, #4f86c6 205deg, var(--brand-hia) 290deg, transparent 360deg);
+      inset: -1px;
+      border-radius: 11px;
+      background: conic-gradient(from 0deg, var(--brand-hia), #6da0d6, #4f86c6, #6da0d6, var(--brand-hia));
       z-index: -1;
-      animation: iaArrowSpin 3s linear infinite;
-      filter: drop-shadow(0 0 6px rgba(58,138,90,0.5));
+      animation: iaArrowSpin 4s linear infinite;
+      filter: drop-shadow(0 0 5px rgba(58,138,90,0.45));
     }
     .hero-farias-pill:hover {
       transform: translateY(-2px);
