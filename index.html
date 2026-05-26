@@ -247,6 +247,7 @@
       background: linear-gradient(180deg, var(--brand-zafiro-light) 0%, var(--brand-zafiro) 100%);
       -webkit-background-clip: text; background-clip: text;
       -webkit-text-fill-color: transparent; color: transparent;
+      -webkit-text-stroke: 0.5px rgba(255,255,255,0.9); paint-order: stroke fill;
       filter: drop-shadow(0 1px 5px rgba(0,0,0,0.75));
     }
     .hero-h1 {
@@ -1669,13 +1670,13 @@
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      background: rgba(58, 138, 90, 0.78);
+      background: linear-gradient(180deg, var(--brand-hia) 0%, var(--brand-hia-dark) 100%);
       -webkit-backdrop-filter: blur(10px) saturate(120%);
       backdrop-filter: blur(10px) saturate(120%);
       color: #ffffff;
       padding: 0.55rem 0.95rem;
       border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.18);
+      border: 1.5px solid transparent;
       text-decoration: none;
       font-family: 'Inter', sans-serif;
       font-weight: 600;
@@ -1685,9 +1686,19 @@
       animation: fadeUp 0.7s 0.5s ease forwards;
       opacity: 0;
     }
+    .hero-farias-pill::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: 12px;
+      background: conic-gradient(from 0deg, transparent 0deg, var(--brand-hia) 65deg, #6da0d6 140deg, #4f86c6 205deg, var(--brand-hia) 290deg, transparent 360deg);
+      z-index: -1;
+      animation: iaArrowSpin 3s linear infinite;
+      filter: drop-shadow(0 0 6px rgba(58,138,90,0.5));
+    }
     .hero-farias-pill:hover {
       transform: translateY(-2px);
-      background: rgba(58, 138, 90, 0.92);
+      background: linear-gradient(180deg, #4aa56c 0%, var(--brand-hia) 100%);
       box-shadow: 0 16px 32px -14px rgba(58,138,90,0.7), 0 4px 10px -4px rgba(0,0,0,0.4);
     }
     .hero-farias-pill .farias-pill-eyebrow {
