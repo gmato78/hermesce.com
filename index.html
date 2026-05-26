@@ -244,10 +244,10 @@
       animation: fadeUp 0.6s ease forwards; opacity: 0;
     }
     .eyebrow-year {
-      background: linear-gradient(180deg, #d4e6f7 0%, #7fb0dd 50%, #3f6fad 100%);
+      background: linear-gradient(180deg, var(--brand-zafiro-light) 0%, var(--brand-zafiro) 100%);
       -webkit-background-clip: text; background-clip: text;
       -webkit-text-fill-color: transparent; color: transparent;
-      filter: drop-shadow(0 1px 6px rgba(0,0,0,0.7));
+      filter: drop-shadow(0 1px 5px rgba(0,0,0,0.75));
     }
     .hero-h1 {
       font-family: 'Inter', sans-serif; font-weight: 800;
@@ -261,7 +261,7 @@
     .h1-accent { color: var(--accent-bright); font-weight: 800; }
     .h1-dot { color: var(--accent-bright); }
     /* Acento del hero: azul más claro + micro borde blanco para legibilidad sobre la foto */
-    .hero-h1 span { background: linear-gradient(180deg, #d4e6f7 0%, #7fb0dd 50%, #3f6fad 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; filter: drop-shadow(0 2px 9px rgba(0,0,0,0.62)); }
+    .hero-h1 .hl { white-space: nowrap; }
 
     .hero-sub {
       font-size: clamp(1rem, 1.6vw, 1.15rem); color: rgba(255,255,255,0.75);
@@ -2049,7 +2049,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   <!-- Contenido central -->
   <div class="hero-content">
     <div class="hero-eyebrow"><span class="eyebrow-year" data-i18n="hero_eyebrow">DESDE 1997</span></div>
-    <h1 class="hero-h1" data-i18n-html="hero_h1"><span style="color:var(--accent-bright);">Aduana sin sorpresas.</span><br>Embarques a tiempo.</h1>
+    <h1 class="hero-h1" data-i18n-html="hero_h1"><span class="hl">Aduana</span> sin sorpresas.<br>Embarques <span class="hl">a tiempo</span>.</h1>
     <p class="hero-sub hero-sub-strong" data-i18n="hero_sub">
       Comercio Exterior <span class="sub-accent">Punta a Punta</span> para Empresas y Pymes.
     </p>
