@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mockup · cards vivas /ia</title>
+<style>
+  :root{
+    --ia-bg:#0B0F1A; --ia-bg2:#16294a;
+    --brand-hia:#3A8A5A; --brand-hia-dark:#2D6E47;
+    --ia-zafiro-light:#9ec3e6; --ia-node:#6da0d6; --ia-green-soft:#7fb89a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',system-ui,sans-serif;background:radial-gradient(120% 80% at 78% 0%, #14264a 0%, var(--ia-bg) 55%), var(--ia-bg);color:#eef3f8;padding:40px 28px 80px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .ia-g{color:var(--brand-hia)}
+  h1.mt{font-size:1rem;font-weight:700;color:var(--ia-zafiro-light);text-align:center;margin-bottom:8px}
+  .mt-sub{text-align:center;font-size:.8rem;color:rgba(255,255,255,.45);margin-bottom:48px}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:54px;max-width:1080px;margin:0 auto}
+  .col-h{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin-bottom:20px;text-align:center}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+
+  /* contenido común */
+  .c-name{font-size:19px;font-weight:700}
+  .c-area{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);margin:5px 0 9px}
+  .c-desc{font-size:11px;color:rgba(255,255,255,.72);line-height:1.55}
+  .c-badge{font-size:8px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:20px;white-space:nowrap;background:var(--brand-hia);color:#06140d}
+  .c-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+
+  /* ============ VARIANTE A · ESFERA AMORFA (muta + glow + flota) ============ */
+  @keyframes morphA { 0%,100%{border-radius:46% 54% 56% 44% / 54% 46% 54% 46%} 50%{border-radius:54% 46% 42% 58% / 44% 58% 42% 56%} }
+  @keyframes morphB { 0%,100%{border-radius:52% 48% 44% 56% / 48% 52% 56% 44%} 50%{border-radius:44% 56% 58% 42% / 56% 44% 46% 54%} }
+  @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+  .blob{
+    position:relative;padding:30px 28px;
+    background:radial-gradient(120% 120% at 30% 20%, rgba(79,134,198,.16), rgba(255,255,255,.04) 60%);
+    border:1px solid rgba(122,170,220,.28);
+    box-shadow:0 0 40px -10px rgba(79,134,198,.4), inset 0 0 30px -18px rgba(158,195,236,.5);
+    border-radius:46% 54% 56% 44% / 54% 46% 54% 46%;
+    animation:morphA 14s ease-in-out infinite, floatY 7s ease-in-out infinite;
+  }
+  .blob:nth-child(2){animation:morphB 16s ease-in-out infinite, floatY 8s ease-in-out infinite .6s}
+  .blob:nth-child(3){animation:morphB 15s ease-in-out infinite, floatY 7.5s ease-in-out infinite .3s}
+  .blob:nth-child(4){animation:morphA 17s ease-in-out infinite, floatY 8.5s ease-in-out infinite .9s}
+
+  /* ============ VARIANTE B · NODO VIVO (redondeado + aura que late) ============ */
+  @keyframes auraPulse { 0%,100%{box-shadow:0 0 0 0 rgba(79,134,198,0), 0 14px 40px -16px rgba(79,134,198,.35)} 50%{box-shadow:0 0 34px -2px rgba(79,134,198,.32), 0 14px 40px -16px rgba(79,134,198,.5)} }
+  .node{
+    position:relative;padding:24px 22px;border-radius:22px;
+    background:radial-gradient(140% 120% at 50% -10%, rgba(79,134,198,.14), rgba(255,255,255,.045) 55%);
+    border:1px solid rgba(122,170,220,.22);
+    animation:auraPulse 4.5s ease-in-out infinite;
+  }
+  .node:nth-child(2){animation-delay:.8s}
+  .node:nth-child(3){animation-delay:1.5s}
+  .node:nth-child(4){animation-delay:2.2s}
+  .node::before{content:"";position:absolute;top:16px;right:16px;width:7px;height:7px;border-radius:50%;background:var(--ia-node);box-shadow:0 0 10px 2px rgba(109,160,214,.8);}
+</style>
+</head>
+<body>
+  <h1 class="mt">MOCKUP — cards de /ia "vivas" como los nodos del micelio</h1>
+  <p class="mt-sub">Misma info, dos tratamientos. A: esfera amorfa que muta + flota. B: nodo redondeado con aura que late.</p>
+
+  <div class="cols">
+
+    <!-- COL A -->
+    <div>
+      <div class="col-h" style="color:var(--ia-node)">A · Esfera amorfa (muta + flota)</div>
+      <div class="grid">
+        <article class="blob">
+          <div class="c-top"><span class="c-name">far<span class="ia-g">IA</span>s</span><span class="c-badge">PROTOTIPO</span></div>
+          <div class="c-area">Merceología</div>
+          <p class="c-desc">Una foto, un link o una descripción → posición NCM+SIM, tributos y restricciones en segundos.</p>
+        </article>
+        <article class="blob">
+          <div class="c-top"><span class="c-name">garc<span class="ia-g">IA</span></span><span class="c-badge" style="background:none;border:1px solid var(--brand-hia);color:var(--ia-green-soft)">EN DESARROLLO</span></div>
+          <div class="c-area">Declaración</div>
+          <p class="c-desc">El corazón del despacho: arma la declaración y la lleva al sistema aduanero.</p>
+        </article>
+        <article class="blob">
+          <div class="c-top"><span class="c-name">tan<span class="ia-g">IA</span></span><span class="c-badge" style="background:rgba(79,134,198,.18);border:1px solid rgba(79,134,198,.4);color:var(--ia-zafiro-light)">OPERATIVO</span></div>
+          <div class="c-area">Administración</div>
+          <p class="c-desc">Concilia comprobantes contra facturas, imputa y deja la administración al día.</p>
+        </article>
+        <article class="blob">
+          <div class="c-top"><span class="c-name">emil<span class="ia-g">IA</span></span><span class="c-badge" style="background:rgba(79,134,198,.18);border:1px solid rgba(79,134,198,.4);color:var(--ia-zafiro-light)">OPERATIVO</span></div>
+          <div class="c-area">Operaciones</div>
+          <p class="c-desc">Coordina turnos, depósitos y la documentación de cada embarque.</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- COL B -->
+    <div>
+      <div class="col-h" style="color:var(--ia-green-soft)">B · Nodo vivo (aura que late)</div>
+      <div class="grid">
+        <article class="node">
+          <div class="c-top"><span class="c-name">far<span class="ia-g">IA</span>s</span><span class="c-badge">PROTOTIPO</span></div>
+          <div class="c-area">Merceología</div>
+          <p class="c-desc">Una foto, un link o una descripción → posición NCM+SIM, tributos y restricciones en segundos.</p>
+        </article>
+        <article class="node">
+          <div class="c-top"><span class="c-name">garc<span class="ia-g">IA</span></span><span class="c-badge" style="background:none;border:1px solid var(--brand-hia);color:var(--ia-green-soft)">EN DESARROLLO</span></div>
+          <div class="c-area">Declaración</div>
+          <p class="c-desc">El corazón del despacho: arma la declaración y la lleva al sistema aduanero.</p>
+        </article>
+        <article class="node">
+          <div class="c-top"><span class="c-name">tan<span class="ia-g">IA</span></span><span class="c-badge" style="background:rgba(79,134,198,.18);border:1px solid rgba(79,134,198,.4);color:var(--ia-zafiro-light)">OPERATIVO</span></div>
+          <div class="c-area">Administración</div>
+          <p class="c-desc">Concilia comprobantes contra facturas, imputa y deja la administración al día.</p>
+        </article>
+        <article class="node">
+          <div class="c-top"><span class="c-name">emil<span class="ia-g">IA</span></span><span class="c-badge" style="background:rgba(79,134,198,.18);border:1px solid rgba(79,134,198,.4);color:var(--ia-zafiro-light)">OPERATIVO</span></div>
+          <div class="c-area">Operaciones</div>
+          <p class="c-desc">Coordina turnos, depósitos y la documentación de cada embarque.</p>
+        </article>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
