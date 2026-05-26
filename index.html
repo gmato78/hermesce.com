@@ -97,7 +97,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 0.85rem 5rem;
-      background: linear-gradient(180deg, rgba(42, 86, 134, calc(var(--nav-fill) * 0.92)) 0%, rgba(16, 40, 69, calc(var(--nav-fill) * 0.92)) 100%);
+      background: linear-gradient(180deg, rgba(42, 86, 134, calc(var(--nav-fill) * 0.78)) 0%, rgba(16, 40, 69, calc(var(--nav-fill) * 0.78)) 100%);
       -webkit-backdrop-filter: blur(var(--nav-blur)) saturate(140%);
       backdrop-filter: blur(var(--nav-blur)) saturate(140%);
       border-radius: 16px;
@@ -860,8 +860,12 @@
     @keyframes defineFade { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
     @media (max-width: 600px) {
       .define-entry { margin: 2rem auto; }
-      .define-banner { flex-direction: column; align-items: flex-start; gap: 1.1rem; justify-content: flex-start; }
+      .define-banner { flex-direction: column; align-items: center; gap: 1.2rem; justify-content: center; }
+      .define-banner-text { align-items: center; text-align: center; }
     }
+    .define-collapse-entry { display: flex; justify-content: center; padding: 2.6rem 1.5rem 0.5rem; }
+    .define-collapse { width: 48px; height: 48px; border-radius: 50%; background: var(--brand-hia); color: #fff; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; box-shadow: 0 12px 26px -12px rgba(58,138,90,0.55); transition: background 0.2s ease, transform 0.2s ease; }
+    .define-collapse:hover { background: var(--brand-hia-dark); transform: translateY(-2px); }
     .certs { display: flex; flex-direction: column; gap: 0.55rem; margin-top: 1.5rem; }
     .cert { display: flex; align-items: center; gap: 0.75rem; font-size: 0.82rem; color: rgba(232,234,240,0.75); }
     .certs { display: flex; flex-direction: column; gap: 0.55rem; margin-top: 1.5rem; }
@@ -1463,7 +1467,7 @@
     /* ═══ DEPTH · Carrusel Problema — sin foto, editorial, capa ═══ */
     .problem-slide-img { display: none; }
     .problem-slides { overflow: visible; }
-    .problem-slide.active { background: var(--brand-zafiro); border: none; box-shadow: none; }
+    .problem-slide.active { background: linear-gradient(180deg, var(--brand-zafiro) 0%, var(--brand-zafiro-dark) 100%); border: none; box-shadow: none; }
     .problem-slide-content { padding: 3.2rem 3rem 3rem; }
     .problem-slide-content h3 { font-size: clamp(1.7rem, 2.4vw, 2.1rem); color: #ffffff; }
     .problem-slide-content h3::before { background: #ffffff; }
@@ -1482,7 +1486,7 @@
       #problema .problem-carousel { margin-right: 0; }
       #servicios .svc-carousel { margin-right: 0; }
       /* Servicios: el aire de "respeto al nav" va afuera del box (gap entre paneles), no adentro como padding muerto. 9rem = el padding-top original, ahora como margen para mantener la posición del título sin agrandar la caja. */
-      #servicios.panel { margin-top: 9rem; }
+      #servicios.panel { margin-top: 3rem; }
     }
 
     /* ═══ DEPTH · ECP — blanco con hairline Zafiro ═══ */
@@ -2425,6 +2429,13 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     </a>
   </div>
 </section>
+
+  <!-- Botón contraer la zona -->
+  <div class="define-collapse-entry">
+    <button type="button" class="define-collapse" id="defineCollapse" aria-label="Contraer esta sección">
+      <span aria-hidden="true">↑</span>
+    </button>
+  </div>
 </div><!-- /define-zone -->
 
 <!-- IA -->
@@ -2922,6 +2933,16 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   document.querySelectorAll('.matias-split-text').forEach(function(el) {
     el.addEventListener('mouseenter', function() { el.classList.add('expanded'); });
   });
+  // Botón contraer: cierra la zona y vuelve al acceso
+  var defineCollapse = document.getElementById('defineCollapse');
+  if (defineCollapse && defineZone) {
+    defineCollapse.addEventListener('click', function() {
+      defineZone.classList.remove('open');
+      if (defineBanner) defineBanner.setAttribute('aria-expanded', 'false');
+      var entry = document.querySelector('.define-entry');
+      if (entry) entry.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }
 
   // ── Selector de idioma ──
   const langBtn = document.getElementById('langBtn');
