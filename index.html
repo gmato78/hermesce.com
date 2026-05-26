@@ -992,13 +992,14 @@
         border-radius: 12px;
       }
       .nav-hero.scrolled { padding: 0.6rem 0.9rem; top: 0.5rem; left: 0.5rem; right: 0.5rem; }
-      .nav-center { top: 50%; }
-      .nav-logo { width: 96px; max-width: 28vw; }
-      .nav-hero.scrolled .nav-logo { width: 86px; }
+      /* Nav mobile en flujo flex de 3 zonas: idioma (1fr) · logo (centro) · manito (1fr) → no se pisan nunca */
+      .nav-center { position: static; transform: none; top: auto; order: 2; flex: 0 0 auto; }
+      .nav-logo { width: auto; height: 44px; max-width: 38vw; }
+      .nav-hero.scrolled .nav-logo { height: 38px; width: auto; }
       /* Mostrar hamburger, ocultar nav links */
-      .nav-hamburger { display: flex; order: 3; }
-      .nav-right { order: 2; }
-      .nav-lang-left { order: 1; margin-right: 0; }
+      .nav-hamburger { display: flex; order: 3; flex: 1 1 0; align-items: flex-end; }
+      .nav-right { display: none; }
+      .nav-lang-left { order: 1; flex: 1 1 0; min-width: 0; margin-right: 0; }
       .nav-left { display: none; }
       .nav-right > ul { display: none; }
       /* lang-selector oculto en mobile — aparece en el drawer */
