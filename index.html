@@ -854,12 +854,11 @@
     .define-banner-text { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; }
     .define-banner-eyebrow { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--brand-hia); font-weight: 700; }
     .define-banner-title { font-family: 'Inter', sans-serif; font-size: clamp(1.4rem, 2.6vw, 2rem); font-weight: 800; color: var(--brand-text); line-height: 1.12; letter-spacing: -0.015em; }
-    .define-banner-teaser { font-size: 0.92rem; color: rgba(15,37,68,0.6); }
-    .define-banner-teaser a.define-founder { color: var(--brand-zafiro); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
-    .define-banner-teaser a.define-founder:hover { color: var(--brand-hia); }
+    .define-banner-teaser { font-size: 0.92rem; color: rgba(15,37,68,0.6); text-transform: lowercase; }
+    .define-banner-teaser a.define-jump { color: var(--brand-zafiro); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+    .define-banner-teaser a.define-jump:hover { color: var(--brand-hia); }
     .define-banner-arrow { flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%; background: var(--brand-hia); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; transition: transform 0.3s ease, background 0.2s ease; box-shadow: 0 12px 26px -12px rgba(58,138,90,0.55); }
     .define-banner:hover .define-banner-arrow { background: var(--brand-hia-dark); }
-    .define-banner[aria-expanded="true"] .define-banner-arrow { transform: rotate(180deg); }
     .define-zone { display: none; }
     .define-zone.open { display: block; animation: defineFade 0.45s ease; }
     @keyframes defineFade { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
@@ -2319,11 +2318,11 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 <div class="define-entry">
   <button type="button" class="define-banner" id="defineBanner" aria-expanded="false" aria-controls="define-zone">
     <span class="define-banner-text">
-      <span class="define-banner-eyebrow" data-i18n="define_eyebrow">La historia</span>
+      <span class="define-banner-eyebrow" data-i18n="define_eyebrow">Quiénes somos</span>
       <span class="define-banner-title" data-i18n="define_title">+29 años resolviendo lo que no se ve</span>
-      <span class="define-banner-teaser" data-i18n-html="define_teaser">Los valores, quiénes somos, <a class="define-founder" href="https://www.linkedin.com/in/matias-gonzalez-hce" target="_blank" rel="noopener" onclick="event.stopPropagation()">el fundador</a>.</span>
+      <span class="define-banner-teaser" data-i18n-html="define_teaser"><a class="define-jump" href="#valores">valores</a>, <a class="define-jump" href="#nosotros">historia</a>, <a class="define-jump" href="#fundador">el fundador</a>.</span>
     </span>
-    <span class="define-banner-arrow" aria-hidden="true">↓</span>
+    <span class="define-banner-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 14a8 8 0 0 1-8 8"/><path d="M18 11v-1a2 2 0 0 0-2-2 2 2 0 0 0-2 2"/><path d="M14 10V9a2 2 0 0 0-2-2 2 2 0 0 0-2 2v1"/><path d="M10 9.5V4a2 2 0 0 0-2-2 2 2 0 0 0-2 2v10"/><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg></span>
   </button>
 </div>
 <div id="define-zone" class="define-zone">
@@ -2376,7 +2375,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 <!-- HISTORIA HCE -->
 <section id="nosotros" class="panel">
   <div class="container">
-    <p class="section-label reveal" data-i18n="historia_label">Quiénes somos</p>
+    <p class="section-label reveal" data-i18n="historia_label">Historia</p>
     <h2 class="section-title reveal" data-i18n-html="historia_h2">+29 años resolviendo <span style="color:var(--accent-bright);">lo que no se ve</span>.</h2>
     <p class="section-desc reveal" style="max-width:780px;" data-i18n="historia_sub">Cada rubro sumó complejidad. Cada complejidad, experiencia y criterio.</p>
     <div class="historia-foto reveal">
@@ -2428,7 +2427,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 </section>
 
 <!-- MATIAS — 50/50 layout foto a sangre -->
-<section class="matias-split on-canvas">
+<section id="fundador" class="matias-split on-canvas">
   <!-- Izquierda: texto -->
   <div class="matias-split-text reveal">
     <div class="matias-mini-name" data-i18n-html="matias_de"><span style="color:var(--accent-bright);">de</span> Matías.</div>
@@ -2594,7 +2593,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     <a href="#servicios" data-i18n="nav_servicios">Qué hacemos</a>
     <a href="#valores" data-i18n="nav_valores">Valores</a>
     <a href="#nosotros" data-i18n="nav_historia">Nosotros</a>
-    <a href="#ia">far<span class="farIA-mark">IA</span>s</a>
+    <a href="#ia">hermes IA</a>
     <a href="#contacto" data-i18n="contact_label">Contacto</a>
   </nav>
 
@@ -2952,7 +2951,20 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     if (defineBanner) defineBanner.setAttribute('aria-expanded', 'true');
   }
   if (defineBanner && defineZone) {
-    defineBanner.addEventListener('click', function() {
+    defineBanner.addEventListener('click', function(e) {
+      // Click en una palabra-link del teaser: abrir (sin togglear) y saltar a su sub-sección.
+      // Delegado desde el botón porque el teaser usa data-i18n-html y se le reemplaza el innerHTML.
+      var jump = e.target.closest && e.target.closest('a.define-jump');
+      if (jump) {
+        e.preventDefault();
+        openDefineZone();
+        var id = (jump.getAttribute('href') || '').slice(1);
+        var target = id && document.getElementById(id);
+        if (target) requestAnimationFrame(function() {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        return;
+      }
       var willOpen = !defineZone.classList.contains('open');
       defineZone.classList.toggle('open', willOpen);
       defineBanner.setAttribute('aria-expanded', willOpen);

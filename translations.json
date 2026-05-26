@@ -78,7 +78,7 @@
     "val6_tag": "El hilo invisible detrás de cada operación.",
     "val7_name": "Anticipación",
     "val7_tag": "Pensar antes. Después es tarde.",
-    "historia_label": "Quiénes somos",
+    "historia_label": "Historia",
     "historia_h2": "+29 años resolviendo <span style=\"color:var(--accent-bright);\">lo que no se ve</span>.",
     "historia_sub": "Cada rubro sumó complejidad. Cada complejidad, experiencia y criterio.",
     "sectores_title": "Sectores operados",
@@ -278,9 +278,9 @@
     "iapage_wl_placeholder": "tu@email.com",
     "iapage_wl_cta": "Anotarme →",
     "iapage_footer_back": "← volver a hermesce.com",
-    "define_eyebrow": "La historia",
+    "define_eyebrow": "Quiénes somos",
     "define_title": "+29 años resolviendo lo que no se ve",
-    "define_teaser": "Los valores, quiénes somos, <a class=\"define-founder\" href=\"https://www.linkedin.com/in/matias-gonzalez-hce\" target=\"_blank\" rel=\"noopener\" onclick=\"event.stopPropagation()\">el fundador</a>."
+    "define_teaser": "<a class=\"define-jump\" href=\"#valores\">valores</a>, <a class=\"define-jump\" href=\"#nosotros\">historia</a>, <a class=\"define-jump\" href=\"#fundador\">el fundador</a>."
   },
   "en": {
     "nav_valores": "Values",
@@ -361,7 +361,7 @@
     "val6_tag": "The invisible thread behind every operation.",
     "val7_name": "Anticipation",
     "val7_tag": "Think ahead. Later is too late.",
-    "historia_label": "Who we are",
+    "historia_label": "History",
     "historia_h2": "+29 years solving <span style=\"color:var(--accent-bright);\">what others can't see</span>.",
     "historia_sub": "Each industry added complexity. Each complexity, experience and judgment.",
     "sectores_title": "Industries we operate",
@@ -561,9 +561,9 @@
     "iapage_wl_placeholder": "you@email.com",
     "iapage_wl_cta": "Join →",
     "iapage_footer_back": "← back to hermesce.com",
-    "define_eyebrow": "The story",
+    "define_eyebrow": "Who we are",
     "define_title": "+29 years solving what you don't see",
-    "define_teaser": "The values, who we are, <a class=\"define-founder\" href=\"https://www.linkedin.com/in/matias-gonzalez-hce\" target=\"_blank\" rel=\"noopener\" onclick=\"event.stopPropagation()\">the founder</a>."
+    "define_teaser": "<a class=\"define-jump\" href=\"#valores\">values</a>, <a class=\"define-jump\" href=\"#nosotros\">history</a>, <a class=\"define-jump\" href=\"#fundador\">the founder</a>."
   },
   "zh-CN": {
     "nav_valores": "价值观",
@@ -644,7 +644,7 @@
     "val6_tag": "每次操作背后的无形连接。",
     "val7_name": "前瞻",
     "val7_tag": "提前思考，事后已晚。",
-    "historia_label": "关于我们",
+    "historia_label": "历程",
     "historia_h2": "29年专注解决<span style=\"color:var(--accent-bright);\">看不见的细节</span>。",
     "historia_sub": "每个行业增加了复杂性。每份复杂性沉淀为经验与判断力。",
     "sectores_title": "服务过的行业",
@@ -844,9 +844,9 @@
     "iapage_wl_placeholder": "you@email.com",
     "iapage_wl_cta": "加入 →",
     "iapage_footer_back": "← 返回 hermesce.com",
-    "define_eyebrow": "历程",
+    "define_eyebrow": "关于我们",
     "define_title": "29+ 年，解决看不见的问题",
-    "define_teaser": "价值观、我们是谁、<a class=\"define-founder\" href=\"https://www.linkedin.com/in/matias-gonzalez-hce\" target=\"_blank\" rel=\"noopener\" onclick=\"event.stopPropagation()\">创始人</a>。"
+    "define_teaser": "<a class=\"define-jump\" href=\"#valores\">价值观</a>、<a class=\"define-jump\" href=\"#nosotros\">历程</a>、<a class=\"define-jump\" href=\"#fundador\">创始人</a>。"
   },
   "de": {
     "nav_valores": "Werte",
@@ -927,7 +927,7 @@
     "val6_tag": "Der unsichtbare Faden hinter jeder Operation.",
     "val7_name": "Vorausschau",
     "val7_tag": "Vorher denken. Danach ist es zu spät.",
-    "historia_label": "Wer wir sind",
+    "historia_label": "Geschichte",
     "historia_h2": "+29 Jahre für <span style=\"color:var(--accent-bright);\">das, was unsichtbar bleibt</span>.",
     "historia_sub": "Jede Branche brachte Komplexität. Jede Komplexität brachte Erfahrung und Urteilsvermögen.",
     "sectores_title": "Branchen im Einsatz",
@@ -1127,9 +1127,9 @@
     "iapage_wl_placeholder": "du@email.com",
     "iapage_wl_cta": "Eintragen →",
     "iapage_footer_back": "← zurück zu hermesce.com",
-    "define_eyebrow": "Die Geschichte",
+    "define_eyebrow": "Wer wir sind",
     "define_title": "+29 Jahre, die das Unsichtbare lösen",
-    "define_teaser": "Die Werte, wer wir sind, <a class=\"define-founder\" href=\"https://www.linkedin.com/in/matias-gonzalez-hce\" target=\"_blank\" rel=\"noopener\" onclick=\"event.stopPropagation()\">der Gründer</a>."
+    "define_teaser": "<a class=\"define-jump\" href=\"#valores\">Werte</a>, <a class=\"define-jump\" href=\"#nosotros\">Geschichte</a>, <a class=\"define-jump\" href=\"#fundador\">der Gründer</a>."
   },
   "fr": {
     "nav_valores": "Valeurs",
@@ -1210,7 +1210,7 @@
     "val6_tag": "Le fil invisible derrière chaque opération.",
     "val7_name": "Anticipation",
     "val7_tag": "Penser avant. Après, c'est trop tard.",
-    "historia_label": "Qui sommes-nous",
+    "historia_label": "Histoire",
     "historia_h2": "+29 ans à résoudre <span style=\"color:var(--accent-bright);\">ce que d'autres ne voient pas</span>.",
     "historia_sub": "Chaque secteur a ajouté de la complexité. Chaque complexité, de l'expérience et du jugement.",
     "sectores_title": "Secteurs opérés",
@@ -1410,9 +1410,9 @@
     "iapage_wl_placeholder": "vous@email.com",
     "iapage_wl_cta": "Je m'inscris →",
     "iapage_footer_back": "← retour à hermesce.com",
-    "define_eyebrow": "L'histoire",
+    "define_eyebrow": "Qui sommes-nous",
     "define_title": "+29 ans à résoudre l'invisible",
-    "define_teaser": "Les valeurs, qui nous sommes, <a class=\"define-founder\" href=\"https://www.linkedin.com/in/matias-gonzalez-hce\" target=\"_blank\" rel=\"noopener\" onclick=\"event.stopPropagation()\">le fondateur</a>."
+    "define_teaser": "<a class=\"define-jump\" href=\"#valores\">valeurs</a>, <a class=\"define-jump\" href=\"#nosotros\">histoire</a>, <a class=\"define-jump\" href=\"#fundador\">le fondateur</a>."
   },
   "pt": {
     "nav_valores": "Valores",
@@ -1493,7 +1493,7 @@
     "val6_tag": "O fio invisível por trás de cada operação.",
     "val7_name": "Antecipação",
     "val7_tag": "Pensar antes. Depois é tarde.",
-    "historia_label": "Quem somos",
+    "historia_label": "História",
     "historia_h2": "+29 anos resolvendo <span style=\"color:var(--accent-bright);\">o que não se vê</span>.",
     "historia_sub": "Cada setor somou complexidade. Cada complexidade, experiência e critério.",
     "sectores_title": "Setores operados",
@@ -1693,8 +1693,8 @@
     "iapage_wl_placeholder": "voce@email.com",
     "iapage_wl_cta": "Quero entrar →",
     "iapage_footer_back": "← voltar para hermesce.com",
-    "define_eyebrow": "A história",
+    "define_eyebrow": "Quem somos",
     "define_title": "+29 anos resolvendo o que não se vê",
-    "define_teaser": "Os valores, quem somos, <a class=\"define-founder\" href=\"https://www.linkedin.com/in/matias-gonzalez-hce\" target=\"_blank\" rel=\"noopener\" onclick=\"event.stopPropagation()\">o fundador</a>."
+    "define_teaser": "<a class=\"define-jump\" href=\"#valores\">valores</a>, <a class=\"define-jump\" href=\"#nosotros\">história</a>, <a class=\"define-jump\" href=\"#fundador\">o fundador</a>."
   }
 }
