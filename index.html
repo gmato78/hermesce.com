@@ -89,7 +89,7 @@
       --nav-fill: 0;
       --nav-blur: 0px;
       position: fixed;
-      top: 1rem;
+      top: 0.7rem;
       left: 1.2rem;
       right: 1.2rem;
       z-index: 100;
@@ -1014,24 +1014,25 @@
       html, body { overflow-x: hidden; }
       * { max-width: 100%; box-sizing: border-box; }
       .nav-hero {
-        top: 0.6rem;
+        top: 0.4rem;
         left: 0.4rem;
         right: 0.4rem;
         padding: 0.55rem 0.75rem;
         gap: 0.6rem;
         border-radius: 12px;
         display: flex;
+        justify-content: space-between;
       }
       .nav-hero.scrolled { padding: 0.6rem 0.9rem; top: 0.5rem; left: 0.5rem; right: 0.5rem; }
       /* Nav mobile en flujo flex de 3 zonas: idioma (1fr) · logo (centro) · manito (1fr) → no se pisan nunca */
-      .nav-center { position: static; transform: none; top: auto; order: 2; flex: 0 0 auto; }
-      .nav-logo { width: auto; height: 34px; max-width: 50vw; }
-      .nav-hero.scrolled .nav-logo { height: 30px; width: auto; }
+      .nav-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+      .nav-logo { width: auto; height: 31px; max-width: 50vw; }
+      .nav-hero.scrolled .nav-logo { height: 28px; width: auto; }
       .nav-hero.scrolled { min-height: 0; }   /* en mobile la barra no usa el alto del desktop */
       /* Mostrar hamburger, ocultar nav links */
-      .nav-hamburger { display: flex; order: 3; flex: 1 1 0; align-items: flex-end; }
+      .nav-hamburger { display: flex; order: 3; flex: 0 0 auto; align-items: flex-end; }
       .nav-side-right { display: none; }
-      .nav-side-left { order: 1; flex: 1 1 0; min-width: 0; justify-content: flex-start; }
+      .nav-side-left { order: 1; flex: 0 1 auto; min-width: 0; justify-content: flex-start; }
       .nav-hero .nav-lang-left { position: static; transform: none; margin-right: 0; }
       .nav-left { display: none; }
       /* lang-selector oculto en mobile — aparece en el drawer */
