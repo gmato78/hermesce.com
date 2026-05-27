@@ -1025,7 +1025,7 @@
       }
       .nav-hero.scrolled { padding: 0.6rem 0.9rem; top: 0.5rem; left: 0.5rem; right: 0.5rem; }
       /* Nav mobile en flujo flex de 3 zonas: idioma (1fr) · logo (centro) · manito (1fr) → no se pisan nunca */
-      .nav-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+      .nav-center { position: absolute; left: 50%; top: 50%; transform: translate(calc(-50% + 2px), calc(-50% - 2px)); }   /* nudge óptico: el hCE pesa abajo-izq, se compensa der+arriba */
       .nav-logo { width: auto; height: 31px; max-width: 50vw; }
       .nav-hero.scrolled .nav-logo { height: 28px; width: auto; }
       .nav-hero.scrolled { min-height: 0; }   /* en mobile la barra no usa el alto del desktop */
@@ -2598,8 +2598,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
             <span class="ia-card-q" data-i18n="ia_q_modo">¿Aéreo o marítimo?</span>
             <span class="ia-card-q" data-i18n="ia_q_flete">¿Cuánto sale el flete?</span>
           </div>
-          <div class="ia-card-name" style="color:var(--white);text-align:center;">far<span style="color:var(--brand-hia);">IA</span>s</div>
-          <div class="ia-card-desc" style="color:var(--text-dim);margin-bottom:1rem;text-align:center;" data-i18n-html="ia_card_desc">Clasifica como un merciólogo profesional<br>con la marcha sistemática del Gran Maestro potenciada con IA.</div>
+          <div class="ia-card-name" style="color:var(--white);text-align:center;margin-bottom:1rem;">far<span style="color:var(--brand-hia);">IA</span>s</div>
           <div style="font-size:0.95rem;color:var(--white);text-align:center;font-weight:500;margin-bottom:1.5rem;letter-spacing:0.01em;" data-i18n-html="ia_card_cta">¿Qué clasificamos hoy? <span style="color:var(--brand-hia);">;)</span></div>
           <div style="display:flex;flex-direction:column;align-items:center;gap:0.8rem;margin-top:1.8rem;width:100%;">
             <button onclick="abrirFarias()" class="ia-card-btn" style="width:92%;" data-i18n="ia_btn">Quiero acceso →</button>
@@ -2634,7 +2633,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   <div class="contact-inner">
     <p class="section-label reveal" data-i18n="contact_label">Contacto</p>
     <h2 class="section-title reveal" data-i18n-html="contact_h2">¿Importás o exportás<br>y necesitás que funcione?</h2>
-    <p class="section-desc reveal" data-i18n="contact_sub">Contanos tu operación en 2 minutos y nos contactamos a la brevedad.</p>
+    <p class="section-desc reveal" data-i18n="contact_sub">Describí tu operación y se atenderá en menos de 24 horas hábiles.</p>
     <button onclick="abrirContacto()" class="form-submit reveal" style="display:inline-block;width:auto;padding:1rem 2.5rem;font-size:1rem;margin-top:0.5rem;" data-i18n="contact_cta">Consultá tu operación →</button>
     <div class="contact-alt reveal">
       <div class="contact-alt-qr">
