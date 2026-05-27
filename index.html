@@ -463,9 +463,11 @@
 
     /* ─── PROBLEM CAROUSEL ─── */
     .problem-carousel { position: relative; }
-    .problem-slides { position: relative; overflow: hidden; border-radius: 16px; }
+    .problem-slides { position: relative; display: grid; overflow: hidden; border-radius: 16px; }
     .problem-slide {
-      display: none;
+      display: flex;
+      grid-area: 1 / 1;
+      visibility: hidden;
       flex-direction: column;
       border: 1px solid var(--border);
       border-radius: 16px;
@@ -474,7 +476,7 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.35);
     }
     .problem-slide.active {
-      display: flex;
+      visibility: visible;
       border-color: rgba(46,94,168,0.4);
       box-shadow: 0 16px 48px rgba(46,94,168,0.18), 0 4px 14px rgba(0,0,0,0.5);
     }
@@ -1277,12 +1279,11 @@
     }
     .ia-scenes-carousel { margin: 0; }
     .ia-scenes-slides {
-      position: relative;
+      display: grid;
       min-height: 160px;
     }
     .ia-scene-slide {
-      position: absolute;
-      inset: 0;
+      grid-area: 1 / 1;
       opacity: 0;
       transform: translateY(4px);
       transition: opacity 0.5s ease, transform 0.5s ease;
@@ -1293,7 +1294,6 @@
       opacity: 1;
       transform: translateY(0);
       pointer-events: auto;
-      position: relative;
     }
     .ia-scene-quote {
       font-family: 'DM Sans', 'Inter', serif;
@@ -1392,9 +1392,9 @@
     /* ═══ DEPTH · Servicios — carrusel de costado Zafiro ═══ */
     .svc-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
     .svc-carousel { position: relative; }
-    .svc-slides { position: relative; border-radius: 16px; overflow: visible; }
-    .svc-slide { display: none; }
-    .svc-slide.active { display: block; background: linear-gradient(180deg, var(--brand-zafiro) 0%, var(--brand-zafiro-dark) 100%); border-radius: 16px; border: none; }
+    .svc-slides { position: relative; display: grid; border-radius: 16px; overflow: visible; }
+    .svc-slide { display: block; grid-area: 1 / 1; visibility: hidden; }
+    .svc-slide.active { visibility: visible; background: linear-gradient(180deg, var(--brand-zafiro) 0%, var(--brand-zafiro-dark) 100%); border-radius: 16px; border: none; }
     .svc-slide-content { padding: 3.2rem 3rem 3rem; }
     .svc-num { font-size: .72rem; font-weight: 700; letter-spacing: .15em; color: rgba(255,255,255,.6); margin-bottom: 1rem; }
     .svc-slide-content h3 { font-family: 'Inter', sans-serif; font-size: clamp(1.7rem, 2.4vw, 2.1rem); font-weight: 800; color: #ffffff; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1.1rem; }
@@ -1516,16 +1516,14 @@
       .ecp-grid { overflow: visible !important; }
     }
 
-    /* ═══ DEPTH · R6c · Altura constante en carruseles (sin salto) ═══ */
-    /* R7a: min-height movido al slide activo (Zafiro), no al contenedor — sin hueco blanco */
-    /* Desktop: max medido 376px (Problema) y 354px (Servicios) + 25px headroom */
-    .problem-slide.active { min-height: 401px; }
-    .svc-slide.active     { min-height: 379px; }
-    /* Mobile ≤768px: texto wrappea más — max medido 469px y 476px + 25px headroom */
-    @media (max-width: 768px) {
-      .problem-slide.active { min-height: 494px; }
-      .svc-slide.active     { min-height: 501px; }
-    }
+    /* ═══ DEPTH · Altura constante en carruseles (sin salto) ═══ */
+    /* Grid-stacking: todos los slides comparten la celda 1/1 (grid-area:1/1).
+       El contenedor toma SIEMPRE la altura del slide más alto, así rotar no
+       cambia la altura → cero layout-shift, independiente del ancho y del
+       idioma. Inactivos en visibility:hidden (cuentan para la altura, pero
+       invisibles y fuera del lector de pantalla). Reemplaza los min-height
+       por breakpoint, que estaban calibrados a un solo idioma y saltaban
+       30–100px en el rango 769–1130px. */
 
     /* ═══ DEPTH · LinkedIn links ═══ */
     /* Flex column en el panel blanco para que el link quede bajo la foto */
