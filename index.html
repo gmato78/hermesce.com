@@ -1524,6 +1524,13 @@
        invisibles y fuera del lector de pantalla). Reemplaza los min-height
        por breakpoint, que estaban calibrados a un solo idioma y saltaban
        30–100px en el rango 769–1130px. */
+    /* Grid items deben poder encoger bajo su min-content: si no, el slide
+       más ancho estira la columna 1fr del *-inner y desborda el panel en
+       mobile (le pasaba a Servicios: palabras largas como "Clasificación"
+       forzaban la columna 8px+ más ancha que la caja). overflow-wrap corta
+       palabras que no entren en pantallas muy angostas. */
+    .problem-slide, .svc-slide, .ia-scene-slide { min-width: 0; }
+    .problem-slide-content, .svc-slide-content { overflow-wrap: break-word; }
 
     /* ═══ DEPTH · LinkedIn links ═══ */
     /* Flex column en el panel blanco para que el link quede bajo la foto */
