@@ -1293,8 +1293,8 @@
 
     /* ─── IA · Carrusel editorial compacto (dentro del ia-left) ─── */
     .ia-scenes {
-      margin: 2rem 0 1.6rem;
-      padding: 1.6rem 1.4rem 1.4rem;
+      margin: 2rem 0 1.8rem;
+      padding: 1.3rem 1.3rem 1.1rem;
       background: rgba(42, 86, 134, 0.045);
       border-left: 2px solid var(--brand-hia);
       border-radius: 8px;
@@ -1305,14 +1305,14 @@
       text-transform: uppercase;
       color: var(--brand-zafiro);
       font-weight: 700;
-      margin-bottom: 1.6rem;
+      margin-bottom: 1rem;
       text-align: left;
       opacity: 0.85;
     }
     .ia-scenes-carousel { margin: 0; }
     .ia-scenes-slides {
       display: grid;
-      min-height: 160px;
+      min-height: 122px;
     }
     .ia-scene-slide {
       grid-area: 1 / 1;
@@ -1320,7 +1320,7 @@
       transform: translateY(4px);
       transition: opacity 0.5s ease, transform 0.5s ease;
       pointer-events: none;
-      padding: 1.6rem 0 0;
+      padding: 1.2rem 0 0;
     }
     .ia-scene-slide.active {
       opacity: 1;
@@ -1384,12 +1384,12 @@
     }
 
     /* ─── IA · ia-left: respiración entre bloques ─── */
-    #ia .ia-grid { align-items: start; }
+    /* Columna centrada verticalmente contra la card (el intro se acortó) + más aire entre bloques. */
+    #ia .ia-grid { align-items: center; }
     #ia .ia-left { padding-top: 0.2rem; }
-    /* Reducir aire entre h2, sub e intro para que el bloque arriba pese menos */
     #ia .ia-left .ia-h2 { margin-bottom: 0.2rem; }
-    #ia .ia-left .ia-h2-last { margin-bottom: 1rem; }
-    #ia .ia-left .ia-sub { margin-bottom: 1.2rem; }
+    #ia .ia-left .ia-h2-last { margin-bottom: 1.4rem; }
+    #ia .ia-left .ia-sub { margin-bottom: 1.9rem; }
     #ia .ia-left .ia-body { margin-bottom: 0; }
     #ia .ia-left .ia-body-last {
       font-size: 0.88rem;
@@ -1402,9 +1402,9 @@
     }
 
     @media (max-width: 768px) {
-      .ia-scenes { padding: 1.3rem 1.1rem 1.2rem; margin: 1.6rem 0 1.4rem; }
-      .ia-scenes-slides { min-height: 200px; }
-      .ia-scene-slide { padding: 1.4rem 0 0; }
+      .ia-scenes { padding: 1.1rem 1rem 0.9rem; margin: 1.2rem 0 1.1rem; }
+      .ia-scenes-slides { min-height: 168px; }
+      .ia-scene-slide { padding: 1.1rem 0 0; }
       .ia-scene-quote { font-size: 0.9rem; }
       .ia-scene-quote::before { font-size: 2.4rem; top: -1.5rem; }
     }
@@ -1541,6 +1541,18 @@
 
     .ecp-card::after { display: none; }
 
+    /* ═══ Lo que nos define · ECP con valores plegados ═══ */
+    /* Descripción colapsable (click → .expanded, mismo JS y patrón que Historia). Chips siempre visibles. */
+    .valores-section .ecp-card { cursor: pointer; }
+    .valores-section .ecp-values { display: flex; flex-wrap: wrap; gap: 0.4rem 0.5rem; margin-top: 0.95rem; }
+    .valores-section .ecp-values span {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.02em;
+      color: var(--brand-zafiro);
+      background: rgba(42,86,134,0.07);
+      border: 1px solid rgba(42,86,134,0.16);
+      border-radius: 999px; padding: 0.26rem 0.62rem;
+    }
+
     /* Override mobile media-query rules that conflict */
     @media (max-width: 768px) {
       .ecp-card { overflow: visible !important; }
@@ -1563,6 +1575,68 @@
        palabras que no entren en pantallas muy angostas. */
     .problem-slide, .svc-slide, .ia-scene-slide { min-width: 0; }
     .problem-slide-content, .svc-slide-content { overflow-wrap: break-word; }
+
+    /* ═══ Grilla con tapiz animado + peek/expand · Problema + Servicios ═══ */
+    /* Las secciones pasan de split (heading | carrusel) a apilado: heading arriba, grilla full-width abajo. */
+    #problema .problem-inner, #servicios .svc-inner { display: block; }
+    #problema .problem-inner > .reveal:first-child,
+    #servicios .svc-heading { max-width: 820px; margin: 0 0 2.4rem; }
+
+    .cf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
+    .cf-card {
+      position: relative; overflow: hidden; min-height: 280px; border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: linear-gradient(180deg, var(--brand-zafiro) 0%, var(--brand-zafiro-dark) 100%);
+      box-shadow: 0 14px 32px -18px rgba(16,40,69,.55);
+      color: #fff; cursor: pointer; outline: none;
+    }
+    .cf-card:focus-visible { box-shadow: 0 0 0 3px rgba(125,168,216,.6), 0 14px 32px -18px rgba(16,40,69,.55); }
+    .cf-svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; transition: opacity .35s; }
+    .cf-scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background: linear-gradient(105deg, rgba(16,40,69,.62) 0%, rgba(16,40,69,.30) 42%, rgba(16,40,69,0) 72%); transition: opacity .35s; }
+    .cf-front { position: relative; z-index: 2; padding: 1.7rem 1.6rem; transition: opacity .3s; }
+    .cf-cat { font-size: .66rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: .7rem; }
+    .cf-title { font-size: 1.32rem; font-weight: 800; line-height: 1.07; letter-spacing: -.01em; color: #fff; margin: 0 0 .55rem; }
+    .cf-lead { font-size: .86rem; line-height: 1.55; color: rgba(255,255,255,.85); margin: 0; max-width: 15.5rem; }
+    .cf-hint { position: absolute; right: 1.05rem; bottom: 1rem; z-index: 2; width: 22px; height: 22px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.3); color: rgba(255,255,255,.72);
+      display: flex; align-items: center; justify-content: center; font-size: 1.05rem; line-height: 1; transition: opacity .25s; }
+    .cf-back { position: absolute; inset: 0; z-index: 3; padding: 1.5rem 1.6rem;
+      background: linear-gradient(180deg, rgba(16,40,69,.94) 0%, rgba(16,40,69,.98) 100%);
+      border-top: 2px solid #6da0d6; transform: translateY(101%); opacity: 0;
+      transition: transform .4s cubic-bezier(.4,0,.2,1), opacity .3s;
+      display: flex; flex-direction: column; justify-content: center; overflow-y: auto; }
+    .cf-back .cf-title { font-size: 1.12rem; margin-bottom: .55rem; }
+    .cf-full { font-size: .8rem; line-height: 1.55; color: rgba(255,255,255,.9); margin: 0; }
+    /* Card fusionada "Llave en mano": dos modalidades en el expand */
+    .cf-back-stack { justify-content: flex-start; }
+    .cf-modality { margin-top: .6rem; }
+    .cf-mod-name { font-size: .82rem; font-weight: 700; color: #fff; margin-bottom: .2rem; letter-spacing: .01em; }
+    .cf-mod-desc { font-size: .78rem; line-height: 1.5; color: rgba(255,255,255,.85); margin: 0; }
+    /* ECP: front = solo la letra grande; al expandir, nombre + frase + chips */
+    .cf-card-ecp { min-height: 220px; }
+    .cf-card-ecp .cf-front { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+    .cf-ecp-letter { font-size: 5.5rem; font-weight: 800; line-height: 1; color: rgba(255,255,255,.95); letter-spacing: -.02em; }
+    .cf-ecp-chips { display: flex; flex-wrap: wrap; gap: .4rem .5rem; margin-top: 1rem; }
+    .cf-ecp-chips span { font-size: .72rem; font-weight: 600; color: #fff; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.22); border-radius: 999px; padding: .24rem .6rem; }
+    .cf-card:hover .cf-back, .cf-card:focus .cf-back, .cf-card:focus-within .cf-back { transform: translateY(0); opacity: 1; }
+    .cf-card:hover .cf-front, .cf-card:focus .cf-front, .cf-card:focus-within .cf-front { opacity: 0; }
+    .cf-card:hover .cf-hint, .cf-card:focus .cf-hint, .cf-card:focus-within .cf-hint { opacity: 0; }
+    .cf-card:hover .cf-svg, .cf-card:focus .cf-svg, .cf-card:focus-within .cf-svg { opacity: .5; }
+    .cf-card-wide { grid-column: 2; }  /* 7ª card de servicios, centrada en la fila incompleta */
+
+    @media (max-width: 1000px) {
+      .cf-grid { grid-template-columns: repeat(2, 1fr); }
+      .cf-card-wide { grid-column: auto; }
+    }
+    @media (max-width: 600px) {
+      .cf-grid { grid-template-columns: 1fr; }
+      #problema .problem-inner > .reveal:first-child,
+      #servicios .svc-heading { margin-bottom: 1.6rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cf-svg, .cf-scrim, .cf-front, .cf-back, .cf-hint { transition: none; }
+    }
 
     /* ═══ DEPTH · LinkedIn links ═══ */
     /* Flex column en el panel blanco para que el link quede bajo la foto */
@@ -2207,79 +2281,181 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
       <p class="problem-sub" data-i18n="problem_sub">Lo que no se ve cuesta más que lo que se ve.</p>
     </div>
 
-    <!-- Carrusel de problemas -->
-    <div class="problem-carousel reveal">
-      <div class="problem-slides has-layer">
+    <!-- Grilla de problemas · tapiz animado + peek/expand -->
+    <div class="cf-grid problem-grid reveal">
 
-        <div class="problem-slide active">
-          <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1200&q=80')"></div>
-          <div class="problem-slide-content">
-            <div class="problem-slide-num">01 · Operativo</div>
-            <h3 data-i18n="problem_card1_h3">Forzoso perdido</h3>
-            <p data-i18n="problem_card1_p">La mercadería arribó a tiempo, pero nadie tomó turno en la terminal. El depósito sin fecha, el transporte sin coordinar. Se perdió el forzoso y los contenedores empezaron a acumular almacenaje, día tras día, hasta que el costo terminó multiplicando el presupuesto original.</p>
-          </div>
+      <!-- 01 · Multa firme · sello -->
+      <article class="cf-card" tabindex="0">
+        <svg class="cf-svg" viewBox="0 0 320 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="62" y="74" width="160" height="178" rx="6" stroke-width="1.8" stroke-opacity=".2"/>
+            <line x1="84" y1="104" x2="178" y2="104" stroke-width="1.6" stroke-opacity=".14"/><line x1="84" y1="124" x2="200" y2="124" stroke-width="1.6" stroke-opacity=".14"/><line x1="84" y1="144" x2="158" y2="144" stroke-width="1.6" stroke-opacity=".14"/>
+            <circle cx="162" cy="190" r="36" stroke="#C94040" stroke-width="2" stroke-opacity="0"><animate attributeName="r" values="30;30;64" keyTimes="0;.30;.46" dur="4.4s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values="0;0;.45;0" keyTimes="0;.30;.32;.46" dur="4.4s" repeatCount="indefinite"/></circle>
+            <g><animateTransform attributeName="transform" type="translate" values="0 -58;0 -58;0 0;2 0;-2 0;0 0;0 0;0 -58" keyTimes="0;.08;.30;.33;.36;.39;.86;1" dur="4.4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.4;1;1;1;0" keyTimes="0;.12;.30;.5;.86;1" dur="4.4s" repeatCount="indefinite"/>
+              <circle cx="162" cy="190" r="40" stroke="#C94040" stroke-width="3" stroke-opacity=".46"/><circle cx="162" cy="190" r="30" stroke-width="1.4" stroke-opacity=".3"/>
+              <path d="M162 167 l6 17 l18 1 l-14 11 l5 18 l-15 -11 l-15 11 l5 -18 l-14 -11 l18 -1 z" stroke-width="1.2" stroke-opacity=".34"/></g>
+          </g>
+        </svg>
+        <div class="cf-scrim"></div>
+        <div class="cf-front">
+          <div class="cf-cat" data-i18n="problem_card1_cat">Clasificación</div>
+          <h3 class="cf-title" data-i18n="problem_card1_h3">Multa firme</h3>
+          <p class="cf-lead" data-i18n="problem_card1_lead">La posición SIM mal liquidada. El despacho ya presentado: sin vuelta atrás.</p>
         </div>
-
-        <div class="problem-slide">
-          <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80')"></div>
-          <div class="problem-slide-content">
-            <div class="problem-slide-num">02 · Administrativo</div>
-            <h3 data-i18n="problem_card2_h3">Liquidez rota</h3>
-            <p data-i18n="problem_card2_p">El presupuesto decía una cosa, el costo real otra. Gastos portuarios no contemplados, tributos calculados por encima. Cuando llegó la cuenta final, la liquidez no alcanzó y hubo que correr al banco para no frenar la operación.</p>
-          </div>
+        <span class="cf-hint" aria-hidden="true">+</span>
+        <div class="cf-back">
+          <div class="cf-cat" data-i18n="problem_card1_cat">Clasificación</div>
+          <h3 class="cf-title" data-i18n="problem_card1_h3">Multa firme</h3>
+          <p class="cf-full" data-i18n="problem_card1_p">La posición SIM estaba mal y los tributos quedaron mal liquidados. Cuando se detectó, el despacho ya había sido presentado ante AFIP. La multa no tiene vuelta atrás, y puede llegar a cinco veces el valor de la diferencia.</p>
         </div>
+      </article>
 
-        <div class="problem-slide">
-          <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80')"></div>
-          <div class="problem-slide-content">
-            <div class="problem-slide-num">03 · Clasificación</div>
-            <h3 data-i18n="problem_card3_h3">Multa firme</h3>
-            <p data-i18n="problem_card3_p">La posición SIM estaba mal y los tributos quedaron mal liquidados. Cuando se detectó, el despacho ya había sido presentado ante AFIP. La multa no tiene vuelta atrás, y puede llegar a cinco veces el valor de la diferencia.</p>
-          </div>
+      <!-- 02 · Forzoso perdido · reloj -->
+      <article class="cf-card" tabindex="0">
+        <svg class="cf-svg" viewBox="0 0 320 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="20" y1="250" x2="300" y2="250" stroke-width="1.6" stroke-opacity=".16"/>
+            <rect x="42" y="222" width="44" height="28" rx="2" stroke-width="1.8" stroke-opacity=".22"/>
+            <rect x="90" y="222" width="44" height="28" rx="2" stroke-width="1.8" stroke-opacity=".28"><animate attributeName="opacity" values="0;0;1;1;1" keyTimes="0;.2;.3;.95;1" dur="4s" repeatCount="indefinite"/></rect>
+            <rect x="138" y="222" width="44" height="28" rx="2" stroke-width="1.8" stroke-opacity=".34"><animate attributeName="opacity" values="0;0;1;1;1" keyTimes="0;.45;.55;.95;1" dur="4s" repeatCount="indefinite"/></rect>
+            <circle cx="190" cy="104" r="60" stroke-width="2.2" stroke-opacity=".28"><animate attributeName="stroke-opacity" values=".2;.36;.2" dur="3s" repeatCount="indefinite"/></circle>
+            <g stroke-width="2.4" stroke-opacity=".22"><line x1="190" y1="50" x2="190" y2="62"/><line x1="190" y1="146" x2="190" y2="158"/><line x1="136" y1="104" x2="148" y2="104"/><line x1="232" y1="104" x2="244" y2="104"/></g>
+            <line x1="190" y1="104" x2="190" y2="74" stroke="#C94040" stroke-width="3" stroke-opacity=".34"><animateTransform attributeName="transform" type="rotate" from="0 190 104" to="360 190 104" dur="30s" repeatCount="indefinite"/></line>
+            <line x1="190" y1="104" x2="222" y2="118" stroke="#C94040" stroke-width="2.4" stroke-opacity=".46"><animateTransform attributeName="transform" type="rotate" from="0 190 104" to="360 190 104" dur="3.5s" repeatCount="indefinite"/></line>
+            <circle cx="190" cy="104" r="3.6" fill="#C94040" stroke="none" fill-opacity=".4"/>
+          </g>
+        </svg>
+        <div class="cf-scrim"></div>
+        <div class="cf-front">
+          <div class="cf-cat" data-i18n="problem_card2_cat">Operativo</div>
+          <h3 class="cf-title" data-i18n="problem_card2_h3">Forzoso perdido</h3>
+          <p class="cf-lead" data-i18n="problem_card2_lead">Nadie tomó turno en la terminal. El almacenaje acumula, día tras día.</p>
         </div>
-
-        <div class="problem-slide">
-          <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1200&q=80')"></div>
-          <div class="problem-slide-content">
-            <div class="problem-slide-num">04 · Atención al cliente</div>
-            <h3 data-i18n="problem_card4_h3">Trámite, no servicio</h3>
-            <p data-i18n="problem_card4_p">Una pregunta simple: ¿en qué está la operación? Del otro lado, una respuesta que no llega, un mail con un tono ajeno. En ese momento lo entendió: era uno más. No tenía un servicio de valor — tenía un trámite.</p>
-          </div>
+        <span class="cf-hint" aria-hidden="true">+</span>
+        <div class="cf-back">
+          <div class="cf-cat" data-i18n="problem_card2_cat">Operativo</div>
+          <h3 class="cf-title" data-i18n="problem_card2_h3">Forzoso perdido</h3>
+          <p class="cf-full" data-i18n="problem_card2_p">La mercadería arribó a tiempo, pero nadie tomó turno en la terminal. El depósito sin fecha, el transporte sin coordinar. Se perdió el forzoso y los contenedores empezaron a acumular almacenaje, día tras día, hasta que el costo terminó multiplicando el presupuesto original.</p>
         </div>
+      </article>
 
-        <div class="problem-slide">
-          <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1500820445460-10cff4030764?w=1200&q=80')"></div>
-          <div class="problem-slide-content">
-            <div class="problem-slide-num">05 · Intervenciones</div>
-            <h3 data-i18n="problem_card5_h3">Reembarque</h3>
-            <p data-i18n="problem_card5_p">La mercadería arribó, pero faltaba una intervención previa — una certificación, un permiso, una habilitación de organismo que nadie tramitó a tiempo. No hay forma de subsanarlo con la carga ya en destino. La única salida: reembarcar. Duplicás los gastos y no disponés de la mercadería.</p>
-          </div>
+      <!-- 03 · Intervención previa · barco + flecha en U -->
+      <article class="cf-card" tabindex="0">
+        <svg class="cf-svg" viewBox="0 0 320 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 214 q20 -9 40 0 t40 0 t40 0 t40 0 t40 0 t40 0" stroke-width="1.6" stroke-opacity=".14"/>
+            <path d="M210 108 a46 46 0 1 1 -92 0" stroke="#C94040" stroke-width="2.4" stroke-opacity=".44" stroke-dasharray="230" stroke-dashoffset="230"><animate attributeName="stroke-dashoffset" values="230;230;0;0;230" keyTimes="0;.2;.6;.86;1" dur="5s" repeatCount="indefinite"/></path>
+            <path d="M118 108 l-10 -10 m10 10 l10 -10" stroke="#C94040" stroke-width="2.4" stroke-opacity=".44"><animate attributeName="opacity" values="0;0;0;1;0" keyTimes="0;.4;.55;.62;1" dur="5s" repeatCount="indefinite"/></path>
+            <g stroke-width="1.8" stroke-opacity=".3"><animateTransform attributeName="transform" type="translate" values="-70 0;0 0;0 0;-70 0;-70 0" keyTimes="0;.22;.58;.9;1" dur="5s" repeatCount="indefinite"/>
+              <path d="M120 192 h82 l-13 23 h-57 z"/><line x1="161" y1="192" x2="161" y2="150"/><path d="M161 154 l36 14 l-36 13 z"/></g>
+          </g>
+        </svg>
+        <div class="cf-scrim"></div>
+        <div class="cf-front">
+          <div class="cf-cat" data-i18n="problem_card3_cat">Intervenciones</div>
+          <h3 class="cf-title" data-i18n="problem_card3_h3">Intervención previa</h3>
+          <p class="cf-lead" data-i18n="problem_card3_lead">Faltó una intervención previa. La única salida: reembarcar.</p>
         </div>
-
-        <div class="problem-slide">
-          <div class="problem-slide-img" style="background-image:url('https://images.unsplash.com/photo-1681505531034-8d67054e07f6?w=1200&q=80')"></div>
-          <div class="problem-slide-content">
-            <div class="problem-slide-num">06 · Comercial</div>
-            <h3 data-i18n="problem_card6_h3">Vínculo dañado</h3>
-            <p data-i18n="problem_card6_p">Los documentos salieron con errores y llegaron tarde a destino. El importador del otro lado no pudo desaduanar, y cada día de demora allá se convirtió en una llamada acá. Al cabo de unas semanas, el vínculo comercial que había costado años construir quedó dañado por un papel mal emitido.</p>
-          </div>
+        <span class="cf-hint" aria-hidden="true">+</span>
+        <div class="cf-back">
+          <div class="cf-cat" data-i18n="problem_card3_cat">Intervenciones</div>
+          <h3 class="cf-title" data-i18n="problem_card3_h3">Intervención previa</h3>
+          <p class="cf-full" data-i18n="problem_card3_p">La mercadería arribó, pero faltaba una intervención previa — una certificación, un permiso, una habilitación de organismo que nadie tramitó a tiempo. No hay forma de subsanarlo con la carga ya en destino. La única salida: reembarcar. Costos duplicados, mercadería inmovilizada.</p>
         </div>
+      </article>
 
-      </div>
-
-      <!-- Controles -->
-      <div class="problem-controls">
-        <button class="prob-btn prob-prev" aria-label="Anterior">←</button>
-        <div class="prob-dots">
-          <span class="prob-dot active"></span>
-          <span class="prob-dot"></span>
-          <span class="prob-dot"></span>
-          <span class="prob-dot"></span>
-          <span class="prob-dot"></span>
-          <span class="prob-dot"></span>
+      <!-- 04 · Origen sin coordinar · crate sin inspección -->
+      <article class="cf-card" tabindex="0">
+        <svg class="cf-svg" viewBox="0 0 320 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="16" y1="236" x2="304" y2="236" stroke-width="1.6" stroke-opacity=".14"/>
+            <rect x="208" y="68" width="44" height="44" rx="6" stroke-width="1.8" stroke-opacity=".22" stroke-dasharray="5 5"/>
+            <g stroke="#C94040" stroke-width="2.6" stroke-opacity=".44"><animate attributeName="opacity" values=".12;.55;.12" dur="2.2s" repeatCount="indefinite"/>
+              <line x1="217" y1="77" x2="243" y2="103"/><line x1="243" y1="77" x2="217" y2="103"/></g>
+            <g><animateTransform attributeName="transform" type="translate" values="0 0;0 0;0 0;156 0;156 0" keyTimes="0;.5;.66;.96;1" dur="5s" repeatCount="indefinite"/>
+              <rect x="56" y="168" width="96" height="68" rx="2" stroke-width="1.8" stroke-opacity=".3"/>
+              <line x1="56" y1="168" x2="152" y2="236" stroke-width="1.4" stroke-opacity=".2"/>
+              <line x1="152" y1="168" x2="56" y2="236" stroke-width="1.4" stroke-opacity=".2"/>
+              <line x1="66" y1="160" x2="146" y2="150" stroke-width="1.8" stroke-opacity=".3"/></g>
+          </g>
+        </svg>
+        <div class="cf-scrim"></div>
+        <div class="cf-front">
+          <div class="cf-cat" data-i18n="problem_card4_cat">Origen</div>
+          <h3 class="cf-title" data-i18n="problem_card4_h3">Origen sin coordinar</h3>
+          <p class="cf-lead" data-i18n="problem_card4_lead">Embaló mal, sin inspección preembarque. El error recién se ve en destino.</p>
         </div>
-        <button class="prob-btn prob-next" aria-label="Siguiente">→</button>
-      </div>
+        <span class="cf-hint" aria-hidden="true">+</span>
+        <div class="cf-back">
+          <div class="cf-cat" data-i18n="problem_card4_cat">Origen</div>
+          <h3 class="cf-title" data-i18n="problem_card4_h3">Origen sin coordinar</h3>
+          <p class="cf-full" data-i18n="problem_card4_p">En origen, el proveedor embaló fuera de especificación, la documentación estaba incompleta y la inspección preembarque nunca se hizo. El contenedor salió con errores que recién se detectaron en destino. Lo que se podía prevenir con un simple control antes de embarcar es ahora un problema aduanero con riesgo de infracción.</p>
+        </div>
+      </article>
+
+      <!-- 05 · Costo invisible · error que acumula -->
+      <article class="cf-card" tabindex="0">
+        <svg class="cf-svg" viewBox="0 0 320 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="32" y1="238" x2="300" y2="238" stroke="#fff" stroke-width="1.6" stroke-opacity=".14"/>
+            <rect x="44"  y="212" width="16" height="26" stroke="#fff" stroke-width="1.5" stroke-opacity=".22"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.03;.06;1" dur="6s" repeatCount="indefinite"/></rect>
+            <rect x="76"  y="212" width="16" height="26" stroke="#fff" stroke-width="1.5" stroke-opacity=".22"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.09;.12;1" dur="6s" repeatCount="indefinite"/></rect>
+            <rect x="108" y="212" width="16" height="26" stroke="#fff" stroke-width="1.5" stroke-opacity=".22"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.15;.18;1" dur="6s" repeatCount="indefinite"/></rect>
+            <rect x="140" y="212" width="16" height="26" stroke="#fff" stroke-width="1.5" stroke-opacity=".22"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.21;.24;1" dur="6s" repeatCount="indefinite"/></rect>
+            <rect x="172" y="212" width="16" height="26" stroke="#fff" stroke-width="1.5" stroke-opacity=".22"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.27;.30;1" dur="6s" repeatCount="indefinite"/></rect>
+            <rect x="204" y="212" width="16" height="26" stroke="#fff" stroke-width="1.5" stroke-opacity=".22"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.33;.36;1" dur="6s" repeatCount="indefinite"/></rect>
+            <rect x="236" y="212" width="16" height="26" stroke="#fff" stroke-width="1.5" stroke-opacity=".22"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.39;.42;1" dur="6s" repeatCount="indefinite"/></rect>
+            <path d="M52 206 L84 200 L116 192 L148 180 L180 162 L212 136 L244 100" stroke="#C94040" stroke-width="2.4" stroke-dasharray="360" stroke-dashoffset="360" stroke-opacity=".18">
+              <animate attributeName="stroke-dashoffset" values="360;360;0;0" keyTimes="0;.08;.66;1" dur="6s" repeatCount="indefinite"/>
+              <animate attributeName="stroke-opacity" values=".16;.16;.18;.5;.2" keyTimes="0;.08;.62;.74;1" dur="6s" repeatCount="indefinite"/>
+            </path>
+            <circle cx="244" cy="100" r="3" fill="#C94040" stroke="none" fill-opacity="0">
+              <animate attributeName="fill-opacity" values="0;0;0;.6;.25" keyTimes="0;.6;.66;.74;1" dur="6s" repeatCount="indefinite"/>
+              <animate attributeName="r" values="3;3;3;7;4" keyTimes="0;.6;.66;.74;1" dur="6s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+        </svg>
+        <div class="cf-scrim"></div>
+        <div class="cf-front">
+          <div class="cf-cat" data-i18n="problem_card5_cat">Administrativo</div>
+          <h3 class="cf-title" data-i18n="problem_card5_h3">Costo invisible</h3>
+          <p class="cf-lead" data-i18n="problem_card5_lead">Un error que se repite en cada embarque. Cuando se detecta, ya es significativo.</p>
+        </div>
+        <span class="cf-hint" aria-hidden="true">+</span>
+        <div class="cf-back">
+          <div class="cf-cat" data-i18n="problem_card5_cat">Administrativo</div>
+          <h3 class="cf-title" data-i18n="problem_card5_h3">Costo invisible</h3>
+          <p class="cf-full" data-i18n="problem_card5_p">La operación cerró, la mercadería salió, todo parecía en orden. Pero nadie revisó la liquidación de tributos contra las actualizaciones de posición, ni detectó que el tipo de cambio de percepción se aplicó mal. Un error sistemático que se repite en cada embarque, acumulado durante meses. Cuando se detecta, el monto ya es significativo.</p>
+        </div>
+      </article>
+
+      <!-- 06 · Una pregunta simple · chat sin respuesta -->
+      <article class="cf-card" tabindex="0">
+        <svg class="cf-svg" viewBox="0 0 320 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <g><animateTransform attributeName="transform" type="translate" values="-46 0;-46 0;0 0;0 0;0 0;-46 0" keyTimes="0;.04;.16;.9;.96;1" dur="4.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0;1;1;1;0" keyTimes="0;.04;.16;.9;.96;1" dur="4.2s" repeatCount="indefinite"/>
+              <path d="M58 66 h156 a13 13 0 0 1 13 13 v36 a13 13 0 0 1 -13 13 h-124 l-20 18 v-18 a13 13 0 0 1 -13 -13 v-36 a13 13 0 0 1 13 -13 z" stroke-width="1.8" stroke-opacity=".26"/>
+              <line x1="76" y1="90" x2="196" y2="90" stroke-width="1.8" stroke-opacity=".2"/><line x1="76" y1="106" x2="166" y2="106" stroke-width="1.8" stroke-opacity=".2"/></g>
+            <path d="M120 172 h132 a13 13 0 0 1 13 13 v36 a13 13 0 0 1 -13 13 h-104 l-20 18 v-18 a13 13 0 0 1 -13 -13 v-36 a13 13 0 0 1 13 -13 z" stroke-width="1.6" stroke-opacity=".14" stroke-dasharray="5 5"/>
+            <circle cx="156" cy="203" r="4.5" fill="#C94040" stroke="none"><animate attributeName="fill-opacity" values=".18;.6;.18" dur="1.4s" begin="0s" repeatCount="indefinite"/></circle>
+            <circle cx="178" cy="203" r="4.5" fill="#C94040" stroke="none"><animate attributeName="fill-opacity" values=".18;.6;.18" dur="1.4s" begin=".22s" repeatCount="indefinite"/></circle>
+            <circle cx="200" cy="203" r="4.5" fill="#C94040" stroke="none"><animate attributeName="fill-opacity" values=".18;.6;.18" dur="1.4s" begin=".44s" repeatCount="indefinite"/></circle>
+          </g>
+        </svg>
+        <div class="cf-scrim"></div>
+        <div class="cf-front">
+          <div class="cf-cat" data-i18n="problem_card6_cat">Atención al cliente</div>
+          <h3 class="cf-title" data-i18n="problem_card6_h3">Una pregunta simple</h3>
+          <p class="cf-lead" data-i18n="problem_card6_lead">"¿En qué está la operación?" Cada hora sin respuesta es incertidumbre.</p>
+        </div>
+        <span class="cf-hint" aria-hidden="true">+</span>
+        <div class="cf-back">
+          <div class="cf-cat" data-i18n="problem_card6_cat">Atención al cliente</div>
+          <h3 class="cf-title" data-i18n="problem_card6_h3">Una pregunta simple</h3>
+          <p class="cf-full" data-i18n="problem_card6_p">¿En qué está la operación? Es una pregunta básica — y obtener una respuesta clara no debería llevar tres llamadas. Cada hora sin respuesta es una hora de incertidumbre para el cliente: no saber si la carga llega a tiempo, si algo está trabado, si hay una gestión pendiente. La comunicación forma parte del servicio.</p>
+        </div>
+      </article>
+
     </div>
 
   </div>
@@ -2293,71 +2469,166 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
       <h2 class="section-title" data-i18n-html="services_h2">Una sola gestión.<br><span style="color:var(--accent-bright);">Sin perder el hilo.</span></h2>
       <p class="section-desc" style="max-width:420px;" data-i18n="services_sub">Lo que se ve evita lo que no se ve.</p>
     </div>
-    <div class="svc-carousel reveal">
-      <div class="svc-slides has-layer">
-        <div class="svc-slide active">
-          <div class="svc-slide-content">
-            <div class="svc-num">01</div>
-            <h3 data-i18n="svc1_h3">Despacho de Aduana</h3>
-            <p data-i18n="svc1_p">La declaración detallada ante Aduana, a tu nombre. Exactitud en la declaración, agilidad en zona operativa — mercadería liberada sin demoras. +5.200 operaciones de respaldo.</p>
+    <div class="cf-grid svc-grid reveal">
+
+      <!-- 01 · Despacho · barrera que se libera + check -->
+      <article class="cf-card cf-card-svc" tabindex="0">
+        <svg class="cf-svg" viewBox="0 0 320 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="20" y1="244" x2="300" y2="244" stroke-width="1.6" stroke-opacity=".16"/>
+            <line x1="98" y1="244" x2="98" y2="118" stroke-width="2.4" stroke-opacity=".24"/>
+            <circle cx="98" cy="122" r="4" stroke-width="1.8" stroke-opacity=".26"/>
+            <g><animateTransform attributeName="transform" type="rotate" values="0 98 122;0 98 122;-74 98 122;-74 98 122;0 98 122" keyTimes="0;.46;.7;.92;1" dur="5s" repeatCount="indefinite"/>
+              <line x1="98" y1="122" x2="256" y2="122" stroke-width="3.2" stroke-opacity=".46"/>
+              <line x1="124" y1="116" x2="136" y2="128" stroke-width="1.8" stroke-opacity=".3"/>
+              <line x1="162" y1="116" x2="174" y2="128" stroke-width="1.8" stroke-opacity=".3"/>
+              <line x1="200" y1="116" x2="212" y2="128" stroke-width="1.8" stroke-opacity=".3"/></g>
+            <path d="M176 196 l16 16 l34 -42" stroke="#3A8A5A" stroke-width="3.2" stroke-opacity=".46" stroke-dasharray="100" stroke-dashoffset="100"><animate attributeName="stroke-dashoffset" values="100;100;0;0;100" keyTimes="0;.18;.4;.92;1" dur="5s" repeatCount="indefinite"/></path>
+          </g>
+        </svg>
+        <div class="cf-scrim"></div>
+        <div class="cf-front">
+          <h3 class="cf-title" data-i18n="svc1_h3">Despacho de Aduana</h3>
+          <p class="cf-lead" data-i18n="svc1_lead">Declaración exacta, a tu nombre. Mercadería liberada sin demoras.</p>
+        </div>
+        <span class="cf-hint" aria-hidden="true">+</span>
+        <div class="cf-back">
+          <h3 class="cf-title" data-i18n="svc1_h3">Despacho de Aduana</h3>
+          <p class="cf-full" data-i18n="svc1_p">Declaración detallada ante Aduana bajo figura del importador. Exactitud en la posición arancelaria, agilidad en zona operativa — mercadería liberada sin demoras. +5.200 operaciones de respaldo.</p>
+        </div>
+      </article>
+
+      <!-- 02 · Clasificación · etiqueta + código + check -->
+      <article class="cf-card cf-card-svc" tabindex="0">
+        <svg class="cf-svg" viewBox="0 0 320 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <g><animateTransform attributeName="transform" type="rotate" values="-11 168 58;7 168 58;-4 168 58;0 168 58;0 168 58" keyTimes="0;.2;.38;.54;1" dur="5s" repeatCount="indefinite"/>
+              <line x1="168" y1="58" x2="120" y2="104" stroke-width="1.6" stroke-opacity=".22"/>
+              <path d="M120 104 L210 104 a10 10 0 0 1 10 10 L220 206 a10 10 0 0 1 -10 10 L120 216 a10 10 0 0 1 -10 -10 L110 114 a10 10 0 0 1 10 -10 z" stroke-width="2" stroke-opacity=".26"/>
+              <circle cx="132" cy="124" r="6" stroke-width="1.8" stroke-opacity=".24"/>
+              <line x1="128" y1="152" x2="200" y2="152" stroke-width="3" stroke-opacity=".22" stroke-dasharray="80" stroke-dashoffset="80"><animate attributeName="stroke-dashoffset" values="80;80;0;0;80" keyTimes="0;.45;.6;.92;1" dur="5s" repeatCount="indefinite"/></line>
+              <line x1="128" y1="172" x2="200" y2="172" stroke-width="3.4" stroke-opacity=".46" stroke-dasharray="80" stroke-dashoffset="80"><animate attributeName="stroke-dashoffset" values="80;80;0;0;80" keyTimes="0;.58;.74;.92;1" dur="5s" repeatCount="indefinite"/></line>
+              <path d="M132 194 l10 10 l22 -26" stroke="#3A8A5A" stroke-width="2.6" stroke-opacity=".44" stroke-dasharray="64" stroke-dashoffset="64"><animate attributeName="stroke-dashoffset" values="64;64;0;0;64" keyTimes="0;.74;.86;.95;1" dur="5s" repeatCount="indefinite"/></path>
+            </g>
+          </g>
+        </svg>
+        <div class="cf-scrim"></div>
+        <div class="cf-front">
+          <h3 class="cf-title" data-i18n="svc2_h3">Clasificación Arancelaria</h3>
+          <p class="cf-lead" data-i18n="svc2_lead">Posición correcta desde el inicio. Sin riesgos, sin infracciones.</p>
+        </div>
+        <span class="cf-hint" aria-hidden="true">+</span>
+        <div class="cf-back">
+          <h3 class="cf-title" data-i18n="svc2_h3">Clasificación Arancelaria</h3>
+          <p class="cf-full" data-i18n="svc2_p">La posición arancelaria define qué se paga y cómo se trata el producto en aduana — incluidas prohibiciones e intervenciones. Clasificación correcta desde el inicio: sin riesgos, sin infracciones posteriores. +50.000 artículos clasificados de respaldo.</p>
+        </div>
+      </article>
+
+      <!-- 03 · Coordinación · ruta con punto que viaja -->
+      <article class="cf-card cf-card-svc" tabindex="0">
+        <svg class="cf-svg" viewBox="0 0 320 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs><path id="svRoute" d="M44 214 C 96 150, 150 232, 206 132 S 280 92, 288 80"/></defs>
+          <g stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <use href="#svRoute" stroke-width="2" stroke-opacity=".22" stroke-dasharray="5 6"/>
+            <circle cx="44" cy="214" r="6" stroke-width="2" stroke-opacity=".3"/>
+            <path d="M288 80 a8 8 0 1 0 .01 0 M288 88 l0 14" stroke-width="2" stroke-opacity=".3"/>
+            <g stroke-width="1.8" stroke-opacity=".3" transform="translate(150 150) rotate(-18)"><path d="M-12 0 L12 0 M-4 0 L-10 -7 M-4 0 L-10 7 M8 0 L4 -5 M8 0 L4 5"/></g>
+            <circle r="6" fill="#3A8A5A" stroke="none" fill-opacity=".5">
+              <animateMotion dur="5s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#svRoute"/></animateMotion>
+              <animate attributeName="fill-opacity" values="0;.55;.55;0" keyTimes="0;.1;.9;1" dur="5s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+        </svg>
+        <div class="cf-scrim"></div>
+        <div class="cf-front">
+          <h3 class="cf-title" data-i18n="svc3_h3">Coordinación de Embarques</h3>
+          <p class="cf-lead" data-i18n="svc3_lead">Aéreo, marítimo o terrestre. Agente neutral, sin ataduras.</p>
+        </div>
+        <span class="cf-hint" aria-hidden="true">+</span>
+        <div class="cf-back">
+          <h3 class="cf-title" data-i18n="svc3_h3">Coordinación de Embarques</h3>
+          <p class="cf-full" data-i18n="svc3_p">El movimiento de la carga — aéreo, marítimo o terrestre. Agente logístico neutral, sin ataduras a ninguna red: las mejores opciones disponibles según origen y destino en cada operación.</p>
+        </div>
+      </article>
+
+      <!-- 04 · Intervención · checklist que se tilda -->
+      <article class="cf-card cf-card-svc" tabindex="0">
+        <svg class="cf-svg" viewBox="0 0 320 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="92" y="58" width="150" height="180" rx="8" stroke-width="1.8" stroke-opacity=".22"/>
+            <rect x="148" y="48" width="38" height="20" rx="5" stroke-width="1.8" stroke-opacity=".24"/>
+            <g stroke-width="1.8" stroke-opacity=".22">
+              <rect x="110" y="92" width="20" height="20" rx="4"/><rect x="110" y="130" width="20" height="20" rx="4"/><rect x="110" y="168" width="20" height="20" rx="4"/>
+              <line x1="142" y1="102" x2="222" y2="102"/><line x1="142" y1="140" x2="222" y2="140"/><line x1="142" y1="178" x2="208" y2="178"/></g>
+            <path d="M114 102 l5 5 l11 -13" stroke="#3A8A5A" stroke-width="2.6" stroke-opacity=".48" stroke-dasharray="40" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;40;0;0;40" keyTimes="0;.16;.32;.92;1" dur="5s" repeatCount="indefinite"/></path>
+            <path d="M114 140 l5 5 l11 -13" stroke="#3A8A5A" stroke-width="2.6" stroke-opacity=".48" stroke-dasharray="40" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;40;0;0;40" keyTimes="0;.36;.52;.92;1" dur="5s" repeatCount="indefinite"/></path>
+            <path d="M114 178 l5 5 l11 -13" stroke="#3A8A5A" stroke-width="2.6" stroke-opacity=".48" stroke-dasharray="40" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;40;0;0;40" keyTimes="0;.56;.72;.92;1" dur="5s" repeatCount="indefinite"/></path>
+          </g>
+        </svg>
+        <div class="cf-scrim"></div>
+        <div class="cf-front">
+          <h3 class="cf-title" data-i18n="svc4_h3">Intervención de Organismos</h3>
+          <p class="cf-lead" data-i18n="svc4_lead">Aprobaciones previas, con anticipación. Nada queda descubierto.</p>
+        </div>
+        <span class="cf-hint" aria-hidden="true">+</span>
+        <div class="cf-back">
+          <h3 class="cf-title" data-i18n="svc4_h3">Intervención de Organismos</h3>
+          <p class="cf-full" data-i18n="svc4_p">Algunos productos requieren aprobaciones previas — ANMAT y otros Terceros Organismos. También restricciones no arancelarias: Seguridad Eléctrica, Etiquetado, regímenes especiales. Gestión directa o coordinada con especialistas, siempre con anticipación. Nada queda descubierto.</p>
+        </div>
+      </article>
+
+      <!-- 05 · Almacenamiento · estantería + caja que se ubica -->
+      <article class="cf-card cf-card-svc" tabindex="0">
+        <svg class="cf-svg" viewBox="0 0 320 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <g stroke-width="2" stroke-opacity=".22"><line x1="96" y1="86" x2="96" y2="240"/><line x1="248" y1="86" x2="248" y2="240"/><line x1="88" y1="158" x2="256" y2="158"/><line x1="88" y1="240" x2="256" y2="240"/></g>
+            <g stroke-width="1.8" stroke-opacity=".26"><rect x="108" y="120" width="40" height="36" rx="2"/><rect x="152" y="120" width="40" height="36" rx="2"/><rect x="108" y="200" width="40" height="38" rx="2"/><rect x="196" y="200" width="40" height="38" rx="2"/></g>
+            <rect x="152" y="202" width="40" height="36" rx="2" stroke="#3A8A5A" stroke-width="2.2" stroke-opacity=".48"><animate attributeName="y" values="60;60;202;202;60" keyTimes="0;.2;.5;.92;1" dur="5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;1;0" keyTimes="0;.2;.5;.92;1" dur="5s" repeatCount="indefinite"/></rect>
+          </g>
+        </svg>
+        <div class="cf-scrim"></div>
+        <div class="cf-front">
+          <h3 class="cf-title" data-i18n="svc5_h3">Almacenamiento</h3>
+          <p class="cf-lead" data-i18n="svc5_lead">Almacenes en puntos estratégicos, adaptados a cada demanda.</p>
+        </div>
+        <span class="cf-hint" aria-hidden="true">+</span>
+        <div class="cf-back">
+          <h3 class="cf-title" data-i18n="svc5_h3">Almacenamiento</h3>
+          <p class="cf-full" data-i18n="svc5_p">Almacenes aliados en puntos estratégicos para operaciones especiales: identificación, reenvasado, desconsolidación, fraccionamiento, entregas parciales, almacenaje a largo plazo. Adaptado a cada demanda.</p>
+        </div>
+      </article>
+
+      <!-- 06 · Llave en mano · fusión DDP + Trade · tapiz llave -->
+      <article class="cf-card cf-card-svc" tabindex="0">
+        <svg class="cf-svg" viewBox="0 0 320 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="176" cy="140" r="74" stroke="#3A8A5A" stroke-width="2" stroke-opacity=".14"><animate attributeName="stroke-opacity" values=".1;.1;.28;.1" keyTimes="0;.55;.7;1" dur="5s" repeatCount="indefinite"/><animate attributeName="r" values="70;70;80;70" keyTimes="0;.55;.7;1" dur="5s" repeatCount="indefinite"/></circle>
+            <g><animateTransform attributeName="transform" type="rotate" values="-46 176 140;-46 176 140;0 176 140;0 176 140;-46 176 140" keyTimes="0;.15;.5;.9;1" dur="5s" repeatCount="indefinite"/>
+              <circle cx="138" cy="140" r="22" stroke-width="3" stroke-opacity=".44"/><circle cx="138" cy="140" r="9" stroke-width="2" stroke-opacity=".3"/>
+              <line x1="160" y1="140" x2="232" y2="140" stroke-width="3" stroke-opacity=".44"/>
+              <line x1="222" y1="140" x2="222" y2="156" stroke-width="3" stroke-opacity=".44"/>
+              <line x1="208" y1="140" x2="208" y2="152" stroke-width="3" stroke-opacity=".44"/></g>
+          </g>
+        </svg>
+        <div class="cf-scrim"></div>
+        <div class="cf-front">
+          <h3 class="cf-title" data-i18n="svc_turnkey_h3">Llave en mano</h3>
+          <p class="cf-lead" data-i18n="svc_turnkey_lead">De punta a punta: desde un envío puntual hasta el proyecto completo. Una sola firma.</p>
+        </div>
+        <span class="cf-hint" aria-hidden="true">+</span>
+        <div class="cf-back cf-back-stack">
+          <h3 class="cf-title" data-i18n="svc_turnkey_h3">Llave en mano</h3>
+          <div class="cf-modality">
+            <div class="cf-mod-name" data-i18n="svc6_h3">DDP — Puerta a Puerta</div>
+            <p class="cf-mod-desc" data-i18n="svc6_lead">Compra afuera, entrega en destino. Cada envío con criterio propio.</p>
+          </div>
+          <div class="cf-modality">
+            <div class="cf-mod-name" data-i18n="svc7_h3">Trade — Llave en Mano</div>
+            <p class="cf-mod-desc" data-i18n="svc7_lead">El proyecto completo, armado en conjunto. Una sola firma.</p>
           </div>
         </div>
-        <div class="svc-slide">
-          <div class="svc-slide-content">
-            <div class="svc-num">02</div>
-            <h3 data-i18n="svc2_h3">Clasificación Arancelaria</h3>
-            <p data-i18n="svc2_p">La posición arancelaria define qué se paga y cómo se trata el producto en aduana — incluidas prohibiciones e intervenciones. Clasificación correcta desde el inicio: sin riesgos, sin infracciones posteriores. +50.000 artículos clasificados de respaldo.</p>
-          </div>
-        </div>
-        <div class="svc-slide">
-          <div class="svc-slide-content">
-            <div class="svc-num">03</div>
-            <h3 data-i18n="svc3_h3">Coordinación de Embarques</h3>
-            <p data-i18n="svc3_p">El movimiento de la carga — aéreo, marítimo o terrestre. Agente logístico neutral, sin ataduras a ninguna red: las mejores opciones disponibles según origen y destino en cada operación.</p>
-          </div>
-        </div>
-        <div class="svc-slide">
-          <div class="svc-slide-content">
-            <div class="svc-num">04</div>
-            <h3 data-i18n="svc4_h3">Intervención de Organismos</h3>
-            <p data-i18n="svc4_p">Algunos productos requieren aprobaciones previas — ANMAT, Seguridad Eléctrica, Etiquetado y otras restricciones no arancelarias. Gestión directa o coordinada con especialistas, siempre con anticipación. Nada queda descubierto.</p>
-          </div>
-        </div>
-        <div class="svc-slide">
-          <div class="svc-slide-content">
-            <div class="svc-num">05</div>
-            <h3 data-i18n="svc5_h3">Almacenamiento</h3>
-            <p data-i18n="svc5_p">Almacenes aliados en puntos estratégicos para operaciones especiales: identificación, reenvasado, desconsolidación, fraccionamiento, entregas parciales, almacenaje a largo plazo. Adaptado a cada demanda.</p>
-          </div>
-        </div>
-        <div class="svc-slide">
-          <div class="svc-slide-content">
-            <div class="svc-num">06</div>
-            <h3 data-i18n="svc6_h3">DDP — Puerta a Puerta</h3>
-            <p data-i18n="svc6_p">Para envíos pequeños o eventuales. Compra afuera, entrega en puerta. Sin procesos estandarizados, sin límites de precio ni cantidades — cada envío tratado por quien lo entiende.</p>
-          </div>
-        </div>
-        <div class="svc-slide">
-          <div class="svc-slide-content">
-            <div class="svc-num">07</div>
-            <h3 data-i18n="svc7_h3">Trade — Llave en Mano</h3>
-            <p data-i18n="svc7_p">El proyecto completo, armado en conjunto. Búsqueda, negociación, compra, consolidación, despacho y pagos — bajo figura propia de importador o exportador. Una sola firma cubre toda la operación.</p>
-          </div>
-        </div>
-      </div>
-      <div class="svc-controls">
-        <button class="svc-btn svc-prev" aria-label="Anterior">&larr;</button>
-        <div class="svc-dots">
-          <span class="svc-dot active"></span>
-          <span class="svc-dot"></span>
-          <span class="svc-dot"></span>
-          <span class="svc-dot"></span>
-          <span class="svc-dot"></span>
-          <span class="svc-dot"></span>
-          <span class="svc-dot"></span>
-        </div>
-        <button class="svc-btn svc-next" aria-label="Siguiente">&rarr;</button>
-      </div>
+      </article>
+
     </div>
   </div>
 </section>
@@ -2378,44 +2649,53 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 <section id="valores" class="valores-section panel">
   <div class="container">
     <p class="section-label reveal" data-i18n="valores_label">Lo que nos define</p>
-    <h2 class="section-title reveal" data-i18n="valores_h2">7 valores</h2>
-    <p class="section-desc reveal" style="margin-bottom:2rem;max-width:780px;" data-i18n="valores_sub">Construimos desde la experiencia. Operamos con criterio. Crecemos sin perder precisión.</p>
-    <div class="valores-grid reveal">
-      <div class="valor-card">
-        <div class="valor-num">01</div>
-        <div class="valor-name" data-i18n="val1_name">Integridad</div>
-        <div class="valor-def" data-i18n="val1_tag">Cumplimos sin atajos.</div>
-      </div>
-      <div class="valor-card">
-        <div class="valor-num">02</div>
-        <div class="valor-name" data-i18n="val2_name">Confidencialidad</div>
-        <div class="valor-def" data-i18n="val2_tag">Tu operación, tu información.</div>
-      </div>
-      <div class="valor-card">
-        <div class="valor-num">03</div>
-        <div class="valor-name" data-i18n="val3_name">Evolución</div>
-        <div class="valor-def" data-i18n="val3_tag">Adaptación sin pausa.</div>
-      </div>
-      <div class="valor-card">
-        <div class="valor-num">04</div>
-        <div class="valor-name" data-i18n="val4_name">Compromiso</div>
-        <div class="valor-def" data-i18n="val4_tag">En el mismo barco.</div>
-      </div>
-      <div class="valor-card">
-        <div class="valor-num">05</div>
-        <div class="valor-name" data-i18n="val5_name">Gente</div>
-        <div class="valor-def" data-i18n="val5_tag">Servicio hecho por personas.</div>
-      </div>
-      <div class="valor-card">
-        <div class="valor-num">06</div>
-        <div class="valor-name" data-i18n="val6_name">Vínculo</div>
-        <div class="valor-def" data-i18n="val6_tag">El hilo invisible detrás de cada operación.</div>
-      </div>
-      <div class="valor-card">
-        <div class="valor-num">07</div>
-        <div class="valor-name" data-i18n="val7_name">Anticipación</div>
-        <div class="valor-def" data-i18n="val7_tag">Pensar antes. Después es tarde.</div>
-      </div>
+    <h2 class="section-title reveal"><span data-i18n="ecp_e">Experiencia</span> · <span data-i18n="ecp_c">Criterio</span> · <span data-i18n="ecp_p">Precisión</span></h2>
+    <p class="section-desc reveal" style="margin-bottom:2rem;max-width:780px;" data-i18n="valores_sub">Operaciones desde 1997. Criterio en cada decisión. Precisión como estándar de cada despacho.</p>
+    <div class="cf-grid reveal">
+
+      <!-- E · pasar/tocar para desplegar -->
+      <article class="cf-card cf-card-ecp" tabindex="0">
+        <div class="cf-front"><div class="cf-ecp-letter">E</div></div>
+        <span class="cf-hint" aria-hidden="true">+</span>
+        <div class="cf-back">
+          <h3 class="cf-title" data-i18n="ecp_e">Experiencia</h3>
+          <p class="cf-lead" data-i18n="ecp_e_line">Desde 1997. Las decisiones difíciles, ya tomadas.</p>
+          <div class="cf-ecp-chips">
+            <span data-i18n="val5_name">Gente</span>
+            <span data-i18n="val6_name">Vínculo</span>
+            <span data-i18n="val4_name">Compromiso</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- C -->
+      <article class="cf-card cf-card-ecp" tabindex="0">
+        <div class="cf-front"><div class="cf-ecp-letter">C</div></div>
+        <span class="cf-hint" aria-hidden="true">+</span>
+        <div class="cf-back">
+          <h3 class="cf-title" data-i18n="ecp_c">Criterio</h3>
+          <p class="cf-lead" data-i18n="ecp_c_line">Lo que el manual no resuelve.</p>
+          <div class="cf-ecp-chips">
+            <span data-i18n="val7_name">Anticipación</span>
+            <span data-i18n="val3_name">Evolución</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- P -->
+      <article class="cf-card cf-card-ecp" tabindex="0">
+        <div class="cf-front"><div class="cf-ecp-letter">P</div></div>
+        <span class="cf-hint" aria-hidden="true">+</span>
+        <div class="cf-back">
+          <h3 class="cf-title" data-i18n="ecp_p">Precisión</h3>
+          <p class="cf-lead" data-i18n="ecp_p_line">En aduana no hay segunda oportunidad.</p>
+          <div class="cf-ecp-chips">
+            <span data-i18n="val1_name">Integridad</span>
+            <span data-i18n="val2_name">Confidencialidad</span>
+          </div>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
@@ -2427,7 +2707,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     <h2 class="section-title reveal" data-i18n-html="historia_h2">+29 años resolviendo <span style="color:var(--accent-bright);">lo que no se ve</span>.</h2>
     <p class="section-desc reveal" style="max-width:780px;" data-i18n="historia_sub">Cada rubro sumó complejidad. Cada complejidad, experiencia y criterio.</p>
     <div class="historia-foto reveal">
-      <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1400&q=80" alt="Puerto de Buenos Aires — hermesCE" loading="lazy">
+      <img src="Vista%20a%C3%A9rea%20del%20puerto%20de%20Buenos%20Aires%20bn.png" alt="Puerto de Buenos Aires — trayectoria hermes CE" loading="lazy">
     </div>
     <div class="historia-grid">
       <div class="historia-item reveal">
@@ -2530,7 +2810,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
         <p class="section-desc reveal ia-sub" data-i18n="ia_sub">Pioneros en la integración de IA en Comercio Exterior. Esto recién comienza.</p>
 
         <p class="ia-body">
-          <span data-i18n-html="ia_intro">Hola, soy <strong style="color:var(--white);">far<span style="color:var(--brand-hia);">IA</span>s</strong>, un agente de clasificación arancelaria potenciado por IA. Con una foto, un link o una descripción devuelvo un informe en segundos con posición <strong style="color:var(--white);">NCM</strong><strong style="color:var(--brand-hia);">+SIM</strong>, tributos, restricciones y más. Para tomar decisiones en tiempo-real y transformar semanas de trabajo en minutos.</span>
+          <span data-i18n-html="ia_intro">Hola, soy <strong style="color:var(--white);">far<span style="color:var(--brand-hia);">IA</span>s</strong>, un agente de clasificación arancelaria potenciado por IA. Con una foto, un link o una descripción devuelvo un informe en segundos con posición <strong style="color:var(--white);">NCM</strong><strong style="color:var(--brand-hia);">+SIM</strong>, tributos, restricciones y más.</span>
         </p>
 
         <!-- Carrusel editorial compacto dentro del ia-left -->
@@ -2929,40 +3209,14 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     });
   }
 
-  // ── Carrusel El Problema ──
-  const probSlides = document.querySelectorAll('.problem-slide');
-  const probDots = document.querySelectorAll('.prob-dot');
-  let probIdx = 0;
-
-  function goToProb(n) {
-    probSlides[probIdx].classList.remove('active');
-    probDots[probIdx].classList.remove('active');
-    probIdx = (n + probSlides.length) % probSlides.length;
-    probSlides[probIdx].classList.add('active');
-    probDots[probIdx].classList.add('active');
+  // ── Tapiz de las grillas Problema/Servicios: respeto a prefers-reduced-motion ──
+  // (Las grillas son CSS puro — hover/focus-within. Acá sólo congelamos las
+  //  animaciones SMIL en un frame representativo si el usuario pide menos movimiento.)
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.cf-svg').forEach(svg => {
+      try { svg.setCurrentTime(2); svg.pauseAnimations(); } catch (e) {}
+    });
   }
-
-  document.querySelector('.prob-next')?.addEventListener('click', () => goToProb(probIdx + 1));
-  document.querySelector('.prob-prev')?.addEventListener('click', () => goToProb(probIdx - 1));
-  probDots.forEach((dot, i) => dot.addEventListener('click', () => goToProb(i)));
-  setInterval(() => goToProb(probIdx + 1), 5000);
-
-  // ── Carrusel Servicios ──
-  const svcSlides = document.querySelectorAll('.svc-slide');
-  const svcDots = document.querySelectorAll('.svc-dot');
-  let svcIdx = 0;
-  function goToSvc(n) {
-    if (!svcSlides.length) return;
-    svcSlides[svcIdx].classList.remove('active');
-    svcDots[svcIdx].classList.remove('active');
-    svcIdx = (n + svcSlides.length) % svcSlides.length;
-    svcSlides[svcIdx].classList.add('active');
-    svcDots[svcIdx].classList.add('active');
-  }
-  document.querySelector('.svc-next')?.addEventListener('click', () => goToSvc(svcIdx + 1));
-  document.querySelector('.svc-prev')?.addEventListener('click', () => goToSvc(svcIdx - 1));
-  svcDots.forEach((dot, i) => dot.addEventListener('click', () => goToSvc(i)));
-  if (svcSlides.length) setInterval(() => goToSvc(svcIdx + 1), 5000);
 
   // ── Carrusel IA · escenas (relatos con dots) ──
   const iaSlides = document.querySelectorAll('.ia-scene-slide');
@@ -2979,12 +3233,22 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   }
   function startIaAutoplay() {
     if (iaAutoplay) clearInterval(iaAutoplay);
-    iaAutoplay = setInterval(() => goToIaScene(iaIdx + 1), 6500);
+    iaAutoplay = setInterval(() => goToIaScene(iaIdx + 1), 8500);
   }
+  function pauseIaAutoplay() { if (iaAutoplay) { clearInterval(iaAutoplay); iaAutoplay = null; } }
   iaDots.forEach((dot, i) => dot.addEventListener('click', () => {
     goToIaScene(i);
     startIaAutoplay();
   }));
+  // Pausa mientras el cursor/dedo está apoyado; reanuda al soltar.
+  const iaCarousel = document.querySelector('.ia-scenes-carousel');
+  if (iaCarousel) {
+    iaCarousel.addEventListener('mouseenter', pauseIaAutoplay);
+    iaCarousel.addEventListener('mouseleave', startIaAutoplay);
+    iaCarousel.addEventListener('touchstart', pauseIaAutoplay, { passive: true });
+    iaCarousel.addEventListener('touchend', startIaAutoplay);
+    iaCarousel.addEventListener('touchcancel', startIaAutoplay);
+  }
   if (iaSlides.length) startIaAutoplay();
 
   // ── Fade-up on scroll ──
