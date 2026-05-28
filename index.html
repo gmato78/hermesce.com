@@ -213,11 +213,13 @@
     @keyframes kb2 { 0% { transform: scale(1.06); } 100% { transform: scale(1.0); } }
     @keyframes kb3 { 0% { transform: scale(1.0); } 100% { transform: scale(1.05); } }
     @keyframes kb4 { 0% { transform: scale(1.05); } 100% { transform: scale(1.0); } }
+    @keyframes kbZoomIn  { 0% { transform: scale(1.0); }  100% { transform: scale(1.20); } }  /* contenedores: zoom-in */
+    @keyframes kbZoomOut { 0% { transform: scale(1.18); } 100% { transform: scale(1.0); } }   /* aérea: zoom-out */
     .hero-kb-layer {
       position: absolute; inset: 0; z-index: 0;
       overflow: hidden;
       pointer-events: none;
-      transition: opacity 2.2s ease;
+      transition: opacity 1.3s ease;
       opacity: 0;
     }
     .hero-kb-layer.kb-active { opacity: 1; }
@@ -2174,7 +2176,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 <section class="hero">
 
   <!-- Hero video · reproduce 1 vez (lento) y congela en el último frame · sin loop -->
-  <video class="hero-video" autoplay muted playsinline preload="auto" poster="hero-poster.jpg" aria-hidden="true">
+  <video class="hero-video" muted playsinline preload="auto" poster="hero-poster.jpg" aria-hidden="true">
     <source src="hero-video.webm" type="video/webm">
     <source src="hero-video.mp4" type="video/mp4">
   </video>
@@ -2707,7 +2709,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     <h2 class="section-title reveal" data-i18n-html="historia_h2">+29 años resolviendo <span style="color:var(--accent-bright);">lo que no se ve</span>.</h2>
     <p class="section-desc reveal" style="max-width:780px;" data-i18n="historia_sub">Cada rubro sumó complejidad. Cada complejidad, experiencia y criterio.</p>
     <div class="historia-foto reveal">
-      <img src="Vista%20a%C3%A9rea%20del%20puerto%20de%20Buenos%20Aires%20bn.png" alt="Puerto de Buenos Aires — trayectoria hermes CE" loading="lazy">
+      <img src="hero-still-2.jpg" alt="Puerto de Buenos Aires — trayectoria hermes CE" loading="lazy">
     </div>
     <div class="historia-grid">
       <div class="historia-item reveal">
@@ -3041,43 +3043,23 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 
   // ── Hero carrusel — crossfade limpio sin oscurecer ──
   // Para agregar/quitar fotos: editá heroImages.
+  // Secuencia del hero (B&W) tras el video: pasillo de contenedores → aérea del puerto.
+  // También sirven de fallback rotativo si el video 404ea.
+  // Capas de foto del carrusel (el orden de reproducción lo define `scenes`, abajo).
   const heroImages = [
-    'hero-calle.jpg',
-    'hero-barco.jpg',
-    'hero-avion.jpg',
-    'ormuz.jpg',
-    'Barco _atardecer.png',
-    'Barco carguero al atardecer en el mar bn.png',
-    'Barco de carga al atardecer.png',
-    'Carga en aeropuerto bajo contraste.png',
-    'ChatGPT Image 11 abr 2026, 04_42_33 p.m..png',
-    'Muelles industriales al amanecer.png',
-    'Pasillo entre contenedores en puerto.png',
-    'Puerto industrial al atardecer2.png',
-    'Puerto industrial en plena operación.png',
-    'Puerto industrial nocturno con grúas.png',
-    'Puerto industrial y equipo de carga.png',
-    'Vista aérea del puerto de Buenos Aires bn.png',
-    'Vista aérea del puerto de Buenos Aires.png'
+    'hero-still-1.jpg',   // [0] barco — portacontenedores HERMES CE (B&W)
+    'hero-still-2.jpg',   // [1] aérea del puerto de Buenos Aires (B&W)
+    'hero-still-4.jpg'    // [2] contenedores — pasillo (B&W)
   ];
 
   // ── Hero Ken Burns ──
   const heroEl = document.querySelector('.hero');
   heroEl.style.backgroundImage = 'none';
 
-  // ── Hero video loop (MSC-style) — activa cuando el archivo cargue, oculta Ken Burns ──
+  // ── Hero video — es un "slide" más del carrusel; el orquestador (abajo) controla play y fundido ──
   const heroVideo = heroEl.querySelector('.hero-video');
   if (heroVideo) {
-    let videoActive = false;
-    const activateVideo = () => {
-      if (videoActive) return;
-      videoActive = true;
-      heroVideo.classList.add('ready');
-      heroEl.querySelectorAll('.hero-kb-layer').forEach(l => { l.style.opacity = '0'; });
-    };
-    heroVideo.addEventListener('playing', activateVideo, { once: true });
-    heroVideo.addEventListener('loadeddata', () => { heroVideo.play().catch(() => {}); });
-    heroVideo.addEventListener('error', () => { heroVideo.remove(); }, { once: true });
+    heroVideo.addEventListener('error', () => { heroVideo.remove(); }, { once: true });  // 404 → fallback a fotos
   }
 
   // ── Hero Gemini-style: fade + scale al scrollear (+ nav fill paralelo) ──
@@ -3149,28 +3131,81 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   let kbIdx = 0;
 
   function showLayer(idx) {
-    const anim = kbAnims[idx % kbAnims.length];
-    const { layer, inner } = layers[idx];
-    inner.style.animation = 'none';
-    inner.offsetHeight; // reflow
-    inner.style.animation = `${anim} ${DURATION + FADE}ms ease-in-out forwards`;
+    const { layer } = layers[idx];
+    startKB(idx);                    // aplica el KB (zoom marcado en contenedores); startKB está hoisted
+    layer.style.opacity = '';        // limpia cualquier opacity:0 inline previo
     layer.classList.add('kb-active');
   }
 
   function hideLayer(idx) {
     layers[idx].layer.classList.remove('kb-active');
+    layers[idx].layer.style.opacity = '0';   // fuerza el fade-out (gana sobre opacity inline previo)
   }
 
-  // Start first
-  showLayer(0);
-
-  setInterval(() => {
-    const next = (kbIdx + 1) % heroImages.length;
-    showLayer(next);
-    const prev = kbIdx;
-    setTimeout(() => hideLayer(prev), FADE);
-    kbIdx = next;
-  }, DURATION);
+  // ── Carrusel del hero: barco(foto) → video → aérea(foto) → contenedores(foto) → ↻ ──
+  // El video es un slide más. Fundido (melt) entre video y foto; crossfade entre fotos.
+  const STILL_MS = 2800;                 // tiempo visible por foto (carretel ágil)
+  const MELT_MS  = 1200;                 // fundido video↔foto
+  const KB_ZOOM_MS = 7500;               // duración de los zooms de foto (lento/suave)
+  const KB_SPECIAL = { 0: 'kbZoomIn', 1: 'kbZoomOut', 2: 'kbZoomIn' };  // [0] barco = zoom-in · [1] aérea = zoom-out · [2] contenedores = zoom-in
+  const scenes = [
+    { photo: 0 },    // barco
+    { video: true }, // video (push-in)
+    { photo: 1 },    // aérea
+    { photo: 2 }     // contenedores
+  ];
+  let sceneIdx = 0, seqTimer = null;
+  function clearSeq() { clearTimeout(seqTimer); }
+  function startKB(idx) {
+    const { inner } = layers[idx];
+    inner.style.animation = 'none'; inner.offsetHeight;   // reflow
+    const sp = KB_SPECIAL[idx];                           // aérea = zoom-out · contenedores = zoom-in (lentos)
+    if (sp) {
+      inner.style.animation = `${sp} ${KB_ZOOM_MS}ms ease-in-out forwards`;
+    } else {
+      const anim = kbAnims[idx % kbAnims.length];
+      inner.style.animation = `${anim} ${DURATION + FADE}ms ease-in-out forwards`;
+    }
+  }
+  function showStillInstant(idx) {       // foto a full SIN fade (queda detrás del video)
+    const { layer } = layers[idx];
+    startKB(idx);
+    layer.style.transition = 'none'; layer.style.opacity = '1'; layer.classList.add('kb-active');
+    layer.offsetHeight;                  // reflow → fija el estado sin animar
+    layer.style.transition = '';         // restaura para el crossfade posterior
+  }
+  if (heroVideo) heroVideo.style.transition = `opacity ${MELT_MS}ms ease`;   // el video se funde, no corta
+  function advance() { sceneIdx = (sceneIdx + 1) % scenes.length; runScene(); }
+  function runScene() {
+    clearSeq();
+    const sc = scenes[sceneIdx];
+    const prev = scenes[(sceneIdx - 1 + scenes.length) % scenes.length];
+    if (sc.video) {
+      if (heroVideo) {
+        heroVideo.classList.add('ready');                  // funde el video sobre la foto actual
+        try { heroVideo.currentTime = 0; } catch (e) {}
+        heroVideo.play().catch(() => {});
+        seqTimer = setTimeout(() => layers.forEach((l, i) => hideLayer(i)), MELT_MS);  // limpia fotos tras el melt
+        // avanza al terminar el video ('ended', abajo)
+      } else {
+        seqTimer = setTimeout(advance, STILL_MS);          // sin video: salta el slide
+      }
+    } else {
+      const idx = sc.photo;
+      if (prev.video && heroVideo) {
+        showStillInstant(idx);                             // foto a full detrás del video
+        heroVideo.classList.remove('ready');               // el video se funde y la revela (melt)
+      } else {
+        showLayer(idx);                                    // crossfade entre fotos
+        if (!prev.video) hideLayer(prev.photo);
+      }
+      seqTimer = setTimeout(advance, STILL_MS);
+    }
+  }
+  if (heroVideo) {
+    heroVideo.addEventListener('ended', () => { if (scenes[sceneIdx].video) advance(); });
+  }
+  runScene();   // arranca en el barco (scene 0)
 
   // ── Contador animado (stats hero) ──
   function animateCounter(el) {
