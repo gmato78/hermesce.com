@@ -2285,22 +2285,63 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     background: #ffffff;
     text-align: center;
     box-shadow: 0 26px 46px -20px rgba(20,40,70,.42);
+    overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   .stats-v2-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 34px 58px -20px rgba(20,40,70,.5);
   }
+  /* Solo la barrida sobre los números — sin elementos decorativos de fondo en el card */
+  /* Pulso del número al terminar el counter — sensación de "aterriza" el dato */
+  @keyframes statPulse {
+    0%   { transform: scale(1); }
+    45%  { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  .stat-num { display: inline-block; transform-origin: center; }
+  .stat-num.pulse-in { animation: statPulse 0.55s ease-out; }
   .stats-v2-num {
     position: relative;
-    font-size: 2.6rem;
+    font-size: 3.4rem;                                                       /* más presencia respecto del blanco del card */
     font-weight: 800;
     line-height: 1;
-    color: var(--brand-zafiro);
+    color: var(--brand-zafiro);                                              /* Zafiro pleno · mismo azul que las cards del problema */
     margin-bottom: 0.5rem;
     letter-spacing: -0.02em;
+    filter: drop-shadow(0 5px 9px rgba(20, 40, 70, 0.32));                   /* número visiblemente elevado */
   }
-  .stats-v2-num .stat-num { color: inherit; font-size: inherit; }
+  /* Luz que barre el número sube y baja un par de veces al entrar al viewport.
+     Color base sólido (Zafiro), banda más clara que cruza varias veces. */
+  .stats-v2-num .stat-num {
+    font-size: inherit;
+    background-image: linear-gradient(
+      180deg,
+      var(--brand-zafiro) 0%,
+      var(--brand-zafiro) 38%,
+      #7AA0CC 50%,
+      var(--brand-zafiro) 62%,
+      var(--brand-zafiro) 100%
+    );
+    background-size: 100% 320%;
+    background-position: 0% 220%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+  @keyframes lightSweep {
+    0%   { background-position: 0% 220%; }    /* luz fuera, abajo */
+    25%  { background-position: 0% -120%; }   /* SUBE → fuera arriba */
+    50%  { background-position: 0% 220%; }    /* BAJA → fuera abajo */
+    75%  { background-position: 0% -120%; }   /* SUBE → fuera arriba */
+    100% { background-position: 0% 220%; }    /* BAJA → queda fuera abajo */
+  }
+  .stats-v2-grid.visible .stats-v2-num .stat-num {
+    animation: lightSweep 5s cubic-bezier(0.4, 0, 0.2, 1) 0.7s forwards;
+  }
+  .stats-v2-grid.visible .stats-v2-card:nth-child(2) .stat-num { animation-delay: 1.05s; }
+  .stats-v2-grid.visible .stats-v2-card:nth-child(3) .stat-num { animation-delay: 1.4s; }
   .stats-v2-label {
     position: relative;
     color: rgba(15,37,68,0.74);
@@ -2309,6 +2350,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     line-height: 1.4;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(20, 40, 70, 0.18);                            /* label también elevado, coherente con el número */
   }
   @media (max-width: 768px) {
     .stats-v2 { padding: 0 0.9rem; }
@@ -3314,16 +3356,21 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   function animateCounter(el) {
     const target = parseInt(el.dataset.target);
     const prefix = el.dataset.prefix || '';
-    const duration = 1800;
+    const duration = 2200;                                 // más slow → más cinemato
     const start = performance.now();
-    const easeOut = t => 1 - Math.pow(1 - t, 3);
+    const easeOutExpo = t => t === 1 ? 1 : 1 - Math.pow(2, -10 * t);  // termina suave
     function update(now) {
       const elapsed = now - start;
       const progress = Math.min(elapsed / duration, 1);
-      const current = Math.floor(easeOut(progress) * target);
+      const current = Math.floor(easeOutExpo(progress) * target);
       el.textContent = prefix + current.toLocaleString('es-AR');
       if (progress < 1) requestAnimationFrame(update);
-      else el.textContent = prefix + target.toLocaleString('es-AR');
+      else {
+        el.textContent = prefix + target.toLocaleString('es-AR');
+        // Pulse al aterrizar el valor final — el dato "se asienta"
+        el.classList.add('pulse-in');
+        setTimeout(() => el.classList.remove('pulse-in'), 650);
+      }
     }
     requestAnimationFrame(update);
   }
