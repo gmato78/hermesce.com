@@ -3110,8 +3110,9 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   // Cada slide puede ser 'image' (background-image + Ken Burns) o 'video' (loopeable, muteado).
   // Editá heroSlides para reemplazar/agregar (mantené el largo coherente con `scenes` abajo).
   const heroSlides = [
-    { type: 'video', src: 'hero-pasillo.mp4', loop: false },    // [0] contenedores — pasillo push-in (pilot Seedance · 4s)
-    { type: 'video', src: 'hero-video.mp4',   loop: false }     // [1] barco — push-in acercándose (pilot Seedance · 4s)
+    { type: 'video', src: 'hero-pasillo.mp4',  loop: false },   // [0] contenedores — pasillo push-in (pilot Seedance · 4s)
+    { type: 'video', src: 'hero-video.mp4',    loop: false },   // [1] barco — push-in acercándose (pilot Seedance · 4s)
+    { type: 'video', src: 'hero-barco-2.mp4',  loop: false }    // [2] barco — segunda toma (primera mitad del loop · 4s)
   ];
 
   // ── Hero Ken Burns ──
@@ -3240,7 +3241,8 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   const KB_SPECIAL = {};                                                  // sin Ken Burns: los videos traen su propio movimiento
   const scenes = [
     { photo: 0 },    // pasillo (~4s)
-    { photo: 1 }     // barco — push-in acercándose (~4s)
+    { photo: 1 },    // barco — push-in acercándose (~4s)
+    { photo: 2 }     // barco — segunda toma (~4s)
   ];
   let sceneIdx = 0, seqTimer = null;
   function clearSeq() { clearTimeout(seqTimer); }
