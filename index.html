@@ -3287,6 +3287,14 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
         if (s.type) so.type = s.type;
         videoEl.appendChild(so);
       });
+      // Safety net: si el video naturalmente termina (porque el timer falló o llegó tarde),
+      // disparar advance inmediatamente para evitar freeze del último frame.
+      videoEl.addEventListener('ended', function() {
+        if (scenes[sceneIdx] && scenes[sceneIdx].photo === i) {
+          clearSeq();
+          advance();
+        }
+      });
       inner.appendChild(videoEl);
     } else {
       inner.style.backgroundImage = `url('${slide.src}')`;
@@ -3329,6 +3337,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   const STILL_VIDEO_MS = 7000;           // tiempo visible por video loopeable (alcanza casi el loop completo del boomerang)
   function stillMsFor(idx) { return layers[idx] && layers[idx].type === 'video' ? STILL_VIDEO_MS : STILL_IMAGE_MS; }
   const MELT_MS  = 500;                  // fundido video↔foto — bajado de 1200 para cortar decode concurrente
+  const HERO_VIDEO_DURATION_MS = 4040;   // duración conocida de los 3 clips · fallback cuando metadata aún no cargó (1er load)
   const KB_ZOOM_MS = 7500;               // duración de los zooms de foto (lento/suave)
   const KB_SPECIAL = {};                                                  // sin Ken Burns: los videos traen su propio movimiento
   const scenes = [
@@ -3360,15 +3369,17 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     if (video) { try { video.currentTime = 0; } catch(e) {} video.play().catch(() => {}); }
   }
   if (heroVideo) heroVideo.style.transition = `opacity ${MELT_MS}ms ease`;   // el video se funde, no corta
-  // Pre-warm: forzar load del próximo video unos 800 ms antes del cambio, así
-  // los primeros frames ya están en memoria cuando arranca el play() del entrante.
+  // Pre-warm: subir preload del próximo video unos 800 ms antes del cambio.
+  // No usar load() — resetea el elemento y dispara fetch agresivo que compite
+  // con el I/O del video que sigue reproduciéndose → causa pausa mid-play.
+  // Solo bumpear preload='auto' es suficiente: el browser fetchea en background.
   function prewarmNext() {
     const nextIdx = (sceneIdx + 1) % scenes.length;
     const nextSc = scenes[nextIdx];
     if (nextSc.photo === undefined) return;
     const lyr = layers[nextSc.photo];
     if (lyr && lyr.video) {
-      try { lyr.video.preload = 'auto'; lyr.video.load(); } catch(e) {}
+      try { lyr.video.preload = 'auto'; } catch(e) {}
     }
   }
   function advance() { sceneIdx = (sceneIdx + 1) % scenes.length; runScene(); }
@@ -3399,8 +3410,13 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
       // mientras este sigue reproduciéndose (crossfade real, video continuo).
       let waitMs = stillMsFor(idx);
       const lyr = layers[idx];
-      if (lyr.video && !lyr.video.loop && lyr.video.duration && isFinite(lyr.video.duration)) {
-        waitMs = Math.max(500, lyr.video.duration * 1000 - (MELT_MS + 200));
+      if (lyr.video && !lyr.video.loop) {
+        // En el 1er load, metadata todavía no cargó → duration es NaN.
+        // Sin fallback, waitMs queda en STILL_VIDEO_MS=7000 y el video freezea 3s al final.
+        const durMs = (lyr.video.duration && isFinite(lyr.video.duration) && lyr.video.duration > 0)
+          ? lyr.video.duration * 1000
+          : HERO_VIDEO_DURATION_MS;
+        waitMs = Math.max(500, durMs - (MELT_MS + 200));
       }
       // Pre-warm del próximo video 800 ms antes del cambio (load + decode init en background)
       setTimeout(prewarmNext, Math.max(0, waitMs - 800));
