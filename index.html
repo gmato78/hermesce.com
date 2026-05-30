@@ -3325,9 +3325,10 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     layer.classList.remove('kb-active');
     layer.style.opacity = '0';       // fuerza el fade-out (gana sobre opacity inline previo)
     if (video) {
-      // Pausar al instante del fade-out — el frame último queda visible vía opacity CSS,
-      // libera el decoder de inmediato y elimina decode concurrente con el video entrante.
-      try { video.pause(); } catch(e) {}
+      // El video sigue reproduciéndose durante el fade-out — los dos videos visibles
+      // en simultáneo durante MELT_MS dan sensación de continuidad ("video continuo").
+      // Pause apenas termina el fade para liberar el decoder antes del próximo cambio.
+      setTimeout(function(){ try { video.pause(); } catch(e) {} }, MELT_MS + 100);
     }
   }
 
@@ -3336,7 +3337,9 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   const STILL_IMAGE_MS = 3000;           // tiempo visible por foto fija
   const STILL_VIDEO_MS = 7000;           // tiempo visible por video loopeable (alcanza casi el loop completo del boomerang)
   function stillMsFor(idx) { return layers[idx] && layers[idx].type === 'video' ? STILL_VIDEO_MS : STILL_IMAGE_MS; }
-  const MELT_MS  = 500;                  // fundido video↔foto — bajado de 1200 para cortar decode concurrente
+  const MELT_MS  = 800;                  // fundido video↔foto — overlap de 800 ms para sensación de video continuo
+                                         // (bajado del 1200 original para reducir decode concurrente, pero suficiente
+                                         //  para que los dos videos sigan reproduciéndose en simultáneo durante el fade)
   const HERO_VIDEO_DURATION_MS = 4040;   // duración conocida de los 3 clips · fallback cuando metadata aún no cargó (1er load)
   const KB_ZOOM_MS = 7500;               // duración de los zooms de foto (lento/suave)
   const KB_SPECIAL = {};                                                  // sin Ken Burns: los videos traen su propio movimiento
