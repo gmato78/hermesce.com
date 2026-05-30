@@ -3457,6 +3457,16 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   document.querySelectorAll('.matias-split-text').forEach(function(el) {
     el.addEventListener('mouseenter', function() { el.classList.add('expanded'); });
   });
+  // Matías: auto-expandir al scrollear y entrar al viewport (sin necesidad de hover ni click)
+  var matiasAutoObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('expanded');
+        matiasAutoObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.35 });
+  document.querySelectorAll('.matias-split-text').forEach(function(el) { matiasAutoObs.observe(el); });
   // Botón contraer: cierra la zona y vuelve al acceso
   var defineCollapse = document.getElementById('defineCollapse');
   if (defineCollapse && defineZone) {
