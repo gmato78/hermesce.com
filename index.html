@@ -821,20 +821,23 @@
       padding: 3rem 3rem 3rem 1rem;
       background: #1C2433;
     }
+    /* <picture> wrapper transparente al layout — el <img> sigue siendo flex item directo
+       de .matias-split-img, manteniendo width:80% y alignment correctos del link debajo. */
+    .matias-split-img > picture { display: contents; }
     .matias-split-img img {
       width: 80%; height: auto;
       max-height: 380px;
       object-fit: cover;
       object-position: center 15%;
       display: block;
-      filter: grayscale(30%) brightness(0.75) saturate(1.15);
+      filter: grayscale(48%) brightness(0.78) saturate(0.92) contrast(1.04);
       border-radius: 10px;
       border: 1px solid rgba(255,255,255,0.06);
       transition: opacity 0.5s ease, border-color 0.3s, filter 0.3s;
     }
     .matias-split-img:hover img {
       border-color: var(--accent);
-      filter: grayscale(10%) brightness(0.88) saturate(1.2);
+      filter: grayscale(18%) brightness(0.88) saturate(1.1) contrast(1.02);
     }
     /* Dots del carrusel */
     .carousel-dots {
