@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>hermes Comercio Exterior — Aduana y Comex. Fácil y Simple.</title>
   <meta name="description" content="Despachante de aduana matriculado en Buenos Aires. Importación, exportación, freight forwarding, clasificación arancelaria NCM, logística internacional y DDP. Más de 25 años de experiencia. Operamos con China, LATAM y Europa.">
-  <meta name="keywords" content="despachante de aduana, comercio exterior, importación argentina, exportación argentina, freight forwarding, agente de cargas, clasificación arancelaria, NCM, SIM, aduana AFIP, logística internacional, DDP, importador directo, exportador, trade, e-commerce importación, representante comercial, despacho aduanero, forwarding marítimo, forwarding aéreo, importación desde China, LATAM, Buenos Aires, hermesCE, HCE">
+  <meta name="keywords" content="despachante de aduana, comercio exterior, importación argentina, exportación argentina, freight forwarding, agente de cargas, clasificación arancelaria, NCM, SIM, aduana AFIP, logística internacional, DDP, importador directo, exportador, trade, e-commerce importación, representante comercial, despacho aduanero, forwarding marítimo, forwarding aéreo, importación desde China, LATAM, Buenos Aires, hermes CE, hermesCE, hermesce, hCE, HCE, hermes comex, hermes Comercio Exterior">
   <meta name="author" content="hermesCE — HCE de Argentina SRL">
   <meta name="robots" content="index, follow">
   <meta name="language" content="es-AR">
@@ -21,6 +21,29 @@
   <meta name="twitter:title" content="hermes Comercio Exterior — Aduana y Comex. Fácil y Simple.">
   <meta name="twitter:description" content="Coordinación de Embarques y Envíos · Clasificación Arancelaria · Importación y Exportación End-to-End. +25 años operando desde Buenos Aires.">
   <meta name="twitter:image" content="https://hermesce.com/og-image.jpg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["Organization", "ProfessionalService"],
+    "name": "hermes CE",
+    "legalName": "HCE de Argentina SRL",
+    "alternateName": ["hermes CE", "hermesCE", "hermesce", "hCE", "HCE", "HCE de Argentina SRL", "hermes Comercio Exterior", "hermes comex", "hermes Comex"],
+    "description": "Empresa de comercio exterior especializada en despacho de aduana. Importación, exportación, clasificación arancelaria, coordinación de embarques y operaciones llave en mano.",
+    "url": "https://hermesce.com",
+    "logo": "https://hermesce.com/og-image.jpg",
+    "image": "https://hermesce.com/og-image.jpg",
+    "foundingDate": "2010",
+    "knowsAbout": ["Despacho de aduana", "Clasificación arancelaria NCM/SIM", "Comercio exterior", "Importación", "Exportación", "Coordinación de embarques", "DDP"],
+    "areaServed": "AR",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. Belgrano 624, Piso 6 Of. 2",
+      "addressLocality": "Ciudad Autónoma de Buenos Aires",
+      "addressCountry": "AR"
+    },
+    "sameAs": ["https://www.linkedin.com/company/16206788"]
+  }
+  </script>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -860,7 +883,7 @@
     .define-banner-text { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; }
     .define-banner-eyebrow { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--brand-hia); font-weight: 700; }
     .define-banner-title { font-family: 'Inter', sans-serif; font-size: clamp(1.4rem, 2.6vw, 2rem); font-weight: 800; color: var(--brand-text); line-height: 1.12; letter-spacing: -0.015em; }
-    .define-banner-teaser { font-size: 0.92rem; color: rgba(15,37,68,0.6); text-transform: lowercase; }
+    .define-banner-teaser { font-size: 0.92rem; color: rgba(15,37,68,0.6); text-transform: capitalize; }
     .define-banner-teaser a.define-jump { color: var(--brand-zafiro); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
     .define-banner-teaser a.define-jump:hover { color: var(--brand-hia); }
     .define-banner-arrow { flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%; background: var(--brand-hia); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; transition: transform 0.3s ease, background 0.2s ease; box-shadow: 0 12px 26px -12px rgba(58,138,90,0.55); }
@@ -1351,6 +1374,17 @@
       font-weight: 700;
       opacity: 0.7;
     }
+    .ia-scene-quote::after {
+      content: '\201D';
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.6rem;
+      line-height: 0;
+      color: var(--brand-hia);
+      font-weight: 700;
+      opacity: 0.7;
+      margin-left: 0.12rem;
+      vertical-align: -0.4rem;
+    }
     .ia-scene-cite {
       margin-top: 0.9rem;
       font-size: 0.74rem;
@@ -1394,13 +1428,15 @@
     #ia .ia-left .ia-sub { margin-bottom: 1.9rem; }
     #ia .ia-left .ia-body { margin-bottom: 0; }
     #ia .ia-left .ia-body-last {
-      font-size: 0.88rem;
-      color: rgba(15, 37, 68, 0.55);
-      font-style: italic;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
+      font-size: 1rem;
+      color: var(--brand-text);
+      font-style: normal;
+      font-weight: 600;
+      line-height: 1.5;
+      margin: 1.1rem 0 0;
+      padding: 0.95rem 0 0;
       border: none;
+      border-top: 1px solid rgba(42, 86, 134, 0.18);
     }
 
     @media (max-width: 768px) {
@@ -1626,6 +1662,33 @@
     .cf-card:hover .cf-hint, .cf-card:focus .cf-hint, .cf-card:focus-within .cf-hint { opacity: 0; }
     .cf-card:hover .cf-svg, .cf-card:focus .cf-svg, .cf-card:focus-within .cf-svg { opacity: .5; }
     .cf-card-wide { grid-column: 2; }  /* 7ª card de servicios, centrada en la fila incompleta */
+
+    /* Lead conservado al expandir + frase de cierre en negrita + punteo de pasos */
+    #problema .cf-back, #servicios .cf-back { justify-content: flex-start; }
+    .cf-back-lead { font-size: .82rem; line-height: 1.5; font-weight: 600; color: #fff;
+      margin: 0 0 .7rem; padding-bottom: .65rem; border-bottom: 1px solid rgba(255,255,255,.18); }
+    .cf-full strong { color: #fff; font-weight: 700; }
+    .cf-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .36rem; }
+    .cf-steps li { position: relative; padding-left: .95rem; font-size: .78rem; line-height: 1.42; color: rgba(255,255,255,.88); }
+    .cf-steps li::before { content: ''; position: absolute; left: 0; top: .52em; width: 5px; height: 5px;
+      border-radius: 50%; background: rgba(255,255,255,.55); }
+    .cf-close { display: block; margin-top: .7rem; font-size: .82rem; line-height: 1.4; font-weight: 700; color: #fff; }
+    .cf-stat { display: block; margin-top: .5rem; font-size: .72rem; letter-spacing: .01em; color: rgba(255,255,255,.6); }
+
+    /* Tarjetas que flotan sobre el lienzo · Problema + Servicios (sombra de elevación + leve despegue) */
+    #problema .cf-card, #servicios .cf-card {
+      box-shadow: 0 34px 64px -20px rgba(16,40,69,.58), 0 14px 28px -10px rgba(16,40,69,.40);
+      transition: transform .32s cubic-bezier(.16,1,.3,1), box-shadow .32s cubic-bezier(.16,1,.3,1);
+    }
+    #problema .cf-card:hover, #servicios .cf-card:hover,
+    #problema .cf-card:focus-within, #servicios .cf-card:focus-within {
+      transform: translateY(-8px);
+      box-shadow: 0 52px 92px -22px rgba(16,40,69,.66), 0 22px 44px -14px rgba(16,40,69,.48);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #problema .cf-card, #servicios .cf-card { transition: none; }
+      #problema .cf-card:hover, #servicios .cf-card:hover { transform: none; }
+    }
 
     @media (max-width: 1000px) {
       .cf-grid { grid-template-columns: repeat(2, 1fr); }
@@ -2146,7 +2209,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   <div class="nav-center" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">
     <picture>
       <source media="(max-width: 768px)" srcset="logo-hce-white.png">
-      <img src="logo-full-white.png" alt="hermesCE" class="nav-logo">
+      <img src="logo-full-white.png" alt="hermes CE — Comercio Exterior y despacho de aduana en Buenos Aires" class="nav-logo">
     </picture>
   </div>
 
@@ -2258,16 +2321,16 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   }
 </style>
 <section class="stats-v2">
-  <div class="stats-v2-grid">
-    <div class="stats-v2-card reveal">
+  <div class="stats-v2-grid reveal">
+    <div class="stats-v2-card">
       <div class="stats-v2-num"><span class="stat-num" data-target="29" data-prefix="+">+29</span></div>
       <div class="stats-v2-label"><span data-i18n="stats_years_label">Años operando</span><br><span data-i18n="stats_years_sub">desde 1997</span></div>
     </div>
-    <div class="stats-v2-card reveal">
+    <div class="stats-v2-card">
       <div class="stats-v2-num"><span class="stat-num" data-target="5200" data-prefix="+">+5.200</span></div>
       <div class="stats-v2-label"><span data-i18n="stats_despachos_label">Despachos</span><br><span data-i18n="stats_despachos_sub">liberados</span></div>
     </div>
-    <div class="stats-v2-card reveal">
+    <div class="stats-v2-card">
       <div class="stats-v2-num"><span class="stat-num" data-target="50000" data-prefix="+">+50.000</span></div>
       <div class="stats-v2-label"><span data-i18n="stats_items_label">Artículos</span><br><span data-i18n="stats_items_sub">clasificados</span></div>
     </div>
@@ -2308,7 +2371,8 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
         <div class="cf-back">
           <div class="cf-cat" data-i18n="problem_card1_cat">Clasificación</div>
           <h3 class="cf-title" data-i18n="problem_card1_h3">Multa firme</h3>
-          <p class="cf-full" data-i18n="problem_card1_p">La posición SIM estaba mal y los tributos quedaron mal liquidados. Cuando se detectó, el despacho ya había sido presentado ante AFIP. La multa no tiene vuelta atrás, y puede llegar a cinco veces el valor de la diferencia.</p>
+          <p class="cf-back-lead" data-i18n="problem_card1_lead">La posición SIM mal liquidada. El despacho ya presentado: sin vuelta atrás.</p>
+          <p class="cf-full" data-i18n-html="problem_card1_p">La posición SIM estaba mal y los tributos quedaron mal liquidados. Cuando se detectó, el despacho ya había sido presentado ante AFIP. La multa no tiene vuelta atrás, y puede llegar a cinco veces el valor de la diferencia.</p>
         </div>
       </article>
 
@@ -2337,7 +2401,8 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
         <div class="cf-back">
           <div class="cf-cat" data-i18n="problem_card2_cat">Operativo</div>
           <h3 class="cf-title" data-i18n="problem_card2_h3">Forzoso perdido</h3>
-          <p class="cf-full" data-i18n="problem_card2_p">La mercadería arribó a tiempo, pero nadie tomó turno en la terminal. El depósito sin fecha, el transporte sin coordinar. Se perdió el forzoso y los contenedores empezaron a acumular almacenaje, día tras día, hasta que el costo terminó multiplicando el presupuesto original.</p>
+          <p class="cf-back-lead" data-i18n="problem_card2_lead">Nadie tomó turno en la terminal. El almacenaje acumula, día tras día.</p>
+          <p class="cf-full" data-i18n-html="problem_card2_p">La mercadería arribó a tiempo, pero nadie tomó turno en la terminal. El depósito sin fecha, el transporte sin coordinar. Se perdió el forzoso y los contenedores empezaron a acumular almacenaje, día tras día, hasta que el costo terminó multiplicando el presupuesto original.</p>
         </div>
       </article>
 
@@ -2362,7 +2427,8 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
         <div class="cf-back">
           <div class="cf-cat" data-i18n="problem_card3_cat">Intervenciones</div>
           <h3 class="cf-title" data-i18n="problem_card3_h3">Intervención previa</h3>
-          <p class="cf-full" data-i18n="problem_card3_p">La mercadería arribó, pero faltaba una intervención previa — una certificación, un permiso, una habilitación de organismo que nadie tramitó a tiempo. No hay forma de subsanarlo con la carga ya en destino. La única salida: reembarcar. Costos duplicados, mercadería inmovilizada.</p>
+          <p class="cf-back-lead" data-i18n="problem_card3_lead">Faltó una intervención previa. La única salida: reembarcar.</p>
+          <p class="cf-full" data-i18n-html="problem_card3_p">La mercadería arribó, pero faltaba una intervención previa — una certificación, un permiso, una habilitación de organismo que nadie tramitó a tiempo. No hay forma de subsanarlo con la carga ya en destino. La única salida: reembarcar. Costos duplicados, mercadería inmovilizada.</p>
         </div>
       </article>
 
@@ -2391,7 +2457,8 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
         <div class="cf-back">
           <div class="cf-cat" data-i18n="problem_card4_cat">Origen</div>
           <h3 class="cf-title" data-i18n="problem_card4_h3">Origen sin coordinar</h3>
-          <p class="cf-full" data-i18n="problem_card4_p">En origen, el proveedor embaló fuera de especificación, la documentación estaba incompleta y la inspección preembarque nunca se hizo. El contenedor salió con errores que recién se detectaron en destino. Lo que se podía prevenir con un simple control antes de embarcar es ahora un problema aduanero con riesgo de infracción.</p>
+          <p class="cf-back-lead" data-i18n="problem_card4_lead">Embaló mal, sin inspección preembarque. El error recién se ve en destino.</p>
+          <p class="cf-full" data-i18n-html="problem_card4_p">En origen, el proveedor embaló fuera de especificación, la documentación estaba incompleta y la inspección preembarque nunca se hizo. El contenedor salió con errores que recién se detectaron en destino. Lo que se podía prevenir con un simple control antes de embarcar es ahora un problema aduanero con riesgo de infracción.</p>
         </div>
       </article>
 
@@ -2427,7 +2494,8 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
         <div class="cf-back">
           <div class="cf-cat" data-i18n="problem_card5_cat">Administrativo</div>
           <h3 class="cf-title" data-i18n="problem_card5_h3">Costo invisible</h3>
-          <p class="cf-full" data-i18n="problem_card5_p">La operación cerró, la mercadería salió, todo parecía en orden. Pero nadie revisó la liquidación de tributos contra las actualizaciones de posición, ni detectó que el tipo de cambio de percepción se aplicó mal. Un error sistemático que se repite en cada embarque, acumulado durante meses. Cuando se detecta, el monto ya es significativo.</p>
+          <p class="cf-back-lead" data-i18n="problem_card5_lead">Un error que se repite en cada embarque. Cuando se detecta, ya es significativo.</p>
+          <p class="cf-full" data-i18n-html="problem_card5_p">La operación cerró, la mercadería salió, todo parecía en orden. Pero nadie revisó la liquidación de tributos contra las actualizaciones de posición, ni detectó que el tipo de cambio de percepción se aplicó mal. Un error sistemático que se repite en cada embarque, acumulado durante meses. Cuando se detecta, el monto ya es significativo.</p>
         </div>
       </article>
 
@@ -2454,7 +2522,8 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
         <div class="cf-back">
           <div class="cf-cat" data-i18n="problem_card6_cat">Atención al cliente</div>
           <h3 class="cf-title" data-i18n="problem_card6_h3">Una pregunta simple</h3>
-          <p class="cf-full" data-i18n="problem_card6_p">¿En qué está la operación? Es una pregunta básica — y obtener una respuesta clara no debería llevar tres llamadas. Cada hora sin respuesta es una hora de incertidumbre para el cliente: no saber si la carga llega a tiempo, si algo está trabado, si hay una gestión pendiente. La comunicación forma parte del servicio.</p>
+          <p class="cf-back-lead" data-i18n="problem_card6_lead">"¿En qué está la operación?" Cada hora sin respuesta es incertidumbre.</p>
+          <p class="cf-full" data-i18n-html="problem_card6_p">¿En qué está la operación? Es una pregunta básica — y obtener una respuesta clara no debería llevar tres llamadas. Cada hora sin respuesta es una hora de incertidumbre para el cliente: no saber si la carga llega a tiempo, si algo está trabado, si hay una gestión pendiente. La comunicación forma parte del servicio.</p>
         </div>
       </article>
 
@@ -2468,8 +2537,8 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   <div class="svc-inner container">
     <div class="svc-heading reveal">
       <p class="section-label" data-i18n="services_label">Lo que hacemos</p>
-      <h2 class="section-title" data-i18n-html="services_h2">Una sola gestión.<br><span style="color:var(--accent-bright);">Sin perder el hilo.</span></h2>
-      <p class="section-desc" style="max-width:420px;" data-i18n="services_sub">Lo que se ve evita lo que no se ve.</p>
+      <h2 class="section-title" data-i18n-html="services_h2">Una sola gestión, <span style="color:var(--accent-bright);">sin perder el hilo.</span></h2>
+      <p class="section-desc" style="max-width:420px;" data-i18n="services_sub">De principio a fin sin dejar nada suelto.</p>
     </div>
     <div class="cf-grid svc-grid reveal">
 
@@ -2496,7 +2565,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
         <span class="cf-hint" aria-hidden="true">+</span>
         <div class="cf-back">
           <h3 class="cf-title" data-i18n="svc1_h3">Despacho de Aduana</h3>
-          <p class="cf-full" data-i18n="svc1_p">Declaración detallada ante Aduana bajo figura del importador. Exactitud en la posición arancelaria, agilidad en zona operativa — mercadería liberada sin demoras. +5.200 operaciones de respaldo.</p>
+          <div class="cf-full" data-i18n-html="svc1_p"><ul class="cf-steps"><li>Declaración detallada bajo figura de importador</li><li>Exactitud en la posición arancelaria</li><li>Agilidad en zona operativa</li></ul><span class="cf-close">Mercadería liberada sin demoras.</span><span class="cf-stat">+5.200 operaciones de respaldo</span></div>
         </div>
       </article>
 
@@ -2522,7 +2591,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
         <span class="cf-hint" aria-hidden="true">+</span>
         <div class="cf-back">
           <h3 class="cf-title" data-i18n="svc2_h3">Clasificación Arancelaria</h3>
-          <p class="cf-full" data-i18n="svc2_p">La posición arancelaria define qué se paga y cómo se trata el producto en aduana — incluidas prohibiciones e intervenciones. Clasificación correcta desde el inicio: sin riesgos, sin infracciones posteriores. +50.000 artículos clasificados de respaldo.</p>
+          <div class="cf-full" data-i18n-html="svc2_p"><ul class="cf-steps"><li>Define qué se paga y cómo se trata el producto</li><li>Incluye prohibiciones e intervenciones</li><li>Clasificación correcta desde el inicio</li></ul><span class="cf-close">Sin riesgos, sin infracciones posteriores.</span><span class="cf-stat">+50.000 artículos clasificados de respaldo</span></div>
         </div>
       </article>
 
@@ -2549,7 +2618,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
         <span class="cf-hint" aria-hidden="true">+</span>
         <div class="cf-back">
           <h3 class="cf-title" data-i18n="svc3_h3">Coordinación de Embarques</h3>
-          <p class="cf-full" data-i18n="svc3_p">El movimiento de la carga — aéreo, marítimo o terrestre. Agente logístico neutral, sin ataduras a ninguna red: las mejores opciones disponibles según origen y destino en cada operación.</p>
+          <div class="cf-full" data-i18n-html="svc3_p"><ul class="cf-steps"><li>Aéreo, marítimo o terrestre</li><li>Agente logístico neutral, sin ataduras a ninguna red</li><li>Las mejores opciones según origen y destino</li></ul><span class="cf-close">La ruta que corresponde en cada operación.</span></div>
         </div>
       </article>
 
@@ -2575,7 +2644,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
         <span class="cf-hint" aria-hidden="true">+</span>
         <div class="cf-back">
           <h3 class="cf-title" data-i18n="svc4_h3">Intervención de Organismos</h3>
-          <p class="cf-full" data-i18n="svc4_p">Algunos productos requieren aprobaciones previas — ANMAT y otros Terceros Organismos. También restricciones no arancelarias: Seguridad Eléctrica, Etiquetado, regímenes especiales. Gestión directa o coordinada con especialistas, siempre con anticipación. Nada queda descubierto.</p>
+          <div class="cf-full" data-i18n-html="svc4_p"><ul class="cf-steps"><li>Aprobaciones previas: ANMAT y otros Terceros Organismos</li><li>Restricciones no arancelarias: Seguridad Eléctrica, Etiquetado, regímenes especiales</li><li>Gestión directa o coordinada con especialistas, con anticipación</li></ul><span class="cf-close">Nada queda descubierto.</span></div>
         </div>
       </article>
 
@@ -2596,7 +2665,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
         <span class="cf-hint" aria-hidden="true">+</span>
         <div class="cf-back">
           <h3 class="cf-title" data-i18n="svc5_h3">Almacenamiento</h3>
-          <p class="cf-full" data-i18n="svc5_p">Almacenes aliados en puntos estratégicos para operaciones especiales: identificación, reenvasado, desconsolidación, fraccionamiento, entregas parciales, almacenaje a largo plazo. Adaptado a cada demanda.</p>
+          <div class="cf-full" data-i18n-html="svc5_p"><ul class="cf-steps"><li>Almacenes aliados en puntos estratégicos</li><li>Identificación, reenvasado, desconsolidación, fraccionamiento</li><li>Entregas parciales y almacenaje a largo plazo</li></ul><span class="cf-close">Adaptado a cada demanda.</span></div>
         </div>
       </article>
 
@@ -2883,7 +2952,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
           </div>
           <div class="ia-card-name" style="color:var(--white);text-align:center;margin-bottom:1rem;">far<span style="color:var(--brand-hia);">IA</span>s</div>
           <div style="font-size:0.95rem;color:var(--white);text-align:center;font-weight:500;margin-bottom:0.45rem;letter-spacing:0.01em;" data-i18n="ia_card_role">Agente de clasificación arancelaria.</div>
-          <div style="font-size:0.92rem;color:rgba(255,255,255,0.78);text-align:center;font-weight:500;margin-bottom:1.5rem;letter-spacing:0.01em;"><span data-i18n="ia_card_cta">¿Qué clasificamos hoy?</span> <span style="color:var(--brand-hia);">;)</span></div>
+          <div style="font-size:0.92rem;color:rgba(255,255,255,0.78);text-align:center;font-weight:500;margin-bottom:1.5rem;letter-spacing:0.01em;"><span data-i18n="ia_card_cta">¿Qué clasificamos hoy?</span></div>
           <div style="display:flex;flex-direction:column;align-items:center;gap:0.8rem;margin-top:1.8rem;width:100%;">
             <button onclick="abrirFarias()" class="ia-card-btn" style="width:92%;" data-i18n="ia_btn">Quiero acceso →</button>
             <div style="display:flex;align-items:center;gap:0.6rem;width:100%;">
@@ -2894,7 +2963,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
             <span style="font-size:0.7rem;font-weight:600;color:rgba(255,255,255,0.5);letter-spacing:0.06em;text-transform:uppercase;" data-i18n="ia_qr">Escaneá para anotarte</span>
             <img src="qr_contacto.png" alt="QR farIAs MVP" style="width:110px;height:110px;border-radius:6px;border:1px solid rgba(255,255,255,0.12);opacity:0.9;">
           </div>
-          <div style="font-size:0.68rem;color:rgba(255,255,255,0.3);margin-top:1.5rem;letter-spacing:0.04em;font-style:italic;" data-i18n="ia_proto">* desarrollo en fase Prototipo</div>
+          <div style="font-size:0.7rem;color:rgba(255,255,255,0.5);margin-top:1.5rem;letter-spacing:0.04em;font-style:italic;" data-i18n="ia_proto">En fase de prototipo</div>
 
           <!-- Acceso a la iniciativa hermes IA (subpágina /ia) -->
           <a href="/ia" class="ia-hia-access" aria-label="Conocé toda la iniciativa hermes IA">
@@ -2955,7 +3024,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 
   <!-- Centro: logo + info + email resaltado abajo -->
   <div class="footer-center">
-    <img src="Logo%20ala%20transparente%20WHITE.png" alt="hermesCE" class="footer-logo-img">
+    <img src="Logo%20ala%20transparente%20WHITE.png" alt="hermes CE — HCE de Argentina SRL" class="footer-logo-img">
     <div class="footer-tagline">
       <span data-i18n="footer_legal">HCE de Argentina SRL</span><br>
       <span data-i18n="footer_copy">© 2026 · Todos los derechos reservados</span>
