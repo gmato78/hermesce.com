@@ -3112,8 +3112,8 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   // Cache-bust query (?v=…) en los src — fuerza al browser a descargar fresh cuando el contenido cambia con mismo nombre.
   const heroSlides = [
     { type: 'video', src: 'hero-pasillo.mp4?v=20260530',      loop: false },   // [0] contenedores — pasillo push-in (pilot Seedance · 4s)
-    { type: 'video', src: 'hero-barco-aerial.mp4?v=20260530b', loop: false },  // [1] barco — sobrevuelo desde atrás hacia el amanecer (raw-seedance · 4s)
-    { type: 'video', src: 'hero-video.mp4?v=20260530',        loop: false }    // [2] barco — push-in acercándose (pilot Seedance · 4s)
+    { type: 'video', src: 'hero-video.mp4?v=20260530',        loop: false },   // [1] barco — push-in acercándose (pilot Seedance · 4s)
+    { type: 'video', src: 'hero-barco-aerial.mp4?v=20260530b', loop: false }   // [2] barco — sobrevuelo desde atrás hacia el amanecer (raw-seedance · 4s)
   ];
 
   // ── Hero Ken Burns ──
@@ -3242,8 +3242,8 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   const KB_SPECIAL = {};                                                  // sin Ken Burns: los videos traen su propio movimiento
   const scenes = [
     { photo: 0 },    // pasillo (~4s)
-    { photo: 1 },    // barco aerial — sobrevuelo desde atrás (~4s)
-    { photo: 2 }     // barco — push-in acercándose (~4s)
+    { photo: 1 },    // barco — push-in acercándose (~4s)
+    { photo: 2 }     // barco aerial — sobrevuelo desde atrás (~4s)
   ];
   let sceneIdx = 0, seqTimer = null;
   function clearSeq() { clearTimeout(seqTimer); }
