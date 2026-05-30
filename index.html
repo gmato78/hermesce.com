@@ -2238,11 +2238,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 <!-- HERO — Gemini-style fixed/fade + video loop opcional -->
 <section class="hero">
 
-  <!-- Hero video · reproduce 1 vez (lento) y congela en el último frame · sin loop -->
-  <video class="hero-video" muted playsinline preload="auto" poster="hero-poster.jpg" aria-hidden="true">
-    <source src="hero-video.webm" type="video/webm">
-    <source src="hero-video.mp4" type="video/mp4">
-  </video>
+  <!-- (Los videos del hero ahora viven como slides del carrusel — ver heroSlides en el script abajo.) -->
 
   <!-- Contenido central -->
   <div class="hero-content">
@@ -3111,14 +3107,12 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   });
 
   // ── Hero carrusel — crossfade limpio sin oscurecer ──
-  // Para agregar/quitar fotos: editá heroImages.
-  // Secuencia del hero (B&W) tras el video: pasillo de contenedores → aérea del puerto.
-  // También sirven de fallback rotativo si el video 404ea.
-  // Capas de foto del carrusel (el orden de reproducción lo define `scenes`, abajo).
-  const heroImages = [
-    'hero-still-1.jpg',   // [0] barco — portacontenedores HERMES CE (B&W)
-    'hero-still-2.jpg',   // [1] aérea del puerto de Buenos Aires (B&W)
-    'hero-still-4.jpg'    // [2] contenedores — pasillo (B&W)
+  // Cada slide puede ser 'image' (background-image + Ken Burns) o 'video' (loopeable, muteado).
+  // Editá heroSlides para reemplazar/agregar (mantené el largo coherente con `scenes` abajo).
+  const heroSlides = [
+    { type: 'video', src: 'hero-pasillo.mp4',  loop: false },   // [0] contenedores — pasillo push-in (pilot Seedance · 4s)
+    { type: 'video', src: 'hero-barco-2.mp4',  loop: false },   // [1] barco — primera mitad del loop (4s)
+    { type: 'video', src: 'hero-video.mp4',    loop: false }    // [2] barco — push-in acercándose (pilot Seedance · 4s)
   ];
 
   // ── Hero Ken Burns ──
@@ -3183,50 +3177,79 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   const DURATION = 9000;   // ms per image
   const FADE     = 2200;   // ms crossfade
 
-  // Pre-build all layers
-  const layers = heroImages.map((src, i) => {
+  // Pre-build all layers (image o video según el tipo de slide)
+  const layers = heroSlides.map((slide, i) => {
     const layer = document.createElement('div');
     layer.className = 'hero-kb-layer';
 
     const inner = document.createElement('div');
     inner.className = 'hero-kb-inner';
-    inner.style.backgroundImage = `url('${src}')`;
+    let videoEl = null;
+    if (slide.type === 'video') {
+      videoEl = document.createElement('video');
+      videoEl.src = slide.src;
+      videoEl.muted = true; videoEl.defaultMuted = true;
+      videoEl.loop = slide.loop !== false;
+      videoEl.playsInline = true;
+      videoEl.preload = 'metadata';
+      videoEl.setAttribute('muted', '');
+      videoEl.setAttribute('playsinline', '');
+      if (videoEl.loop) videoEl.setAttribute('loop', '');
+      videoEl.setAttribute('aria-hidden', 'true');
+      videoEl.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
+      inner.appendChild(videoEl);
+    } else {
+      inner.style.backgroundImage = `url('${slide.src}')`;
+    }
     layer.appendChild(inner);
 
     heroEl.insertBefore(layer, heroEl.firstChild);
-    return { layer, inner };
+    return { layer, inner, type: slide.type, video: videoEl };
   });
 
   let kbIdx = 0;
 
   function showLayer(idx) {
-    const { layer } = layers[idx];
+    const { layer, video } = layers[idx];
     startKB(idx);                    // aplica el KB (zoom marcado en contenedores); startKB está hoisted
     layer.style.opacity = '';        // limpia cualquier opacity:0 inline previo
     layer.classList.add('kb-active');
+    if (video) {
+      try { video.currentTime = 0; } catch(e) {}
+      video.play().catch(() => {});
+      if (!video.loop) {
+        // Video one-shot: cuando termina, avanza al siguiente slide
+        video.addEventListener('ended', advance, { once: true });
+      }
+    }
   }
 
   function hideLayer(idx) {
-    layers[idx].layer.classList.remove('kb-active');
-    layers[idx].layer.style.opacity = '0';   // fuerza el fade-out (gana sobre opacity inline previo)
+    const { layer, video } = layers[idx];
+    layer.classList.remove('kb-active');
+    layer.style.opacity = '0';       // fuerza el fade-out (gana sobre opacity inline previo)
+    if (video) { try { video.pause(); } catch(e) {} }
   }
 
   // ── Carrusel del hero: barco(foto) → video → aérea(foto) → contenedores(foto) → ↻ ──
   // El video es un slide más. Fundido (melt) entre video y foto; crossfade entre fotos.
-  const STILL_MS = 2800;                 // tiempo visible por foto (carretel ágil)
+  const STILL_IMAGE_MS = 3000;           // tiempo visible por foto fija
+  const STILL_VIDEO_MS = 7000;           // tiempo visible por video loopeable (alcanza casi el loop completo del boomerang)
+  function stillMsFor(idx) { return layers[idx] && layers[idx].type === 'video' ? STILL_VIDEO_MS : STILL_IMAGE_MS; }
   const MELT_MS  = 1200;                 // fundido video↔foto
   const KB_ZOOM_MS = 7500;               // duración de los zooms de foto (lento/suave)
-  const KB_SPECIAL = { 0: 'kbZoomIn', 1: 'kbZoomOut', 2: 'kbZoomIn' };  // [0] barco = zoom-in · [1] aérea = zoom-out · [2] contenedores = zoom-in
+  const KB_SPECIAL = {};                                                  // sin Ken Burns: los videos traen su propio movimiento
   const scenes = [
-    { photo: 0 },    // barco
-    { video: true }, // video (push-in)
-    { photo: 1 },    // aérea
-    { photo: 2 }     // contenedores
+    { photo: 0 },    // pasillo (~4s)
+    { photo: 1 },    // barco — primera mitad del loop (~4s)
+    { photo: 2 }     // barco — push-in acercándose (~4s)
   ];
   let sceneIdx = 0, seqTimer = null;
   function clearSeq() { clearTimeout(seqTimer); }
   function startKB(idx) {
-    const { inner } = layers[idx];
+    const lyr = layers[idx];
+    if (lyr.type === 'video') return;                     // las pistas de video traen su propio movimiento
+    const { inner } = lyr;
     inner.style.animation = 'none'; inner.offsetHeight;   // reflow
     const sp = KB_SPECIAL[idx];                           // aérea = zoom-out · contenedores = zoom-in (lentos)
     if (sp) {
@@ -3236,12 +3259,13 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
       inner.style.animation = `${anim} ${DURATION + FADE}ms ease-in-out forwards`;
     }
   }
-  function showStillInstant(idx) {       // foto a full SIN fade (queda detrás del video)
-    const { layer } = layers[idx];
+  function showStillInstant(idx) {       // foto/video a full SIN fade (queda detrás del video intro)
+    const { layer, video } = layers[idx];
     startKB(idx);
     layer.style.transition = 'none'; layer.style.opacity = '1'; layer.classList.add('kb-active');
     layer.offsetHeight;                  // reflow → fija el estado sin animar
     layer.style.transition = '';         // restaura para el crossfade posterior
+    if (video) { try { video.currentTime = 0; } catch(e) {} video.play().catch(() => {}); }
   }
   if (heroVideo) heroVideo.style.transition = `opacity ${MELT_MS}ms ease`;   // el video se funde, no corta
   function advance() { sceneIdx = (sceneIdx + 1) % scenes.length; runScene(); }
@@ -3257,18 +3281,18 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
         seqTimer = setTimeout(() => layers.forEach((l, i) => hideLayer(i)), MELT_MS);  // limpia fotos tras el melt
         // avanza al terminar el video ('ended', abajo)
       } else {
-        seqTimer = setTimeout(advance, STILL_MS);          // sin video: salta el slide
+        seqTimer = setTimeout(advance, STILL_IMAGE_MS);    // sin video: salta el slide
       }
     } else {
       const idx = sc.photo;
       if (prev.video && heroVideo) {
-        showStillInstant(idx);                             // foto a full detrás del video
+        showStillInstant(idx);                             // foto/video a full detrás del video
         heroVideo.classList.remove('ready');               // el video se funde y la revela (melt)
       } else {
-        showLayer(idx);                                    // crossfade entre fotos
+        showLayer(idx);                                    // crossfade entre slides
         if (!prev.video) hideLayer(prev.photo);
       }
-      seqTimer = setTimeout(advance, STILL_MS);
+      seqTimer = setTimeout(advance, stillMsFor(idx));     // foto = 3s · video loop = 7s
     }
   }
   if (heroVideo) {
