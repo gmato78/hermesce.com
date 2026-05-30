@@ -1636,9 +1636,12 @@
     .cf-cat { font-size: .66rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: .7rem; }
     .cf-title { font-size: 1.32rem; font-weight: 800; line-height: 1.07; letter-spacing: -.01em; color: #fff; margin: 0 0 .55rem; }
     .cf-lead { font-size: .86rem; line-height: 1.55; color: rgba(255,255,255,.85); margin: 0; max-width: 15.5rem; }
-    .cf-hint { position: absolute; right: 1.05rem; bottom: 1rem; z-index: 2; width: 22px; height: 22px; border-radius: 50%;
+    .cf-hint { position: absolute; right: 1.05rem; bottom: 1rem; z-index: 2; width: 24px; height: 24px; border-radius: 50%;
       border: 1px solid rgba(255,255,255,.3); color: rgba(255,255,255,.72);
-      display: flex; align-items: center; justify-content: center; font-size: 1.05rem; line-height: 1; transition: opacity .25s; }
+      display: flex; align-items: center; justify-content: center; font-size: 1.05rem; font-weight: 700; line-height: 1; transition: opacity .25s; }
+    /* Convocatoria al click coloreada según el caso · rojo en Problema · verde en Servicios */
+    #problema .cf-hint  { background: var(--brand-htb); border-color: var(--brand-htb); color: #fff; box-shadow: 0 4px 10px -2px rgba(201,64,64,0.45); }
+    #servicios .cf-hint { background: var(--brand-hia); border-color: var(--brand-hia); color: #fff; box-shadow: 0 4px 10px -2px rgba(58,138,90,0.45); }
     .cf-back { position: absolute; inset: 0; z-index: 3; padding: 1.5rem 1.6rem;
       background: linear-gradient(180deg, rgba(16,40,69,.94) 0%, rgba(16,40,69,.98) 100%);
       border-top: 2px solid #6da0d6; transform: translateY(101%); opacity: 0;
@@ -2303,7 +2306,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   .stat-num.pulse-in { animation: statPulse 0.55s ease-out; }
   .stats-v2-num {
     position: relative;
-    font-size: 3.4rem;                                                       /* más presencia respecto del blanco del card */
+    font-size: clamp(2rem, 3.6vw, 3.1rem);                                   /* escala responsivo · entra +50.000 en cualquier ancho */
     font-weight: 800;
     line-height: 1;
     color: var(--brand-zafiro);                                              /* Zafiro pleno · mismo azul que las cards del problema */
