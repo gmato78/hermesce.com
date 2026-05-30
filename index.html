@@ -3218,10 +3218,8 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     if (video) {
       try { video.currentTime = 0; } catch(e) {}
       video.play().catch(() => {});
-      if (!video.loop) {
-        // Video one-shot: cuando termina, avanza al siguiente slide
-        video.addEventListener('ended', advance, { once: true });
-      }
+      // El avance se anticipa desde runScene para arrancar el next mientras este sigue reproduciéndose
+      // (crossfade real con ambos videos playing simultáneamente — sensación de video continuo).
     }
   }
 
@@ -3229,7 +3227,11 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     const { layer, video } = layers[idx];
     layer.classList.remove('kb-active');
     layer.style.opacity = '0';       // fuerza el fade-out (gana sobre opacity inline previo)
-    if (video) { try { video.pause(); } catch(e) {} }
+    if (video) {
+      // Pausar DESPUÉS del fade (1.3s) — durante el fade-out el video sigue reproduciéndose,
+      // así el corte no se siente abrupto. Pause a ~1.4s para asegurar opacity ya en 0.
+      setTimeout(function(){ try { video.pause(); } catch(e) {} }, 1400);
+    }
   }
 
   // ── Carrusel del hero: barco(foto) → video → aérea(foto) → contenedores(foto) → ↻ ──
@@ -3293,7 +3295,14 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
         showLayer(idx);                                    // crossfade entre slides
         if (!prev.video) hideLayer(prev.photo);
       }
-      seqTimer = setTimeout(advance, stillMsFor(idx));     // foto = 3s · video loop = 7s
+      // Para video one-shot: disparar advance 1.3s antes del fin → arranca el siguiente
+      // mientras este sigue reproduciéndose (crossfade real, video continuo).
+      let waitMs = stillMsFor(idx);
+      const lyr = layers[idx];
+      if (lyr.video && !lyr.video.loop && lyr.video.duration && isFinite(lyr.video.duration)) {
+        waitMs = Math.max(500, lyr.video.duration * 1000 - 1300);
+      }
+      seqTimer = setTimeout(advance, waitMs);
     }
   }
   if (heroVideo) {
