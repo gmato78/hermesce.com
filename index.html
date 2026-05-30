@@ -3109,10 +3109,11 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   // ── Hero carrusel — crossfade limpio sin oscurecer ──
   // Cada slide puede ser 'image' (background-image + Ken Burns) o 'video' (loopeable, muteado).
   // Editá heroSlides para reemplazar/agregar (mantené el largo coherente con `scenes` abajo).
+  // Cache-bust query (?v=…) en los src — fuerza al browser a descargar fresh cuando el contenido cambia con mismo nombre.
   const heroSlides = [
-    { type: 'video', src: 'hero-pasillo.mp4',  loop: false },   // [0] contenedores — pasillo push-in (pilot Seedance · 4s)
-    { type: 'video', src: 'hero-barco-2.mp4',  loop: false },   // [1] barco — segunda toma (primera mitad del loop · 4s)
-    { type: 'video', src: 'hero-video.mp4',    loop: false }    // [2] barco — push-in acercándose (pilot Seedance · 4s)
+    { type: 'video', src: 'hero-pasillo.mp4?v=20260530',  loop: false },   // [0] contenedores — pasillo push-in (pilot Seedance · 4s)
+    { type: 'video', src: 'hero-barco-2.mp4?v=20260530',  loop: false },   // [1] barco — segunda toma (primera mitad del loop · 4s)
+    { type: 'video', src: 'hero-video.mp4?v=20260530',    loop: false }    // [2] barco — push-in acercándose (pilot Seedance · 4s)
   ];
 
   // ── Hero Ken Burns ──
