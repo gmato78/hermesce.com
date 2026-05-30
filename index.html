@@ -3453,17 +3453,16 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
       goToDefineTarget((a.getAttribute('href') || '').slice(1));
     });
   });
-  // Matías: auto-expandir al pasar el mouse (además del click existente)
+  // Matías: auto-expandir al pasar el mouse + auto-cerrar cuando el mouse se va
   document.querySelectorAll('.matias-split-text').forEach(function(el) {
     el.addEventListener('mouseenter', function() { el.classList.add('expanded'); });
+    el.addEventListener('mouseleave', function() { el.classList.remove('expanded'); });
   });
-  // Matías: auto-expandir al scrollear y entrar al viewport (sin necesidad de hover ni click)
+  // Matías: auto-expandir cuando entra al viewport · auto-cerrar cuando sale
   var matiasAutoObs = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
-      if (e.isIntersecting) {
-        e.target.classList.add('expanded');
-        matiasAutoObs.unobserve(e.target);
-      }
+      if (e.isIntersecting) e.target.classList.add('expanded');
+      else                   e.target.classList.remove('expanded');
     });
   }, { threshold: 0.35 });
   document.querySelectorAll('.matias-split-text').forEach(function(el) { matiasAutoObs.observe(el); });
