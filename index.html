@@ -2211,8 +2211,10 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   <!-- Logo central — acompaña scroll -->
   <div class="nav-center" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">
     <picture>
+      <source media="(max-width: 768px)" srcset="logo-hce-white.webp" type="image/webp">
       <source media="(max-width: 768px)" srcset="logo-hce-white.png">
-      <img src="logo-full-white.png" alt="hermes CE — Comercio Exterior y despacho de aduana en Buenos Aires" class="nav-logo">
+      <source srcset="logo-full-white.webp" type="image/webp">
+      <img src="logo-full-white.png" alt="hermes CE — Comercio Exterior y despacho de aduana en Buenos Aires" class="nav-logo" fetchpriority="high" decoding="async">
     </picture>
   </div>
 
@@ -2819,7 +2821,10 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     <h2 class="section-title reveal" data-i18n-html="historia_h2">+29 años resolviendo <span style="color:var(--accent-bright);">lo que no se ve</span>.</h2>
     <p class="section-desc reveal" style="max-width:780px;" data-i18n="historia_sub">Cada rubro sumó complejidad. Cada complejidad, experiencia y criterio.</p>
     <div class="historia-foto reveal">
-      <img src="hero-still-2.jpg" alt="Puerto de Buenos Aires — trayectoria hermes CE" loading="lazy">
+      <picture>
+        <source srcset="hero-still-2.avif" type="image/avif">
+        <img src="hero-still-2.jpg" alt="Puerto de Buenos Aires — trayectoria hermes CE" loading="lazy" decoding="async">
+      </picture>
     </div>
     <div class="historia-grid">
       <div class="historia-item reveal">
@@ -2887,14 +2892,26 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
       <div class="cert" data-i18n="cert7">Miembro de System Dynamics Society</div>
     </div>
     <div class="cert-logos reveal" style="display:flex;align-items:center;justify-content:center;gap:2.2rem;margin-top:2rem;flex-wrap:wrap;max-width:420px;margin-left:0.9rem;">
-      <img src="logos/logo%20CDA.png" alt="Socio CDA" loading="lazy" style="height:58px;width:auto;object-fit:contain;opacity:0.9;">
-      <img src="logos/arca_logo.png" alt="ARCA · ICA" loading="lazy" style="height:58px;width:auto;object-fit:contain;opacity:0.9;margin-left:1.4rem;">
-      <img src="logos/logo-vertical%20f%20claro.png" alt="System Dynamics Society" loading="lazy" style="height:100px;width:auto;object-fit:contain;opacity:0.9;">
+      <picture>
+        <source srcset="logos/logo%20CDA.webp" type="image/webp">
+        <img src="logos/logo%20CDA.png" alt="Socio CDA" loading="lazy" decoding="async" style="height:58px;width:auto;object-fit:contain;opacity:0.9;">
+      </picture>
+      <picture>
+        <source srcset="logos/arca_logo.webp" type="image/webp">
+        <img src="logos/arca_logo.png" alt="ARCA · ICA" loading="lazy" decoding="async" style="height:58px;width:auto;object-fit:contain;opacity:0.9;margin-left:1.4rem;">
+      </picture>
+      <picture>
+        <source srcset="logos/logo-vertical%20f%20claro.webp" type="image/webp">
+        <img src="logos/logo-vertical%20f%20claro.png" alt="System Dynamics Society" loading="lazy" decoding="async" style="height:100px;width:auto;object-fit:contain;opacity:0.9;">
+      </picture>
     </div>
   </div>
   <!-- Derecha: foto a sangre -->
   <div class="matias-split-img reveal">
-    <img src="retrato-matias.jpg" alt="Matías González — Fundador, hermes CE" loading="lazy">
+    <picture>
+      <source srcset="retrato-matias.avif" type="image/avif">
+      <img src="retrato-matias.jpg" alt="Matías González — Fundador, hermes CE" loading="lazy" decoding="async">
+    </picture>
     <a href="https://www.linkedin.com/in/matias-gonzalez-hce" target="_blank" rel="noopener" class="matias-linkedin">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77Z"/></svg>
       <span>Matías González</span>
@@ -3065,7 +3082,10 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 
   <!-- Centro: logo + info + email resaltado abajo -->
   <div class="footer-center">
-    <img src="Logo%20ala%20transparente%20WHITE.png" alt="hermes CE — HCE de Argentina SRL" class="footer-logo-img">
+    <picture>
+      <source srcset="Logo%20ala%20transparente%20WHITE.webp" type="image/webp">
+      <img src="Logo%20ala%20transparente%20WHITE.png" alt="hermes CE — HCE de Argentina SRL" class="footer-logo-img" loading="lazy" decoding="async">
+    </picture>
     <div class="footer-tagline">
       <span data-i18n="footer_legal">HCE de Argentina SRL</span><br>
       <span data-i18n="footer_copy">© 2026 · Todos los derechos reservados</span>
@@ -3155,10 +3175,27 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   // Cada slide puede ser 'image' (background-image + Ken Burns) o 'video' (loopeable, muteado).
   // Editá heroSlides para reemplazar/agregar (mantené el largo coherente con `scenes` abajo).
   // Cache-bust query (?v=…) en los src — fuerza al browser a descargar fresh cuando el contenido cambia con mismo nombre.
+  // Cache-bust por release. AV1 = primary (Chrome/FF/Edge/Safari17+), H.264 = fallback universal.
+  const V = 'v=20260530c';
   const heroSlides = [
-    { type: 'video', src: 'hero-pasillo.mp4?v=20260530',      loop: false },   // [0] contenedores — pasillo push-in (pilot Seedance · 4s)
-    { type: 'video', src: 'hero-video.mp4?v=20260530',        loop: false },   // [1] barco — push-in acercándose (pilot Seedance · 4s)
-    { type: 'video', src: 'hero-barco-aerial.mp4?v=20260530b', loop: false }   // [2] barco — sobrevuelo desde atrás hacia el amanecer (raw-seedance · 4s)
+    { type: 'video', loop: false, poster: 'hero-pasillo.poster.avif',
+      sources: [
+        { src: `hero-pasillo.av1.mp4?${V}`, type: 'video/mp4; codecs="av01.0.05M.08"' },
+        { src: `hero-pasillo.mp4?${V}`,     type: 'video/mp4; codecs="avc1.64001f"' }
+      ]
+    },   // [0] contenedores — pasillo push-in (pilot Seedance · 4s)
+    { type: 'video', loop: false, poster: 'hero-video.poster.avif',
+      sources: [
+        { src: `hero-video.av1.mp4?${V}`, type: 'video/mp4; codecs="av01.0.05M.08"' },
+        { src: `hero-video.mp4?${V}`,     type: 'video/mp4; codecs="avc1.64001f"' }
+      ]
+    },   // [1] barco — push-in acercándose (pilot Seedance · 4s)
+    { type: 'video', loop: false, poster: 'hero-barco-aerial.poster.avif',
+      sources: [
+        { src: `hero-barco-aerial.av1.mp4?${V}`, type: 'video/mp4; codecs="av01.0.05M.08"' },
+        { src: `hero-barco-aerial.mp4?${V}`,     type: 'video/mp4; codecs="avc1.64001f"' }
+      ]
+    }    // [2] barco — sobrevuelo desde atrás hacia el amanecer (raw-seedance · 4s)
   ];
 
   // ── Hero Ken Burns ──
@@ -3233,16 +3270,23 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     let videoEl = null;
     if (slide.type === 'video') {
       videoEl = document.createElement('video');
-      videoEl.src = slide.src;
       videoEl.muted = true; videoEl.defaultMuted = true;
       videoEl.loop = slide.loop !== false;
       videoEl.playsInline = true;
       videoEl.preload = 'metadata';
+      if (slide.poster) videoEl.poster = slide.poster;
       videoEl.setAttribute('muted', '');
       videoEl.setAttribute('playsinline', '');
       if (videoEl.loop) videoEl.setAttribute('loop', '');
       videoEl.setAttribute('aria-hidden', 'true');
       videoEl.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
+      // <source> múltiples — el browser elige el primero que entiende (AV1 primary, H.264 fallback)
+      (slide.sources || (slide.src ? [{ src: slide.src }] : [])).forEach(function(s) {
+        const so = document.createElement('source');
+        so.src = s.src;
+        if (s.type) so.type = s.type;
+        videoEl.appendChild(so);
+      });
       inner.appendChild(videoEl);
     } else {
       inner.style.backgroundImage = `url('${slide.src}')`;
@@ -3273,9 +3317,9 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     layer.classList.remove('kb-active');
     layer.style.opacity = '0';       // fuerza el fade-out (gana sobre opacity inline previo)
     if (video) {
-      // Pausar DESPUÉS del fade (1.3s) — durante el fade-out el video sigue reproduciéndose,
-      // así el corte no se siente abrupto. Pause a ~1.4s para asegurar opacity ya en 0.
-      setTimeout(function(){ try { video.pause(); } catch(e) {} }, 1400);
+      // Pausar al instante del fade-out — el frame último queda visible vía opacity CSS,
+      // libera el decoder de inmediato y elimina decode concurrente con el video entrante.
+      try { video.pause(); } catch(e) {}
     }
   }
 
@@ -3284,7 +3328,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
   const STILL_IMAGE_MS = 3000;           // tiempo visible por foto fija
   const STILL_VIDEO_MS = 7000;           // tiempo visible por video loopeable (alcanza casi el loop completo del boomerang)
   function stillMsFor(idx) { return layers[idx] && layers[idx].type === 'video' ? STILL_VIDEO_MS : STILL_IMAGE_MS; }
-  const MELT_MS  = 1200;                 // fundido video↔foto
+  const MELT_MS  = 500;                  // fundido video↔foto — bajado de 1200 para cortar decode concurrente
   const KB_ZOOM_MS = 7500;               // duración de los zooms de foto (lento/suave)
   const KB_SPECIAL = {};                                                  // sin Ken Burns: los videos traen su propio movimiento
   const scenes = [
@@ -3316,6 +3360,17 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     if (video) { try { video.currentTime = 0; } catch(e) {} video.play().catch(() => {}); }
   }
   if (heroVideo) heroVideo.style.transition = `opacity ${MELT_MS}ms ease`;   // el video se funde, no corta
+  // Pre-warm: forzar load del próximo video unos 800 ms antes del cambio, así
+  // los primeros frames ya están en memoria cuando arranca el play() del entrante.
+  function prewarmNext() {
+    const nextIdx = (sceneIdx + 1) % scenes.length;
+    const nextSc = scenes[nextIdx];
+    if (nextSc.photo === undefined) return;
+    const lyr = layers[nextSc.photo];
+    if (lyr && lyr.video) {
+      try { lyr.video.preload = 'auto'; lyr.video.load(); } catch(e) {}
+    }
+  }
   function advance() { sceneIdx = (sceneIdx + 1) % scenes.length; runScene(); }
   function runScene() {
     clearSeq();
@@ -3345,15 +3400,31 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
       let waitMs = stillMsFor(idx);
       const lyr = layers[idx];
       if (lyr.video && !lyr.video.loop && lyr.video.duration && isFinite(lyr.video.duration)) {
-        waitMs = Math.max(500, lyr.video.duration * 1000 - 1300);
+        waitMs = Math.max(500, lyr.video.duration * 1000 - (MELT_MS + 200));
       }
+      // Pre-warm del próximo video 800 ms antes del cambio (load + decode init en background)
+      setTimeout(prewarmNext, Math.max(0, waitMs - 800));
       seqTimer = setTimeout(advance, waitMs);
     }
   }
   if (heroVideo) {
     heroVideo.addEventListener('ended', () => { if (scenes[sceneIdx].video) advance(); });
   }
-  runScene();   // arranca en el barco (scene 0)
+  // ── Accesibilidad + perf: prefers-reduced-motion o conexión lenta → solo primer slide estático ──
+  const REDUCED_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const _conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  const SLOW_CONN = !!(_conn && /^(slow-2g|2g|3g)$/.test(_conn.effectiveType));
+  if (REDUCED_MOTION || SLOW_CONN) {
+    // Mostrar solo el poster del primer slide, sin auto-rotate
+    const first = layers[0];
+    if (first) {
+      first.layer.style.transition = 'none';
+      first.layer.style.opacity = '1';
+      first.layer.classList.add('kb-active');
+    }
+  } else {
+    runScene();   // arranca en el barco (scene 0)
+  }
 
   // ── Contador animado (stats hero) ──
   function animateCounter(el) {
