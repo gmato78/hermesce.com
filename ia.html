@@ -10,33 +10,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y7QH1K6Y3F"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-Y7QH1K6Y3F');
-  </script>
+  <!-- Trackers (GA4, LinkedIn, Meta) gateados por consent del banner. Ver bloque al final de body. -->
+  <!-- NO agregar trackers hardcoded acá — viola el opt-in. -->
 
-  <!-- LinkedIn Insight Tag -->
-  <script type="text/javascript">
-_linkedin_partner_id = "10047001";
-window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-window._linkedin_data_partner_ids.push(_linkedin_partner_id);
-</script><script type="text/javascript">
-(function(l) {
-if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
-window.lintrk.q=[]}
-var s = document.getElementsByTagName("script")[0];
-var b = document.createElement("script");
-b.type = "text/javascript";b.async = true;
-b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
-s.parentNode.insertBefore(b, s);})(window.lintrk);
-</script>
-<noscript>
-<img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=10047001&fmt=gif" />
-</noscript>
 
   <style>
     :root {
@@ -395,6 +371,136 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     if (tryLink) tryLink.addEventListener('click', function() { gtag('event', 'farias_try_click', { page: 'ia' }); });
     var backLink = document.getElementById('ia-back');
     if (backLink) backLink.addEventListener('click', function() { gtag('event', 'ia_back_home', { page: 'ia' }); });
+  </script>
+
+  <style>
+    .cookie-banner {
+      position: fixed; left: 0; right: 0; bottom: 0;
+      background: rgba(11,15,26,.97);
+      -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+      border-top: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 -8px 32px rgba(0,0,0,.4);
+      transform: translateY(100%);
+      transition: transform .35s ease;
+      z-index: 100;
+    }
+    .cookie-banner.visible { transform: translateY(0); }
+    .cookie-banner-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 16px 24px;
+      display: flex; gap: 20px; align-items: center;
+      flex-wrap: wrap; justify-content: space-between;
+    }
+    .cookie-banner p {
+      flex: 1 1 320px; font-size: 13.5px; line-height: 1.5;
+      color: rgba(255,255,255,.86); margin: 0;
+    }
+    .cookie-banner a { color: var(--ia-green-soft, #7fb89a); text-decoration: underline; text-underline-offset: 2px; }
+    .cookie-banner a:hover { opacity: .72; }
+    .cookie-banner-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-cookie {
+      font-family: inherit; font-size: 13px; font-weight: 500; letter-spacing: 0.01em;
+      padding: 8px 18px; border-radius: 6px; cursor: pointer;
+      border: 1px solid var(--brand-hia, #3A8A5A);
+      transition: background .2s, color .2s, opacity .2s;
+    }
+    .btn-cookie-reject { background: transparent; color: var(--brand-hia, #3A8A5A); }
+    .btn-cookie-reject:hover { background: rgba(58,138,90,.1); }
+    .btn-cookie-accept { background: var(--brand-hia, #3A8A5A); color: #06140d; }
+    .btn-cookie-accept:hover { background: var(--brand-hia-dark, #2D6E47); }
+    @media (max-width: 640px) { .cookie-banner-inner { padding: 14px 16px; } }
+  </style>
+
+  <aside id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Consentimiento de cookies" hidden>
+    <div class="cookie-banner-inner">
+      <p>
+        <span data-i18n="cookie_banner_text">Usamos cookies para entender cómo se usa el sitio (analytics) y, próximamente, para campañas de avisos.</span>
+        <a href="/privacidad" data-i18n="cookie_banner_link">Más información</a>
+      </p>
+      <div class="cookie-banner-actions">
+        <button type="button" class="btn-cookie btn-cookie-reject" id="cookieReject" data-i18n="cookie_btn_reject">Rechazar</button>
+        <button type="button" class="btn-cookie btn-cookie-accept" id="cookieAccept" data-i18n="cookie_btn_accept">Aceptar</button>
+      </div>
+    </div>
+  </aside>
+
+  <script>
+  // ════════════════════════════════════════════════════════════════
+  // Cookie consent + script gating (GA4 / LinkedIn / Meta)
+  // ════════════════════════════════════════════════════════════════
+  (function(){
+    // gtag stub para que las llamadas existentes (ia.html, eventos en JS) no fallen
+    // cuando no se cargaron los trackers. Cuando loadTrackers() corre, gtag se reasigna.
+    window.dataLayer = window.dataLayer || [];
+    if (typeof window.gtag !== 'function') {
+      window.gtag = function(){ window.dataLayer.push(arguments); };
+    }
+    const CONSENT_KEY = 'hce_cookie_consent';
+    const VERSION = '1';
+    function getConsent() {
+      try {
+        const raw = localStorage.getItem(CONSENT_KEY);
+        if (!raw) return null;
+        const parsed = JSON.parse(raw);
+        if (parsed.version !== VERSION) return null;
+        return parsed.choice;
+      } catch(e) { return null; }
+    }
+    function setConsent(choice) {
+      try {
+        localStorage.setItem(CONSENT_KEY, JSON.stringify({
+          version: VERSION, choice: choice, timestamp: new Date().toISOString()
+        }));
+      } catch(e) {}
+    }
+    function loadTrackers() {
+      if (window.__hce_trackers_loaded) return;
+      window.__hce_trackers_loaded = true;
+      const ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-Y7QH1K6Y3F';
+      document.head.appendChild(ga);
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-Y7QH1K6Y3F');
+      window._linkedin_partner_id = "10047001";
+      window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+      window._linkedin_data_partner_ids.push(window._linkedin_partner_id);
+      (function(l){
+        if(!l){window.lintrk=function(a,b){window.lintrk.q.push([a,b])};window.lintrk.q=[]}
+        const s=document.getElementsByTagName("script")[0];
+        const b=document.createElement("script");
+        b.type="text/javascript"; b.async=true;
+        b.src="https://snap.licdn.com/li.lms-analytics/insight.min.js";
+        s.parentNode.insertBefore(b,s);
+      })(window.lintrk);
+      // ──── Meta Pixel — HOOK READY ────
+      // Cuando arranque Meta ads, descomentar este bloque y reemplazar YOUR_META_PIXEL_ID.
+      // !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      // n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      // n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      // t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
+      // 'https://connect.facebook.net/en_US/fbevents.js');
+      // fbq('init', 'YOUR_META_PIXEL_ID');
+      // fbq('track', 'PageView');
+    }
+    function showBanner() {
+      const banner = document.getElementById('cookie-banner');
+      if (banner) { banner.hidden = false; requestAnimationFrame(function(){ banner.classList.add('visible'); }); }
+    }
+    function hideBanner() {
+      const banner = document.getElementById('cookie-banner');
+      if (banner) { banner.classList.remove('visible'); setTimeout(function(){ banner.hidden = true; }, 400); }
+    }
+    const consent = getConsent();
+    if (consent === 'accept') loadTrackers();
+    else if (consent !== 'reject') document.addEventListener('DOMContentLoaded', showBanner);
+    document.addEventListener('DOMContentLoaded', function(){
+      const acceptBtn = document.getElementById('cookieAccept');
+      const rejectBtn = document.getElementById('cookieReject');
+      if (acceptBtn) acceptBtn.addEventListener('click', function(){ setConsent('accept'); hideBanner(); loadTrackers(); });
+      if (rejectBtn) rejectBtn.addEventListener('click', function(){ setConsent('reject'); hideBanner(); });
+    });
+  })();
   </script>
 </body>
 </html>

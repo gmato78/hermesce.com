@@ -2146,33 +2146,80 @@
       .ia-hia-access-mark { font-size: 0.88rem; }
       .ia-hia-access-label { font-size: 0.72rem; }
     }
-  </style>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y7QH1K6Y3F"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-Y7QH1K6Y3F');
-</script>
-<script type="text/javascript">
-_linkedin_partner_id = "10047001";
-window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-window._linkedin_data_partner_ids.push(_linkedin_partner_id);
-</script><script type="text/javascript">
-(function(l) {
-if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
-window.lintrk.q=[]}
-var s = document.getElementsByTagName("script")[0];
-var b = document.createElement("script");
-b.type = "text/javascript";b.async = true;
-b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
-s.parentNode.insertBefore(b, s);})(window.lintrk);
-</script>
-<noscript>
-<img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=10047001&fmt=gif" />
-</noscript>
+    /* ════════════════════════════════════════════════════════════ */
+    /* ═══  COOKIE CONSENT BANNER  ═══════════════════════════════ */
+    /* ════════════════════════════════════════════════════════════ */
+    .cookie-banner {
+      position: fixed; left: 0; right: 0; bottom: 0;
+      background: rgba(255,255,255,.97);
+      -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+      border-top: 1px solid rgba(42,86,134,.18);
+      box-shadow: 0 -8px 32px rgba(15,37,68,.08);
+      transform: translateY(100%);
+      transition: transform .35s ease;
+      z-index: 100;
+    }
+    .cookie-banner.visible { transform: translateY(0); }
+    .cookie-banner-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 16px 24px;
+      display: flex; gap: 20px; align-items: center;
+      flex-wrap: wrap; justify-content: space-between;
+    }
+    .cookie-banner p {
+      flex: 1 1 320px;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: var(--brand-text, #0f2544);
+      margin: 0;
+    }
+    .cookie-banner a {
+      color: var(--brand-zafiro, #2A5686);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .cookie-banner a:hover { opacity: .72; }
+    .cookie-banner-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-cookie {
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      padding: 8px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 1px solid var(--brand-zafiro, #2A5686);
+      transition: background .2s, color .2s, opacity .2s;
+    }
+    .btn-cookie-reject {
+      background: transparent;
+      color: var(--brand-zafiro, #2A5686);
+    }
+    .btn-cookie-reject:hover { background: rgba(42,86,134,.06); }
+    .btn-cookie-accept {
+      background: var(--brand-zafiro, #2A5686);
+      color: #fff;
+    }
+    .btn-cookie-accept:hover { background: var(--brand-zafiro-dark, #102845); }
+    @media (max-width: 640px) {
+      .cookie-banner-inner { padding: 14px 16px; }
+    }
+
+    /* Link a privacidad en footer */
+    .footer-privacy-link {
+      display: inline-block;
+      margin-top: 0.6rem;
+      font-size: 12px;
+      color: rgba(255,255,255,.55);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .footer-privacy-link:hover { color: rgba(255,255,255,.85); text-decoration: underline; text-underline-offset: 2px; }
+  </style>
+<!-- Trackers (GA4, LinkedIn Insight Tag, Meta Pixel) — se cargan condicionalmente
+     según consentimiento del banner de cookies. Ver bloque "Cookie consent + script gating"
+     al final del <body>. NO agregar trackers acá hardcoded — viola el opt-in. -->
 </head>
 <body>
 
@@ -3091,7 +3138,8 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
     </picture>
     <div class="footer-tagline">
       <span data-i18n="footer_legal">HCE de Argentina SRL</span><br>
-      <span data-i18n="footer_copy">© 2026 · Todos los derechos reservados</span>
+      <span data-i18n="footer_copy">© 2026 · Todos los derechos reservados</span><br>
+      <a href="/privacidad" class="footer-privacy-link" data-i18n="footer_privacy">Privacidad</a>
     </div>
     <a id="footer-email" href="#" class="footer-email-link"><span class="__cf_email__" data-cfemail="432b2c2f22032b26312e263020266d202c2e">[email&#160;protected]</span></a>
     <a href="https://www.linkedin.com/company/16206788" target="_blank" rel="noopener" class="footer-social" aria-label="hermes CE en LinkedIn">
@@ -3913,6 +3961,121 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
       if (contact) contact.value = v;
     });
   })();
+</script>
+
+<!-- Cookie consent banner -->
+<aside id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Consentimiento de cookies" hidden>
+  <div class="cookie-banner-inner">
+    <p>
+      <span data-i18n="cookie_banner_text">Usamos cookies para entender cómo se usa el sitio (analytics) y, próximamente, para campañas de avisos.</span>
+      <a href="/privacidad" data-i18n="cookie_banner_link">Más información</a>
+    </p>
+    <div class="cookie-banner-actions">
+      <button type="button" class="btn-cookie btn-cookie-reject" id="cookieReject" data-i18n="cookie_btn_reject">Rechazar</button>
+      <button type="button" class="btn-cookie btn-cookie-accept" id="cookieAccept" data-i18n="cookie_btn_accept">Aceptar</button>
+    </div>
+  </div>
+</aside>
+
+<script>
+// ════════════════════════════════════════════════════════════════
+// Cookie consent + script gating (GA4 / LinkedIn / Meta)
+// ════════════════════════════════════════════════════════════════
+(function(){
+  // gtag stub: garantiza que llamadas existentes/futuras no fallan cuando no hay consent.
+  // Cuando loadTrackers() corre, la versión real (que pushea al dataLayer) se mantiene.
+  window.dataLayer = window.dataLayer || [];
+  if (typeof window.gtag !== 'function') {
+    window.gtag = function(){ window.dataLayer.push(arguments); };
+  }
+  const CONSENT_KEY = 'hce_cookie_consent';
+  const VERSION = '1';
+  function getConsent() {
+    try {
+      const raw = localStorage.getItem(CONSENT_KEY);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      if (parsed.version !== VERSION) return null;
+      return parsed.choice; // 'accept' | 'reject'
+    } catch(e) { return null; }
+  }
+  function setConsent(choice) {
+    try {
+      localStorage.setItem(CONSENT_KEY, JSON.stringify({
+        version: VERSION,
+        choice: choice,
+        timestamp: new Date().toISOString()
+      }));
+    } catch(e) {}
+  }
+  function loadTrackers() {
+    if (window.__hce_trackers_loaded) return;
+    window.__hce_trackers_loaded = true;
+    // Google Analytics 4
+    const ga = document.createElement('script');
+    ga.async = true;
+    ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-Y7QH1K6Y3F';
+    document.head.appendChild(ga);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', 'G-Y7QH1K6Y3F');
+    // LinkedIn Insight Tag
+    window._linkedin_partner_id = "10047001";
+    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+    window._linkedin_data_partner_ids.push(window._linkedin_partner_id);
+    (function(l){
+      if(!l){window.lintrk=function(a,b){window.lintrk.q.push([a,b])};window.lintrk.q=[]}
+      const s=document.getElementsByTagName("script")[0];
+      const b=document.createElement("script");
+      b.type="text/javascript"; b.async=true;
+      b.src="https://snap.licdn.com/li.lms-analytics/insight.min.js";
+      s.parentNode.insertBefore(b,s);
+    })(window.lintrk);
+    // ──── Meta Pixel — HOOK READY ────
+    // Cuando arranque Meta ads, descomentar este bloque y reemplazar YOUR_META_PIXEL_ID.
+    // !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    // n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    // n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    // t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
+    // 'https://connect.facebook.net/en_US/fbevents.js');
+    // fbq('init', 'YOUR_META_PIXEL_ID');
+    // fbq('track', 'PageView');
+  }
+  function showBanner() {
+    const banner = document.getElementById('cookie-banner');
+    if (banner) {
+      banner.hidden = false;
+      requestAnimationFrame(function(){ banner.classList.add('visible'); });
+    }
+  }
+  function hideBanner() {
+    const banner = document.getElementById('cookie-banner');
+    if (banner) {
+      banner.classList.remove('visible');
+      setTimeout(function(){ banner.hidden = true; }, 400);
+    }
+  }
+  // Init
+  const consent = getConsent();
+  if (consent === 'accept') {
+    loadTrackers();
+  } else if (consent === 'reject') {
+    // sin trackers
+  } else {
+    document.addEventListener('DOMContentLoaded', showBanner);
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    const acceptBtn = document.getElementById('cookieAccept');
+    const rejectBtn = document.getElementById('cookieReject');
+    if (acceptBtn) acceptBtn.addEventListener('click', function(){
+      setConsent('accept'); hideBanner(); loadTrackers();
+    });
+    if (rejectBtn) rejectBtn.addEventListener('click', function(){
+      setConsent('reject'); hideBanner();
+    });
+  });
+})();
 </script>
 </body>
 </html>
