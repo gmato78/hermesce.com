@@ -45,6 +45,8 @@
       height: 56px;
       max-width: 280px;
       object-fit: contain;
+      /* Logo "WHITE" se oscurece para lienzo claro (mismo recurso que el footer del landing) */
+      filter: brightness(0);
     }
 
     .legal-wrap {
@@ -77,27 +79,29 @@
     li { margin-bottom: 6px; }
     strong { font-weight: 600; }
 
+    /* Cookie banner — tarjeta flotante */
     .cookie-banner {
-      position: fixed; left: 0; right: 0; bottom: 0;
-      background: rgba(255,255,255,.97);
+      position: fixed; bottom: 24px; right: 24px; left: auto;
+      width: calc(100% - 48px);
+      max-width: 420px;
+      background: rgba(255,255,255,.98);
       -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
-      border-top: 1px solid rgba(42,86,134,.18);
-      box-shadow: 0 -8px 32px rgba(15,37,68,.08);
-      transform: translateY(100%);
-      transition: transform .35s ease;
+      border: 1px solid rgba(42,86,134,.16);
+      border-radius: 14px;
+      box-shadow: 0 16px 48px rgba(15,37,68,.18);
+      transform: translateY(140%);
+      transition: transform .42s cubic-bezier(.2,.7,.3,1);
       z-index: 100;
     }
     .cookie-banner.visible { transform: translateY(0); }
     .cookie-banner-inner {
-      max-width: 1100px; margin: 0 auto;
-      padding: 16px 24px;
-      display: flex; gap: 20px; align-items: center;
-      flex-wrap: wrap; justify-content: space-between;
+      padding: 20px 22px;
+      display: flex; flex-direction: column; gap: 14px;
     }
-    .cookie-banner p { flex: 1 1 320px; font-size: 13.5px; line-height: 1.5; color: var(--brand-text); margin: 0; }
+    .cookie-banner p { font-size: 13.5px; line-height: 1.55; color: var(--brand-text); margin: 0; }
     .cookie-banner a { color: var(--brand-zafiro); text-decoration: underline; text-underline-offset: 2px; }
     .cookie-banner a:hover { opacity: .72; }
-    .cookie-banner-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .cookie-banner-actions { display: flex; gap: 10px; justify-content: flex-end; }
     .btn-cookie {
       font-family: inherit; font-size: 13px; font-weight: 500;
       padding: 8px 18px; border-radius: 6px; cursor: pointer;
@@ -113,7 +117,8 @@
       .legal-wrap { padding: 36px 24px 56px; margin: 0 12px 56px; border-radius: 6px; }
       .legal-header { padding: 28px 18px 22px; }
       .legal-header .legal-logo { height: 44px; }
-      .cookie-banner-inner { padding: 14px 16px; }
+      .cookie-banner { bottom: 12px; right: 12px; left: 12px; width: auto; max-width: none; }
+      .cookie-banner-inner { padding: 16px 18px; }
     }
   </style>
 </head>
@@ -122,8 +127,8 @@
   <header class="legal-header">
     <a href="/" aria-label="Volver al inicio de hermesce.com">
       <picture>
-        <source srcset="logo-full-dark.webp" type="image/webp">
-        <img src="logo-full-dark.png" alt="hermes CE" class="legal-logo" decoding="async">
+        <source srcset="Logo%20ala%20transparente%20WHITE.webp" type="image/webp">
+        <img src="Logo%20ala%20transparente%20WHITE.png" alt="hermes CE" class="legal-logo" decoding="async">
       </picture>
     </a>
   </header>
@@ -177,7 +182,7 @@
   <aside id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Consentimiento de cookies" hidden>
     <div class="cookie-banner-inner">
       <p>
-        <span data-i18n="cookie_banner_text">Usamos cookies para entender cómo se usa el sitio (analytics) y, próximamente, para campañas de avisos.</span>
+        <span data-i18n="cookie_banner_text">Usamos cookies para mejorar tu experiencia en el sitio: análisis, integración con redes sociales y campañas de marketing.</span>
         <a href="/privacidad" data-i18n="cookie_banner_link">Más información</a>
       </p>
       <div class="cookie-banner-actions">
