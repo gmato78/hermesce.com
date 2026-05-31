@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Condiciones de Uso · hermes CE</title>
+  <meta name="description" content="Condiciones de uso del sitio hermesce.com — términos legales, propiedad intelectual, limitación de responsabilidad y jurisdicción.">
+  <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --brand-zafiro: #2A5686;
+      --brand-zafiro-dark: #102845;
+      --brand-text: #0f2544;
+      --canvas-showroom: #CDDCEC;
+      --white: #ffffff;
+      --muted: rgba(15,37,68,.74);
+      --line: rgba(15,37,68,.12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--canvas-showroom);
+      color: var(--brand-text);
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+    a { color: var(--brand-zafiro); text-decoration: none; transition: opacity .2s; }
+    a:hover { opacity: .72; text-decoration: underline; text-underline-offset: 3px; }
+
+    .legal-header {
+      padding: 40px 24px 28px;
+      display: flex;
+      justify-content: center;
+    }
+    .legal-header .legal-logo {
+      display: block;
+      width: auto;
+      height: 56px;
+      max-width: 280px;
+      object-fit: contain;
+    }
+
+    .legal-wrap {
+      max-width: 820px;
+      margin: 0 auto 96px;
+      padding: 56px 56px 72px;
+      background: var(--white);
+      box-shadow: 0 8px 32px rgba(15,37,68,.06);
+      border-radius: 8px;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 38px);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--brand-zafiro-dark);
+      margin-bottom: 8px;
+    }
+    .legal-updated { font-size: 13px; color: var(--muted); margin-bottom: 36px; }
+    h2 {
+      font-size: clamp(18px, 2.6vw, 22px);
+      font-weight: 600;
+      color: var(--brand-zafiro-dark);
+      margin-top: 32px;
+      margin-bottom: 10px;
+      letter-spacing: -0.005em;
+    }
+    p, ul, ol { margin-bottom: 14px; font-size: 15px; color: var(--brand-text); }
+    ul, ol { padding-left: 22px; }
+    li { margin-bottom: 6px; }
+    strong { font-weight: 600; }
+
+    .cookie-banner {
+      position: fixed; left: 0; right: 0; bottom: 0;
+      background: rgba(255,255,255,.97);
+      -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+      border-top: 1px solid rgba(42,86,134,.18);
+      box-shadow: 0 -8px 32px rgba(15,37,68,.08);
+      transform: translateY(100%);
+      transition: transform .35s ease;
+      z-index: 100;
+    }
+    .cookie-banner.visible { transform: translateY(0); }
+    .cookie-banner-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 16px 24px;
+      display: flex; gap: 20px; align-items: center;
+      flex-wrap: wrap; justify-content: space-between;
+    }
+    .cookie-banner p { flex: 1 1 320px; font-size: 13.5px; line-height: 1.5; color: var(--brand-text); margin: 0; }
+    .cookie-banner a { color: var(--brand-zafiro); text-decoration: underline; text-underline-offset: 2px; }
+    .cookie-banner a:hover { opacity: .72; }
+    .cookie-banner-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-cookie {
+      font-family: inherit; font-size: 13px; font-weight: 500;
+      padding: 8px 18px; border-radius: 6px; cursor: pointer;
+      border: 1px solid var(--brand-zafiro);
+      transition: background .2s, color .2s;
+    }
+    .btn-cookie-reject { background: transparent; color: var(--brand-zafiro); }
+    .btn-cookie-reject:hover { background: rgba(42,86,134,.06); }
+    .btn-cookie-accept { background: var(--brand-zafiro); color: var(--white); }
+    .btn-cookie-accept:hover { background: var(--brand-zafiro-dark); }
+
+    @media (max-width: 640px) {
+      .legal-wrap { padding: 36px 24px 56px; margin: 0 12px 56px; border-radius: 6px; }
+      .legal-header { padding: 28px 18px 22px; }
+      .legal-header .legal-logo { height: 44px; }
+      .cookie-banner-inner { padding: 14px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="legal-header">
+    <a href="/" aria-label="Volver al inicio de hermesce.com">
+      <picture>
+        <source srcset="logo-full-dark.webp" type="image/webp">
+        <img src="logo-full-dark.png" alt="hermes CE" class="legal-logo" decoding="async">
+      </picture>
+    </a>
+  </header>
+
+  <main class="legal-wrap">
+
+    <h1 data-i18n="terms_title">Condiciones de Uso</h1>
+    <p class="legal-updated"><span data-i18n="terms_updated_label">Última actualización</span>: <span data-i18n="terms_updated_date">31 de mayo de 2026</span></p>
+
+    <p data-i18n="terms_intro">Estas condiciones rigen el uso del sitio hermesce.com (en adelante, "el sitio"). Al navegar por el sitio aceptás estos términos.</p>
+
+    <h2 data-i18n="terms_s1_title">1. Información de la empresa</h2>
+    <p data-i18n="terms_s1_body"><strong>HCE de Argentina SRL</strong> (en adelante <em>hermes CE</em>)<br>CUIT: 20-26574765-6<br>Domicilio: Av. Belgrano 624, Piso 6 Of. 2, Ciudad Autónoma de Buenos Aires, Argentina<br>Contacto: <a href="mailto:info@hermesce.com">info@hermesce.com</a></p>
+
+    <h2 data-i18n="terms_s2_title">2. Objeto y alcance del sitio</h2>
+    <p data-i18n="terms_s2_body">Este sitio es la presentación institucional de hermes CE, dedicada a servicios de comercio exterior y despacho de aduana en Argentina. La información publicada tiene fines informativos; no constituye oferta vinculante ni asesoramiento legal, contable o impositivo. Las contrataciones efectivas se formalizan por instrumentos separados (propuestas, contratos, OS).</p>
+
+    <h2 data-i18n="terms_s3_title">3. Aceptación de los términos</h2>
+    <p data-i18n="terms_s3_body">Al acceder al sitio y usarlo aceptás estas condiciones. Si no estás de acuerdo, te pedimos que no uses el sitio. Podemos modificar estos términos en cualquier momento; la versión vigente es la publicada en esta página.</p>
+
+    <h2 data-i18n="terms_s4_title">4. Uso permitido</h2>
+    <p data-i18n="terms_s4_intro">Podés navegar el sitio para conocer nuestros servicios, contactarnos y solicitar información. No está permitido:</p>
+    <ul>
+      <li data-i18n="terms_s4_item1">Usar el sitio para fines ilícitos o que puedan dañar a terceros.</li>
+      <li data-i18n="terms_s4_item2">Reproducir, copiar o redistribuir el contenido sin autorización escrita.</li>
+      <li data-i18n="terms_s4_item3">Intentar acceder a partes no públicas del sitio, vulnerar su seguridad o introducir código malicioso.</li>
+      <li data-i18n="terms_s4_item4">Realizar scraping automatizado masivo del contenido (más allá del uso razonable por motores de búsqueda).</li>
+      <li data-i18n="terms_s4_item5">Suplantar identidades o proveer datos falsos en los formularios de contacto.</li>
+    </ul>
+
+    <h2 data-i18n="terms_s5_title">5. Propiedad intelectual</h2>
+    <p data-i18n="terms_s5_body">El contenido del sitio (textos, logotipos, imágenes, identidad visual, código, estructura, marcas) es propiedad de hermes CE o de sus licenciantes y está protegido por la legislación de propiedad intelectual aplicable. El uso del sitio no transfiere ningún derecho sobre estos contenidos. Las marcas de terceros mencionadas (organismos como AFIP, plataformas como LinkedIn, etc.) pertenecen a sus respectivos titulares.</p>
+
+    <h2 data-i18n="terms_s6_title">6. Enlaces a sitios de terceros</h2>
+    <p data-i18n="terms_s6_body">El sitio puede contener enlaces a sitios externos (Google Maps, LinkedIn, AFIP, organismos oficiales). No controlamos esos sitios ni nos responsabilizamos por su contenido, prácticas de privacidad o disponibilidad. El acceso a esos sitios es bajo tu propia responsabilidad.</p>
+
+    <h2 data-i18n="terms_s7_title">7. Limitación de responsabilidad</h2>
+    <p data-i18n="terms_s7_body">El sitio se ofrece "tal cual está", sin garantías expresas o implícitas de disponibilidad continua, exactitud o adecuación a un propósito particular. hermes CE no es responsable por daños directos, indirectos, incidentales o consecuentes derivados del uso del sitio o de la imposibilidad de usarlo. La información publicada puede contener errores u omisiones; ante cualquier duda, contactanos.</p>
+
+    <h2 data-i18n="terms_s8_title">8. Modificaciones del sitio</h2>
+    <p data-i18n="terms_s8_body">Podemos modificar, suspender o discontinuar el sitio (o partes de él) en cualquier momento, sin previo aviso. No nos hacemos responsables ante el usuario o terceros por estos cambios.</p>
+
+    <h2 data-i18n="terms_s9_title">9. Jurisdicción y ley aplicable</h2>
+    <p data-i18n="terms_s9_body">Estos términos se rigen por las leyes de la República Argentina. Cualquier controversia derivada del uso del sitio se someterá a los tribunales ordinarios competentes con sede en la Ciudad Autónoma de Buenos Aires, renunciando las partes a cualquier otro fuero o jurisdicción que pudiera corresponder.</p>
+
+    <h2 data-i18n="terms_s10_title">10. Contacto</h2>
+    <p data-i18n="terms_s10_body">Para consultas sobre estas condiciones, escribinos a <a href="mailto:info@hermesce.com">info@hermesce.com</a>.</p>
+
+  </main>
+
+  <aside id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Consentimiento de cookies" hidden>
+    <div class="cookie-banner-inner">
+      <p>
+        <span data-i18n="cookie_banner_text">Usamos cookies para entender cómo se usa el sitio (analytics) y, próximamente, para campañas de avisos.</span>
+        <a href="/privacidad" data-i18n="cookie_banner_link">Más información</a>
+      </p>
+      <div class="cookie-banner-actions">
+        <button type="button" class="btn-cookie btn-cookie-reject" id="cookieReject" data-i18n="cookie_btn_reject">Rechazar</button>
+        <button type="button" class="btn-cookie btn-cookie-accept" id="cookieAccept" data-i18n="cookie_btn_accept">Aceptar</button>
+      </div>
+    </div>
+  </aside>
+
+  <script>
+  // i18n loader
+  (function(){
+    const LANG_KEY = 'hce_lang';
+    const SUPPORTED = ['es','en','de','fr','pt'];
+    function detectLang() {
+      try { const s = localStorage.getItem(LANG_KEY); if (s && SUPPORTED.includes(s)) return s; } catch(e) {}
+      const b = (navigator.language || 'es').slice(0,2).toLowerCase();
+      return SUPPORTED.includes(b) ? b : 'es';
+    }
+    const lang = detectLang();
+    document.documentElement.setAttribute('lang', lang);
+    fetch('translations.json?v=' + Date.now(), { cache: 'no-store' })
+      .then(function(r){ return r.json(); })
+      .then(function(t){
+        const dict = t[lang] || t.es;
+        document.querySelectorAll('[data-i18n]').forEach(function(el){
+          const key = el.getAttribute('data-i18n');
+          if (dict[key] !== undefined) el.innerHTML = dict[key];
+        });
+      })
+      .catch(function(){});
+  })();
+
+  // Cookie consent + script gating
+  (function(){
+    window.dataLayer = window.dataLayer || [];
+    if (typeof window.gtag !== 'function') window.gtag = function(){ window.dataLayer.push(arguments); };
+    const CONSENT_KEY = 'hce_cookie_consent';
+    const VERSION = '1';
+    function getConsent() {
+      try {
+        const raw = localStorage.getItem(CONSENT_KEY);
+        if (!raw) return null;
+        const p = JSON.parse(raw);
+        if (p.version !== VERSION) return null;
+        return p.choice;
+      } catch(e) { return null; }
+    }
+    function setConsent(choice) {
+      try { localStorage.setItem(CONSENT_KEY, JSON.stringify({ version: VERSION, choice: choice, timestamp: new Date().toISOString() })); } catch(e) {}
+    }
+    function loadTrackers() {
+      if (window.__hce_trackers_loaded) return;
+      window.__hce_trackers_loaded = true;
+      const ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-Y7QH1K6Y3F';
+      document.head.appendChild(ga);
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-Y7QH1K6Y3F');
+      window._linkedin_partner_id = "10047001";
+      window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+      window._linkedin_data_partner_ids.push(window._linkedin_partner_id);
+      (function(l){
+        if(!l){window.lintrk=function(a,b){window.lintrk.q.push([a,b])};window.lintrk.q=[]}
+        const s=document.getElementsByTagName("script")[0];
+        const b=document.createElement("script");
+        b.type="text/javascript"; b.async=true;
+        b.src="https://snap.licdn.com/li.lms-analytics/insight.min.js";
+        s.parentNode.insertBefore(b,s);
+      })(window.lintrk);
+    }
+    function showBanner() {
+      const banner = document.getElementById('cookie-banner');
+      if (banner) { banner.hidden = false; requestAnimationFrame(function(){ banner.classList.add('visible'); }); }
+    }
+    function hideBanner() {
+      const banner = document.getElementById('cookie-banner');
+      if (banner) { banner.classList.remove('visible'); setTimeout(function(){ banner.hidden = true; }, 400); }
+    }
+    const consent = getConsent();
+    if (consent === 'accept') loadTrackers();
+    else if (consent !== 'reject') document.addEventListener('DOMContentLoaded', showBanner);
+    document.addEventListener('DOMContentLoaded', function(){
+      const a = document.getElementById('cookieAccept');
+      const r = document.getElementById('cookieReject');
+      if (a) a.addEventListener('click', function(){ setConsent('accept'); hideBanner(); loadTrackers(); });
+      if (r) r.addEventListener('click', function(){ setConsent('reject'); hideBanner(); });
+    });
+  })();
+  </script>
+</body>
+</html>

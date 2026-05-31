@@ -29,32 +29,33 @@
       -webkit-font-smoothing: antialiased;
       line-height: 1.6;
       font-weight: 300;
+      min-height: 100vh;
     }
     a { color: var(--brand-zafiro); text-decoration: none; transition: opacity .2s; }
     a:hover { opacity: .72; text-decoration: underline; text-underline-offset: 3px; }
 
-    /* Nav */
-    .priv-nav {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 18px 32px;
-      background: rgba(255,255,255,.55);
-      -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,.6);
-      position: sticky; top: 0; z-index: 10;
+    /* Header simple con logo centrado, sin nav */
+    .legal-header {
+      padding: 40px 24px 28px;
+      display: flex;
+      justify-content: center;
     }
-    .priv-back { font-size: 14px; color: var(--brand-zafiro); font-weight: 500; }
-    .priv-back:hover { opacity: .72; }
+    .legal-header .legal-logo {
+      display: block;
+      width: auto;
+      height: 56px;
+      max-width: 280px;
+      object-fit: contain;
+    }
 
-    /* Container */
-    .priv-wrap {
+    /* Card de contenido */
+    .legal-wrap {
       max-width: 820px;
-      margin: 0 auto;
-      padding: 56px 32px 96px;
+      margin: 0 auto 96px;
+      padding: 56px 56px 72px;
       background: var(--white);
       box-shadow: 0 8px 32px rgba(15,37,68,.06);
       border-radius: 8px;
-      margin-top: 32px;
-      margin-bottom: 32px;
     }
 
     h1 {
@@ -64,7 +65,7 @@
       color: var(--brand-zafiro-dark);
       margin-bottom: 8px;
     }
-    .priv-updated {
+    .legal-updated {
       font-size: 13px;
       color: var(--muted);
       margin-bottom: 36px;
@@ -86,7 +87,7 @@
     li { margin-bottom: 6px; }
     strong { font-weight: 600; }
 
-    /* Cookie table */
+    /* Tabla de cookies */
     .cookie-table-wrap { overflow-x: auto; margin: 14px 0 18px; }
     table.cookie-table {
       width: 100%;
@@ -116,59 +117,21 @@
       color: var(--brand-zafiro-dark);
     }
 
-    /* Footer */
-    .priv-foot {
-      margin-top: 56px;
-      padding-top: 28px;
-      border-top: 1px solid var(--line);
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    /* Lang selector minimal */
-    .lang-selector { position: relative; }
-    .lang-btn {
-      background: transparent;
-      border: 1px solid rgba(15,37,68,.18);
-      color: var(--brand-zafiro);
+    .btn-action {
       font-family: inherit;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .1em;
-      padding: 6px 10px;
-      border-radius: 4px;
-      cursor: pointer;
-      display: flex; align-items: center; gap: 6px;
-    }
-    .lang-btn:hover { border-color: var(--brand-zafiro); }
-    .lang-chevron { transition: transform .2s; flex-shrink: 0; }
-    .lang-btn[aria-expanded="true"] .lang-chevron { transform: rotate(180deg); }
-    .lang-dropdown {
-      display: none;
-      position: absolute;
-      right: 0; top: calc(100% + 6px);
-      background: var(--white);
-      border: 1px solid var(--line);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 22px;
       border-radius: 6px;
-      min-width: 72px;
-      list-style: none;
-      padding: 4px 0;
-      box-shadow: 0 8px 24px rgba(15,37,68,.12);
-      z-index: 20;
-    }
-    .lang-dropdown.open { display: block; }
-    .lang-item {
-      padding: 7px 16px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .1em;
-      color: var(--muted);
       cursor: pointer;
+      border: 1px solid var(--brand-zafiro);
+      background: var(--brand-zafiro);
+      color: var(--white);
+      transition: background .2s;
     }
-    .lang-item:hover { background: rgba(42,86,134,.06); color: var(--brand-zafiro); }
-    .lang-item-active { color: var(--brand-zafiro); }
+    .btn-action:hover { background: var(--brand-zafiro-dark); }
 
-    /* Cookie banner (shared with index.html) */
+    /* Cookie banner */
     .cookie-banner {
       position: fixed; left: 0; right: 0; bottom: 0;
       background: rgba(255,255,255,.97);
@@ -186,66 +149,44 @@
       display: flex; gap: 20px; align-items: center;
       flex-wrap: wrap; justify-content: space-between;
     }
-    .cookie-banner p {
-      flex: 1 1 320px;
-      font-size: 13.5px;
-      line-height: 1.5;
-      color: var(--brand-text);
-      margin: 0;
-    }
+    .cookie-banner p { flex: 1 1 320px; font-size: 13.5px; line-height: 1.5; color: var(--brand-text); margin: 0; }
+    .cookie-banner a { color: var(--brand-zafiro); text-decoration: underline; text-underline-offset: 2px; }
+    .cookie-banner a:hover { opacity: .72; }
     .cookie-banner-actions { display: flex; gap: 10px; flex-wrap: wrap; }
     .btn-cookie {
-      font-family: inherit;
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-      padding: 8px 18px;
-      border-radius: 6px;
-      cursor: pointer;
+      font-family: inherit; font-size: 13px; font-weight: 500;
+      padding: 8px 18px; border-radius: 6px; cursor: pointer;
       border: 1px solid var(--brand-zafiro);
-      transition: background .2s, color .2s, opacity .2s;
+      transition: background .2s, color .2s;
     }
-    .btn-cookie-reject {
-      background: transparent;
-      color: var(--brand-zafiro);
-    }
+    .btn-cookie-reject { background: transparent; color: var(--brand-zafiro); }
     .btn-cookie-reject:hover { background: rgba(42,86,134,.06); }
-    .btn-cookie-accept {
-      background: var(--brand-zafiro);
-      color: var(--white);
-    }
+    .btn-cookie-accept { background: var(--brand-zafiro); color: var(--white); }
     .btn-cookie-accept:hover { background: var(--brand-zafiro-dark); }
 
     @media (max-width: 640px) {
-      .priv-wrap { padding: 32px 22px 64px; margin: 16px 12px; border-radius: 6px; }
-      .priv-nav { padding: 14px 18px; }
+      .legal-wrap { padding: 36px 24px 56px; margin: 0 12px 56px; border-radius: 6px; }
+      .legal-header { padding: 28px 18px 22px; }
+      .legal-header .legal-logo { height: 44px; }
       .cookie-banner-inner { padding: 14px 16px; }
     }
   </style>
 </head>
 <body>
 
-  <nav class="priv-nav">
-    <a href="/" class="priv-back" data-i18n="privacy_back">← hermesce.com</a>
-    <div class="lang-selector">
-      <button type="button" class="lang-btn" id="lang-btn" aria-expanded="false" aria-haspopup="listbox">
-        <span id="lang-current">ES</span>
-        <svg class="lang-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <ul class="lang-dropdown" id="lang-dropdown" role="listbox">
-        <li class="lang-item" data-lang="es" role="option">ES</li>
-        <li class="lang-item" data-lang="en" role="option">EN</li>
-        <li class="lang-item" data-lang="de" role="option">DE</li>
-        <li class="lang-item" data-lang="fr" role="option">FR</li>
-        <li class="lang-item" data-lang="pt" role="option">PT</li>
-      </ul>
-    </div>
-  </nav>
+  <header class="legal-header">
+    <a href="/" aria-label="Volver al inicio de hermesce.com">
+      <picture>
+        <source srcset="logo-full-dark.webp" type="image/webp">
+        <img src="logo-full-dark.png" alt="hermes CE" class="legal-logo" decoding="async">
+      </picture>
+    </a>
+  </header>
 
-  <main class="priv-wrap">
+  <main class="legal-wrap">
 
     <h1 data-i18n="privacy_title">Política de Privacidad</h1>
-    <p class="priv-updated"><span data-i18n="privacy_updated_label">Última actualización</span>: <span data-i18n="privacy_updated_date">31 de mayo de 2026</span></p>
+    <p class="legal-updated"><span data-i18n="privacy_updated_label">Última actualización</span>: <span data-i18n="privacy_updated_date">31 de mayo de 2026</span></p>
 
     <p data-i18n="privacy_intro">Esta página describe qué datos recolectamos cuando visitás hermesce.com, para qué los usamos, con quién los compartimos y cómo podés ejercer tus derechos sobre ellos.</p>
 
@@ -352,15 +293,11 @@
 
     <h2 data-i18n="privacy_s10_title">10. Cambiar tu decisión sobre cookies</h2>
     <p data-i18n="privacy_s10_body">Podés cambiar tu decisión en cualquier momento:</p>
-    <p><button type="button" id="reopen-cookie-banner" class="btn-cookie btn-cookie-accept" data-i18n="privacy_s10_btn">Revisar cookies</button></p>
-
-    <div class="priv-foot">
-      <p><a href="/" data-i18n="privacy_back">← hermesce.com</a></p>
-    </div>
+    <p><button type="button" id="reopen-cookie-banner" class="btn-action" data-i18n="privacy_s10_btn">Revisar cookies</button></p>
 
   </main>
 
-  <!-- Cookie banner (mismo que en index.html) -->
+  <!-- Cookie banner -->
   <aside id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Consentimiento de cookies" hidden>
     <div class="cookie-banner-inner">
       <p>
@@ -375,80 +312,32 @@
   </aside>
 
   <script>
-  // ════════════════════════════════════════════════════════════════
   // i18n loader — comparte translations.json con index.html
-  // ════════════════════════════════════════════════════════════════
   (function(){
     const LANG_KEY = 'hce_lang';
-    const DEFAULT_LANG = 'es';
     const SUPPORTED = ['es','en','de','fr','pt'];
-    function getStoredLang() {
-      try { return localStorage.getItem(LANG_KEY); } catch(e) { return null; }
-    }
-    function setStoredLang(l) {
-      try { localStorage.setItem(LANG_KEY, l); } catch(e) {}
-    }
+    function getStoredLang() { try { return localStorage.getItem(LANG_KEY); } catch(e) { return null; } }
     function detectLang() {
       const stored = getStoredLang();
       if (stored && SUPPORTED.includes(stored)) return stored;
       const browser = (navigator.language || 'es').slice(0,2).toLowerCase();
       if (SUPPORTED.includes(browser)) return browser;
-      return DEFAULT_LANG;
+      return 'es';
     }
-    function applyTranslations(t) {
-      document.querySelectorAll('[data-i18n]').forEach(function(el){
-        const key = el.getAttribute('data-i18n');
-        if (t[key] !== undefined) el.innerHTML = t[key];
-      });
-    }
-    function setHtmlLang(l) {
-      document.documentElement.setAttribute('lang', l);
-    }
-    let currentLang = detectLang();
-    let allTranslations = null;
-    function selectLang(l) {
-      if (!SUPPORTED.includes(l)) return;
-      currentLang = l;
-      setStoredLang(l);
-      setHtmlLang(l);
-      if (allTranslations && allTranslations[l]) applyTranslations(allTranslations[l]);
-      const cur = document.getElementById('lang-current');
-      if (cur) cur.textContent = l.toUpperCase();
-      document.querySelectorAll('.lang-item').forEach(function(it){
-        it.classList.toggle('lang-item-active', it.getAttribute('data-lang') === l);
-      });
-    }
+    const lang = detectLang();
+    document.documentElement.setAttribute('lang', lang);
     fetch('translations.json?v=' + Date.now(), { cache: 'no-store' })
       .then(function(r){ return r.json(); })
       .then(function(t){
-        allTranslations = t;
-        selectLang(currentLang);
+        const dict = t[lang] || t.es;
+        document.querySelectorAll('[data-i18n]').forEach(function(el){
+          const key = el.getAttribute('data-i18n');
+          if (dict[key] !== undefined) el.innerHTML = dict[key];
+        });
       })
-      .catch(function(){ /* sin translations el HTML base ya está en ES */ });
+      .catch(function(){});
 
     document.addEventListener('DOMContentLoaded', function(){
-      const btn = document.getElementById('lang-btn');
-      const dropdown = document.getElementById('lang-dropdown');
-      if (btn && dropdown) {
-        btn.addEventListener('click', function(e){
-          e.stopPropagation();
-          const expanded = btn.getAttribute('aria-expanded') === 'true';
-          btn.setAttribute('aria-expanded', !expanded);
-          dropdown.classList.toggle('open', !expanded);
-        });
-        document.addEventListener('click', function(){
-          btn.setAttribute('aria-expanded','false');
-          dropdown.classList.remove('open');
-        });
-        document.querySelectorAll('.lang-item').forEach(function(it){
-          it.addEventListener('click', function(e){
-            e.stopPropagation();
-            selectLang(it.getAttribute('data-lang'));
-            btn.setAttribute('aria-expanded','false');
-            dropdown.classList.remove('open');
-          });
-        });
-      }
       const reopenBtn = document.getElementById('reopen-cookie-banner');
       if (reopenBtn) {
         reopenBtn.addEventListener('click', function(){
@@ -463,43 +352,33 @@
     });
   })();
 
-  // ════════════════════════════════════════════════════════════════
-  // Cookie consent + script gating (mismo en index.html)
-  // ════════════════════════════════════════════════════════════════
+  // Cookie consent + script gating
   (function(){
+    window.dataLayer = window.dataLayer || [];
+    if (typeof window.gtag !== 'function') window.gtag = function(){ window.dataLayer.push(arguments); };
     const CONSENT_KEY = 'hce_cookie_consent';
     const VERSION = '1';
     function getConsent() {
       try {
         const raw = localStorage.getItem(CONSENT_KEY);
         if (!raw) return null;
-        const parsed = JSON.parse(raw);
-        if (parsed.version !== VERSION) return null;
-        return parsed.choice;
+        const p = JSON.parse(raw);
+        if (p.version !== VERSION) return null;
+        return p.choice;
       } catch(e) { return null; }
     }
     function setConsent(choice) {
-      try {
-        localStorage.setItem(CONSENT_KEY, JSON.stringify({
-          version: VERSION,
-          choice: choice,
-          timestamp: new Date().toISOString()
-        }));
-      } catch(e) {}
+      try { localStorage.setItem(CONSENT_KEY, JSON.stringify({ version: VERSION, choice: choice, timestamp: new Date().toISOString() })); } catch(e) {}
     }
     function loadTrackers() {
       if (window.__hce_trackers_loaded) return;
       window.__hce_trackers_loaded = true;
-      // Google Analytics 4
       const ga = document.createElement('script');
       ga.async = true;
       ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-Y7QH1K6Y3F';
       document.head.appendChild(ga);
-      window.dataLayer = window.dataLayer || [];
-      window.gtag = function(){ window.dataLayer.push(arguments); };
       window.gtag('js', new Date());
       window.gtag('config', 'G-Y7QH1K6Y3F');
-      // LinkedIn Insight Tag
       window._linkedin_partner_id = "10047001";
       window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
       window._linkedin_data_partner_ids.push(window._linkedin_partner_id);
@@ -511,48 +390,23 @@
         b.src="https://snap.licdn.com/li.lms-analytics/insight.min.js";
         s.parentNode.insertBefore(b,s);
       })(window.lintrk);
-      // ──── Meta Pixel — HOOK READY ────
-      // Cuando arranque Meta ads, descomentar este bloque y reemplazar YOUR_META_PIXEL_ID.
-      // !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      // n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-      // n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-      // t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
-      // 'https://connect.facebook.net/en_US/fbevents.js');
-      // fbq('init', 'YOUR_META_PIXEL_ID');
-      // fbq('track', 'PageView');
     }
     function showBanner() {
       const banner = document.getElementById('cookie-banner');
-      if (banner) {
-        banner.hidden = false;
-        requestAnimationFrame(function(){ banner.classList.add('visible'); });
-      }
+      if (banner) { banner.hidden = false; requestAnimationFrame(function(){ banner.classList.add('visible'); }); }
     }
     function hideBanner() {
       const banner = document.getElementById('cookie-banner');
-      if (banner) {
-        banner.classList.remove('visible');
-        setTimeout(function(){ banner.hidden = true; }, 400);
-      }
+      if (banner) { banner.classList.remove('visible'); setTimeout(function(){ banner.hidden = true; }, 400); }
     }
-    // Init
     const consent = getConsent();
-    if (consent === 'accept') {
-      loadTrackers();
-    } else if (consent === 'reject') {
-      // no-op
-    } else {
-      document.addEventListener('DOMContentLoaded', showBanner);
-    }
+    if (consent === 'accept') loadTrackers();
+    else if (consent !== 'reject') document.addEventListener('DOMContentLoaded', showBanner);
     document.addEventListener('DOMContentLoaded', function(){
-      const acceptBtn = document.getElementById('cookieAccept');
-      const rejectBtn = document.getElementById('cookieReject');
-      if (acceptBtn) acceptBtn.addEventListener('click', function(){
-        setConsent('accept'); hideBanner(); loadTrackers();
-      });
-      if (rejectBtn) rejectBtn.addEventListener('click', function(){
-        setConsent('reject'); hideBanner();
-      });
+      const a = document.getElementById('cookieAccept');
+      const r = document.getElementById('cookieReject');
+      if (a) a.addEventListener('click', function(){ setConsent('accept'); hideBanner(); loadTrackers(); });
+      if (r) r.addEventListener('click', function(){ setConsent('reject'); hideBanner(); });
     });
   })();
   </script>

@@ -135,7 +135,11 @@
     .ia-wl-btn:hover { background: var(--brand-hia-dark); }
 
     /* FOOTER */
-    .ia-footer { display: flex; align-items: center; justify-content: space-between; padding: 18px var(--ia-gutter); border-top: 1px solid rgba(255,255,255,.06); font-size: 9px; color: rgba(255,255,255,.32); }
+    .ia-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding: 18px var(--ia-gutter); border-top: 1px solid rgba(255,255,255,.06); font-size: 11px; color: rgba(255,255,255,.42); }
+    .ia-footer-legal { flex-basis: 100%; text-align: center; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.05); font-size: 10.5px; color: rgba(255,255,255,.5); line-height: 1.6; }
+    .ia-footer-legal a { color: rgba(255,255,255,.65); text-decoration: none; transition: color .2s; }
+    .ia-footer-legal a:hover { color: rgba(255,255,255,.92); text-decoration: underline; text-underline-offset: 2px; }
+    .ia-footer-legal .sep { color: rgba(255,255,255,.3); margin: 0 .4rem; }
     .ia-lang { display: flex; gap: 10px; }
     .ia-lang button { background: none; border: none; color: rgba(255,255,255,.4); font-size: 10px; font-weight: 600; cursor: pointer; font-family: inherit; padding: 2px 4px; }
     .ia-lang button.active { color: var(--brand-hia); }
@@ -305,6 +309,9 @@
     <!-- FOOTER -->
     <footer class="ia-footer">
       <a href="/" data-i18n="iapage_footer_back">← volver a hermesce.com</a>
+      <div class="ia-footer-legal">
+        <a href="/condiciones" data-i18n="footer_legal_terms">Condiciones de uso</a><span class="sep">·</span><a href="/privacidad" data-i18n="footer_legal_privacy">Política de privacidad</a><span class="sep">·</span><span data-i18n="footer_legal_copy">© 2026 HCE de Argentina SRL · Todos los derechos reservados</span>
+      </div>
     </footer>
 
   </div>

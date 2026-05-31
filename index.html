@@ -1539,6 +1539,11 @@
     footer .footer-map-embed { border-color: rgba(15,37,68,.15); }
     /* Border-top más visible */
     footer { border-top-color: rgba(15,37,68,.16); }
+    /* Línea legal al pie: override para lienzo claro */
+    footer .footer-legal-line { color: rgba(15,37,68,.55); border-top-color: rgba(15,37,68,.1); }
+    footer .footer-legal-line a { color: rgba(15,37,68,.75); }
+    footer .footer-legal-line a:hover { color: var(--brand-zafiro); }
+    footer .footer-legal-line .sep { color: rgba(15,37,68,.35); }
 
     /* ═══ DEPTH · sombra-capa desplazada en cajas de ejemplo ═══ */
     .has-layer { box-shadow: 20px 24px 44px -16px rgba(16,40,69,.5); }
@@ -2206,16 +2211,31 @@
       .cookie-banner-inner { padding: 14px 16px; }
     }
 
-    /* Link a privacidad en footer */
-    .footer-privacy-link {
-      display: inline-block;
-      margin-top: 0.6rem;
-      font-size: 12px;
-      color: rgba(255,255,255,.55);
+    /* Línea legal al pie del footer (Condiciones · Privacidad · © · Derechos) */
+    .footer-legal-line {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding-top: 1rem;
+      margin-top: 0.5rem;
+      border-top: 1px solid rgba(255,255,255,.06);
+      font-size: 0.74rem;
+      color: rgba(255,255,255,.5);
+      line-height: 1.6;
+    }
+    .footer-legal-line a {
+      color: rgba(255,255,255,.65);
       text-decoration: none;
       transition: color .2s;
     }
-    .footer-privacy-link:hover { color: rgba(255,255,255,.85); text-decoration: underline; text-underline-offset: 2px; }
+    .footer-legal-line a:hover {
+      color: rgba(255,255,255,.95);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .footer-legal-line .sep {
+      color: rgba(255,255,255,.3);
+      margin: 0 .4rem;
+    }
   </style>
 <!-- Trackers (GA4, LinkedIn Insight Tag, Meta Pixel) — se cargan condicionalmente
      según consentimiento del banner de cookies. Ver bloque "Cookie consent + script gating"
@@ -3137,9 +3157,7 @@
       <img src="Logo%20ala%20transparente%20WHITE.png" alt="hermes CE — HCE de Argentina SRL" class="footer-logo-img" loading="lazy" decoding="async">
     </picture>
     <div class="footer-tagline">
-      <span data-i18n="footer_legal">HCE de Argentina SRL</span><br>
-      <span data-i18n="footer_copy">© 2026 · Todos los derechos reservados</span><br>
-      <a href="/privacidad" class="footer-privacy-link" data-i18n="footer_privacy">Privacidad</a>
+      <span data-i18n="footer_legal">HCE de Argentina SRL</span>
     </div>
     <a id="footer-email" href="#" class="footer-email-link"><span class="__cf_email__" data-cfemail="432b2c2f22032b26312e263020266d202c2e">[email&#160;protected]</span></a>
     <a href="https://www.linkedin.com/company/16206788" target="_blank" rel="noopener" class="footer-social" aria-label="hermes CE en LinkedIn">
@@ -3160,6 +3178,11 @@
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
       <span data-i18n="footer_maps">Abrir en Google Maps</span>
     </a>
+  </div>
+
+  <!-- Línea legal al pie: Condiciones · Privacidad · © · Derechos reservados -->
+  <div class="footer-legal-line">
+    <a href="/condiciones" data-i18n="footer_legal_terms">Condiciones de uso</a><span class="sep">·</span><a href="/privacidad" data-i18n="footer_legal_privacy">Política de privacidad</a><span class="sep">·</span><span data-i18n="footer_legal_copy">© 2026 HCE de Argentina SRL · Todos los derechos reservados</span>
   </div>
 </footer>
 
