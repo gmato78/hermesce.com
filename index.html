@@ -4032,6 +4032,12 @@
       }));
     } catch(e) {}
   }
+  // ─────────────────────────────────────────────────────────────
+  // Microsoft Clarity (heatmaps + session recordings · gratis)
+  // Para activar: crear proyecto en https://clarity.microsoft.com →
+  // copiar el Project ID → reemplazar el string vacío acá ↓ ↓ ↓
+  const HCE_CLARITY_ID = '';   // ← p.ej. 'a1b2c3d4e5'  (vacío = desactivado)
+  // ─────────────────────────────────────────────────────────────
   function loadTrackers() {
     if (window.__hce_trackers_loaded) return;
     window.__hce_trackers_loaded = true;
@@ -4044,6 +4050,14 @@
     window.gtag = function(){ window.dataLayer.push(arguments); };
     window.gtag('js', new Date());
     window.gtag('config', 'G-Y7QH1K6Y3F');
+    // Microsoft Clarity — solo si el ID está seteado
+    if (HCE_CLARITY_ID) {
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", HCE_CLARITY_ID);
+    }
     // LinkedIn Insight Tag
     window._linkedin_partner_id = "10047001";
     window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
@@ -4094,9 +4108,101 @@
     const rejectBtn = document.getElementById('cookieReject');
     if (acceptBtn) acceptBtn.addEventListener('click', function(){
       setConsent('accept'); hideBanner(); loadTrackers();
+      // Track después de loadTrackers para que el evento llegue a GA
+      setTimeout(function(){ window.gtag && window.gtag('event', 'cookie_decision', { decision: 'accept' }); }, 200);
     });
     if (rejectBtn) rejectBtn.addEventListener('click', function(){
       setConsent('reject'); hideBanner();
+      // gtag stub captura el evento en dataLayer aunque no haya trackers (perdible, no enviado a GA — solo registro local)
+    });
+  });
+})();
+
+// ════════════════════════════════════════════════════════════════
+// Eventos custom GA4 — visibilidad de qué engancha al visitante
+// Especial foco en superficies farIAs / hermes IA (todas las puertas)
+// ════════════════════════════════════════════════════════════════
+(function(){
+  function track(name, params){ if (typeof window.gtag === 'function') window.gtag('event', name, params || {}); }
+  // De dónde vino el click — útil para distinguir nav vs hero vs footer
+  function elSource(el){
+    if (el.closest('.nav-hero')) return 'nav';
+    if (el.closest('.nav-drawer, [class*="drawer"]')) return 'nav_mobile';
+    if (el.closest('.hero')) return 'hero';
+    if (el.closest('#ia')) return 'ia_section';
+    if (el.closest('#problema')) return 'problema';
+    if (el.closest('#servicios')) return 'servicios';
+    if (el.closest('#contacto')) return 'contacto';
+    if (el.closest('footer')) return 'footer';
+    return 'other';
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+
+    // ─── farIAs / hermes IA: TODAS las superficies de entrada ───
+    // Cualquier link a #ia o /ia (nav desktop, drawer mobile, footer sitemap, etc.)
+    document.querySelectorAll('a[href="#ia"], a[href="/ia"], a[href="ia.html"]').forEach(function(el){
+      el.addEventListener('click', function(){
+        track('ia_link_click', { source: elSource(el), variant: el.classList.contains('hero-farias-pill') ? 'hero_pill' : 'plain' });
+      });
+    });
+    // CTA grande del hero "Conocé toda la iniciativa hermes IA"
+    document.querySelectorAll('.ia-hia-access').forEach(function(el){
+      el.addEventListener('click', function(){ track('cta_hermes_ia_full_click', { source: elSource(el) }); });
+    });
+    // Visualización del QR farIAs (cuando llega al contact section)
+    const qr = document.querySelector('img[alt*="farIAs"], img[alt*="farIA"]');
+    if (qr && 'IntersectionObserver' in window) {
+      const oQr = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if (e.isIntersecting) { track('qr_farias_view', {}); oQr.unobserve(e.target); }
+        });
+      }, { threshold: 0.5 });
+      oQr.observe(qr);
+    }
+    // Sección #ia entra al viewport (engagement de la sección)
+    const iaSection = document.getElementById('ia');
+    if (iaSection && 'IntersectionObserver' in window) {
+      const oIA = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if (e.isIntersecting) { track('ia_section_view', {}); oIA.unobserve(e.target); }
+        });
+      }, { threshold: 0.4 });
+      oIA.observe(iaSection);
+    }
+
+    // ─── CTA principal "Consultá tu operación" (hero + drawer + cualquier hero-btn) ───
+    document.querySelectorAll('a.btn-primary[href="#contacto"], a.btn-primary.hero-btn, a.drawer-link[href="#contacto"]').forEach(function(el){
+      el.addEventListener('click', function(){ track('cta_consultar_click', { source: elSource(el) }); });
+    });
+
+    // ─── Problem cards ───
+    document.querySelectorAll('.cf-card').forEach(function(el, i){
+      el.addEventListener('click', function(){ track('problem_card_click', { index: i + 1 }); });
+    });
+
+    // ─── Switch de idioma ───
+    document.querySelectorAll('.lang-item').forEach(function(el){
+      el.addEventListener('click', function(){
+        const to = el.getAttribute('data-lang');
+        if (to) track('language_switch', { to: to });
+      });
+    });
+
+    // ─── Form de contacto ───
+    const form = document.querySelector('.contact-form');
+    if (form) {
+      let started = false;
+      form.addEventListener('input', function(){
+        if (!started) { started = true; track('form_start', { form: 'contact' }); }
+      });
+      form.addEventListener('submit', function(){ track('form_submit', { form: 'contact' }); });
+    }
+
+    // ─── Footer legal links ───
+    document.querySelectorAll('.footer-legal-line a').forEach(function(el){
+      const href = el.getAttribute('href') || '';
+      const which = href.includes('condiciones') ? 'terms' : href.includes('privacidad') ? 'privacy' : null;
+      if (which) el.addEventListener('click', function(){ track('footer_legal_click', { which: which }); });
     });
   });
 })();
