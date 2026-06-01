@@ -4149,7 +4149,7 @@
     });
     // CTA grande del hero "Conocé toda la iniciativa hermes IA"
     document.querySelectorAll('.ia-hia-access').forEach(function(el){
-      el.addEventListener('click', function(){ track('cta_hermes_ia_full_click', { source: elSource(el) }); });
+      el.addEventListener('click', function(){ track('cta_hermes_ia_click', { source: elSource(el) }); });
     });
     // Visualización del QR farIAs (cuando llega al contact section)
     const qr = document.querySelector('img[alt*="farIAs"], img[alt*="farIA"]');
