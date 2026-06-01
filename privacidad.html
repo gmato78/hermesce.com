@@ -135,7 +135,7 @@
 
     /* Cookie banner — tarjeta flotante */
     .cookie-banner {
-      position: fixed; bottom: 24px; right: 24px; left: auto;
+      position: fixed; bottom: 24px; left: 50%;
       width: calc(100% - 48px);
       max-width: 420px;
       background: rgba(255,255,255,.98);
@@ -143,11 +143,11 @@
       border: 1px solid rgba(42,86,134,.16);
       border-radius: 14px;
       box-shadow: 0 16px 48px rgba(15,37,68,.18);
-      transform: translateY(140%);
+      transform: translate(-50%, 140%);
       transition: transform .42s cubic-bezier(.2,.7,.3,1);
       z-index: 100;
     }
-    .cookie-banner.visible { transform: translateY(0); }
+    .cookie-banner.visible { transform: translate(-50%, 0); }
     .cookie-banner-inner {
       padding: 20px 22px;
       display: flex; flex-direction: column; gap: 14px;
@@ -171,7 +171,7 @@
       .legal-wrap { padding: 36px 24px 56px; margin: 0 12px 56px; border-radius: 6px; }
       .legal-header { padding: 28px 18px 22px; }
       .legal-header .legal-logo { height: 38px; }
-      .cookie-banner { bottom: 12px; right: 12px; left: 12px; width: auto; max-width: none; }
+      .cookie-banner { bottom: 12px; width: calc(100% - 24px); }
       .cookie-banner-inner { padding: 16px 18px; }
     }
   </style>
