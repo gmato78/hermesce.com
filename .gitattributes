@@ -1,0 +1,6 @@
+# Forzar LF en los artefactos servidos a agentes para que el sha256 publicado
+# en el índice de skills matchee exactamente lo que sirve GitHub Pages.
+/.well-known/agent-skills/**/SKILL.md text eol=lf
+robots.txt text eol=lf
+sitemap.xml text eol=lf
+llms.txt text eol=lf

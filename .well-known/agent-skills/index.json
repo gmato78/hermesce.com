@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "consultar-operacion-comex",
+      "type": "skill-md",
+      "description": "Enviar una consulta a hermes CE sobre una operación de comercio exterior (importación o exportación). hermes CE responde en menos de 24 horas hábiles.",
+      "url": "https://hermesce.com/.well-known/agent-skills/consultar-operacion-comex/SKILL.md",
+      "digest": "sha256:ab780b4a3de1aabe45101688c13e811e57adb2e75fa4bf744cc05e640cee530b"
+    },
+    {
+      "name": "anotarse-lista-farias",
+      "type": "skill-md",
+      "description": "Anotarse en la lista de espera de farIAs, el asistente de clasificación arancelaria (NCM/SIM) de hermes IA. Beta cerrada.",
+      "url": "https://hermesce.com/.well-known/agent-skills/anotarse-lista-farias/SKILL.md",
+      "digest": "sha256:96ecaa4ebeb07a48975c661d977d861bd97d17e04a1e5d86cd52bda97a2cb8b5"
+    }
+  ]
+}
