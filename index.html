@@ -2246,6 +2246,7 @@
 </head>
 <body>
 
+<header>
 <!-- NAV HERO — transparente, sobre la foto -->
 <nav class="nav-hero">
 
@@ -2287,7 +2288,7 @@
       <source media="(max-width: 768px)" srcset="logo-hce-white.webp" type="image/webp">
       <source media="(max-width: 768px)" srcset="logo-hce-white.png">
       <source srcset="logo-full-white.webp" type="image/webp">
-      <img src="logo-full-white.png" alt="hermes CE — Comercio Exterior y despacho de aduana en Buenos Aires" class="nav-logo" fetchpriority="high" decoding="async">
+      <img src="logo-full-white.png" alt="hermes CE — Comercio Exterior y despacho de aduana en Buenos Aires" class="nav-logo" width="524" height="240" fetchpriority="high" decoding="async">
     </picture>
   </div>
 
@@ -2312,7 +2313,9 @@
   <a href="#nosotros" class="drawer-link" data-i18n="nav_historia">Nosotros</a>
   <a href="#contacto" class="drawer-link" data-i18n="contact_label">Contacto</a>
 </div>
+</header>
 
+<main>
 <!-- HERO — Gemini-style fixed/fade + video loop opcional -->
 <section class="hero">
 
@@ -2896,7 +2899,7 @@
     <div class="historia-foto reveal">
       <picture>
         <source srcset="hero-still-2.avif" type="image/avif">
-        <img src="hero-still-2.jpg" alt="Puerto de Buenos Aires — trayectoria hermes CE" loading="lazy" decoding="async">
+        <img src="hero-still-2.jpg" alt="Puerto de Buenos Aires — trayectoria hermes CE" width="1280" height="720" loading="lazy" decoding="async">
       </picture>
     </div>
     <div class="historia-grid">
@@ -2983,7 +2986,7 @@
   <div class="matias-split-img reveal">
     <picture>
       <source srcset="retrato-matias.avif" type="image/avif">
-      <img src="retrato-matias.jpg" alt="Matías González — Fundador, hermes CE" loading="lazy" decoding="async">
+      <img src="retrato-matias.jpg" alt="Matías González — Fundador, hermes CE" width="807" height="1022" loading="lazy" decoding="async">
     </picture>
     <a href="https://www.linkedin.com/in/matias-gonzalez-hce" target="_blank" rel="noopener" class="matias-linkedin">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77Z"/></svg>
@@ -3126,38 +3129,40 @@
           <span style="font-size:0.8rem;font-weight:600;color:rgba(255,255,255,0.5);letter-spacing:0.08em;" data-i18n="form_or">o</span>
           <div style="flex:1;height:1px;background:rgba(255,255,255,0.2);"></div>
         </div>
-        <img src="qr_contacto.png" alt="QR formulario de contacto">
+        <img src="qr_contacto.png" alt="QR formulario de contacto" width="200" height="200">
         <span data-i18n="contact_qr">Escaneá para contactarnos</span>
       </div>
     </div>
   </div>
 </section>
 
+</main>
+
 <!-- FOOTER -->
 <footer>
   <!-- Izquierda: Validador fiscal AFIP F960 -->
   <div class="footer-brand">
     <a href="https://qr.afip.gob.ar/?qr=r8HNf8P4K678t998kJj4EQ,," target="_F960AFIPInfo" rel="noopener" class="footer-afip" aria-label="Datos fiscales AFIP">
-      <img src="https://www.afip.gob.ar/images/f960/DATAWEB.jpg" alt="AFIP DATAWEB" loading="lazy">
+      <img src="https://www.afip.gob.ar/images/f960/DATAWEB.jpg" alt="AFIP DATAWEB" width="239" height="327" loading="lazy">
     </a>
   </div>
 
   <!-- Sitemap: links a secciones -->
   <nav class="footer-sitemap" aria-label="Navegación del sitio">
     <div class="footer-sitemap-title" data-i18n="footer_sitemap_title">Secciones</div>
-    <a href="#problema" data-i18n="nav_problema">El problema</a>
-    <a href="#servicios" data-i18n="nav_servicios">Qué hacemos</a>
-    <a href="#valores" data-i18n="nav_valores">Valores</a>
-    <a href="#nosotros" data-i18n="nav_historia">Nosotros</a>
-    <a href="#ia">hermes IA</a>
-    <a href="#contacto" data-i18n="contact_label">Contacto</a>
+    <a href="#problema" data-webmcp-nav="Casos reales de errores en comercio exterior que hermes CE previene" data-i18n="nav_problema">El problema</a>
+    <a href="#servicios" data-webmcp-nav="Servicios de hermes CE: despacho de aduana, clasificación, embarques, organismos, almacenamiento, DDP" data-i18n="nav_servicios">Qué hacemos</a>
+    <a href="#valores" data-webmcp-nav="Valores de marca de hermes CE" data-i18n="nav_valores">Valores</a>
+    <a href="#nosotros" data-webmcp-nav="Historia y trayectoria de hermes CE desde 1997" data-i18n="nav_historia">Nosotros</a>
+    <a href="#ia" data-webmcp-nav="hermes IA y farIAs: asistente de clasificación arancelaria NCM/SIM">hermes IA</a>
+    <a href="#contacto" data-webmcp-nav="Formulario de contacto para consultar una operación de comercio exterior" data-i18n="contact_label">Contacto</a>
   </nav>
 
   <!-- Centro: logo + info + email resaltado abajo -->
   <div class="footer-center">
     <picture>
       <source srcset="Logo%20ala%20transparente%20WHITE.webp" type="image/webp">
-      <img src="Logo%20ala%20transparente%20WHITE.png" alt="hermes CE — HCE de Argentina SRL" class="footer-logo-img" loading="lazy" decoding="async">
+      <img src="Logo%20ala%20transparente%20WHITE.png" alt="hermes CE — HCE de Argentina SRL" class="footer-logo-img" width="357" height="174" loading="lazy" decoding="async">
     </picture>
     <div class="footer-tagline">
       <span data-i18n="footer_legal">HCE de Argentina SRL</span>
@@ -3174,6 +3179,7 @@
     <div class="footer-map-embed">
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.0!2d-58.3748!3d-34.6118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccacc28a89f87%3A0x0!2sAv.%20Belgrano%20624%2C%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1"
+        title="Mapa — Av. Belgrano 624, CABA" width="200" height="110"
         allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
       </iframe>
     </div>
@@ -3836,7 +3842,7 @@
         <h3 style="font-size:1.6rem;font-weight:800;color:var(--white);margin-bottom:0.5rem;" data-i18n="farias_h3">¿Tiene sentido para tu operación?</h3>
         <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:2rem;line-height:1.6;" data-i18n="farias_sub">Estamos evaluando si el MVP de farIAs tiene valor real antes de invertir en la siguiente etapa. Tres preguntas, dos minutos.</p>
 
-        <form id="farias-form" action="https://forms.zohopublic.com/hermesce1/form/farIAsMVP/formperma/9U4Z4H0KZwvZG6TDz-jsgZe-LscPURiFFPsEBJ1PEwg/htmlRecords/submit" name="form" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" target="_blank" style="display:flex;flex-direction:column;gap:1.2rem;">
+        <form id="farias-form" data-toolname="anotarse_lista_farias" data-tooldescription="Anotarse en la lista de espera de farIAs, el asistente de clasificación arancelaria (posición NCM/SIM, tributos y restricciones) de hermes IA. Beta cerrada. Pide nombre y, opcionalmente, rol en comercio exterior, volumen de clasificaciones, interés de uso, rango de precio, email y sugerencias." action="https://forms.zohopublic.com/hermesce1/form/farIAsMVP/formperma/9U4Z4H0KZwvZG6TDz-jsgZe-LscPURiFFPsEBJ1PEwg/htmlRecords/submit" name="form" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" target="_blank" style="display:flex;flex-direction:column;gap:1.2rem;">
           <input type="hidden" name="zf_referrer_name" value="">
           <input type="hidden" name="zf_redirect_url" value="">
           <input type="hidden" name="zc_gad" value="">
@@ -3847,7 +3853,7 @@
 
           <div>
             <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;" data-i18n="farias_q1_label">¿Qué rol tenés en comercio exterior?</label>
-            <select name="Dropdown" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
+            <select name="Dropdown" aria-label="Rol en comercio exterior" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
               <option value="-Select-" selected data-i18n="farias_select_default">Seleccioná</option>
               <option value="Importador / Exportador Empresa importadora / Exportadora" data-i18n="farias_q1_opt1">Importador / Exportador</option>
               <option value="Despachante de aduana" data-i18n="farias_q1_opt2">Despachante de aduana</option>
@@ -3858,7 +3864,7 @@
 
           <div>
             <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;" data-i18n="farias_q2_label">¿Cuántas clasificaciones hacés por mes?</label>
-            <select name="Dropdown1" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
+            <select name="Dropdown1" aria-label="Clasificaciones por mes" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
               <option value="-Select-" selected data-i18n="farias_select_default">Seleccioná</option>
               <option value="Menos de 5" data-i18n="farias_q2_opt1">Menos de 5</option>
               <option value="Entre 5 y 20" data-i18n="farias_q2_opt2">Entre 5 y 20</option>
@@ -3869,7 +3875,7 @@
 
           <div>
             <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;" data-i18n="farias_q3_label">Si farIAs resuelve el 80% de tus clasificaciones, ¿lo usarías?</label>
-            <select name="Dropdown3" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
+            <select name="Dropdown3" aria-label="¿Usarías farIAs si resuelve el 80%?" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
               <option value="-Select-" selected data-i18n="farias_select_default">Seleccioná</option>
               <option value="Sí, todos los días" data-i18n="farias_q3_opt1">Sí, todos los días</option>
               <option value="Sí, como punto de partida" data-i18n="farias_q3_opt2">Sí, como punto de partida</option>
@@ -3880,7 +3886,7 @@
 
           <div>
             <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;" data-i18n="farias_q4_label">¿Qué pagarías por acceso mensual?</label>
-            <select name="Dropdown2" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
+            <select name="Dropdown2" aria-label="Precio por acceso mensual" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
               <option value="-Select-" selected data-i18n="farias_select_default">Seleccioná</option>
               <option value="Hasta USD 10/mes" data-i18n="farias_q4_opt1">Hasta USD 10/mes</option>
               <option value="Hasta USD 30/mes" data-i18n="farias_q4_opt2">Hasta USD 30/mes</option>
@@ -3919,7 +3925,7 @@
         <h3 style="font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:0.5rem;" data-i18n="contact_form_h3">Contanos en qué andás</h3>
         <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:2rem;line-height:1.6;" data-i18n="contact_form_sub">Contanos tu operación en 2 minutos y nos contactamos a la brevedad.</p>
 
-        <form id="contact-form" action="https://forms.zohopublic.com/hermesce1/form/Contactwithfeedback/formperma/jJ41GXBoVJLPTuFTkMagWLdTvp6FrEzD33wxrF7Bg_Q/htmlRecords/submit" name="form" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" target="_blank" style="display:flex;flex-direction:column;gap:1.2rem;">
+        <form id="contact-form" data-toolname="consultar_operacion_comex" data-tooldescription="Enviar una consulta a hermes CE sobre una operación de comercio exterior (importación o exportación). Pide nombre y apellido, email, y la descripción de la operación; teléfono, empresa y servicio buscado son opcionales. Genera un lead que hermes CE responde en menos de 24 horas hábiles." action="https://forms.zohopublic.com/hermesce1/form/Contactwithfeedback/formperma/jJ41GXBoVJLPTuFTkMagWLdTvp6FrEzD33wxrF7Bg_Q/htmlRecords/submit" name="form" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" target="_blank" style="display:flex;flex-direction:column;gap:1.2rem;">
           <input type="hidden" name="zf_referrer_name" value="">
           <input type="hidden" name="zf_redirect_url" value="">
           <input type="hidden" name="zc_gad" value="">
@@ -3947,7 +3953,7 @@
 
           <div>
             <label style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:600;display:block;margin-bottom:0.5rem;" data-i18n="form_service_label">¿Qué servicio buscás?</label>
-            <select name="Dropdown" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
+            <select name="Dropdown" aria-label="Servicio que buscás" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;">
               <option value="" disabled selected data-i18n="form_service_default">Seleccioná una opción</option>
               <option value="Despacho de Aduana" data-i18n="form_svc1">01 · Despacho de Aduana</option>
               <option value="Clasificación Arancelaria" data-i18n="form_svc2">02 · Clasificación Arancelaria</option>
@@ -4213,6 +4219,78 @@
       const which = href.includes('condiciones') ? 'terms' : href.includes('privacidad') ? 'privacy' : null;
       if (which) el.addEventListener('click', function(){ track('footer_legal_click', { which: which }); });
     });
+  });
+})();
+</script>
+
+<!-- WebMCP — registro imperativo de tools (feature-detected; no-op en browsers sin agente) -->
+<script>
+(function(){
+  // navigator.modelContext es la API propuesta de WebMCP; solo existe en browsers/agentes que la soportan.
+  var ctx = navigator.modelContext;
+  if (!ctx || typeof ctx.registerTool !== 'function') return;
+
+  function fillAndSubmit(formId, values){
+    var form = document.getElementById(formId);
+    if (!form) return { ok:false, error:'form_no_encontrado' };
+    Object.keys(values).forEach(function(name){
+      var field = form.elements[name];
+      if (field != null && values[name] != null) field.value = values[name];
+    });
+    if (typeof form.requestSubmit === 'function') form.requestSubmit();
+    else form.submit();
+    return { ok:true };
+  }
+
+  function result(text){ return { content: [{ type:'text', text: text }] }; }
+
+  ctx.registerTool({
+    name: 'consultar_operacion_comex',
+    description: 'Enviar una consulta a hermes CE sobre una operación de comercio exterior (importación o exportación). hermes CE responde en menos de 24 horas hábiles.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        nombre:   { type:'string', description:'Nombre y apellido de quien consulta' },
+        email:    { type:'string', description:'Email de contacto' },
+        detalle:  { type:'string', description:'Descripción de la operación: qué se importa/exporta, origen, frecuencia o etapa' },
+        empresa:  { type:'string', description:'Empresa (opcional)' },
+        telefono: { type:'string', description:'Teléfono o celular (opcional)' },
+        servicio: { type:'string', description:'Servicio buscado (opcional): Despacho de Aduana, Clasificación Arancelaria, Coordinación de Embarques, Intervención de Organismos, Almacenamiento, DDP Puerta a Puerta, Trade Llave en Mano' }
+      },
+      required: ['nombre','email','detalle']
+    },
+    execute: function(args){
+      var a = args || {};
+      var r = fillAndSubmit('contact-form', {
+        Name_First: a.nombre, Email: a.email, MultiLine: a.detalle,
+        SingleLine: a.empresa, PhoneNumber_countrycode: a.telefono, Dropdown: a.servicio
+      });
+      return result(r.ok ? 'Consulta enviada a hermes CE.' : ('No se pudo enviar: ' + r.error));
+    }
+  });
+
+  ctx.registerTool({
+    name: 'anotarse_lista_farias',
+    description: 'Anotarse en la lista de espera de farIAs, el asistente de clasificación arancelaria (NCM/SIM) de hermes IA. Beta cerrada.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        nombre:      { type:'string', description:'Nombre' },
+        apellido:    { type:'string', description:'Apellido (opcional)' },
+        email:       { type:'string', description:'Email de contacto (opcional)' },
+        rol:         { type:'string', description:'Rol en comercio exterior (opcional): Importador / Exportador, Despachante de aduana, Freight forwarder, Otro' },
+        comentarios: { type:'string', description:'Sugerencias, casos de uso o dudas (opcional)' }
+      },
+      required: ['nombre']
+    },
+    execute: function(args){
+      var a = args || {};
+      var r = fillAndSubmit('farias-form', {
+        Name1_First: a.nombre, Name1_Last: a.apellido, Email: a.email,
+        Dropdown: a.rol, MultiLine: a.comentarios
+      });
+      return result(r.ok ? 'Anotado en la lista de farIAs.' : ('No se pudo anotar: ' + r.error));
+    }
   });
 })();
 </script>

@@ -1,0 +1,31 @@
+# hermes CE
+
+> Empresa de comercio exterior especializada en despacho de aduana, con base en Buenos Aires, Argentina. Operaciones personales desde 1997. Razón social: HCE de Argentina SRL.
+
+hermes CE acompaña a importadores, exportadores y agentes de cargas en sus operaciones de comercio exterior. El eje del servicio es el despacho de aduana; alrededor de él se ofrecen clasificación arancelaria, coordinación de embarques, intervención de terceros organismos (ANMAT, SENASA, INAL), almacenamiento y modalidad DDP puerta a puerta.
+
+El diferencial es técnico y operativo: experiencia, criterio y precisión en cada despacho. Trayectoria verificable de más de 29 años, +5.200 despachos liberados y +50.000 artículos clasificados.
+
+## Servicios
+- Despacho de aduana — eje central del servicio
+- Clasificación arancelaria
+- Coordinación de embarques
+- Intervención de terceros organismos
+- Almacenamiento
+- DDP — puerta a puerta
+- Trade llave en mano (para quienes operan sin estructura local)
+
+## Páginas
+- [Inicio](https://hermesce.com/): qué hace hermes CE, el problema real del comex y cómo se resuelve
+- [hermes IA](https://hermesce.com/ia): capa de asistentes internos en desarrollo (acceso anticipado por lista de espera)
+- [Condiciones de uso](https://hermesce.com/condiciones)
+- [Política de privacidad](https://hermesce.com/privacidad)
+
+## Contacto
+- Web: https://hermesce.com
+- Dirección: Av. Belgrano 624, Piso 6 Of. 2, Ciudad Autónoma de Buenos Aires, Argentina
+- LinkedIn: https://www.linkedin.com/company/16206788
+
+## Notas
+- hermes IA y sus asistentes (incluido farIAs, herramienta interna de clasificación en beta cerrada) son una capa en desarrollo. La disponibilidad pública se anuncia solo cuando hay producto construido.
+- El despacho de aduana es trabajo humano en horario hábil; la operación fuera de horario corresponde solo a las herramientas de hermes IA.
