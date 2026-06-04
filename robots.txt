@@ -1,0 +1,58 @@
+# robots.txt — hermesce.com
+# hermes CE · empresa de comercio exterior especializada en despacho de aduana
+
+# ── Regla general: indexación abierta ──
+User-agent: *
+# Content Signals (contentsignals.org / IETF draft)
+# search=yes  → aparecer en búsqueda e índices IA
+# ai-input=yes → permitir usar el contenido para responder consultas
+# ai-train=no  → no autorizar uso para entrenar modelos
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+
+# ── Agentes de búsqueda / respuesta IA: permitidos (visibilidad en respuestas) ──
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# ── Crawlers de entrenamiento de modelos: bloqueados (sin donar contenido a training) ──
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# Sitemap
+Sitemap: https://hermesce.com/sitemap.xml
