@@ -375,6 +375,18 @@
     // ── Eventos GA ──
     var wlForm = document.getElementById('waitlist-form');
     if (wlForm) wlForm.addEventListener('submit', function() { gtag('event', 'waitlist_submit', { page: 'ia' }); });
+    // ── Honeypot anti-bot (waitlist a Zoho · complementa el CAPTCHA de Zoho) ──
+    if (wlForm) {
+      var hpw = document.createElement('input');
+      hpw.type = 'text'; hpw.name = 'website'; hpw.tabIndex = -1; hpw.autocomplete = 'off';
+      hpw.setAttribute('aria-hidden', 'true');
+      hpw.style.cssText = 'position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;';
+      wlForm.insertBefore(hpw, wlForm.firstChild);
+      wlForm.addEventListener('submit', function (e) {
+        if (hpw.value.trim() !== '') { e.preventDefault(); e.stopImmediatePropagation(); return; }
+        hpw.disabled = true;
+      }, true);
+    }
     var tryLink = document.getElementById('farias-try');
     if (tryLink) tryLink.addEventListener('click', function() { gtag('event', 'farias_try_click', { page: 'ia' }); });
     var backLink = document.getElementById('ia-back');

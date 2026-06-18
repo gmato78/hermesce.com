@@ -3570,6 +3570,25 @@
     });
   }
 
+  // ── Honeypot anti-bot (forms a Zoho · complementa el CAPTCHA de Zoho) ──
+  // Campo trampa oculto: el humano no lo ve; un bot que renderiza la página lo llena.
+  // Si viene lleno → se cancela el envío (no postea a Zoho). Si está vacío → se
+  // deshabilita para no mandarlo. No frena bots que postean directo a Zoho (eso es el
+  // CAPTCHA/spam-filter de Zoho), sí los que completan el formulario.
+  ['contact-form', 'farias-form'].forEach(function (id) {
+    var f = document.getElementById(id);
+    if (!f) return;
+    var hp = document.createElement('input');
+    hp.type = 'text'; hp.name = 'website'; hp.tabIndex = -1; hp.autocomplete = 'off';
+    hp.setAttribute('aria-hidden', 'true');
+    hp.style.cssText = 'position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;';
+    f.insertBefore(hp, f.firstChild);
+    f.addEventListener('submit', function (e) {
+      if (hp.value.trim() !== '') { e.preventDefault(); e.stopImmediatePropagation(); return; }
+      hp.disabled = true;
+    }, true);
+  });
+
   // ── Tapiz de las grillas Problema/Servicios: respeto a prefers-reduced-motion ──
   // (Las grillas son CSS puro — hover/focus-within. Acá sólo congelamos las
   //  animaciones SMIL en un frame representativo si el usuario pide menos movimiento.)
