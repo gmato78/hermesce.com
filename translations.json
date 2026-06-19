@@ -413,12 +413,12 @@
     "terms_s10_title": "10. Contacto",
     "terms_s10_body": "Para consultas sobre estas condiciones, escribinos a <a href=\"mailto:info@hermesce.com\">info@hermesce.com</a>.",
     "track_label": "SEGUIMIENTO",
-    "track_h2": "Seguí tu operación en curso.",
-    "track_desc": "Estado en tiempo real por despacho (DI/PE), o por número de operación con el CUIT.",
+    "track_h2": "Seguí tu embarque.",
+    "track_desc": "Estado actualizado por despacho (DI/PE), o por número de operación con el CUIT.",
     "track_ph_dipe": "DI / PE",
     "track_ph_op": "Nº de operación",
     "track_ph_cuit": "CUIT",
-    "track_cta": "Seguir operación",
+    "track_cta": "Seguir embarque",
     "nav_seguimiento": "Seguimiento"
   },
   "en": {
@@ -835,12 +835,12 @@
     "terms_s10_title": "10. Contact",
     "terms_s10_body": "For questions about these terms, write to <a href=\"mailto:info@hermesce.com\">info@hermesce.com</a>.",
     "track_label": "TRACKING",
-    "track_h2": "Track your shipment in progress.",
-    "track_desc": "Real-time status by customs entry (DI/PE), or by operation number with the CUIT.",
+    "track_h2": "Track your shipment.",
+    "track_desc": "Updated status by customs entry (DI/PE), or by operation number with the CUIT.",
     "track_ph_dipe": "DI / PE",
     "track_ph_op": "Operation no.",
     "track_ph_cuit": "CUIT",
-    "track_cta": "Track operation",
+    "track_cta": "Track shipment",
     "nav_seguimiento": "Tracking"
   },
   "zh-CN": {
@@ -1157,12 +1157,12 @@
     "ecp_c_line": "手册无法解决的部分。",
     "ecp_p_line": "在海关，没有第二次机会。",
     "track_label": "货物追踪",
-    "track_h2": "追踪进行中的操作。",
-    "track_desc": "通过报关单（DI/PE）或操作号与CUIT实时查询状态。",
+    "track_h2": "追踪您的货物。",
+    "track_desc": "通过报关单（DI/PE）或操作号与CUIT查询最新状态。",
     "track_ph_dipe": "DI / PE",
     "track_ph_op": "操作号",
     "track_ph_cuit": "CUIT",
-    "track_cta": "查询操作",
+    "track_cta": "追踪货物",
     "nav_seguimiento": "追踪"
   },
   "de": {
@@ -1579,12 +1579,12 @@
     "terms_s10_title": "10. Kontakt",
     "terms_s10_body": "Bei Fragen zu diesen Bedingungen schreiben Sie an <a href=\"mailto:info@hermesce.com\">info@hermesce.com</a>.",
     "track_label": "SENDUNGSVERFOLGUNG",
-    "track_h2": "Laufende Operation verfolgen.",
-    "track_desc": "Echtzeitstatus per Zollanmeldung (DI/PE) oder per Operationsnummer mit CUIT.",
+    "track_h2": "Deine Sendung verfolgen.",
+    "track_desc": "Aktueller Status per Zollanmeldung (DI/PE) oder per Operationsnummer mit CUIT.",
     "track_ph_dipe": "DI / PE",
     "track_ph_op": "Operationsnr.",
     "track_ph_cuit": "CUIT",
-    "track_cta": "Operation verfolgen",
+    "track_cta": "Sendung verfolgen",
     "nav_seguimiento": "Sendungsverfolgung"
   },
   "fr": {
@@ -2001,12 +2001,12 @@
     "terms_s10_title": "10. Contact",
     "terms_s10_body": "Pour toute question concernant ces conditions, écrivez à <a href=\"mailto:info@hermesce.com\">info@hermesce.com</a>.",
     "track_label": "SUIVI",
-    "track_h2": "Suivez votre opération en cours.",
-    "track_desc": "Statut en temps réel par déclaration (DI/PE) ou par numéro d'opération avec le CUIT.",
+    "track_h2": "Suivez votre envoi.",
+    "track_desc": "Statut à jour par déclaration (DI/PE) ou par numéro d'opération avec le CUIT.",
     "track_ph_dipe": "DI / PE",
     "track_ph_op": "N° d'opération",
     "track_ph_cuit": "CUIT",
-    "track_cta": "Suivre l'opération",
+    "track_cta": "Suivre l'envoi",
     "nav_seguimiento": "Suivi"
   },
   "pt": {
@@ -2423,12 +2423,12 @@
     "terms_s10_title": "10. Contato",
     "terms_s10_body": "Para consultas sobre estas condições, escreva para <a href=\"mailto:info@hermesce.com\">info@hermesce.com</a>.",
     "track_label": "RASTREAMENTO",
-    "track_h2": "Acompanhe sua operação em andamento.",
-    "track_desc": "Status em tempo real por despacho (DI/PE) ou por número de operação com o CUIT.",
+    "track_h2": "Acompanhe seu embarque.",
+    "track_desc": "Status atualizado por despacho (DI/PE) ou por número de operação com o CUIT.",
     "track_ph_dipe": "DI / PE",
     "track_ph_op": "Nº de operação",
     "track_ph_cuit": "CUIT",
-    "track_cta": "Rastrear operação",
+    "track_cta": "Rastrear embarque",
     "nav_seguimiento": "Rastreamento"
   }
 }
