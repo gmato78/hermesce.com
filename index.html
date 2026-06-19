@@ -1026,6 +1026,21 @@
       white-space: nowrap;
     }
     .track-btn:hover { background: var(--brand-zafiro-light); transform: translateY(-2px); }
+    .track-cuit {
+      margin-top: 0.9rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(42,86,134,0.12);
+      animation: trackCuitIn 0.22s ease;
+    }
+    @keyframes trackCuitIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+    .track-cuit-label {
+      display: block;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      color: var(--brand-zafiro);
+      margin-bottom: 0.5rem;
+    }
+    .track-cuit .track-input { width: 100%; flex-basis: 100%; }
     .track-hint {
       margin-top: 0.65rem;
       font-size: 0.78rem;
@@ -1035,7 +1050,6 @@
     }
     @media (max-width: 768px) {
       .track-row { flex-wrap: wrap; gap: 0.55rem; }
-      .track-sep { display: none; }
       .track-input { flex-basis: 100%; min-width: 100%; }
       .track-btn { flex-basis: 100%; text-align: center; }
     }
@@ -3187,14 +3201,15 @@
   <div class="container">
     <p class="section-label reveal" data-i18n="track_label">SEGUIMIENTO</p>
     <h2 class="section-title reveal" data-i18n="track_h2">Seguí tu operación en curso.</h2>
-    <p class="section-desc reveal" data-i18n="track_desc">Estado en tiempo real por despacho (DI/PE), o por número de operación con el CUIT.</p>
+    <p class="section-desc reveal" data-i18n="track_desc">Estado actualizado, paso a paso.</p>
     <div class="track-box reveal">
       <div class="track-row">
-        <input id="track-dipe" type="text" class="track-input" data-i18n="track_ph_dipe" placeholder="DI / PE" autocomplete="off" spellcheck="false">
-        <span class="track-sep" data-i18n="form_or">o</span>
-        <input id="track-op" type="text" class="track-input" data-i18n="track_ph_op" placeholder="Nº de operación" autocomplete="off" spellcheck="false">
-        <input id="track-cuit" type="text" class="track-input" data-i18n="track_ph_cuit" placeholder="CUIT" autocomplete="off" spellcheck="false">
-        <button class="track-btn" onclick="irAlTrack()" data-i18n="track_cta">Seguir operación</button>
+        <input id="track-q" type="text" class="track-input" data-i18n="track_ph_q" placeholder="Nº de Operación, Despacho o Permiso" autocomplete="off" spellcheck="false" oninput="trackQInput()">
+        <button class="track-btn" onclick="irAlTrack()" data-i18n="track_cta">Seguir embarque</button>
+      </div>
+      <div class="track-cuit" id="track-cuit-step" hidden>
+        <label class="track-cuit-label" for="track-cuit" data-i18n="track_cuit_label">Para esta operación, ingresá el CUIT</label>
+        <input id="track-cuit" type="text" class="track-input" data-i18n="track_ph_cuit" placeholder="CUIT (con o sin guiones)" autocomplete="off" spellcheck="false">
       </div>
       <div class="track-hint" id="track-hint"></div>
     </div>
@@ -3241,7 +3256,7 @@
     <a href="#valores" data-webmcp-nav data-toolname="ver_valores" data-tooldescription="Valores de marca de hermes CE" data-toolhref="https://hermesce.com/#valores" data-i18n="nav_valores">Valores</a>
     <a href="#nosotros" data-webmcp-nav data-toolname="ver_historia" data-tooldescription="Historia y trayectoria de hermes CE desde 1997" data-toolhref="https://hermesce.com/#nosotros" data-i18n="nav_historia">Nosotros</a>
     <a href="#ia" data-webmcp-nav data-toolname="ver_hermes_ia" data-tooldescription="hermes IA y farIAs: asistente de clasificación arancelaria NCM/SIM" data-toolhref="https://hermesce.com/#ia">hermes IA</a>
-    <a href="#seguimiento" data-webmcp-nav data-toolname="seguir_operacion" data-tooldescription="Seguí el estado de una operación en curso por DI/PE o número de operación con CUIT" data-toolhref="https://hermesce.com/#seguimiento" data-i18n="nav_seguimiento">Seguimiento</a>
+    <a href="#seguimiento" data-webmcp-nav data-toolname="seguir_operacion" data-tooldescription="Seguí el estado de un embarque en curso por número de operación, despacho o permiso" data-toolhref="https://hermesce.com/#seguimiento" data-i18n="nav_seguimiento">Seguimiento</a>
     <a href="#contacto" data-webmcp-nav data-toolname="ir_a_contacto" data-tooldescription="Formulario de contacto para consultar una operación de comercio exterior" data-toolhref="https://hermesce.com/#contacto" data-i18n="contact_label">Contacto</a>
   </nav>
 
@@ -3307,22 +3322,37 @@
   });
 
   // ── Seguimiento → track.hermesce.com ──
-  function irAlTrack() {
-    var dipe = (document.getElementById('track-dipe').value || '').trim();
-    var op   = (document.getElementById('track-op').value   || '').trim();
-    var cuit = (document.getElementById('track-cuit').value || '').trim();
-    var hint = document.getElementById('track-hint');
-    if (hint) hint.textContent = '';
-    var url;
-    if (dipe) {
-      url = 'https://track.hermesce.com/?dipe=' + encodeURIComponent(dipe);
-    } else if (op && cuit) {
-      url = 'https://track.hermesce.com/?op=' + encodeURIComponent(op) + '&cuit=' + encodeURIComponent(cuit);
-    } else {
-      if (hint) hint.textContent = op || cuit ? '↑ Completá ambos campos para buscar por operación.' : '↑ Ingresá el DI/PE, o el número de operación y el CUIT.';
-      return;
+  // Una sola barra. Un Nº de operación (solo dígitos 4-6) pide el CUIT en un 2º paso;
+  // un despacho/permiso (trae letras) va directo. El gate real lo hace el track.
+  var trackCuitMode = false;
+  function trackEsOp(v) { return /^\d{4,6}$/.test(v); }
+  function trackQInput() {
+    var q = (document.getElementById('track-q').value || '').trim();
+    if (trackCuitMode && !trackEsOp(q)) {
+      document.getElementById('track-cuit-step').hidden = true;
+      trackCuitMode = false;
     }
-    window.location.href = url;
+  }
+  function irAlTrack() {
+    var q    = (document.getElementById('track-q').value || '').trim();
+    var hint = document.getElementById('track-hint');
+    var step = document.getElementById('track-cuit-step');
+    if (hint) hint.textContent = '';
+    if (!q) { if (hint) hint.textContent = '↑ Ingresá tu número de operación, despacho o permiso.'; return; }
+    if (trackEsOp(q)) {
+      if (!trackCuitMode) {
+        if (step) step.hidden = false;
+        trackCuitMode = true;
+        var ci = document.getElementById('track-cuit'); if (ci) ci.focus();
+        return;
+      }
+      var cuit = (document.getElementById('track-cuit').value || '').trim();
+      if (!cuit) { if (hint) hint.textContent = '↑ Ingresá el CUIT de la operación.'; return; }
+      window.location.href = 'https://track.hermesce.com/?op=' + encodeURIComponent(q) + '&cuit=' + encodeURIComponent(cuit);
+    } else {
+      if (trackCuitMode && step) { step.hidden = true; trackCuitMode = false; }
+      window.location.href = 'https://track.hermesce.com/?dipe=' + encodeURIComponent(q);
+    }
   }
 
   // ── Función global modal Contacto ──
