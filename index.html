@@ -978,6 +978,68 @@
     .contact-alt-qr img { width: 160px; height: 160px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); }
     .contact-alt-qr span { font-size: 0.78rem; color: rgba(255,255,255,0.55); text-align: center; }
 
+    /* ─── TRACK BOX — sección Seguimiento ─── */
+    #seguimiento .section-label { color: var(--brand-zafiro); }
+    #seguimiento .section-title { color: var(--brand-text); }
+    #seguimiento .section-desc { color: rgba(15,37,68,.74); }
+    .track-box { margin-top: 2.8rem; }
+    .track-row {
+      display: flex; align-items: center; gap: 0.75rem;
+      flex-wrap: nowrap;
+    }
+    .track-input {
+      flex: 1 1 0;
+      min-width: 0;
+      background: #fff;
+      border: 1.5px solid rgba(42,86,134,0.22);
+      border-radius: 8px;
+      padding: 0.72rem 1rem;
+      color: var(--brand-text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .track-input:focus {
+      border-color: var(--brand-zafiro);
+      box-shadow: 0 0 0 3px rgba(42,86,134,0.12);
+    }
+    .track-sep {
+      flex-shrink: 0;
+      font-size: 0.78rem; font-weight: 600;
+      color: rgba(15,37,68,.42);
+      letter-spacing: 0.08em;
+      padding: 0 0.1rem;
+    }
+    .track-btn {
+      flex-shrink: 0;
+      background: var(--brand-zafiro);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.72rem 1.6rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .track-btn:hover { background: var(--brand-zafiro-light); transform: translateY(-2px); }
+    .track-hint {
+      margin-top: 0.65rem;
+      font-size: 0.78rem;
+      color: var(--brand-htb);
+      min-height: 1.2em;
+      letter-spacing: 0.01em;
+    }
+    @media (max-width: 768px) {
+      .track-row { flex-wrap: wrap; gap: 0.55rem; }
+      .track-sep { display: none; }
+      .track-input { flex-basis: 100%; min-width: 100%; }
+      .track-btn { flex-basis: 100%; text-align: center; }
+    }
+
     /* ─── FOOTER ─── */
     footer { border-top: 1px solid rgba(255,255,255,0.08); padding: 2.4rem 3rem; display: grid; grid-template-columns: auto auto 1fr auto; align-items: center; gap: 2.4rem; background: var(--bg); }
     .footer-brand { display: flex; align-items: center; justify-content: flex-start; justify-self: start; }
@@ -1271,6 +1333,9 @@
     #nosotros .historia-item p::after {
       background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #ffffff 100%);
     }
+
+    /* Seguimiento — panel blanco */
+    #seguimiento.panel { background: #ffffff; }
 
     /* IA — panel blanco */
     #ia.panel { background: #ffffff; }
@@ -2298,6 +2363,7 @@
       <li><a href="#problema" data-i18n="nav_problema">El problema</a></li>
       <li><a href="#servicios" data-i18n="nav_servicios">Qué hacemos</a></li>
       <li><a href="#ia">hermes IA</a></li>
+      <li><a href="#seguimiento" data-i18n="nav_seguimiento">Seguimiento</a></li>
     </ul>
   </div>
 
@@ -2311,6 +2377,7 @@
   <div class="drawer-divider"></div>
   <a href="#valores" class="drawer-link" data-i18n="nav_valores">Valores</a>
   <a href="#nosotros" class="drawer-link" data-i18n="nav_historia">Nosotros</a>
+  <a href="#seguimiento" class="drawer-link" data-i18n="nav_seguimiento">Seguimiento</a>
   <a href="#contacto" class="drawer-link" data-i18n="contact_label">Contacto</a>
 </div>
 </header>
@@ -3115,6 +3182,25 @@
   </div>
 </section>
 
+<!-- SEGUIMIENTO -->
+<section id="seguimiento" class="panel">
+  <div class="container">
+    <p class="section-label reveal" data-i18n="track_label">SEGUIMIENTO</p>
+    <h2 class="section-title reveal" data-i18n="track_h2">Seguí tu operación en curso.</h2>
+    <p class="section-desc reveal" data-i18n="track_desc">Estado en tiempo real por despacho (DI/PE), o por número de operación con el CUIT.</p>
+    <div class="track-box reveal">
+      <div class="track-row">
+        <input id="track-dipe" type="text" class="track-input" data-i18n="track_ph_dipe" placeholder="DI / PE" autocomplete="off" spellcheck="false">
+        <span class="track-sep" data-i18n="form_or">o</span>
+        <input id="track-op" type="text" class="track-input" data-i18n="track_ph_op" placeholder="Nº de operación" autocomplete="off" spellcheck="false">
+        <input id="track-cuit" type="text" class="track-input" data-i18n="track_ph_cuit" placeholder="CUIT" autocomplete="off" spellcheck="false">
+        <button class="track-btn" onclick="irAlTrack()" data-i18n="track_cta">Seguir operación</button>
+      </div>
+      <div class="track-hint" id="track-hint"></div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contacto" class="contact-section panel-cta">
   <div class="contact-inner">
@@ -3155,6 +3241,7 @@
     <a href="#valores" data-webmcp-nav data-toolname="ver_valores" data-tooldescription="Valores de marca de hermes CE" data-toolhref="https://hermesce.com/#valores" data-i18n="nav_valores">Valores</a>
     <a href="#nosotros" data-webmcp-nav data-toolname="ver_historia" data-tooldescription="Historia y trayectoria de hermes CE desde 1997" data-toolhref="https://hermesce.com/#nosotros" data-i18n="nav_historia">Nosotros</a>
     <a href="#ia" data-webmcp-nav data-toolname="ver_hermes_ia" data-tooldescription="hermes IA y farIAs: asistente de clasificación arancelaria NCM/SIM" data-toolhref="https://hermesce.com/#ia">hermes IA</a>
+    <a href="#seguimiento" data-webmcp-nav data-toolname="seguir_operacion" data-tooldescription="Seguí el estado de una operación en curso por DI/PE o número de operación con CUIT" data-toolhref="https://hermesce.com/#seguimiento" data-i18n="nav_seguimiento">Seguimiento</a>
     <a href="#contacto" data-webmcp-nav data-toolname="ir_a_contacto" data-tooldescription="Formulario de contacto para consultar una operación de comercio exterior" data-toolhref="https://hermesce.com/#contacto" data-i18n="contact_label">Contacto</a>
   </nav>
 
@@ -3218,6 +3305,25 @@
       document.body.style.overflow = '';
     });
   });
+
+  // ── Seguimiento → track.hermesce.com ──
+  function irAlTrack() {
+    var dipe = (document.getElementById('track-dipe').value || '').trim();
+    var op   = (document.getElementById('track-op').value   || '').trim();
+    var cuit = (document.getElementById('track-cuit').value || '').trim();
+    var hint = document.getElementById('track-hint');
+    if (hint) hint.textContent = '';
+    var url;
+    if (dipe) {
+      url = 'https://track.hermesce.com/?dipe=' + encodeURIComponent(dipe);
+    } else if (op && cuit) {
+      url = 'https://track.hermesce.com/?op=' + encodeURIComponent(op) + '&cuit=' + encodeURIComponent(cuit);
+    } else {
+      if (hint) hint.textContent = op || cuit ? '↑ Completá ambos campos para buscar por operación.' : '↑ Ingresá el DI/PE, o el número de operación y el CUIT.';
+      return;
+    }
+    window.location.href = url;
+  }
 
   // ── Función global modal Contacto ──
   function abrirContacto() {

@@ -411,7 +411,15 @@
     "terms_s9_title": "9. Jurisdicción y ley aplicable",
     "terms_s9_body": "Estos términos se rigen por las leyes de la República Argentina. Cualquier controversia derivada del uso del sitio se someterá a los tribunales ordinarios competentes con sede en la Ciudad Autónoma de Buenos Aires, renunciando las partes a cualquier otro fuero o jurisdicción que pudiera corresponder.",
     "terms_s10_title": "10. Contacto",
-    "terms_s10_body": "Para consultas sobre estas condiciones, escribinos a <a href=\"mailto:info@hermesce.com\">info@hermesce.com</a>."
+    "terms_s10_body": "Para consultas sobre estas condiciones, escribinos a <a href=\"mailto:info@hermesce.com\">info@hermesce.com</a>.",
+    "track_label": "SEGUIMIENTO",
+    "track_h2": "Seguí tu operación en curso.",
+    "track_desc": "Estado en tiempo real por despacho (DI/PE), o por número de operación con el CUIT.",
+    "track_ph_dipe": "DI / PE",
+    "track_ph_op": "Nº de operación",
+    "track_ph_cuit": "CUIT",
+    "track_cta": "Seguir operación",
+    "nav_seguimiento": "Seguimiento"
   },
   "en": {
     "nav_valores": "Values",
@@ -825,7 +833,15 @@
     "terms_s9_title": "9. Jurisdiction and applicable law",
     "terms_s9_body": "These terms are governed by the laws of the Argentine Republic. Any controversy arising from the use of the site shall be submitted to the competent ordinary courts located in the Autonomous City of Buenos Aires, the parties waiving any other forum or jurisdiction that may apply.",
     "terms_s10_title": "10. Contact",
-    "terms_s10_body": "For questions about these terms, write to <a href=\"mailto:info@hermesce.com\">info@hermesce.com</a>."
+    "terms_s10_body": "For questions about these terms, write to <a href=\"mailto:info@hermesce.com\">info@hermesce.com</a>.",
+    "track_label": "TRACKING",
+    "track_h2": "Track your shipment in progress.",
+    "track_desc": "Real-time status by customs entry (DI/PE), or by operation number with the CUIT.",
+    "track_ph_dipe": "DI / PE",
+    "track_ph_op": "Operation no.",
+    "track_ph_cuit": "CUIT",
+    "track_cta": "Track operation",
+    "nav_seguimiento": "Tracking"
   },
   "zh-CN": {
     "nav_valores": "价值观",
@@ -1139,7 +1155,15 @@
     "svc_turnkey_lead": "端到端：从单票货到完整项目。一个签约方。",
     "ecp_e_line": "始于1997年。艰难的决定，早已做过。",
     "ecp_c_line": "手册无法解决的部分。",
-    "ecp_p_line": "在海关，没有第二次机会。"
+    "ecp_p_line": "在海关，没有第二次机会。",
+    "track_label": "货物追踪",
+    "track_h2": "追踪进行中的操作。",
+    "track_desc": "通过报关单（DI/PE）或操作号与CUIT实时查询状态。",
+    "track_ph_dipe": "DI / PE",
+    "track_ph_op": "操作号",
+    "track_ph_cuit": "CUIT",
+    "track_cta": "查询操作",
+    "nav_seguimiento": "追踪"
   },
   "de": {
     "nav_valores": "Werte",
@@ -1553,7 +1577,15 @@
     "terms_s9_title": "9. Gerichtsstand und anwendbares Recht",
     "terms_s9_body": "Diese Bedingungen unterliegen den Gesetzen der Argentinischen Republik. Jeglicher Streit, der sich aus der Nutzung der Website ergibt, wird den zuständigen ordentlichen Gerichten mit Sitz in der Autonomen Stadt Buenos Aires unterstellt, wobei die Parteien auf jeden anderen Gerichtsstand verzichten, der gelten könnte.",
     "terms_s10_title": "10. Kontakt",
-    "terms_s10_body": "Bei Fragen zu diesen Bedingungen schreiben Sie an <a href=\"mailto:info@hermesce.com\">info@hermesce.com</a>."
+    "terms_s10_body": "Bei Fragen zu diesen Bedingungen schreiben Sie an <a href=\"mailto:info@hermesce.com\">info@hermesce.com</a>.",
+    "track_label": "SENDUNGSVERFOLGUNG",
+    "track_h2": "Laufende Operation verfolgen.",
+    "track_desc": "Echtzeitstatus per Zollanmeldung (DI/PE) oder per Operationsnummer mit CUIT.",
+    "track_ph_dipe": "DI / PE",
+    "track_ph_op": "Operationsnr.",
+    "track_ph_cuit": "CUIT",
+    "track_cta": "Operation verfolgen",
+    "nav_seguimiento": "Sendungsverfolgung"
   },
   "fr": {
     "nav_valores": "Valeurs",
@@ -1967,7 +1999,15 @@
     "terms_s9_title": "9. Juridiction et loi applicable",
     "terms_s9_body": "Ces conditions sont régies par les lois de la République argentine. Tout litige découlant de l'utilisation du site sera soumis aux tribunaux ordinaires compétents siégeant dans la Ville Autonome de Buenos Aires, les parties renonçant à tout autre for ou juridiction pouvant s'appliquer.",
     "terms_s10_title": "10. Contact",
-    "terms_s10_body": "Pour toute question concernant ces conditions, écrivez à <a href=\"mailto:info@hermesce.com\">info@hermesce.com</a>."
+    "terms_s10_body": "Pour toute question concernant ces conditions, écrivez à <a href=\"mailto:info@hermesce.com\">info@hermesce.com</a>.",
+    "track_label": "SUIVI",
+    "track_h2": "Suivez votre opération en cours.",
+    "track_desc": "Statut en temps réel par déclaration (DI/PE) ou par numéro d'opération avec le CUIT.",
+    "track_ph_dipe": "DI / PE",
+    "track_ph_op": "N° d'opération",
+    "track_ph_cuit": "CUIT",
+    "track_cta": "Suivre l'opération",
+    "nav_seguimiento": "Suivi"
   },
   "pt": {
     "nav_valores": "Valores",
@@ -2381,6 +2421,14 @@
     "terms_s9_title": "9. Jurisdição e lei aplicável",
     "terms_s9_body": "Estes termos são regidos pelas leis da República Argentina. Qualquer controvérsia decorrente do uso do site será submetida aos tribunais ordinários competentes com sede na Cidade Autônoma de Buenos Aires, renunciando as partes a qualquer outro foro ou jurisdição que possa corresponder.",
     "terms_s10_title": "10. Contato",
-    "terms_s10_body": "Para consultas sobre estas condições, escreva para <a href=\"mailto:info@hermesce.com\">info@hermesce.com</a>."
+    "terms_s10_body": "Para consultas sobre estas condições, escreva para <a href=\"mailto:info@hermesce.com\">info@hermesce.com</a>.",
+    "track_label": "RASTREAMENTO",
+    "track_h2": "Acompanhe sua operação em andamento.",
+    "track_desc": "Status em tempo real por despacho (DI/PE) ou por número de operação com o CUIT.",
+    "track_ph_dipe": "DI / PE",
+    "track_ph_op": "Nº de operação",
+    "track_ph_cuit": "CUIT",
+    "track_cta": "Rastrear operação",
+    "nav_seguimiento": "Rastreamento"
   }
 }
