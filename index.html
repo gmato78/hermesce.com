@@ -3168,6 +3168,15 @@
     }
   }
 
+  // ── Limpiar el box de seguimiento (al hacer la búsqueda / al volver) ──
+  window.addEventListener('pageshow', function() {
+    var q = document.getElementById('track-q'); if (q) q.value = '';
+    var c = document.getElementById('track-cuit'); if (c) c.value = '';
+    var step = document.getElementById('track-cuit-step'); if (step) step.hidden = true;
+    var go1 = document.getElementById('track-go1'); if (go1) go1.style.display = '';
+    trackCuitMode = false;
+  });
+
   // ── Función global modal Contacto ──
   function abrirContacto() {
     const m = document.getElementById('contacto-modal');
