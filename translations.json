@@ -421,7 +421,8 @@
     "track_cta": "Rastrear",
     "nav_seguimiento": "Rastreo",
     "track_ph_q": "Nº de Operación, Despacho o Permiso",
-    "track_cuit_label": "Para esta operación, ingresá el CUIT"
+    "track_cuit_label": "Para esta operación, ingresá el CUIT",
+    "nav_nosotros": "Nosotros"
   },
   "en": {
     "nav_valores": "Values",
@@ -845,7 +846,8 @@
     "track_cta": "Track",
     "nav_seguimiento": "Tracking",
     "track_ph_q": "Operation, Customs Entry or Permit No.",
-    "track_cuit_label": "For this operation, enter the CUIT"
+    "track_cuit_label": "For this operation, enter the CUIT",
+    "nav_nosotros": "About us"
   },
   "zh-CN": {
     "nav_valores": "价值观",
@@ -1169,7 +1171,8 @@
     "track_cta": "追踪",
     "nav_seguimiento": "追踪",
     "track_ph_q": "操作号、报关单或许可证号",
-    "track_cuit_label": "请输入该操作的 CUIT"
+    "track_cuit_label": "请输入该操作的 CUIT",
+    "nav_nosotros": "关于我们"
   },
   "de": {
     "nav_valores": "Werte",
@@ -1593,7 +1596,8 @@
     "track_cta": "Verfolgen",
     "nav_seguimiento": "Sendungsverfolgung",
     "track_ph_q": "Vorgangs-, Zollanmeldungs- oder Genehmigungsnr.",
-    "track_cuit_label": "Für diesen Vorgang die CUIT eingeben"
+    "track_cuit_label": "Für diesen Vorgang die CUIT eingeben",
+    "nav_nosotros": "Über uns"
   },
   "fr": {
     "nav_valores": "Valeurs",
@@ -2017,7 +2021,8 @@
     "track_cta": "Suivre",
     "nav_seguimiento": "Suivi",
     "track_ph_q": "Nº d'opération, de déclaration ou de permis",
-    "track_cuit_label": "Pour cette opération, saisir le CUIT"
+    "track_cuit_label": "Pour cette opération, saisir le CUIT",
+    "nav_nosotros": "À propos"
   },
   "pt": {
     "nav_valores": "Valores",
@@ -2441,6 +2446,7 @@
     "track_cta": "Rastrear",
     "nav_seguimiento": "Rastreamento",
     "track_ph_q": "Nº de Operação, Despacho ou Permissão",
-    "track_cuit_label": "Para esta operação, informe o CUIT"
+    "track_cuit_label": "Para esta operação, informe o CUIT",
+    "nav_nosotros": "Sobre nós"
   }
 }
