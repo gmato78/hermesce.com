@@ -3734,11 +3734,14 @@
     });
   }
 
-  // ── Scroll restoration — siempre arranca desde el top ──
+  // ── Scroll: si llega con #seccion (ej. desde track.hermesce.com) ir a la sección; si no, al top ──
   if (window.location.hash) {
-    history.replaceState(null, '', window.location.pathname);
+    const _sec = document.querySelector(window.location.hash);
+    if (_sec) { requestAnimationFrame(() => _sec.scrollIntoView()); }
+    else { window.scrollTo(0, 0); }
+  } else {
+    window.scrollTo(0, 0);
   }
-  window.scrollTo(0, 0);
 
   // ── Email footer (anti-scraping) ──
   const emailEl = document.getElementById('footer-email');
