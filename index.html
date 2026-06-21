@@ -3153,6 +3153,9 @@
     var hint = document.getElementById('track-hint');
     if (hint) hint.textContent = '';
     if (!q) { if (hint) hint.textContent = '↑ Ingresá tu número de operación, despacho o permiso.'; return; }
+    // Heredar el idioma de la landing al track (el track lee ?lang=). zh→zh-CN.
+    var _hl = document.documentElement.lang;
+    var _lang = (_hl === 'zh') ? 'zh-CN' : (_hl || 'es');
     if (trackEsOp(q)) {
       if (!trackCuitMode) {
         trackPasoCuit(true);
@@ -3161,10 +3164,10 @@
       }
       var cuit = (document.getElementById('track-cuit').value || '').trim();
       if (!cuit) { if (hint) hint.textContent = '↑ Ingresá el CUIT de la operación.'; return; }
-      window.location.href = 'https://track.hermesce.com/?op=' + encodeURIComponent(q) + '&cuit=' + encodeURIComponent(cuit);
+      window.location.href = 'https://track.hermesce.com/?op=' + encodeURIComponent(q) + '&cuit=' + encodeURIComponent(cuit) + '&lang=' + encodeURIComponent(_lang);
     } else {
       if (trackCuitMode) trackPasoCuit(false);
-      window.location.href = 'https://track.hermesce.com/?dipe=' + encodeURIComponent(q);
+      window.location.href = 'https://track.hermesce.com/?dipe=' + encodeURIComponent(q) + '&lang=' + encodeURIComponent(_lang);
     }
   }
 
