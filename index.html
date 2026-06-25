@@ -3010,15 +3010,14 @@
           </div>
           <div style="font-size:0.7rem;color:rgba(255,255,255,0.5);margin-top:1.5rem;letter-spacing:0.04em;font-style:italic;" data-i18n="ia_proto">En fase de prototipo</div>
 
-          <!-- Acceso a la iniciativa hermes IA (subpágina /ia) -->
-          <a href="/ia" class="ia-hia-access" aria-label="Conocé toda la iniciativa hermes IA">
+          <!-- hermes IA · idea redondeada — desacoplado de /ia; abre el form de farIAs (modal inline) -->
+          <a href="#ia" onclick="abrirFarias();return false;" class="ia-hia-access" aria-label="Herramientas de comercio exterior potenciadas con IA">
             <div class="ia-hia-access-row">
               <span class="ia-hia-access-mark">hermes<span class="ia-hia-mark-letters">IA</span></span>
               <span class="ia-hia-access-divider"></span>
-              <span class="ia-hia-access-label" data-i18n="ia_hia_access_label">Conocé toda la iniciativa</span>
+              <span class="ia-hia-access-label" data-i18n="ia_hia_access_label">Herramientas de comex potenciadas con IA</span>
               <span class="ia-hia-access-arrow" aria-hidden="true">→</span>
             </div>
-            <span class="ia-hia-access-soon" data-i18n="ia_hia_access_soon">Agentes de comex + infraestructura</span>
           </a>
         </div>
       </div>
@@ -3180,7 +3179,9 @@
     trackCuitMode = false;
   });
 
-  // ── Función global modal Contacto ──
+  // ── Contacto → modal inline (on-site, premium, i18n, WebMCP).
+  // Sigue inline hasta sumar NUESTRO propio CAPTCHA (Turnstile vía backend relay).
+  // Hoy: honeypot + el spam-filter que active Zoho del lado del form.
   function abrirContacto() {
     const m = document.getElementById('contacto-modal');
     if (m) { m.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
