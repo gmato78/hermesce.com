@@ -2326,6 +2326,8 @@
 <!-- Trackers (GA4, LinkedIn Insight Tag, Meta Pixel) — se cargan condicionalmente
      según consentimiento del banner de cookies. Ver bloque "Cookie consent + script gating"
      al final del <body>. NO agregar trackers acá hardcoded — viola el opt-in. -->
+<!-- Cloudflare Turnstile (anti-bot de los forms · valida server-side en hce-leads) -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 
@@ -3200,15 +3202,7 @@
     const m = document.getElementById('farias-modal');
     if (m) { m.style.display = 'none'; document.body.style.overflow = ''; }
   }
-  // ── Formulario AJAX — Zoho Forms ──
-  const contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', function() {
-      setTimeout(() => {
-        contactForm.innerHTML = '<div style="text-align:center;padding:3rem 1rem;"><div style="font-size:3rem;margin-bottom:1rem;color:var(--accent-bright);">✓</div><h3 style="color:var(--white);font-size:1.4rem;font-weight:700;margin-bottom:0.8rem;">Consulta enviada</h3><p style="color:var(--text-dim);font-size:0.9rem;line-height:1.7;">Te respondemos en el día.</p></div>';
-      }, 500);
-    });
-  }
+  // ── Submit de contacto + farIAs: handler unificado (fetch a hce-leads) al final del body ──
 
   // ── Nav: se vuelve sólido al hacer scroll ──
   const navEl = document.querySelector('.nav-hero');
@@ -3522,34 +3516,68 @@
   fariasModal?.addEventListener('click', (e) => {
     if (e.target === fariasModal) { fariasModal.style.display = 'none'; document.body.style.overflow = ''; }
   });
-  // ── Submit modal farIAs ──
-  const fariasForm = document.getElementById('farias-form');
-  if (fariasForm) {
-    fariasForm.addEventListener('submit', function() {
-      setTimeout(() => {
-        fariasForm.innerHTML = '<div style="text-align:center;padding:3rem 1rem;"><div style="font-size:3rem;margin-bottom:1rem;color:var(--brand-hia);">✓</div><h3 style="color:var(--brand-hia);font-size:1.4rem;font-weight:700;margin-bottom:0.8rem;">Gracias por tu tiempo</h3><p style="color:var(--text-dim);font-size:0.9rem;line-height:1.7;">Tu respuesta nos ayuda a decidir el siguiente paso.<br>Te avisamos cuando abramos el acceso.</p></div>';
-      }, 500);
-    });
-  }
+  // (el submit de farIAs lo maneja el handler unificado al final del body)
 
-  // ── Honeypot anti-bot (forms a Zoho · complementa el CAPTCHA de Zoho) ──
-  // Campo trampa oculto: el humano no lo ve; un bot que renderiza la página lo llena.
-  // Si viene lleno → se cancela el envío (no postea a Zoho). Si está vacío → se
-  // deshabilita para no mandarlo. No frena bots que postean directo a Zoho (eso es el
-  // CAPTCHA/spam-filter de Zoho), sí los que completan el formulario.
-  ['contact-form', 'farias-form'].forEach(function (id) {
-    var f = document.getElementById(id);
-    if (!f) return;
-    var hp = document.createElement('input');
-    hp.type = 'text'; hp.name = 'website'; hp.tabIndex = -1; hp.autocomplete = 'off';
-    hp.setAttribute('aria-hidden', 'true');
-    hp.style.cssText = 'position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;';
-    f.insertBefore(hp, f.firstChild);
-    f.addEventListener('submit', function (e) {
-      if (hp.value.trim() !== '') { e.preventDefault(); e.stopImmediatePropagation(); return; }
-      hp.disabled = true;
-    }, true);
-  });
+  // ── Submit unificado: honeypot + Turnstile + POST a hce-leads (propio, sin Zoho) ──
+  // El form postea JSON a nuestro endpoint; el server valida el token Turnstile,
+  // guarda el lead y avisa por mail. Honeypot = capa extra barata contra bots simples.
+  (function(){
+    var ENDPOINT = 'https://api.hermesce.com/api/lead';
+    var MAPS = {
+      contacto: { Name_First:'nombre', SingleLine:'empresa', Email:'email', PhoneNumber_countrycode:'telefono', Dropdown:'servicio', MultiLine:'operacion' },
+      farias:   { Dropdown:'rol', Dropdown1:'volumen', Dropdown3:'interes', Dropdown2:'precio', Name1_First:'nombre', Name1_Last:'apellido', Email:'email', MultiLine:'extra' }
+    };
+    function collect(form, tipo){
+      var map = MAPS[tipo] || {}, campos = {};
+      form.querySelectorAll('input[name], select[name], textarea[name]').forEach(function(el){
+        var key = map[el.name]; if (!key) return;
+        var v = (el.value || '').trim();
+        if (!v || v === '-Select-' || v === '-') return;
+        campos[key] = v;
+      });
+      return campos;
+    }
+    function successHtml(tipo){
+      return tipo === 'farias'
+        ? '<div style="text-align:center;padding:3rem 1rem;"><div style="font-size:3rem;margin-bottom:1rem;color:var(--brand-hia);">✓</div><h3 style="color:var(--brand-hia);font-size:1.4rem;font-weight:700;margin-bottom:0.8rem;">Gracias por tu tiempo</h3><p style="color:var(--text-dim);font-size:0.9rem;line-height:1.7;">Tu respuesta nos ayuda a decidir el siguiente paso.<br>Te avisamos cuando abramos el acceso.</p></div>'
+        : '<div style="text-align:center;padding:3rem 1rem;"><div style="font-size:3rem;margin-bottom:1rem;color:var(--accent-bright);">✓</div><h3 style="color:var(--white);font-size:1.4rem;font-weight:700;margin-bottom:0.8rem;">Consulta enviada</h3><p style="color:var(--text-dim);font-size:0.9rem;line-height:1.7;">Te respondemos en el día.</p></div>';
+    }
+    function fallbackHtml(){
+      return '<p style="color:var(--text-dim);font-size:0.85rem;line-height:1.7;margin-top:0.8rem;">No se pudo enviar ahora. Escribinos a <a href="mailto:hola@hermesce.com" style="color:var(--accent-bright);text-decoration:underline;">hola@hermesce.com</a> y te respondemos.</p>';
+    }
+    // Los forms viven en modales más abajo en el DOM → enganchar tras DOMContentLoaded.
+    document.addEventListener('DOMContentLoaded', function(){
+    ['contact-form','farias-form'].forEach(function(id){
+      var form = document.getElementById(id);
+      if (!form) return;
+      var hp = document.createElement('input');
+      hp.type='text'; hp.name='website'; hp.tabIndex=-1; hp.autocomplete='off';
+      hp.setAttribute('aria-hidden','true');
+      hp.style.cssText='position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;';
+      form.insertBefore(hp, form.firstChild);
+      var tipo = form.getAttribute('data-tipo');
+      form.addEventListener('submit', async function(e){
+        e.preventDefault();
+        if (hp.value.trim() !== '') return; // bot rellenó la trampa
+        var widget = form.querySelector('.cf-turnstile');
+        var token = '';
+        try { token = (window.turnstile && widget) ? window.turnstile.getResponse(widget) : ''; } catch(_){}
+        var body = { tipo: tipo, turnstile_token: token,
+          lang: (document.documentElement.lang || 'es'), campos: collect(form, tipo) };
+        try {
+          var r = await fetch(ENDPOINT, { method:'POST',
+            headers:{'Content-Type':'application/json'}, body: JSON.stringify(body) });
+          var d = await r.json();
+          if (d && d.ok) { form.innerHTML = successHtml(tipo); }
+          else {
+            form.insertAdjacentHTML('beforeend', fallbackHtml());
+            try { if (window.turnstile && widget) window.turnstile.reset(widget); } catch(_){}
+          }
+        } catch(_){ form.insertAdjacentHTML('beforeend', fallbackHtml()); }
+      });
+    });
+    });
+  })();
 
   // ── Tapiz de las grillas Problema/Servicios: respeto a prefers-reduced-motion ──
   // (Las grillas son CSS puro — hover/focus-within. Acá sólo congelamos las
@@ -3827,7 +3855,7 @@
         <h3 style="font-size:1.6rem;font-weight:800;color:var(--white);margin-bottom:0.5rem;" data-i18n="farias_h3">¿Tiene sentido para tu operación?</h3>
         <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:2rem;line-height:1.6;" data-i18n="farias_sub">Estamos evaluando si el MVP de farIAs tiene valor real antes de invertir en la siguiente etapa. Tres preguntas, dos minutos.</p>
 
-        <form id="farias-form" data-toolname="anotarse_lista_farias" data-tooldescription="Anotarse en la lista de espera de farIAs, el asistente de clasificación arancelaria (posición NCM/SIM, tributos y restricciones) de hermes IA. Beta cerrada. Pide nombre y, opcionalmente, rol en comercio exterior, volumen de clasificaciones, interés de uso, rango de precio, email y sugerencias." action="https://forms.zohopublic.com/hermesce1/form/farIAsMVP/formperma/9U4Z4H0KZwvZG6TDz-jsgZe-LscPURiFFPsEBJ1PEwg/htmlRecords/submit" name="form" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" target="_blank" style="display:flex;flex-direction:column;gap:1.2rem;">
+        <form id="farias-form" data-tipo="farias" data-toolname="anotarse_lista_farias" data-tooldescription="Anotarse en la lista de espera de farIAs, el asistente de clasificación arancelaria (posición NCM/SIM, tributos y restricciones) de hermes IA. Beta cerrada. Pide nombre y, opcionalmente, rol en comercio exterior, volumen de clasificaciones, interés de uso, rango de precio, email y sugerencias." style="display:flex;flex-direction:column;gap:1.2rem;">
           <input type="hidden" name="zf_referrer_name" value="">
           <input type="hidden" name="zf_redirect_url" value="">
           <input type="hidden" name="zc_gad" value="">
@@ -3897,6 +3925,7 @@
             <textarea name="MultiLine" maxlength="65535" rows="3" placeholder="Sugerencias, casos de uso, dudas..." data-i18n="farias_extra_ph" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;resize:none;box-sizing:border-box;"></textarea>
           </div>
 
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAADrurjUoeQcdhkdw" data-theme="dark"></div>
           <button type="submit" style="background:var(--brand-hia);color:#fff;padding:0.9rem;border-radius:8px;font-size:0.95rem;font-weight:700;border:none;cursor:pointer;transition:opacity 0.2s;margin-top:0.5rem;" data-i18n="farias_submit">Enviar respuesta →</button>
         </form>
       </div>
@@ -3910,7 +3939,7 @@
         <h3 style="font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:0.5rem;" data-i18n="contact_form_h3">Contanos en qué andás</h3>
         <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:2rem;line-height:1.6;" data-i18n="contact_form_sub">Contanos tu operación en 2 minutos y nos contactamos a la brevedad.</p>
 
-        <form id="contact-form" data-toolname="consultar_operacion_comex" data-tooldescription="Enviar una consulta a hermes CE sobre una operación de comercio exterior (importación o exportación). Pide nombre y apellido, email, y la descripción de la operación; teléfono, empresa y servicio buscado son opcionales. Genera un lead que hermes CE responde en menos de 24 horas hábiles." action="https://forms.zohopublic.com/hermesce1/form/Contactwithfeedback/formperma/jJ41GXBoVJLPTuFTkMagWLdTvp6FrEzD33wxrF7Bg_Q/htmlRecords/submit" name="form" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" target="_blank" style="display:flex;flex-direction:column;gap:1.2rem;">
+        <form id="contact-form" data-tipo="contacto" data-toolname="consultar_operacion_comex" data-tooldescription="Enviar una consulta a hermes CE sobre una operación de comercio exterior (importación o exportación). Pide nombre y apellido, email, y la descripción de la operación; teléfono, empresa y servicio buscado son opcionales. Genera un lead que hermes CE responde en menos de 24 horas hábiles." style="display:flex;flex-direction:column;gap:1.2rem;">
           <input type="hidden" name="zf_referrer_name" value="">
           <input type="hidden" name="zf_redirect_url" value="">
           <input type="hidden" name="zc_gad" value="">
@@ -3956,6 +3985,7 @@
             <textarea name="MultiLine" maxlength="65535" rows="4" placeholder="Contanos cómo podemos ayudarte — qué importás, de dónde, con qué frecuencia, o en qué etapa estás." data-i18n="form_detail_placeholder" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;resize:vertical;box-sizing:border-box;font-family:'Inter',sans-serif;line-height:1.5;"></textarea>
           </div>
 
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAADrurjUoeQcdhkdw" data-theme="dark"></div>
           <button type="submit" style="background:var(--accent);color:#fff;padding:0.9rem;border-radius:8px;font-size:0.95rem;font-weight:700;border:none;cursor:pointer;transition:opacity 0.2s;margin-top:0.5rem;width:100%;font-family:'Inter',sans-serif;" data-i18n="contact_form_submit">Enviar consulta →</button>
         </form>
       </div>
@@ -4182,8 +4212,8 @@
       });
     });
 
-    // ─── Form de contacto ───
-    const form = document.querySelector('.contact-form');
+    // ─── Form de contacto (analytics: form_start/submit + Meta Lead + LinkedIn) ───
+    const form = document.getElementById('contact-form');
     if (form) {
       let started = false;
       form.addEventListener('input', function(){
