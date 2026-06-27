@@ -2196,6 +2196,7 @@
       font-weight: 500;
       line-height: 1.3;
       flex: 1;
+      min-width: 0;
     }
     .ia-hia-access-arrow {
       position: relative;
@@ -3018,7 +3019,6 @@
               <span class="ia-hia-access-mark">hermes<span class="ia-hia-mark-letters">IA</span></span>
               <span class="ia-hia-access-divider"></span>
               <span class="ia-hia-access-label" data-i18n="ia_hia_access_label">Herramientas de comex potenciadas con IA</span>
-              <span class="ia-hia-access-arrow" aria-hidden="true">→</span>
             </div>
           </a>
         </div>
@@ -3540,7 +3540,7 @@
     function successHtml(tipo){
       return tipo === 'farias'
         ? '<div style="text-align:center;padding:3rem 1rem;"><div style="font-size:3rem;margin-bottom:1rem;color:var(--brand-hia);">✓</div><h3 style="color:var(--brand-hia);font-size:1.4rem;font-weight:700;margin-bottom:0.8rem;">Gracias por tu tiempo</h3><p style="color:var(--text-dim);font-size:0.9rem;line-height:1.7;">Tu respuesta nos ayuda a decidir el siguiente paso.<br>Te avisamos cuando abramos el acceso.</p></div>'
-        : '<div style="text-align:center;padding:3rem 1rem;"><div style="font-size:3rem;margin-bottom:1rem;color:var(--accent-bright);">✓</div><h3 style="color:var(--white);font-size:1.4rem;font-weight:700;margin-bottom:0.8rem;">Consulta enviada</h3><p style="color:var(--text-dim);font-size:0.9rem;line-height:1.7;">Te respondemos en el día.</p></div>';
+        : '<div style="text-align:center;padding:3rem 1rem;"><div style="font-size:3rem;margin-bottom:1rem;color:var(--accent-bright);">✓</div><h3 style="color:var(--white);font-size:1.4rem;font-weight:700;margin-bottom:0.8rem;">Gracias por compartir tu consulta</h3><p style="color:var(--text-dim);font-size:0.9rem;line-height:1.7;">Trabajamos en ella y te respondemos lo antes posible.</p></div>';
     }
     function fallbackHtml(){
       return '<p style="color:var(--text-dim);font-size:0.85rem;line-height:1.7;margin-top:0.8rem;">No se pudo enviar ahora. Escribinos a <a href="mailto:hola@hermesce.com" style="color:var(--accent-bright);text-decoration:underline;">hola@hermesce.com</a> y te respondemos.</p>';
@@ -3925,7 +3925,9 @@
             <textarea name="MultiLine" maxlength="65535" rows="3" placeholder="Sugerencias, casos de uso, dudas..." data-i18n="farias_extra_ph" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;resize:none;box-sizing:border-box;"></textarea>
           </div>
 
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAADrurjUoeQcdhkdw" data-theme="dark"></div>
+          <div style="display:flex;justify-content:center;">
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAADrurjUoeQcdhkdw" data-theme="dark" data-appearance="interaction-only"></div>
+          </div>
           <button type="submit" style="background:var(--brand-hia);color:#fff;padding:0.9rem;border-radius:8px;font-size:0.95rem;font-weight:700;border:none;cursor:pointer;transition:opacity 0.2s;margin-top:0.5rem;" data-i18n="farias_submit">Enviar respuesta →</button>
         </form>
       </div>
@@ -3985,7 +3987,9 @@
             <textarea name="MultiLine" maxlength="65535" rows="4" placeholder="Contanos cómo podemos ayudarte — qué importás, de dónde, con qué frecuencia, o en qué etapa estás." data-i18n="form_detail_placeholder" style="width:100%;background:#0B0F1A;border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;outline:none;resize:vertical;box-sizing:border-box;font-family:'Inter',sans-serif;line-height:1.5;"></textarea>
           </div>
 
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAADrurjUoeQcdhkdw" data-theme="dark"></div>
+          <div style="display:flex;justify-content:center;">
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAADrurjUoeQcdhkdw" data-theme="dark" data-appearance="interaction-only"></div>
+          </div>
           <button type="submit" style="background:var(--accent);color:#fff;padding:0.9rem;border-radius:8px;font-size:0.95rem;font-weight:700;border:none;cursor:pointer;transition:opacity 0.2s;margin-top:0.5rem;width:100%;font-family:'Inter',sans-serif;" data-i18n="contact_form_submit">Enviar consulta →</button>
         </form>
       </div>
