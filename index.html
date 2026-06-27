@@ -3568,7 +3568,16 @@
           var r = await fetch(ENDPOINT, { method:'POST',
             headers:{'Content-Type':'application/json'}, body: JSON.stringify(body) });
           var d = await r.json();
-          if (d && d.ok) { form.innerHTML = successHtml(tipo); }
+          if (d && d.ok) {
+            // ── Conversión = lead REAL confirmado (no el intento). Contacto + farIAs. ──
+            try {
+              if (window.gtag)  window.gtag('event', 'form_submit', { form: tipo });
+              if (window.fbq)   window.fbq('track', 'Lead', { content_name: tipo + '_form' });
+              // LinkedIn: la conversión 28384761 es "Form contacto"; solo para contacto.
+              if (tipo === 'contacto' && window.lintrk) window.lintrk('track', { conversion_id: 28384761 });
+            } catch(e){}
+            form.innerHTML = successHtml(tipo);
+          }
           else {
             form.insertAdjacentHTML('beforeend', fallbackHtml());
             try { if (window.turnstile && widget) window.turnstile.reset(widget); } catch(_){}
@@ -4231,13 +4240,9 @@
       form.addEventListener('input', function(){
         if (!started) { started = true; track('form_start', { form: 'contact' }); }
       });
-      form.addEventListener('submit', function(){
-        track('form_submit', { form: 'contact' });
-        // Meta Pixel: marcamos el submit como Lead para que Meta Ads pueda optimizar campañas hacia esta acción
-        if (typeof window.fbq === 'function') window.fbq('track', 'Lead', { content_name: 'contact_form' });
-        // LinkedIn Insight Tag: conversion 28384761 = "Form contacto submit" (Posible cliente / Lead)
-        if (typeof window.lintrk === 'function') window.lintrk('track', { conversion_id: 28384761 });
-      });
+      // La conversión (form_submit + Meta Lead + LinkedIn) se dispara al ÉXITO CONFIRMADO
+      // del lead (ok del endpoint hce-leads), en el handler unificado de submit — no en el
+      // intento. Así Meta/Google optimizan hacia leads reales. Cubre contacto + farIAs (#2/#3).
     }
 
     // ─── Footer legal links ───
