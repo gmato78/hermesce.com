@@ -19,11 +19,12 @@
   html,body{min-height:100%}
   body{font-family:var(--font);font-weight:300;color:var(--brand-text);
     background:radial-gradient(120% 120% at 50% 0%, #E2ECF6 0%, var(--canvas-showroom) 55%, #B9CEE4 100%);
-    min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px}
+    min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px}
 
   /* ── shell de dos columnas (desktop) ─────────────────────────────── */
-  .shell{display:flex;width:100%;max-width:900px;min-height:580px;background:var(--brand-white);
-    border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden}
+  /* alto FIJO: todas las pantallas miden igual → el boton no sube/baja */
+  .shell{display:flex;width:100%;max-width:900px;height:min(640px,calc(100vh - 56px));
+    background:var(--brand-white);border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden}
 
   .aside{flex:0 0 40%;background:linear-gradient(155deg,var(--brand-zafiro-dark),var(--brand-zafiro) 70%);
     color:#fff;padding:46px 40px;display:flex;flex-direction:column}
@@ -34,8 +35,11 @@
   .aside .tagline b{font-weight:600}
   .aside .small{margin-top:16px;font-size:14px;color:rgba(255,255,255,.65)}
 
-  .main{flex:1;min-width:0;padding:48px 52px;display:flex;flex-direction:column}
-  #body{display:flex;flex-direction:column;flex:1}
+  .main{flex:1;min-width:0;padding:44px 52px;display:flex;flex-direction:column;overflow:hidden}
+  #body{display:flex;flex-direction:column;flex:1;min-height:0;overflow-y:auto}
+  /* pie: boton + linea juntos, pegados al fondo, con gap fijo entre si */
+  .foot{margin-top:auto;display:flex;flex-direction:column;padding-top:18px}
+  .foot .row{margin:0 0 18px}
 
   /* ── contenido de preguntas ──────────────────────────────────────── */
   .step{font-size:12px;font-weight:500;color:var(--brand-zafiro-light);letter-spacing:2px;margin-bottom:16px}
@@ -69,8 +73,8 @@
   .num:hover{border-color:var(--brand-zafiro-light)}
   .num.on{background:var(--brand-zafiro);color:#fff;border-color:var(--brand-zafiro);transform:translateY(-3px);
     box-shadow:0 8px 16px -6px rgba(42,86,134,.6)}
-  .ends{display:flex;justify-content:space-between;font-size:12px;color:var(--brand-text-mute);margin-bottom:24px}
-  .pg{margin-top:auto;height:4px;background:#E9EFF6;border-radius:3px;overflow:hidden}
+  .ends{display:flex;justify-content:space-between;font-size:12px;color:var(--brand-text-mute)}
+  .pg{height:4px;background:#E9EFF6;border-radius:3px;overflow:hidden}
   .pg i{display:block;height:100%;background:var(--brand-zafiro);transition:width .3s}
   .center{justify-content:center}
   .center h1{margin-bottom:14px}
@@ -79,7 +83,7 @@
   /* ── mobile: una columna, pantalla completa ──────────────────────── */
   @media (max-width:720px){
     body{padding:0;align-items:stretch}
-    .shell{flex-direction:column;max-width:none;min-height:100vh;border-radius:0;box-shadow:none}
+    .shell{flex-direction:column;max-width:none;height:auto;min-height:100vh;border-radius:0;box-shadow:none}
     .aside{flex:none;flex-direction:row;align-items:center;padding:18px 22px;gap:10px}
     .aside .tagline,.aside .small{display:none}
     .main{padding:32px 24px}
@@ -116,8 +120,15 @@ function el(tag, props={}, ...kids){
   for(const k in props){ if(k==='class') e.className=props[k]; else if(k==='text') e.textContent=props[k]; else e[k]=props[k]; }
   kids.forEach(c=>e.append(c)); return e;
 }
-function clear(){ body.className=''; body.innerHTML=''; }
+function toTop(){ try{window.scrollTo(0,0);}catch(e){} body.scrollTop=0; }
+function clear(){ body.className=''; body.innerHTML=''; toTop(); }
 function progress(pct){ const w=el('div',{class:'pg'}); const i=el('i',{}); i.style.width=pct+'%'; w.append(i); return w; }
+// pie: agrupa botones + barra de progreso, pegado al fondo, gap fijo entre si
+function foot(pct, ...btns){
+  const f=el('div',{class:'foot'});
+  if(btns.length){ const r=el('div',{class:'row'}); btns.forEach(b=>r.append(b)); f.append(r); }
+  f.append(progress(pct)); return f;
+}
 function escapeName(s){ const d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
 
 function screenMsg(titHtml, subText){
@@ -155,18 +166,17 @@ function qAspectos(){
     box.append(o);
   });
   body.append(box);
-  const b=el('button',{class:'btn',text:'Seguir  →'}); b.onclick=next; body.append(b);
-  body.append(progress(20));
+  const b=el('button',{class:'btn',text:'Seguir  →'}); b.onclick=next;
+  body.append(foot(20, b));
 }
 function qPalabras(){
   clear(); header(2);
   const q=el('div',{class:'q'}); q.textContent='¿Querés contarlo en tus palabras?'; body.append(q);
   body.append(el('div',{class:'hint',text:'Opcional.'}));
   const t=el('textarea',{value:data.palabras}); body.append(t);
-  const r=el('div',{class:'row'});
   const b=el('button',{class:'btn',text:'Seguir  →'}); b.onclick=()=>{data.palabras=t.value;next();};
   const s=el('button',{class:'btn ghost',text:'Saltar'}); s.onclick=next;
-  r.append(b,s); body.append(r); body.append(progress(40));
+  body.append(foot(40, b, s));
 }
 function qNps(){
   clear(); header(3);
@@ -177,16 +187,15 @@ function qNps(){
     sc.append(n); }
   body.append(sc);
   const e=el('div',{class:'ends'}); e.append(el('span',{text:'Nada probable'}),el('span',{text:'Totalmente'})); body.append(e);
-  body.append(progress(60));
+  body.append(foot(60));
 }
 function qMejora(){
   clear(); header(4);
   const q=el('div',{class:'q'}); q.textContent='¿Qué podríamos hacer mejor?'; body.append(q);
   const t=el('textarea',{value:data.mejora}); body.append(t);
-  const r=el('div',{class:'row'});
   const b=el('button',{class:'btn',text:'Seguir  →'}); b.onclick=()=>{data.mejora=t.value;next();};
   const s=el('button',{class:'btn ghost',text:'Saltar'}); s.onclick=next;
-  r.append(b,s); body.append(r); body.append(progress(80));
+  body.append(foot(80, b, s));
 }
 function qRama(){
   clear(); header(5);
@@ -199,17 +208,16 @@ function qRama(){
   const t=el('textarea',{}); body.append(t);
   const b=el('button',{class:'btn',text:'Seguir  →'});
   b.onclick=()=>{ if(contento) data.caso=t.value; else data.que_paso=t.value; next(); };
-  body.append(b); body.append(progress(90));
+  body.append(foot(90, b));
 }
 function qAlgoMas(){
   clear(); header(5);
   const q=el('div',{class:'q'}); q.textContent='¿Algo más que quieras decirnos?'; body.append(q);
   body.append(el('div',{class:'hint',text:'Opcional.'}));
   const t=el('textarea',{}); body.append(t);
-  const r=el('div',{class:'row'});
   const b=el('button',{class:'btn',text:'Enviar  →'}); b.onclick=()=>{data.algo_mas=t.value;submit();};
   const s=el('button',{class:'btn ghost',text:'Enviar sin agregar'}); s.onclick=submit;
-  r.append(b,s); body.append(r); body.append(progress(100));
+  body.append(foot(100, b, s));
 }
 
 async function submit(){
