@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Voz del Cliente · hermes CE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand-zafiro:#2A5686; --brand-zafiro-dark:#102845; --brand-zafiro-light:#4C7AB0;
+    --brand-text:#0f2544; --brand-text-soft:#4B5563; --brand-text-mute:#6B7280; --brand-white:#fff;
+    --canvas-showroom:#CDDCEC; --font:'Inter',system-ui,sans-serif;
+    --radius-lg:30px; --radius-xs:8px;
+    --shadow:0 20px 50px -16px rgba(20,40,70,.40);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);font-weight:300;color:var(--brand-text);
+    background:radial-gradient(120% 120% at 50% 0%, #E2ECF6 0%, var(--canvas-showroom) 55%, #B9CEE4 100%);
+    min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+  .panel{background:var(--brand-white);border-radius:var(--radius-lg);box-shadow:var(--shadow);
+    width:100%;max-width:440px;min-height:430px;padding:48px 42px;position:relative;overflow:hidden;
+    display:flex;flex-direction:column}
+  .panel::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;
+    background:linear-gradient(90deg,var(--brand-zafiro),var(--brand-zafiro-light))}
+  .brand{font-size:15px;letter-spacing:.5px;margin-bottom:auto}
+  .brand b{font-weight:300;color:var(--brand-text)} .brand span{font-weight:700;color:var(--brand-zafiro)}
+  .step{font-size:12px;font-weight:500;color:var(--brand-zafiro-light);letter-spacing:2px;margin:30px 0 14px}
+  h1{font-size:30px;font-weight:300;line-height:1.2;color:var(--brand-zafiro-dark);margin:26px 0 12px}
+  h1 b{font-weight:700;color:var(--brand-zafiro)}
+  .q{font-size:23px;font-weight:300;line-height:1.32;color:var(--brand-zafiro-dark);margin-bottom:8px}
+  .q b{font-weight:600;color:var(--brand-zafiro)}
+  p.sub{font-size:16px;color:var(--brand-text-soft);margin-bottom:30px}
+  .hint{font-size:13px;color:var(--brand-text-mute);margin-bottom:22px}
+  .btn{align-self:flex-start;background:var(--brand-zafiro);color:#fff;border:none;font-family:var(--font);
+    font-size:15px;font-weight:500;padding:14px 32px;border-radius:var(--radius-xs);cursor:pointer;
+    box-shadow:0 8px 20px -8px rgba(42,86,134,.7);transition:.15s}
+  .btn:hover{background:var(--brand-zafiro-dark)}
+  .btn.ghost{background:transparent;color:var(--brand-text-mute);box-shadow:none;padding:14px 8px;font-weight:400}
+  .row{display:flex;gap:10px;align-items:center;margin-top:6px}
+  .opts{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+  .opt{display:flex;align-items:center;gap:12px;border:1.5px solid #E3EAF2;border-radius:12px;padding:13px 15px;
+    font-size:15px;font-weight:400;color:var(--brand-text);cursor:pointer;transition:.12s}
+  .opt:hover{border-color:var(--brand-zafiro-light)}
+  .opt .k{width:22px;height:22px;border-radius:6px;border:1.5px solid #CBD7E5;flex:none;position:relative}
+  .opt.sel{border-color:var(--brand-zafiro);background:#F2F7FC}
+  .opt.sel .k{background:var(--brand-zafiro);border-color:var(--brand-zafiro)}
+  .opt.sel .k::after{content:"✓";color:#fff;font-size:13px;position:absolute;top:0;left:4px}
+  textarea{width:100%;min-height:120px;border:1.5px solid #E3EAF2;border-radius:12px;padding:14px;
+    font-family:var(--font);font-size:15px;font-weight:400;color:var(--brand-text);resize:vertical;margin-bottom:22px}
+  textarea:focus{outline:none;border-color:var(--brand-zafiro)}
+  .scale{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+  .num{width:38px;height:44px;border:1.5px solid #E3EAF2;border-radius:9px;display:flex;align-items:center;
+    justify-content:center;font-size:15px;font-weight:500;color:var(--brand-text-soft);cursor:pointer;transition:.12s}
+  .num:hover{border-color:var(--brand-zafiro-light)}
+  .num.on{background:var(--brand-zafiro);color:#fff;border-color:var(--brand-zafiro);transform:translateY(-3px);
+    box-shadow:0 8px 16px -6px rgba(42,86,134,.6)}
+  .ends{display:flex;justify-content:space-between;font-size:12px;color:var(--brand-text-mute);margin-bottom:24px}
+  .pg{margin-top:auto;height:4px;background:#E9EFF6;border-radius:3px;overflow:hidden}
+  .pg i{display:block;height:100%;background:var(--brand-zafiro);transition:width .3s}
+  .center{text-align:center;margin:auto 0}
+  .center h1{margin-bottom:14px}
+  .muted{color:var(--brand-text-mute);font-size:15px}
+</style>
+</head>
+<body>
+<div class="panel" id="panel">
+  <div class="brand"><b>hermes</b> <span>CE</span></div>
+  <div id="body" class="center"><p class="muted">Cargando…</p></div>
+</div>
+
+<script>
+const API = new URLSearchParams(location.search).get('api') ?? 'https://api.hermesce.com';
+const TOKEN = new URLSearchParams(location.search).get('t') || '';
+const ASPECTOS = ["El cuidado en los detalles","Los tiempos de respuesta","El criterio y la experiencia",
+  "El trato cercano","Ver los problemas antes de que pasen","La confidencialidad","Otro"];
+
+const data = {token: TOKEN, aspectos: [], palabras: "", nps: null, mejora: "", caso: "", que_paso: "", algo_mas: ""};
+let invitado = null;
+const body = document.getElementById('body');
+
+function el(tag, props={}, ...kids){
+  const e = document.createElement(tag);
+  for(const k in props){ if(k==='class') e.className=props[k]; else if(k==='text') e.textContent=props[k]; else e[k]=props[k]; }
+  kids.forEach(c=>e.append(c)); return e;
+}
+function clear(){ body.className=''; body.innerHTML=''; }
+function progress(pct){ const w=el('div',{class:'pg'}); w.append(el('i',{})); w.lastChild.style.width=pct+'%'; return w; }
+
+// ── pantallas de estado ──────────────────────────────────────────────
+function screenMsg(titHtml, subText){
+  clear(); body.className='center';
+  const h=el('h1'); h.innerHTML=titHtml; body.append(h);
+  if(subText) body.append(el('p',{class:'muted',text:subText}));
+}
+
+// ── flujo ────────────────────────────────────────────────────────────
+const STEPS = ['welcome','aspectos','palabras','nps','mejora','rama','algo_mas'];
+let idx = 0;
+function next(){ idx++; render(); }
+
+function render(){
+  const name = STEPS[idx];
+  if(name==='welcome') return welcome();
+  if(name==='aspectos') return qAspectos();
+  if(name==='palabras') return qPalabras();
+  if(name==='nps') return qNps();
+  if(name==='mejora') return qMejora();
+  if(name==='rama') return qRama();
+  if(name==='algo_mas') return qAlgoMas();
+}
+
+function welcome(){
+  clear();
+  const h=el('h1'); h.innerHTML = 'Hola, ' + escapeName(invitado.nombre) + '.<br><b>Tu mirada nos sirve.</b>';
+  body.append(h);
+  body.append(el('p',{class:'sub',text:'3 minutos, sin vueltas. Gracias por el tiempo.'}));
+  const b=el('button',{class:'btn',text:'Empezar  →'}); b.onclick=next; body.append(b);
+}
+// el nombre se inserta como texto, nunca como HTML
+function escapeName(s){ const d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
+
+function header(stepNo, total=5){
+  body.append(el('div',{class:'step',text:('0'+stepNo)+' — DE 0'+total}));
+}
+function qAspectos(){
+  clear(); header(1);
+  const q=el('div',{class:'q'}); q.innerHTML='De trabajar con nosotros, ¿qué es lo que más <b>valorás</b>?'; body.append(q);
+  body.append(el('div',{class:'hint',text:'Elegí lo que pese más.'}));
+  const box=el('div',{class:'opts'});
+  ASPECTOS.forEach(a=>{
+    const o=el('div',{class:'opt'}); o.append(el('span',{class:'k'}), el('span',{text:a}));
+    o.onclick=()=>{ o.classList.toggle('sel');
+      data.aspectos = [...box.querySelectorAll('.opt.sel span:last-child')].map(s=>s.textContent); };
+    box.append(o);
+  });
+  body.append(box);
+  const b=el('button',{class:'btn',text:'Seguir  →'}); b.onclick=next; body.append(b);
+  body.append(progress(20));
+}
+function qPalabras(){
+  clear(); header(2);
+  const q=el('div',{class:'q'}); q.textContent='¿Querés contarlo en tus palabras?'; body.append(q);
+  body.append(el('div',{class:'hint',text:'Opcional.'}));
+  const t=el('textarea',{value:data.palabras}); body.append(t);
+  const r=el('div',{class:'row'});
+  const b=el('button',{class:'btn',text:'Seguir  →'}); b.onclick=()=>{data.palabras=t.value;next();};
+  const s=el('button',{class:'btn ghost',text:'Saltar'}); s.onclick=next;
+  r.append(b,s); body.append(r); body.append(progress(40));
+}
+function qNps(){
+  clear(); header(3);
+  const q=el('div',{class:'q'}); q.innerHTML='Y pensándolo en general, ¿qué tan probable es que nos <b>recomiendes</b> a un colega del rubro?'; body.append(q);
+  const sc=el('div',{class:'scale'});
+  for(let i=0;i<=10;i++){ const n=el('div',{class:'num',text:String(i)});
+    n.onclick=()=>{ sc.querySelectorAll('.num').forEach(x=>x.classList.remove('on')); n.classList.add('on'); data.nps=i;
+      setTimeout(next,260); };
+    sc.append(n); }
+  body.append(sc);
+  const e=el('div',{class:'ends'}); e.append(el('span',{text:'Nada probable'}),el('span',{text:'Totalmente'})); body.append(e);
+  body.append(progress(60));
+}
+function qMejora(){
+  clear(); header(4);
+  const q=el('div',{class:'q'}); q.textContent='¿Qué podríamos hacer mejor?'; body.append(q);
+  const t=el('textarea',{value:data.mejora}); body.append(t);
+  const r=el('div',{class:'row'});
+  const b=el('button',{class:'btn',text:'Seguir  →'}); b.onclick=()=>{data.mejora=t.value;next();};
+  const s=el('button',{class:'btn ghost',text:'Saltar'}); s.onclick=()=>{next();};
+  r.append(b,s); body.append(r); body.append(progress(80));
+}
+function qRama(){
+  clear(); header(5);
+  const contento = data.nps>=7;
+  const q=el('div',{class:'q'});
+  if(contento) q.innerHTML='¿Recordás algún caso especial donde sentiste nuestro <b>esfuerzo extra</b>? Contámelo.';
+  else q.textContent='Contanos qué pasó. Nos importa resolverlo.';
+  body.append(q);
+  if(contento) body.append(el('div',{class:'hint',text:'Un despacho trabado, una urgencia, algo que otro no te resolvía…'}));
+  const t=el('textarea',{}); body.append(t);
+  const b=el('button',{class:'btn',text:'Seguir  →'});
+  b.onclick=()=>{ if(contento) data.caso=t.value; else data.que_paso=t.value; next(); };
+  body.append(b); body.append(progress(90));
+}
+function qAlgoMas(){
+  clear();
+  const q=el('div',{class:'q'}); q.textContent='¿Algo más que quieras decirnos?'; body.append(q);
+  body.append(el('div',{class:'hint',text:'Opcional.'}));
+  const t=el('textarea',{}); body.append(t);
+  const r=el('div',{class:'row'});
+  const b=el('button',{class:'btn',text:'Enviar  →'}); b.onclick=()=>{data.algo_mas=t.value;submit();};
+  const s=el('button',{class:'btn ghost',text:'Enviar sin agregar'}); s.onclick=submit;
+  r.append(b,s); body.append(r); body.append(progress(100));
+}
+
+async function submit(){
+  screenMsg('Enviando…','');
+  const campos = {token:data.token, nps:data.nps, aspectos:data.aspectos,
+    palabras:data.palabras, mejora:data.mejora, caso:data.caso, que_paso:data.que_paso, algo_mas:data.algo_mas};
+  try{
+    const res = await fetch(API+'/api/voz', {method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({campos, lang:'es'})});
+    const j = await res.json();
+    if(j.ok){
+      if(data.nps>=7) screenMsg('Gracias, en serio.','Esto nos ordena.');
+      else screenMsg('Gracias por la franqueza.','Te escribo personalmente. — Matías');
+    } else { screenMsg('Hubo un problema.','Probá de nuevo en un rato.'); }
+  }catch(e){ screenMsg('Hubo un problema.','Probá de nuevo en un rato.'); }
+}
+
+// ── arranque: leer personalización por token ─────────────────────────
+async function start(){
+  if(!TOKEN){ return screenMsg('Link inválido.','Pedí el enlace nuevamente.'); }
+  try{
+    const res = await fetch(API+'/api/voz/'+encodeURIComponent(TOKEN));
+    if(res.status===404){ return screenMsg('Link inválido o vencido.','Pedí el enlace nuevamente.'); }
+    invitado = await res.json();
+    if(invitado.respondido){ return screenMsg('Ya respondiste.','Gracias por tu tiempo.'); }
+    render();
+  }catch(e){ screenMsg('No se pudo cargar.','Probá de nuevo en un rato.'); }
+}
+start();
+</script>
+</body>
+</html>
