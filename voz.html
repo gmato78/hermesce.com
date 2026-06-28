@@ -230,7 +230,7 @@ async function submit(){
     const j = await res.json();
     if(j.ok){
       if(data.nps>=7) screenMsg('Gracias, en serio.','Esto nos ordena.');
-      else screenMsg('Gracias por la franqueza.','Te escribo personalmente. — Matías');
+      else screenMsg('Gracias por la franqueza.','La tenemos muy en cuenta.');
     } else { screenMsg('Hubo un problema.','Probá de nuevo en un rato.'); }
   }catch(e){ screenMsg('Hubo un problema.','Probá de nuevo en un rato.'); }
 }
