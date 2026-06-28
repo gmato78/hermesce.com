@@ -12,46 +12,58 @@
     --brand-zafiro:#2A5686; --brand-zafiro-dark:#102845; --brand-zafiro-light:#4C7AB0;
     --brand-text:#0f2544; --brand-text-soft:#4B5563; --brand-text-mute:#6B7280; --brand-white:#fff;
     --canvas-showroom:#CDDCEC; --font:'Inter',system-ui,sans-serif;
-    --radius-lg:30px; --radius-xs:8px;
-    --shadow:0 20px 50px -16px rgba(20,40,70,.40);
+    --radius-lg:28px; --radius-xs:8px;
+    --shadow:0 24px 60px -20px rgba(20,40,70,.45);
   }
   *{box-sizing:border-box;margin:0;padding:0}
+  html,body{min-height:100%}
   body{font-family:var(--font);font-weight:300;color:var(--brand-text);
     background:radial-gradient(120% 120% at 50% 0%, #E2ECF6 0%, var(--canvas-showroom) 55%, #B9CEE4 100%);
-    min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
-  .panel{background:var(--brand-white);border-radius:var(--radius-lg);box-shadow:var(--shadow);
-    width:100%;max-width:440px;min-height:430px;padding:48px 42px;position:relative;overflow:hidden;
-    display:flex;flex-direction:column}
-  .panel::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;
-    background:linear-gradient(90deg,var(--brand-zafiro),var(--brand-zafiro-light))}
-  .brand{font-size:15px;letter-spacing:.5px;margin-bottom:auto}
-  .brand b{font-weight:300;color:var(--brand-text)} .brand span{font-weight:700;color:var(--brand-zafiro)}
-  .step{font-size:12px;font-weight:500;color:var(--brand-zafiro-light);letter-spacing:2px;margin:30px 0 14px}
-  h1{font-size:30px;font-weight:300;line-height:1.2;color:var(--brand-zafiro-dark);margin:26px 0 12px}
+    min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px}
+
+  /* ── shell de dos columnas (desktop) ─────────────────────────────── */
+  .shell{display:flex;width:100%;max-width:900px;min-height:560px;background:var(--brand-white);
+    border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden}
+
+  .aside{flex:0 0 40%;background:linear-gradient(155deg,var(--brand-zafiro-dark),var(--brand-zafiro) 70%);
+    color:#fff;padding:46px 40px;display:flex;flex-direction:column}
+  .aside .brand{font-size:19px;letter-spacing:.5px}
+  .aside .brand b{font-weight:300;color:rgba(255,255,255,.92)}
+  .aside .brand span{font-weight:700;color:#fff}
+  .aside .tagline{margin-top:auto;font-size:clamp(22px,2vw,28px);font-weight:300;line-height:1.28;color:#fff}
+  .aside .tagline b{font-weight:600}
+  .aside .small{margin-top:16px;font-size:14px;color:rgba(255,255,255,.65)}
+
+  .main{flex:1;min-width:0;padding:48px 52px;display:flex;flex-direction:column}
+  #body{display:flex;flex-direction:column;flex:1}
+
+  /* ── contenido de preguntas ──────────────────────────────────────── */
+  .step{font-size:12px;font-weight:500;color:var(--brand-zafiro-light);letter-spacing:2px;margin-bottom:16px}
+  h1{font-size:clamp(28px,3vw,36px);font-weight:300;line-height:1.18;color:var(--brand-zafiro-dark);margin-bottom:14px}
   h1 b{font-weight:700;color:var(--brand-zafiro)}
-  .q{font-size:23px;font-weight:300;line-height:1.32;color:var(--brand-zafiro-dark);margin-bottom:8px}
+  .q{font-size:clamp(22px,2.3vw,27px);font-weight:300;line-height:1.32;color:var(--brand-zafiro-dark);margin-bottom:8px}
   .q b{font-weight:600;color:var(--brand-zafiro)}
-  p.sub{font-size:16px;color:var(--brand-text-soft);margin-bottom:30px}
+  p.sub{font-size:17px;color:var(--brand-text-soft);margin-bottom:32px}
   .hint{font-size:13px;color:var(--brand-text-mute);margin-bottom:22px}
   .btn{align-self:flex-start;background:var(--brand-zafiro);color:#fff;border:none;font-family:var(--font);
     font-size:15px;font-weight:500;padding:14px 32px;border-radius:var(--radius-xs);cursor:pointer;
     box-shadow:0 8px 20px -8px rgba(42,86,134,.7);transition:.15s}
   .btn:hover{background:var(--brand-zafiro-dark)}
   .btn.ghost{background:transparent;color:var(--brand-text-mute);box-shadow:none;padding:14px 8px;font-weight:400}
-  .row{display:flex;gap:10px;align-items:center;margin-top:6px}
-  .opts{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
-  .opt{display:flex;align-items:center;gap:12px;border:1.5px solid #E3EAF2;border-radius:12px;padding:13px 15px;
+  .row{display:flex;gap:10px;align-items:center;margin-top:4px}
+  .opts{display:flex;flex-direction:column;gap:9px;margin-bottom:22px}
+  .opt{display:flex;align-items:center;gap:12px;border:1.5px solid #E3EAF2;border-radius:12px;padding:12px 15px;
     font-size:15px;font-weight:400;color:var(--brand-text);cursor:pointer;transition:.12s}
   .opt:hover{border-color:var(--brand-zafiro-light)}
   .opt .k{width:22px;height:22px;border-radius:6px;border:1.5px solid #CBD7E5;flex:none;position:relative}
   .opt.sel{border-color:var(--brand-zafiro);background:#F2F7FC}
   .opt.sel .k{background:var(--brand-zafiro);border-color:var(--brand-zafiro)}
   .opt.sel .k::after{content:"✓";color:#fff;font-size:13px;position:absolute;top:0;left:4px}
-  textarea{width:100%;min-height:120px;border:1.5px solid #E3EAF2;border-radius:12px;padding:14px;
+  textarea{width:100%;min-height:130px;border:1.5px solid #E3EAF2;border-radius:12px;padding:14px;
     font-family:var(--font);font-size:15px;font-weight:400;color:var(--brand-text);resize:vertical;margin-bottom:22px}
   textarea:focus{outline:none;border-color:var(--brand-zafiro)}
-  .scale{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
-  .num{width:38px;height:44px;border:1.5px solid #E3EAF2;border-radius:9px;display:flex;align-items:center;
+  .scale{display:flex;gap:7px;margin-bottom:12px;flex-wrap:wrap}
+  .num{width:42px;height:46px;border:1.5px solid #E3EAF2;border-radius:9px;display:flex;align-items:center;
     justify-content:center;font-size:15px;font-weight:500;color:var(--brand-text-soft);cursor:pointer;transition:.12s}
   .num:hover{border-color:var(--brand-zafiro-light)}
   .num.on{background:var(--brand-zafiro);color:#fff;border-color:var(--brand-zafiro);transform:translateY(-3px);
@@ -59,15 +71,32 @@
   .ends{display:flex;justify-content:space-between;font-size:12px;color:var(--brand-text-mute);margin-bottom:24px}
   .pg{margin-top:auto;height:4px;background:#E9EFF6;border-radius:3px;overflow:hidden}
   .pg i{display:block;height:100%;background:var(--brand-zafiro);transition:width .3s}
-  .center{text-align:center;margin:auto 0}
+  .center{justify-content:center}
   .center h1{margin-bottom:14px}
-  .muted{color:var(--brand-text-mute);font-size:15px}
+  .muted{color:var(--brand-text-mute);font-size:16px}
+
+  /* ── mobile: una columna, pantalla completa ──────────────────────── */
+  @media (max-width:720px){
+    body{padding:0;align-items:stretch}
+    .shell{flex-direction:column;max-width:none;min-height:100vh;border-radius:0;box-shadow:none}
+    .aside{flex:none;flex-direction:row;align-items:center;padding:18px 22px;gap:10px}
+    .aside .tagline,.aside .small{display:none}
+    .main{padding:32px 24px}
+    .btn{padding:14px 28px}
+  }
+  @media (max-width:380px){ .num{width:38px;height:42px} }
 </style>
 </head>
 <body>
-<div class="panel" id="panel">
-  <div class="brand"><b>hermes</b> <span>CE</span></div>
-  <div id="body" class="center"><p class="muted">Cargando…</p></div>
+<div class="shell">
+  <aside class="aside">
+    <div class="brand"><b>hermes</b> <span>CE</span></div>
+    <div class="tagline">Comercio Exterior.<br><b>Fácil y Simple.</b></div>
+    <div class="small">Tu opinión · 3 minutos</div>
+  </aside>
+  <main class="main">
+    <div id="body" class="center"><p class="muted">Cargando…</p></div>
+  </main>
 </div>
 
 <script>
@@ -86,44 +115,32 @@ function el(tag, props={}, ...kids){
   kids.forEach(c=>e.append(c)); return e;
 }
 function clear(){ body.className=''; body.innerHTML=''; }
-function progress(pct){ const w=el('div',{class:'pg'}); w.append(el('i',{})); w.lastChild.style.width=pct+'%'; return w; }
+function progress(pct){ const w=el('div',{class:'pg'}); const i=el('i',{}); i.style.width=pct+'%'; w.append(i); return w; }
+function escapeName(s){ const d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
 
-// ── pantallas de estado ──────────────────────────────────────────────
 function screenMsg(titHtml, subText){
   clear(); body.className='center';
   const h=el('h1'); h.innerHTML=titHtml; body.append(h);
   if(subText) body.append(el('p',{class:'muted',text:subText}));
 }
 
-// ── flujo ────────────────────────────────────────────────────────────
 const STEPS = ['welcome','aspectos','palabras','nps','mejora','rama','algo_mas'];
 let idx = 0;
 function next(){ idx++; render(); }
-
 function render(){
   const name = STEPS[idx];
-  if(name==='welcome') return welcome();
-  if(name==='aspectos') return qAspectos();
-  if(name==='palabras') return qPalabras();
-  if(name==='nps') return qNps();
-  if(name==='mejora') return qMejora();
-  if(name==='rama') return qRama();
-  if(name==='algo_mas') return qAlgoMas();
+  ({welcome, aspectos:qAspectos, palabras:qPalabras, nps:qNps, mejora:qMejora, rama:qRama, algo_mas:qAlgoMas})[name]();
 }
 
 function welcome(){
-  clear();
+  clear(); body.className='center';
   const h=el('h1'); h.innerHTML = 'Hola, ' + escapeName(invitado.nombre) + '.<br><b>Tu mirada nos sirve.</b>';
   body.append(h);
   body.append(el('p',{class:'sub',text:'3 minutos, sin vueltas. Gracias por el tiempo.'}));
   const b=el('button',{class:'btn',text:'Empezar  →'}); b.onclick=next; body.append(b);
 }
-// el nombre se inserta como texto, nunca como HTML
-function escapeName(s){ const d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
+function header(stepNo){ body.append(el('div',{class:'step',text:('0'+stepNo)+' — DE 05'})); }
 
-function header(stepNo, total=5){
-  body.append(el('div',{class:'step',text:('0'+stepNo)+' — DE 0'+total}));
-}
 function qAspectos(){
   clear(); header(1);
   const q=el('div',{class:'q'}); q.innerHTML='De trabajar con nosotros, ¿qué es lo que más <b>valorás</b>?'; body.append(q);
@@ -132,7 +149,7 @@ function qAspectos(){
   ASPECTOS.forEach(a=>{
     const o=el('div',{class:'opt'}); o.append(el('span',{class:'k'}), el('span',{text:a}));
     o.onclick=()=>{ o.classList.toggle('sel');
-      data.aspectos = [...box.querySelectorAll('.opt.sel span:last-child')].map(s=>s.textContent); };
+      data.aspectos=[...box.querySelectorAll('.opt.sel span:last-child')].map(s=>s.textContent); };
     box.append(o);
   });
   body.append(box);
@@ -154,8 +171,7 @@ function qNps(){
   const q=el('div',{class:'q'}); q.innerHTML='Y pensándolo en general, ¿qué tan probable es que nos <b>recomiendes</b> a un colega del rubro?'; body.append(q);
   const sc=el('div',{class:'scale'});
   for(let i=0;i<=10;i++){ const n=el('div',{class:'num',text:String(i)});
-    n.onclick=()=>{ sc.querySelectorAll('.num').forEach(x=>x.classList.remove('on')); n.classList.add('on'); data.nps=i;
-      setTimeout(next,260); };
+    n.onclick=()=>{ sc.querySelectorAll('.num').forEach(x=>x.classList.remove('on')); n.classList.add('on'); data.nps=i; setTimeout(next,260); };
     sc.append(n); }
   body.append(sc);
   const e=el('div',{class:'ends'}); e.append(el('span',{text:'Nada probable'}),el('span',{text:'Totalmente'})); body.append(e);
@@ -167,7 +183,7 @@ function qMejora(){
   const t=el('textarea',{value:data.mejora}); body.append(t);
   const r=el('div',{class:'row'});
   const b=el('button',{class:'btn',text:'Seguir  →'}); b.onclick=()=>{data.mejora=t.value;next();};
-  const s=el('button',{class:'btn ghost',text:'Saltar'}); s.onclick=()=>{next();};
+  const s=el('button',{class:'btn ghost',text:'Saltar'}); s.onclick=next;
   r.append(b,s); body.append(r); body.append(progress(80));
 }
 function qRama(){
@@ -184,7 +200,7 @@ function qRama(){
   body.append(b); body.append(progress(90));
 }
 function qAlgoMas(){
-  clear();
+  clear(); header(5);
   const q=el('div',{class:'q'}); q.textContent='¿Algo más que quieras decirnos?'; body.append(q);
   body.append(el('div',{class:'hint',text:'Opcional.'}));
   const t=el('textarea',{}); body.append(t);
@@ -209,7 +225,6 @@ async function submit(){
   }catch(e){ screenMsg('Hubo un problema.','Probá de nuevo en un rato.'); }
 }
 
-// ── arranque: leer personalización por token ─────────────────────────
 async function start(){
   if(!TOKEN){ return screenMsg('Link inválido.','Pedí el enlace nuevamente.'); }
   try{
