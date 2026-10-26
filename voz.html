@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
 <title>Voz del Cliente · hermes CE</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
@@ -28,9 +29,9 @@
 
   .aside{flex:0 0 40%;background:linear-gradient(155deg,var(--brand-zafiro-dark),var(--brand-zafiro) 70%);
     color:#fff;padding:46px 40px;display:flex;flex-direction:column}
-  .aside .brand{font-size:19px;letter-spacing:.5px}
-  .aside .brand b{font-weight:300;color:rgba(255,255,255,.92)}
-  .aside .brand span{font-weight:700;color:#fff}
+  /* logo real de la landing: completo en desktop, hCE compacto en mobile (mismo swap que el nav de index.html) */
+  .aside .brand{line-height:0}
+  .aside .brand-logo{display:block;width:190px;height:auto}
   .aside .tagline{margin-top:auto;font-size:clamp(22px,2vw,28px);font-weight:300;line-height:1.28;color:#fff}
   .aside .tagline b{font-weight:600}
   .aside .small{margin-top:16px;font-size:14px;color:rgba(255,255,255,.65)}
@@ -86,6 +87,7 @@
     .shell{flex-direction:column;max-width:none;height:auto;min-height:100vh;border-radius:0;box-shadow:none}
     .aside{flex:none;flex-direction:row;align-items:center;padding:18px 22px;gap:10px}
     .aside .tagline,.aside .small{display:none}
+    .aside .brand-logo{width:auto;height:38px}
     .main{padding:32px 24px}
     .btn{padding:14px 28px}
     .opts{grid-template-columns:1fr}
@@ -96,8 +98,15 @@
 <body>
 <div class="shell">
   <aside class="aside">
-    <div class="brand"><b>hermes</b> <span>CE</span></div>
-    <div class="tagline">Comercio Exterior.<br><b>Fácil y Simple.</b></div>
+    <div class="brand">
+      <picture>
+        <source media="(max-width: 720px)" srcset="logo-hce-white.webp" type="image/webp">
+        <source media="(max-width: 720px)" srcset="logo-hce-white.png">
+        <source srcset="logo-full-white.webp" type="image/webp">
+        <img src="logo-full-white.png" alt="hermes CE" class="brand-logo" width="524" height="240" decoding="async">
+      </picture>
+    </div>
+    <div class="tagline"><b>Fácil y Simple.</b></div>
     <div class="small">Tu opinión · 3 minutos</div>
   </aside>
   <main class="main">
@@ -106,12 +115,17 @@
 </div>
 
 <script>
-const API = new URLSearchParams(location.search).get('api') ?? 'https://api.hermesce.com';
+// ?api= solo para probar en local: publicada, la pagina habla unicamente con api.hermesce.com
+const LOCAL = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+const API = (LOCAL && new URLSearchParams(location.search).get('api')) || 'https://api.hermesce.com';
 const TOKEN = new URLSearchParams(location.search).get('t') || '';
-const ASPECTOS = ["El cuidado en los detalles","Los tiempos de respuesta","El criterio y la experiencia",
-  "El trato cercano","Ver los problemas antes de que pasen","La confidencialidad","Otro"];
+// v2 · textos aprobados, copiados literal.
+// Seis cualidades en este orden: velocidad · integridad · claridad · anticipación · ayuda · trato.
+const CUALIDADES = ["La rapidez para responder","Hacer las cosas sin atajos",
+  "La claridad con que se explica cada paso","Ver los problemas antes de que pasen",
+  "La ayuda cuando algo se complica","El trato de las personas"];
 
-const data = {token: TOKEN, aspectos: [], palabras: "", nps: null, mejora: "", caso: "", que_paso: "", algo_mas: ""};
+const data = {token: TOKEN, version: 2, cualidades: [], antes: "", nps: null, caso: "", que_paso: ""};
 let invitado = null;
 const body = document.getElementById('body');
 
@@ -137,49 +151,57 @@ function screenMsg(titHtml, subText){
   if(subText) body.append(el('p',{class:'muted',text:subText}));
 }
 
-const STEPS = ['welcome','aspectos','palabras','nps','mejora','rama','algo_mas'];
+// 4 pantallas de preguntas para todos; la cuarta depende de la nota (7 o más: caso · 6 o menos: qué pasó).
+// Sin "paso N de M": solo la barra de progreso.
+const STEPS = ['welcome','cualidades','antes','nps','rama'];
+const TOTAL = 4;
 let idx = 0;
 function next(){ idx++; render(); }
+function pct(pantalla){ return Math.round(100 * pantalla / TOTAL); }
 function render(){
-  const name = STEPS[idx];
-  ({welcome, aspectos:qAspectos, palabras:qPalabras, nps:qNps, mejora:qMejora, rama:qRama, algo_mas:qAlgoMas})[name]();
+  ({welcome, cualidades:qCualidades, antes:qAntes, nps:qNps, rama:qRama})[STEPS[idx]]();
 }
 
 function welcome(){
   clear(); body.className='center';
   const h=el('h1'); h.innerHTML = 'Hola, ' + escapeName(invitado.nombre) + '.<br><b>Tu mirada nos sirve.</b>';
   body.append(h);
-  body.append(el('p',{class:'sub',text:'3 minutos, sin vueltas. Gracias por el tiempo.'}));
+  body.append(el('p',{class:'sub',text:'Cuatro preguntas, unos 3 minutos. Gracias por el tiempo.'}));
   const b=el('button',{class:'btn',text:'Empezar  →'}); b.onclick=next; body.append(b);
 }
-function header(stepNo){ body.append(el('div',{class:'step',text:('0'+stepNo)+' — DE 05'})); }
 
-function qAspectos(){
-  clear(); header(1);
-  const q=el('div',{class:'q'}); q.innerHTML='De trabajar con nosotros, ¿qué es lo que más <b>valorás</b>?'; body.append(q);
-  body.append(el('div',{class:'hint',text:'Elegí lo que pese más.'}));
+function qCualidades(){
+  clear();
+  const q=el('div',{class:'q'}); q.innerHTML='De trabajar con nosotros, ¿qué <b>valorás</b>?'; body.append(q);
+  body.append(el('div',{class:'hint',text:'Marcá solo las que sientas. Las que no, dejalas sin marcar: también cuenta.'}));
   const box=el('div',{class:'opts'});
-  ASPECTOS.forEach(a=>{
+  CUALIDADES.forEach(a=>{
     const o=el('div',{class:'opt'}); o.append(el('span',{class:'k'}), el('span',{text:a}));
+    if(data.cualidades.includes(a)) o.classList.add('sel');
     o.onclick=()=>{ o.classList.toggle('sel');
-      data.aspectos=[...box.querySelectorAll('.opt.sel span:last-child')].map(s=>s.textContent); };
+      data.cualidades=[...box.querySelectorAll('.opt.sel span:last-child')].map(s=>s.textContent); };
     box.append(o);
   });
   body.append(box);
   const b=el('button',{class:'btn',text:'Seguir  →'}); b.onclick=next;
-  body.append(foot(20, b));
+  body.append(foot(pct(1), b));
 }
-function qPalabras(){
-  clear(); header(2);
-  const q=el('div',{class:'q'}); q.textContent='¿Querés contarlo en tus palabras?'; body.append(q);
-  body.append(el('div',{class:'hint',text:'Opcional.'}));
-  const t=el('textarea',{value:data.palabras}); body.append(t);
-  const b=el('button',{class:'btn',text:'Seguir  →'}); b.onclick=()=>{data.palabras=t.value;next();};
-  const s=el('button',{class:'btn ghost',text:'Saltar'}); s.onclick=next;
-  body.append(foot(40, b, s));
+function qAntes(){
+  clear();
+  body.append(el('div',{class:'q',text:'¿Qué te llevó a empezar a trabajar con nosotros?'}));
+  body.append(el('div',{class:'hint',text:'Un problema que tenías, algo que buscabas o algo que no te andaba. Si pasó hace mucho, con lo que recuerdes alcanza.'}));
+  const t=el('textarea',{value:data.antes}); body.append(t);
+  const b=el('button',{class:'btn',text:'Seguir  →'}); b.onclick=()=>{data.antes=t.value;next();};
+  const s=el('button',{class:'btn ghost',text:'Saltar'}); s.onclick=next; soloSinTexto(s, t);
+  body.append(foot(pct(2), b, s));
+}
+// "Saltar" solo con la caja vacía: con texto escrito, un toque equivocado lo descartaría
+function soloSinTexto(boton, caja){
+  const sync=()=>{ boton.style.display = caja.value.trim() ? 'none' : ''; };
+  caja.addEventListener('input', sync); sync();
 }
 function qNps(){
-  clear(); header(3);
+  clear();
   const q=el('div',{class:'q'}); q.innerHTML='Y pensándolo en general, ¿qué tan probable es que nos <b>recomiendes</b> a un colega del rubro?'; body.append(q);
   const sc=el('div',{class:'scale'});
   for(let i=0;i<=10;i++){ const n=el('div',{class:'num',text:String(i)});
@@ -187,52 +209,50 @@ function qNps(){
     sc.append(n); }
   body.append(sc);
   const e=el('div',{class:'ends'}); e.append(el('span',{text:'Nada probable'}),el('span',{text:'Totalmente'})); body.append(e);
-  body.append(foot(60));
+  body.append(foot(pct(3)));
 }
-function qMejora(){
-  clear(); header(4);
-  const q=el('div',{class:'q'}); q.textContent='¿Qué podríamos hacer mejor?'; body.append(q);
-  const t=el('textarea',{value:data.mejora}); body.append(t);
-  const b=el('button',{class:'btn',text:'Seguir  →'}); b.onclick=()=>{data.mejora=t.value;next();};
-  const s=el('button',{class:'btn ghost',text:'Saltar'}); s.onclick=next;
-  body.append(foot(80, b, s));
+// la concordancia depende de cuántas cualidades marcó
+function preguntaCaso(){
+  const n = data.cualidades.length;
+  if(n === 1) return 'Pensando en ' + data.cualidades[0].toLowerCase() + ', ¿notaste algún caso en que percibiste o se destacó ese valor o, por el contrario, en que pudo haber fallado?';
+  if(n >= 2) return 'Pensando en lo que marcaste, ¿notaste algún caso en que percibiste o se destacó alguno de esos valores o, por el contrario, en que pudo haber fallado?';
+  return '¿Notaste algún caso en que percibiste o se destacó algo que valorás de trabajar con nosotros o, por el contrario, en que pudo haber fallado?';
 }
 function qRama(){
-  clear(); header(5);
+  clear();
   const contento = data.nps>=7;
-  const q=el('div',{class:'q'});
-  if(contento) q.innerHTML='¿Recordás algún caso especial donde sentiste nuestro <b>esfuerzo extra</b>? Contámelo.';
-  else q.textContent='Contanos qué pasó. Nos importa resolverlo.';
-  body.append(q);
-  if(contento) body.append(el('div',{class:'hint',text:'Un despacho trabado, una urgencia, algo que otro no te resolvía…'}));
+  // textContent: la pregunta del caso lleva las cualidades marcadas, nunca pasa por innerHTML
+  body.append(el('div',{class:'q',text: contento ? preguntaCaso() : 'Contanos qué pasó. Nos importa resolverlo.'}));
+  if(contento) body.append(el('div',{class:'hint',text:'Puede ser una operación puntual o algo del día a día. Con lo que recuerdes alcanza.'}));
   const t=el('textarea',{}); body.append(t);
-  const b=el('button',{class:'btn',text:'Seguir  →'});
-  b.onclick=()=>{ if(contento) data.caso=t.value; else data.que_paso=t.value; next(); };
-  body.append(foot(90, b));
-}
-function qAlgoMas(){
-  clear(); header(5);
-  const q=el('div',{class:'q'}); q.textContent='¿Algo más que quieras decirnos?'; body.append(q);
-  body.append(el('div',{class:'hint',text:'Opcional.'}));
-  const t=el('textarea',{}); body.append(t);
-  const b=el('button',{class:'btn',text:'Enviar  →'}); b.onclick=()=>{data.algo_mas=t.value;submit();};
-  const s=el('button',{class:'btn ghost',text:'Enviar sin agregar'}); s.onclick=submit;
-  body.append(foot(100, b, s));
+  const campo = contento ? 'caso' : 'que_paso';
+  const b=el('button',{class:'btn',text:'Enviar  →'}); b.onclick=()=>{ data[campo]=t.value; submit(); };
+  const s=el('button',{class:'btn ghost',text:'Saltar'}); s.onclick=()=>{ data[campo]=''; submit(); }; soloSinTexto(s, t);
+  body.append(foot(pct(4), b, s));
 }
 
 async function submit(){
   screenMsg('Enviando…','');
-  const campos = {token:data.token, nps:data.nps, aspectos:data.aspectos,
-    palabras:data.palabras, mejora:data.mejora, caso:data.caso, que_paso:data.que_paso, algo_mas:data.algo_mas};
+  // solo las claves con contenido; version 2 marca el instrumento
+  const campos = {token:data.token, version:data.version, nps:data.nps};
+  if(data.cualidades.length) campos.cualidades = data.cualidades;
+  for(const k of ['antes','caso','que_paso']){ if(data[k].trim()) campos[k] = data[k].trim(); }
   try{
     const res = await fetch(API+'/api/voz', {method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({campos, lang:'es'})});
+    if(res.status===409){ return screenMsg('Ya respondiste.','Gracias por tu tiempo.'); }
     const j = await res.json();
     if(j.ok){
       if(data.nps>=7) screenMsg('Gracias, en serio.','Esto nos ordena.');
       else screenMsg('Gracias por la franqueza.','La tenemos muy en cuenta.');
-    } else { screenMsg('Hubo un problema.','Probá de nuevo en un rato.'); }
-  }catch(e){ screenMsg('Hubo un problema.','Probá de nuevo en un rato.'); }
+    } else { screenError(); }
+  }catch(e){ screenError(); }
+}
+// el envío falló (red, server reiniciando): lo escrito sigue en data y se puede reenviar.
+// Si el primer envío sí había llegado, el reenvío recibe 409 y muestra "Ya respondiste."
+function screenError(){
+  screenMsg('Hubo un problema.','Probá de nuevo en un rato.');
+  const b=el('button',{class:'btn',text:'Enviar  →'}); b.onclick=submit; body.append(b);
 }
 
 async function start(){
