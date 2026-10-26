@@ -58,6 +58,14 @@
   .back{align-self:flex-start;background:none;border:none;padding:0;margin-bottom:18px;font-family:var(--font);
     font-size:14px;color:var(--brand-text-mute);cursor:pointer}
   .back:hover{color:var(--brand-zafiro)}
+  .permiso{display:flex;gap:10px;align-items:flex-start;margin:-8px 0 18px;font-size:14px;
+    color:var(--brand-text-soft);cursor:pointer;line-height:1.35}
+  .permiso input{width:18px;height:18px;margin:1px 0 0;accent-color:var(--brand-zafiro);flex:none;cursor:pointer}
+  .yn{display:flex;gap:10px;margin:14px 0 22px}
+  .yn button{min-width:96px;padding:12px 22px;border:1.5px solid #E3EAF2;border-radius:12px;background:#fff;
+    font-family:var(--font);font-size:15px;color:var(--brand-text);cursor:pointer;transition:.12s}
+  .yn button:hover{border-color:var(--brand-zafiro-light)}
+  .yn button.sel{border-color:var(--brand-zafiro);background:var(--brand-zafiro);color:#fff;font-weight:500}
   .row{display:flex;gap:10px;align-items:center;margin-top:4px}
   .opts{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:24px}
   .opts .opt:last-child:nth-child(odd){grid-column:1 / -1}
@@ -129,7 +137,7 @@ const CUALIDADES = ["La rapidez para responder","Hacer las cosas sin atajos",
   "La claridad con que se explica cada paso","Ver los problemas antes de que pasen",
   "La ayuda cuando algo se complica","El trato de las personas"];
 
-const data = {token: TOKEN, version: 2, cualidades: [], antes: "", nps: null, caso: "", que_paso: ""};
+const data = {token: TOKEN, version: 2, antes: "", cualidades: [], caso: "", uso_anonimo: false, observa: null, observacion: "", nps: null};
 let invitado = null;
 const body = document.getElementById('body');
 
@@ -155,10 +163,10 @@ function screenMsg(titHtml, subText){
   if(subText) body.append(el('p',{class:'muted',text:subText}));
 }
 
-// 4 pantallas de preguntas para todos; la cuarta depende de la nota (7 o más: caso · 6 o menos: qué pasó).
-// Sin "paso N de M": solo la barra de progreso.
-const STEPS = ['welcome','cualidades','antes','nps','rama'];
-const TOTAL = 4;
+// Orden cronológico (Matías, 26-10-2026): cómo empezó · qué valora · qué destaca · qué observaría · la nota.
+// Cinco pantallas para todos; la nota cierra y envía. Sin "paso N de M": solo la barra de progreso.
+const STEPS = ['welcome','antes','cualidades','destacar','observa','nps'];
+const TOTAL = 5;
 let idx = 0;
 function next(){ idx++; render(); }
 // Volver: guarda lo escrito en la pantalla actual y vuelve a la anterior, que se arma con lo ya contestado
@@ -169,17 +177,34 @@ function volver(guardar){
 }
 function pct(pantalla){ return Math.round(100 * pantalla / TOTAL); }
 function render(){
-  ({welcome, cualidades:qCualidades, antes:qAntes, nps:qNps, rama:qRama})[STEPS[idx]]();
+  ({welcome, antes:qAntes, cualidades:qCualidades, destacar:qDestacar, observa:qObserva, nps:qNps})[STEPS[idx]]();
 }
 
 function welcome(){
+  // continuidad del mail de invitación: la presentación y la explicación ya están allá
   clear(); body.className='center';
-  const h=el('h1'); h.innerHTML = 'Hola, ' + escapeName(invitado.nombre) + '.<br><b>Tu mirada nos sirve.</b>';
+  const h=el('h1'); h.innerHTML = 'Hola, ' + escapeName(invitado.nombre) + '.<br><b>Gracias por sumarte.</b>';
   body.append(h);
-  body.append(el('p',{class:'sub',text:'Gracias por tu tiempo.'}));
   const b=el('button',{class:'btn',text:'Empezar  →'}); b.onclick=next; body.append(b);
 }
 
+// primera pregunta: sin Volver (volver a la bienvenida no aporta)
+function qAntes(){
+  clear();
+  const t=el('textarea',{value:data.antes});
+  body.append(el('div',{class:'q',text:'¿Qué te llevó a empezar a trabajar con nosotros?'}));
+  body.append(el('div',{class:'hint',text:'Cómo nos conociste y qué situación generó ese primer encuentro.'}));
+  body.append(t);
+  const b=el('button',{class:'btn',text:'Seguir  →'}); b.onclick=()=>{data.antes=t.value;next();};
+  // Saltar vacía lo guardado: si volvió y borró el texto, no se manda el de antes
+  const s=el('button',{class:'btn ghost',text:'Saltar'}); s.onclick=()=>{data.antes='';next();}; soloSinTexto(s, t);
+  body.append(foot(pct(1), b, s));
+}
+// "Saltar" solo con la caja vacía: con texto escrito, un toque equivocado lo descartaría
+function soloSinTexto(boton, caja){
+  const sync=()=>{ boton.style.display = caja.value.trim() ? 'none' : ''; };
+  caja.addEventListener('input', sync); sync();
+}
 function qCualidades(){
   clear(); volver();
   const q=el('div',{class:'q'}); q.innerHTML='¿Qué <b>valorás</b> de trabajar con nosotros?'; body.append(q);
@@ -194,60 +219,63 @@ function qCualidades(){
   });
   body.append(box);
   const b=el('button',{class:'btn',text:'Seguir  →'}); b.onclick=next;
-  body.append(foot(pct(1), b));
+  body.append(foot(pct(2), b));
 }
-function qAntes(){
+// pegada a la valoración: lo que destaca de lo que acaba de marcar
+function qDestacar(){
   clear();
-  const t=el('textarea',{value:data.antes});
-  volver(()=>{ data.antes=t.value; });
-  body.append(el('div',{class:'q',text:'¿Qué te llevó a empezar a trabajar con nosotros?'}));
-  body.append(el('div',{class:'hint',text:'Cómo nos conociste y qué situación generó ese primer encuentro.'}));
+  const t=el('textarea',{value:data.caso});
+  volver(()=>{ data.caso=t.value; });
+  body.append(el('div',{class:'q',text:'Según tu experiencia y teniendo en cuenta tu valoración, ¿qué podés destacar de nuestro trabajo?'}));
+  body.append(el('div',{class:'hint',text:'Puede ser una operación puntual o algo del día a día. Con lo que recuerdes alcanza.'}));
   body.append(t);
-  const b=el('button',{class:'btn',text:'Seguir  →'}); b.onclick=()=>{data.antes=t.value;next();};
-  // Saltar vacía lo guardado: si volvió y borró el texto, no se manda el de antes
-  const s=el('button',{class:'btn ghost',text:'Saltar'}); s.onclick=()=>{data.antes='';next();}; soloSinTexto(s, t);
-  body.append(foot(pct(2), b, s));
+  // permiso para publicar lo que escribió, sin nombre ni empresa: arranca sin marcar
+  const ok=el('input',{type:'checkbox',checked:data.uso_anonimo});
+  ok.onchange=()=>{ data.uso_anonimo=ok.checked; };
+  body.append(el('label',{class:'permiso'}, ok, el('span',{text:'Pueden usar lo que escribí, sin mi nombre ni el de mi empresa.'})));
+  const b=el('button',{class:'btn',text:'Seguir  →'}); b.onclick=()=>{ data.caso=t.value; next(); };
+  const s=el('button',{class:'btn ghost',text:'Saltar'}); s.onclick=()=>{ data.caso=''; next(); }; soloSinTexto(s, t);
+  body.append(foot(pct(3), b, s));
 }
-// "Saltar" solo con la caja vacía: con texto escrito, un toque equivocado lo descartaría
-function soloSinTexto(boton, caja){
-  const sync=()=>{ boton.style.display = caja.value.trim() ? 'none' : ''; };
-  caja.addEventListener('input', sync); sync();
+// Sí/No; con Sí se despliega la caja para contar qué observaría. Con No, sigue a la nota.
+function qObserva(){
+  clear();
+  const t=el('textarea',{value:data.observacion});
+  volver(()=>{ if(data.observa==='si') data.observacion=t.value; });
+  body.append(el('div',{class:'q',text:'¿Hay algo de nuestro trabajo que te gustaría observar para mejor?'}));
+  const yn=el('div',{class:'yn'});
+  const si=el('button',{text:'Sí'}), no=el('button',{text:'No'});
+  yn.append(si, no); body.append(yn);
+  const box=el('div',{class:'box-obs'});
+  box.append(el('div',{class:'hint',text:'Contanos qué.'}), t);
+  body.append(box);
+  const b=el('button',{class:'btn',text:'Seguir  →'}); b.onclick=()=>{ data.observacion=t.value; next(); };
+  body.append(foot(pct(4), b));
+  const pinta=()=>{
+    si.classList.toggle('sel', data.observa==='si'); no.classList.toggle('sel', data.observa==='no');
+    const abierto = data.observa==='si';
+    box.style.display = abierto ? '' : 'none'; b.style.display = abierto ? '' : 'none';
+  };
+  si.onclick=()=>{ data.observa='si'; pinta(); t.focus(); };
+  const paso=idx;
+  // No: pasa a la nota (sin texto); un Volver en esos 260 ms no la adelanta
+  no.onclick=()=>{ data.observa='no'; data.observacion=''; pinta(); setTimeout(()=>{ if(idx===paso) next(); },260); };
+  pinta();
 }
+// la nota cierra: marcar un número muestra Enviar (un toque equivocado no se manda solo)
 function qNps(){
   clear(); volver();
   const q=el('div',{class:'q'}); q.innerHTML='¿Qué tan probable es que nos <b>recomiendes</b> a un colega del rubro?'; body.append(q);
+  const b=el('button',{class:'btn',text:'Enviar  →'}); b.onclick=submit;
   const sc=el('div',{class:'scale'});
-  const paso=idx;
   for(let i=0;i<=10;i++){ const n=el('div',{class:'num',text:String(i)});
     if(data.nps===i) n.classList.add('on');
-    // avanza solo si sigue en esta pantalla: un Volver o un segundo toque en esos 260 ms no la adelanta de mas
-    n.onclick=()=>{ sc.querySelectorAll('.num').forEach(x=>x.classList.remove('on')); n.classList.add('on'); data.nps=i;
-      setTimeout(()=>{ if(idx===paso) next(); },260); };
+    n.onclick=()=>{ sc.querySelectorAll('.num').forEach(x=>x.classList.remove('on')); n.classList.add('on'); data.nps=i; b.style.display=''; };
     sc.append(n); }
   body.append(sc);
   const e=el('div',{class:'ends'}); e.append(el('span',{text:'Nada probable'}),el('span',{text:'Muy probable'})); body.append(e);
-  body.append(foot(pct(3)));
-}
-// la concordancia depende de cuántas cualidades marcó
-function preguntaCaso(){
-  const n = data.cualidades.length;
-  if(n === 1) return 'Pensando en ' + data.cualidades[0].toLowerCase() + ', ¿notaste algún caso en que percibiste o se destacó ese valor o, por el contrario, en que pudo haber fallado?';
-  if(n >= 2) return 'Pensando en lo que marcaste, ¿notaste algún caso en que percibiste o se destacó alguno de esos valores o, por el contrario, en que pudo haber fallado?';
-  return '¿Notaste algún caso en que percibiste o se destacó algo que valorás de trabajar con nosotros o, por el contrario, en que pudo haber fallado?';
-}
-function qRama(){
-  clear();
-  const contento = data.nps>=7;
-  const campo = contento ? 'caso' : 'que_paso';
-  const t=el('textarea',{value:data[campo]});
-  volver(()=>{ data[campo]=t.value; });
-  // textContent: la pregunta del caso lleva las cualidades marcadas, nunca pasa por innerHTML
-  body.append(el('div',{class:'q',text: contento ? preguntaCaso() : 'Contanos qué pasó. Nos importa resolverlo.'}));
-  if(contento) body.append(el('div',{class:'hint',text:'Puede ser una operación puntual o algo del día a día. Con lo que recuerdes alcanza.'}));
-  body.append(t);
-  const b=el('button',{class:'btn',text:'Enviar  →'}); b.onclick=()=>{ data[campo]=t.value; submit(); };
-  const s=el('button',{class:'btn ghost',text:'Saltar'}); s.onclick=()=>{ data[campo]=''; submit(); }; soloSinTexto(s, t);
-  body.append(foot(pct(4), b, s));
+  body.append(foot(pct(5), b));
+  b.style.display = data.nps===null ? 'none' : '';
 }
 
 async function submit(){
@@ -255,8 +283,12 @@ async function submit(){
   // solo las claves con contenido; version 2 marca el instrumento
   const campos = {token:data.token, version:data.version, nps:data.nps};
   if(data.cualidades.length) campos.cualidades = data.cualidades;
-  // solo el texto de la rama de la nota final: si volvió y cambió la nota, el de la otra rama no viaja
-  for(const k of ['antes', data.nps>=7 ? 'caso' : 'que_paso']){ if(data[k].trim()) campos[k] = data[k].trim(); }
+  for(const k of ['antes','caso']){ if(data[k].trim()) campos[k] = data[k].trim(); }
+  // el permiso solo tiene sentido si hay algo que publicar
+  if(campos.caso) campos.uso_anonimo = data.uso_anonimo;
+  // observacion solo viaja con Sí: si dijo Sí, escribió y después cambió a No, no se manda
+  if(data.observa) campos.observa = data.observa;
+  if(data.observa==='si' && data.observacion.trim()) campos.observacion = data.observacion.trim();
   try{
     const res = await fetch(API+'/api/voz', {method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({campos, lang:'es'})});
