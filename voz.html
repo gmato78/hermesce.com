@@ -55,6 +55,9 @@
     box-shadow:0 8px 20px -8px rgba(42,86,134,.7);transition:.15s}
   .btn:hover{background:var(--brand-zafiro-dark)}
   .btn.ghost{background:transparent;color:var(--brand-text-mute);box-shadow:none;padding:14px 8px;font-weight:400}
+  .back{align-self:flex-start;background:none;border:none;padding:0;margin-bottom:18px;font-family:var(--font);
+    font-size:14px;color:var(--brand-text-mute);cursor:pointer}
+  .back:hover{color:var(--brand-zafiro)}
   .row{display:flex;gap:10px;align-items:center;margin-top:4px}
   .opts{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:24px}
   .opts .opt:last-child:nth-child(odd){grid-column:1 / -1}
@@ -158,6 +161,12 @@ const STEPS = ['welcome','cualidades','antes','nps','rama'];
 const TOTAL = 4;
 let idx = 0;
 function next(){ idx++; render(); }
+// Volver: guarda lo escrito en la pantalla actual y vuelve a la anterior, que se arma con lo ya contestado
+function volver(guardar){
+  const b=el('button',{class:'back',text:'←  Volver'});
+  b.onclick=()=>{ if(guardar) guardar(); idx--; render(); };
+  body.append(b);
+}
 function pct(pantalla){ return Math.round(100 * pantalla / TOTAL); }
 function render(){
   ({welcome, cualidades:qCualidades, antes:qAntes, nps:qNps, rama:qRama})[STEPS[idx]]();
@@ -167,14 +176,14 @@ function welcome(){
   clear(); body.className='center';
   const h=el('h1'); h.innerHTML = 'Hola, ' + escapeName(invitado.nombre) + '.<br><b>Tu mirada nos sirve.</b>';
   body.append(h);
-  body.append(el('p',{class:'sub',text:'Cuatro preguntas, unos 3 minutos. Gracias por el tiempo.'}));
+  body.append(el('p',{class:'sub',text:'Gracias por tu tiempo.'}));
   const b=el('button',{class:'btn',text:'Empezar  →'}); b.onclick=next; body.append(b);
 }
 
 function qCualidades(){
-  clear();
-  const q=el('div',{class:'q'}); q.innerHTML='De trabajar con nosotros, ¿qué <b>valorás</b>?'; body.append(q);
-  body.append(el('div',{class:'hint',text:'Marcá solo las que sientas. Las que no, dejalas sin marcar: también cuenta.'}));
+  clear(); volver();
+  const q=el('div',{class:'q'}); q.innerHTML='¿Qué <b>valorás</b> de trabajar con nosotros?'; body.append(q);
+  body.append(el('div',{class:'hint',text:'Marcá las opciones que consideres válidas.'}));
   const box=el('div',{class:'opts'});
   CUALIDADES.forEach(a=>{
     const o=el('div',{class:'opt'}); o.append(el('span',{class:'k'}), el('span',{text:a}));
@@ -189,11 +198,14 @@ function qCualidades(){
 }
 function qAntes(){
   clear();
+  const t=el('textarea',{value:data.antes});
+  volver(()=>{ data.antes=t.value; });
   body.append(el('div',{class:'q',text:'¿Qué te llevó a empezar a trabajar con nosotros?'}));
-  body.append(el('div',{class:'hint',text:'Un problema que tenías, algo que buscabas o algo que no te andaba. Si pasó hace mucho, con lo que recuerdes alcanza.'}));
-  const t=el('textarea',{value:data.antes}); body.append(t);
+  body.append(el('div',{class:'hint',text:'Cómo nos conociste y qué situación generó ese primer encuentro.'}));
+  body.append(t);
   const b=el('button',{class:'btn',text:'Seguir  →'}); b.onclick=()=>{data.antes=t.value;next();};
-  const s=el('button',{class:'btn ghost',text:'Saltar'}); s.onclick=next; soloSinTexto(s, t);
+  // Saltar vacía lo guardado: si volvió y borró el texto, no se manda el de antes
+  const s=el('button',{class:'btn ghost',text:'Saltar'}); s.onclick=()=>{data.antes='';next();}; soloSinTexto(s, t);
   body.append(foot(pct(2), b, s));
 }
 // "Saltar" solo con la caja vacía: con texto escrito, un toque equivocado lo descartaría
@@ -202,14 +214,18 @@ function soloSinTexto(boton, caja){
   caja.addEventListener('input', sync); sync();
 }
 function qNps(){
-  clear();
-  const q=el('div',{class:'q'}); q.innerHTML='Y pensándolo en general, ¿qué tan probable es que nos <b>recomiendes</b> a un colega del rubro?'; body.append(q);
+  clear(); volver();
+  const q=el('div',{class:'q'}); q.innerHTML='¿Qué tan probable es que nos <b>recomiendes</b> a un colega del rubro?'; body.append(q);
   const sc=el('div',{class:'scale'});
+  const paso=idx;
   for(let i=0;i<=10;i++){ const n=el('div',{class:'num',text:String(i)});
-    n.onclick=()=>{ sc.querySelectorAll('.num').forEach(x=>x.classList.remove('on')); n.classList.add('on'); data.nps=i; setTimeout(next,260); };
+    if(data.nps===i) n.classList.add('on');
+    // avanza solo si sigue en esta pantalla: un Volver o un segundo toque en esos 260 ms no la adelanta de mas
+    n.onclick=()=>{ sc.querySelectorAll('.num').forEach(x=>x.classList.remove('on')); n.classList.add('on'); data.nps=i;
+      setTimeout(()=>{ if(idx===paso) next(); },260); };
     sc.append(n); }
   body.append(sc);
-  const e=el('div',{class:'ends'}); e.append(el('span',{text:'Nada probable'}),el('span',{text:'Totalmente'})); body.append(e);
+  const e=el('div',{class:'ends'}); e.append(el('span',{text:'Nada probable'}),el('span',{text:'Muy probable'})); body.append(e);
   body.append(foot(pct(3)));
 }
 // la concordancia depende de cuántas cualidades marcó
@@ -222,11 +238,13 @@ function preguntaCaso(){
 function qRama(){
   clear();
   const contento = data.nps>=7;
+  const campo = contento ? 'caso' : 'que_paso';
+  const t=el('textarea',{value:data[campo]});
+  volver(()=>{ data[campo]=t.value; });
   // textContent: la pregunta del caso lleva las cualidades marcadas, nunca pasa por innerHTML
   body.append(el('div',{class:'q',text: contento ? preguntaCaso() : 'Contanos qué pasó. Nos importa resolverlo.'}));
   if(contento) body.append(el('div',{class:'hint',text:'Puede ser una operación puntual o algo del día a día. Con lo que recuerdes alcanza.'}));
-  const t=el('textarea',{}); body.append(t);
-  const campo = contento ? 'caso' : 'que_paso';
+  body.append(t);
   const b=el('button',{class:'btn',text:'Enviar  →'}); b.onclick=()=>{ data[campo]=t.value; submit(); };
   const s=el('button',{class:'btn ghost',text:'Saltar'}); s.onclick=()=>{ data[campo]=''; submit(); }; soloSinTexto(s, t);
   body.append(foot(pct(4), b, s));
@@ -237,14 +255,15 @@ async function submit(){
   // solo las claves con contenido; version 2 marca el instrumento
   const campos = {token:data.token, version:data.version, nps:data.nps};
   if(data.cualidades.length) campos.cualidades = data.cualidades;
-  for(const k of ['antes','caso','que_paso']){ if(data[k].trim()) campos[k] = data[k].trim(); }
+  // solo el texto de la rama de la nota final: si volvió y cambió la nota, el de la otra rama no viaja
+  for(const k of ['antes', data.nps>=7 ? 'caso' : 'que_paso']){ if(data[k].trim()) campos[k] = data[k].trim(); }
   try{
     const res = await fetch(API+'/api/voz', {method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({campos, lang:'es'})});
     if(res.status===409){ return screenMsg('Ya respondiste.','Gracias por tu tiempo.'); }
     const j = await res.json();
     if(j.ok){
-      if(data.nps>=7) screenMsg('Gracias, en serio.','Esto nos ordena.');
+      if(data.nps>=7) screenMsg('Muchas gracias.','Esto nos ordena.');
       else screenMsg('Gracias por la franqueza.','La tenemos muy en cuenta.');
     } else { screenError(); }
   }catch(e){ screenError(); }
