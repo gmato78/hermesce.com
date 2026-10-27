@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
 <meta name="referrer" content="no-referrer">
+<!-- La pagina no se muestra dentro de un marco de otro sitio (GitHub Pages no deja poner el
+     encabezado X-Frame-Options): oculta hasta comprobar que es la ventana principal. -->
+<style id="anti-marco">html{display:none !important}</style>
+<script>
+  if (window.self === window.top) { document.getElementById('anti-marco').remove(); }
+  else { window.top.location = window.self.location; }
+</script>
 <title>Voz del Cliente · hermes CE</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
